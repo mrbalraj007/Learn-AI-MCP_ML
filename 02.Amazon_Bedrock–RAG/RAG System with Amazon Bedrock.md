@@ -225,7 +225,7 @@ We need somewhere to store all those embeddings.
 
 I'd recommend **Amazon OpenSearch Serverless** - it's managed and scales automatically.
 
-![alt text](image-11.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/cbf1b3a5-a6fe-4c4f-9918-c3507c382e39" />
 
 ### ✅ Step 9: Create Knowledge Base
 
@@ -235,34 +235,34 @@ Almost there!
 2. Hit **Create**
 3. Grab a coffee - this takes a few minutes to set up
 
-![alt text](image-12.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/23fe7611-d2cf-471d-bc72-a79ce30eabdf" />
 
 ### 🔄 Step 10: Sync Data Source
 
-![alt text](image-13.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/45ffe6e6-fabc-45ad-aa0b-0ce76c186535" />
 
 Now we tell it to actually process your documents.
 
 1. Find your new knowledge base
 2. Go to the **Data Source** tab
 3. Click **Sync**
-![alt text](image-14.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/7690b8bf-a4d2-43bb-9420-57d252511e9a" />
 
 This converts your docs into embeddings and stores them. It's the magic that makes everything work.
 
 ### 🧪 Step 11: Test Your RAG System
 
 Let's see if it works!
-![alt text](image-15.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/3d8a76a5-adc3-404b-ae30-2e99c044276f" />
 
 1. In your knowledge base, click **Test Knowledge Base**
 2. Pick a model like `Nova Micro` (it's fast and good)
-![alt text](image-16.png)
-![alt text](image-17.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/bf400440-52f2-486e-90d2-fb2075652aac" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/b40bb8b3-4caa-4d6d-b788-f565cc76181b" />
 
 In the `Test` section, try to ask below question specific to project:
 
-![alt text](image-18.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/48c67d9f-dca5-485d-807b-958e63bf1b33" />
 
 3. Try questions like:
    - "What's the current project status?"
@@ -272,7 +272,7 @@ You should get answers pulled straight from your documents. Pretty cool, right?
 
 🎯 **The best part:** No retraining needed. Just update your S3 files and sync again. Your AI stays current automatically.
 
-![alt text](image-19.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/535ac859-881a-4327-9489-6ad4da1da206" />
 
 ### 🧹 Step 12: Cleanup (Don't Skip This!)
 
@@ -281,11 +281,11 @@ AWS charges for these resources, so clean up when you're done experimenting.
 Delete in this order:
 
 1. The Knowledge Base
-![alt text](image-20.png)
-![alt text](image-21.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/f801a660-5cec-421a-8cb9-87ce771e3d2d" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/73487e1c-2436-4939-820d-7a0b2a72022f" />
 
 2. The Vector Store (OpenSearch)
-![alt text](image-22.png)
+<img width="1870" height="293" alt="Image" src="https://github.com/user-attachments/assets/3efe0ad8-0fdc-4cd0-958c-8311f80d49e2" />
 
 Delete the following 
 - Data Access Policy
