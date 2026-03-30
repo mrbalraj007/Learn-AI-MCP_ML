@@ -20,7 +20,6 @@ In this guide, I'm going to break it all down for you:
 Let's dive in!
 
 ## 📋 Table of Contents
-
 - [🚀 Stop AI Hallucinations: Build a Real-World RAG System with Amazon Bedrock (Step-by-Step)](#-stop-ai-hallucinations-build-a-real-world-rag-system-with-amazon-bedrock-step-by-step)
   - [🧠 Introduction](#-introduction)
   - [📋 Table of Contents](#-table-of-contents)
