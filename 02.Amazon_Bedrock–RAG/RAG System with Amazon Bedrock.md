@@ -3,7 +3,6 @@
 ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-FF6B6B?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Generative AI](https://img.shields.io/badge/Generative%20AI-000000?style=for-the-badge&logo=openai&logoColor=white)
-# <img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/2bb7af5e-bbee-4e15-a99b-3bd0e83ecdab" />
 ![Image](https://github.com/user-attachments/assets/cf98cd55-d539-450c-a120-28949beba4a9)
 ## 🧠 Introduction
 
