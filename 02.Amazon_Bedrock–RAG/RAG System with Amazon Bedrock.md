@@ -111,7 +111,7 @@ Here's what to do:
 1. Head over to your AWS Console and find IAM
 2. Click on **Users** then **Create User**
 `RAG-MIG2026-User-1`
-![alt text](/All_ScreenShot/image.png)
+<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/75907512-581c-4fe0-8af2-cb8da54f5801" />
 
 3. Turn on console access (you'll need a password)
 4. Slap the `AdministratorAccess` policy on it for now (we can tighten this later)
