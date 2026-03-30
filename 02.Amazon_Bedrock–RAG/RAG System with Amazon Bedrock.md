@@ -351,3 +351,39 @@ Follow along for more AWS and DevOps tips - there's always something new to lear
 <!-- ## 🏷️ Tags
 
 `AWS` `AmazonBedrock` `RAG` `GenerativeAI` `CloudComputing` `DevOps` `MachineLearning` -->
+
+
+![Image](https://github.com/user-attachments/assets/cf98cd55-d539-450c-a120-28949beba4a9)
+<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/53aadd68-b018-42c6-82a3-942101d03124" />
+<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/8fbac765-bf95-4d59-a65e-cdd77dedfd52" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/ad310332-574f-458f-a069-6eec31af41d2" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/bffafe7d-f176-40b3-b22d-39b7ef106494" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/c9f72833-bb42-4418-81c2-7d7d00d8eaa6" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/1ec27a74-f859-4c53-9d75-05e48a98ee70" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/d38a4c29-30a7-4a16-8768-af38c03bd17a" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/207c7815-0a3e-4370-8890-7ef7772aab56" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/7e363dd1-f4a2-4f65-af14-7c50a6f47b35" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/e7d02913-4ed5-4782-b55c-a53a6b96d0be" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/416e1be2-20ab-4b3a-be0a-86f41a7df16a" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/2c3497b3-d0ba-45f4-8db1-d0d6bffea712" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/b28693ae-18a7-456d-a992-2863639d345e" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/220cfccc-0575-450a-9fbd-03928924e3af" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/08f1d0bf-06dc-4385-bb40-b45594dab9d3" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/025326d2-ff99-45aa-8336-3e9367c9854d" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/b40bb8b3-4caa-4d6d-b788-f565cc76181b" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/efaab8dd-7fad-403e-928e-8f72e942ae54" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/535ac859-881a-4327-9489-6ad4da1da206" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/f801a660-5cec-421a-8cb9-87ce771e3d2d" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/73487e1c-2436-4939-820d-7a0b2a72022f" />
+<img width="1870" height="293" alt="Image" src="https://github.com/user-attachments/assets/3efe0ad8-0fdc-4cd0-958c-8311f80d49e2" />
+<img width="1870" height="868" alt="Image" src="https://github.com/user-attachments/assets/ce8e7d95-52d2-4ec1-9030-ec86f107b908" />
+<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/3f73daf2-15b8-4dd9-8347-ff855e8c20f8" />
+<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/78ddfd92-29ed-48ce-8a34-fd06f2bb33f1" />
+<img width="1747" height="360" alt="Image" src="https://github.com/user-attachments/assets/12a8ca12-ff00-4fe2-b82e-43d29253c6fc" />
+<img width="1747" height="836" alt="Image" src="https://github.com/user-attachments/assets/06c24634-49fa-427c-bf24-514e3c9c4253" />
+<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/bf8ae49d-5290-419e-b355-578941563abd" />
+<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/e869f8a8-df37-4a15-b9ce-ffd9233b730d" />
+<img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/6a40a060-2a7e-4114-9bdd-3c802ba90e5a" />
+
+
+<img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/2bb7af5e-bbee-4e15-a99b-3bd0e83ecdab" />
