@@ -111,11 +111,11 @@ Here's what to do:
 1. Head over to your AWS Console and find IAM
 2. Click on **Users** then **Create User**
 `RAG-MIG2026-User-1`
-<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/75907512-581c-4fe0-8af2-cb8da54f5801" />
+<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/53aadd68-b018-42c6-82a3-942101d03124" />
 
 3. Turn on console access (you'll need a password)
 4. Slap the `AdministratorAccess` policy on it for now (we can tighten this later)
-![alt text](image-1.png)
+<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/8fbac765-bf95-4d59-a65e-cdd77dedfd52" />
 
 5. Create the user and log in with those credentials
 
@@ -154,23 +154,23 @@ Time to set up the brains of the operation.
 
 1. Open up Amazon Bedrock in your console
 2. Go to **Knowledge Bases** and click **Create**
-![alt text](image-2.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/ad310332-574f-458f-a069-6eec31af41d2" />
 
 3. Pick **Knowledge Base with Vector Store**
-![alt text](image-3.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/bffafe7d-f176-40b3-b22d-39b7ef106494" />
 
 4. Fill in the basics:
    - Name it something like `my-company-kb`
    - Point it to your `S3 bucket`
    - Let it auto-create the IAM role (saves time)
-![alt text](image-4.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/c9f72833-bb42-4418-81c2-7d7d00d8eaa6" />
 
 ### 📊 Step 4: Configure Data Source
 
 1. Select your S3 bucket
 2. Choose dataset file
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/1ec27a74-f859-4c53-9d75-05e48a98ee70" />
 
-![alt text](image-5.png)
 
 ### 📄 Step 5: Choose Parsing Strategy
 
@@ -183,7 +183,7 @@ This is about how the system reads your documents.
 | Foundation Model| For complex documents      |
 
 👉 **My advice:** Start with **Default** - it's straightforward and works great for most cases.
-![alt text](image-6.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/d38a4c29-30a7-4a16-8768-af38c03bd17a" />
 
 ### ✂️ Step 6: Choose Chunking Strategy
 
@@ -352,13 +352,13 @@ Follow along for more AWS and DevOps tips - there's always something new to lear
 
 
 
-<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/53aadd68-b018-42c6-82a3-942101d03124" />
-<img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/8fbac765-bf95-4d59-a65e-cdd77dedfd52" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/ad310332-574f-458f-a069-6eec31af41d2" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/bffafe7d-f176-40b3-b22d-39b7ef106494" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/c9f72833-bb42-4418-81c2-7d7d00d8eaa6" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/1ec27a74-f859-4c53-9d75-05e48a98ee70" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/d38a4c29-30a7-4a16-8768-af38c03bd17a" />
+
+
+
+
+
+
+
 <img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/207c7815-0a3e-4370-8890-7ef7772aab56" />
 <img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/7e363dd1-f4a2-4f65-af14-7c50a6f47b35" />
 <img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/e7d02913-4ed5-4782-b55c-a53a6b96d0be" />
