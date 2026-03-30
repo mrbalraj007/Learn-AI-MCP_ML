@@ -306,7 +306,7 @@ Delete the following
 ![alt text](image-28.png)
 
 3. Your S3 Bucket
-<img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/6a40a060-2a7e-4114-9bdd-3c802ba90e5a" />
+<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/e869f8a8-df37-4a15-b9ce-ffd9233b730d" />
 
 4. The IAM user you created
 
@@ -381,6 +381,6 @@ Follow along for more AWS and DevOps tips - there's always something new to lear
 <img width="1747" height="360" alt="Image" src="https://github.com/user-attachments/assets/12a8ca12-ff00-4fe2-b82e-43d29253c6fc" />
 <img width="1747" height="836" alt="Image" src="https://github.com/user-attachments/assets/06c24634-49fa-427c-bf24-514e3c9c4253" />
 <img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/bf8ae49d-5290-419e-b355-578941563abd" />
-<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/e869f8a8-df37-4a15-b9ce-ffd9233b730d" />
+
 
 
