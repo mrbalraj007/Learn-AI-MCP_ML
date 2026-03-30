@@ -1,0 +1,73 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="AWS Bedrock RAG Architecture" id="0">
+    <mxGraphModel dx="1426" dy="907" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" background="#000000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" value="User / Application" vertex="1">
+          <mxGeometry height="80" width="140" x="50" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" value="API Layer / Bedrock Agent" vertex="1">
+          <mxGeometry height="80" width="200" x="250" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="bedrock" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;" value="Amazon Bedrock (LLM)" vertex="1">
+          <mxGeometry height="80" width="220" x="500" y="302" as="geometry" />
+        </mxCell>
+        <mxCell id="retriever" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" value="Retriever (Semantic Search)" vertex="1">
+          <mxGeometry height="80" width="220" x="500" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vector" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#fff2cc;" value="Amazon OpenSearch (Vector DB)" vertex="1">
+          <mxGeometry height="100" width="200" x="800" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" value="Amazon S3 (Dataset)" vertex="1">
+          <mxGeometry height="100" width="200" x="1075" y="433" as="geometry" />
+        </mxCell>
+        <mxCell id="embed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" value="Titan Embedding Model" vertex="1">
+          <mxGeometry height="80" width="220" x="790" y="448" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="strokeColor=#0000FF;strokeWidth=2;flowAnimation=1;" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="api" style="strokeColor=#0000FF;strokeWidth=2;flowAnimation=1;" target="bedrock">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="bedrock" style="strokeColor=#FF0000;strokeWidth=2;flowAnimation=1;" target="retriever">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="retriever" style="strokeColor=#FF0000;strokeWidth=2;flowAnimation=1;" target="vector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="vector" style="strokeColor=#00AA00;strokeWidth=2;flowAnimation=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;exitX=0.235;exitY=0.99;exitDx=0;exitDy=0;exitPerimeter=0;" target="bedrock">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="s3" style="strokeColor=#FFA500;strokeWidth=2;flowAnimation=1;" target="embed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="embed" style="strokeColor=#FFA500;strokeWidth=2;flowAnimation=1;" target="vector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-1" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.bucket_with_objects;fillColor=#E05243;gradientColor=none;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="110" width="110" x="130" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="&lt;h2&gt;Documents&lt;/h2&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="160" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.sagemaker_model;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="78" width="78" x="712" y="637" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-7" parent="1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/management_governance/Activity_Log.svg;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="131.61" width="110" x="509" y="815" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-10" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="110" width="114" x="465" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-8" parent="N5zss54ofaxG_N3ibpdQ-10" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="110" width="110" as="geometry" />
+        </mxCell>
+        <mxCell id="N5zss54ofaxG_N3ibpdQ-3" parent="N5zss54ofaxG_N3ibpdQ-10" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticsearch_service;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="78" width="78" x="36" y="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
