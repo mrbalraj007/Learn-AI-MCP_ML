@@ -3,8 +3,8 @@
 ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-FF6B6B?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Generative AI](https://img.shields.io/badge/Generative%20AI-000000?style=for-the-badge&logo=openai&logoColor=white)
-<img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/2bb7af5e-bbee-4e15-a99b-3bd0e83ecdab" />
-
+# <img width="1401" height="902" alt="Image" src="https://github.com/user-attachments/assets/2bb7af5e-bbee-4e15-a99b-3bd0e83ecdab" />
+![Image](https://github.com/user-attachments/assets/cf98cd55-d539-450c-a120-28949beba4a9)
 ## 🧠 Introduction
 
 You know that feeling when you're chatting with an AI and it gives you an answer that's completely off-base because it doesn't know about your company's latest project? Yeah, I've been there too. In today's fast-paced AI world, getting accurate, up-to-date responses from Large Language Models (LLMs) is a real headache. They rely solely on their training data, which can be outdated or just too generic for your specific needs.
@@ -352,7 +352,7 @@ Follow along for more AWS and DevOps tips - there's always something new to lear
 `AWS` `AmazonBedrock` `RAG` `GenerativeAI` `CloudComputing` `DevOps` `MachineLearning` -->
 
 
-![Image](https://github.com/user-attachments/assets/cf98cd55-d539-450c-a120-28949beba4a9)
+
 <img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/53aadd68-b018-42c6-82a3-942101d03124" />
 <img width="1810" height="847" alt="Image" src="https://github.com/user-attachments/assets/8fbac765-bf95-4d59-a65e-cdd77dedfd52" />
 <img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/ad310332-574f-458f-a069-6eec31af41d2" />
