@@ -1,7 +1,6 @@
 # 🚀 Stop AI Hallucinations: Build a Real-World RAG System with Amazon Bedrock (Step-by-Step)
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-FF6B6B?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Generative AI](https://img.shields.io/badge/Generative%20AI-000000?style=for-the-badge&logo=openai&logoColor=white)
 
@@ -112,8 +111,7 @@ Here's what to do:
 1. Head over to your AWS Console and find IAM
 2. Click on **Users** then **Create User**
 `RAG-MIG2026-User-1`
-`Test@1234`
-![alt text](image.png)
+![alt text](/All_ScreenShot/image.png)
 
 3. Turn on console access (you'll need a password)
 4. Slap the `AdministratorAccess` policy on it for now (we can tighten this later)
