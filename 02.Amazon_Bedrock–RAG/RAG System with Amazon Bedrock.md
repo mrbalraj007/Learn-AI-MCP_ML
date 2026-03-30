@@ -197,13 +197,13 @@ Documents can be long, so we break them into bite-sized pieces. This helps the A
 - Semantic
 
 💡 Go with Default to start. You can always tweak later.
-![alt text](image-7.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/207c7815-0a3e-4370-8890-7ef7772aab56" />
 
 #### 🔢 `Quick Token Explanation`
 
 *If you're wondering what a "token" is - it's basically how AIs break down text. A word might be one token, or parts of words. Punctuation counts too. LLMs think in tokens, so it's good to understand.*
 
-![alt text](image-8.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/7e363dd1-f4a2-4f65-af14-7c50a6f47b35" />
 
 ### 🧠 Step 7: Select Embedding Model
 
@@ -211,8 +211,8 @@ This turns your text into vectors that the AI can search through.
 
 Go with **Amazon Titan Embeddings** - it's reliable and works well for this.
 
-![alt text](image-9.png)
-![alt text](image-10.png)
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/e7d02913-4ed5-4782-b55c-a53a6b96d0be" />
+<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/416e1be2-20ab-4b3a-be0a-86f41a7df16a" />
 
 ### 🗄️ Step 8: Configure Vector Database
 
@@ -293,16 +293,16 @@ Delete the following
 - Network Access
   
 - Delete the `Data access` policy
-![alt text](image-23.png)
-![alt text](image-24.png)
+<img width="1870" height="868" alt="Image" src="https://github.com/user-attachments/assets/ce8e7d95-52d2-4ec1-9030-ec86f107b908" />
+<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/3f73daf2-15b8-4dd9-8347-ff855e8c20f8" />
 
 - Delete Encryption:
-![alt text](image-25.png)
-![alt text](image-26.png)
+<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/78ddfd92-29ed-48ce-8a34-fd06f2bb33f1" />
+<img width="1747" height="360" alt="Image" src="https://github.com/user-attachments/assets/12a8ca12-ff00-4fe2-b82e-43d29253c6fc" />
 
 - Delete Network Access
-![alt text](image-27.png)
-![alt text](image-28.png)
+<img width="1747" height="836" alt="Image" src="https://github.com/user-attachments/assets/06c24634-49fa-427c-bf24-514e3c9c4253" />
+<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/bf8ae49d-5290-419e-b355-578941563abd" />
 
 3. Your S3 Bucket
 <img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/e869f8a8-df37-4a15-b9ce-ffd9233b730d" />
@@ -355,31 +355,6 @@ Follow along for more AWS and DevOps tips - there's always something new to lear
 
 
 
-
-
-
-
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/207c7815-0a3e-4370-8890-7ef7772aab56" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/7e363dd1-f4a2-4f65-af14-7c50a6f47b35" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/e7d02913-4ed5-4782-b55c-a53a6b96d0be" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/416e1be2-20ab-4b3a-be0a-86f41a7df16a" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/2c3497b3-d0ba-45f4-8db1-d0d6bffea712" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/b28693ae-18a7-456d-a992-2863639d345e" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/220cfccc-0575-450a-9fbd-03928924e3af" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/08f1d0bf-06dc-4385-bb40-b45594dab9d3" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/025326d2-ff99-45aa-8336-3e9367c9854d" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/b40bb8b3-4caa-4d6d-b788-f565cc76181b" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/efaab8dd-7fad-403e-928e-8f72e942ae54" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/535ac859-881a-4327-9489-6ad4da1da206" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/f801a660-5cec-421a-8cb9-87ce771e3d2d" />
-<img width="1906" height="908" alt="Image" src="https://github.com/user-attachments/assets/73487e1c-2436-4939-820d-7a0b2a72022f" />
-<img width="1870" height="293" alt="Image" src="https://github.com/user-attachments/assets/3efe0ad8-0fdc-4cd0-958c-8311f80d49e2" />
-<img width="1870" height="868" alt="Image" src="https://github.com/user-attachments/assets/ce8e7d95-52d2-4ec1-9030-ec86f107b908" />
-<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/3f73daf2-15b8-4dd9-8347-ff855e8c20f8" />
-<img width="1747" height="520" alt="Image" src="https://github.com/user-attachments/assets/78ddfd92-29ed-48ce-8a34-fd06f2bb33f1" />
-<img width="1747" height="360" alt="Image" src="https://github.com/user-attachments/assets/12a8ca12-ff00-4fe2-b82e-43d29253c6fc" />
-<img width="1747" height="836" alt="Image" src="https://github.com/user-attachments/assets/06c24634-49fa-427c-bf24-514e3c9c4253" />
-<img width="1747" height="355" alt="Image" src="https://github.com/user-attachments/assets/bf8ae49d-5290-419e-b355-578941563abd" />
 
 
 
