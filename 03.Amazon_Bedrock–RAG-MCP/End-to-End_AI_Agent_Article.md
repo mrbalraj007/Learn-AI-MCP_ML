@@ -207,9 +207,9 @@ Let's connect your claude desktop to MCP Server.
     }
    ```
   - Update your details as below:
-        - `Confluence URL` (check your Confluence site)
-        - `Username`: Your email
-        - `Password`: That token generated in step 2 
+      - `Confluence URL` (check your Confluence site)
+      - `Username`: Your email
+      - `Password`: That token generated in step 2 
 
 > [!IMPORTANT]  
 > See [Authentication](https://mcp-atlassian.soomiles.com/docs/authentication) for details.
