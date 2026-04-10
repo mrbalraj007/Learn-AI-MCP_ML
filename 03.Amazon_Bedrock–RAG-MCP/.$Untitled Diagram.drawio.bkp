@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Claude MCP Confluence Architecture" id="r1gmvZSUNcqut35IXDtF">
+    <mxGraphModel dx="1105" dy="595" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="Claude Desktop&#xa;(User Prompts)" vertex="1">
+          <mxGeometry height="80" width="220" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="MCP Runtime&#xa;(Local MCP Servers)" vertex="1">
+          <mxGeometry height="80" width="260" x="320" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="mcp-atlassian&#xa;(Python MCP Server)" vertex="1">
+          <mxGeometry height="80" width="260" x="650" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="Confluence Python Client&#xa;(Patched Search Endpoint)" vertex="1">
+          <mxGeometry height="90" width="260" x="650" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Confluence Cloud REST API&#xa;/rest/api/content/search" vertex="1">
+          <mxGeometry height="90" width="300" x="630" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" value="Personal Space&#xa;~7120d2586f8d5c54839ba2331982a4a4" vertex="1">
+          <mxGeometry height="80" width="300" x="225" y="374" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-7" edge="1" parent="1" source="BfRM9CwWMS0KU4Ew95pG-1" style="flowAnimation=1;" target="BfRM9CwWMS0KU4Ew95pG-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-8" edge="1" parent="1" source="BfRM9CwWMS0KU4Ew95pG-2" style="flowAnimation=1;" target="BfRM9CwWMS0KU4Ew95pG-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-9" edge="1" parent="1" source="BfRM9CwWMS0KU4Ew95pG-3" style="flowAnimation=1;" target="BfRM9CwWMS0KU4Ew95pG-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-10" edge="1" parent="1" source="BfRM9CwWMS0KU4Ew95pG-4" style="flowAnimation=1;" target="BfRM9CwWMS0KU4Ew95pG-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BfRM9CwWMS0KU4Ew95pG-11" edge="1" parent="1" source="BfRM9CwWMS0KU4Ew95pG-5" style="flowAnimation=1;" target="BfRM9CwWMS0KU4Ew95pG-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
