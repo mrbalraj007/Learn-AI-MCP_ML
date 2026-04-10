@@ -96,9 +96,11 @@ We need some test docs first.
 ![alt text](image.png)
 ![alt text](image-1.png)
 
-   > [!IMPORTANT]Use made-up content so you don't share real company secrets. 
+   > [!IMPORTANT]
+   Use made-up content so you don't share real company secrets. 
 
-   > [!NOTE] I use below prompt to create dummy page for me in confluence. if you are not sure how to create content in confluence then use the below prompt in `chatgpt`.
+   > [!NOTE] 
+   I use below prompt to create dummy page for me in confluence. if you are not sure how to create content in confluence then use the below prompt in `chatgpt`.
     *"I want to create a confluence page and I am looking for content. help me to create a 5 confluence page. give me complete information"*
    
 ### Step 2: Get Your API Token
