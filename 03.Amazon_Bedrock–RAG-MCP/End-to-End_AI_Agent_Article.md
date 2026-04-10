@@ -1,5 +1,5 @@
 # Building an End-to-End AI Agent: Claude Code+ MCP + AWS Bedrock + Confluence for Enterprise Knowledge Discovery
-
+![Image](https://github.com/user-attachments/assets/2a26580c-44bd-43a5-bf37-87074a1141c4)
 *Turn your company's endless docs into a smart search system that answers questions like a human.*
 
 ## Prerequisites
@@ -93,8 +93,8 @@ We need some test docs first.
      - Rules for data platformsEKS Cluster Operations Guide
      - AWS Cost Optimization & Governance
 
-![alt text](image.png)
-![alt text](image-1.png)
+<img width="1528" height="962" alt="Image" src="https://github.com/user-attachments/assets/dab11594-a9c2-429f-be33-29891c47df48" />
+<img width="1531" height="904" alt="Image" src="https://github.com/user-attachments/assets/88fca5af-f412-4f99-aac9-0aff0e16049b" />
 
    > [!IMPORTANT]
    Use made-up content so you don't share real company secrets. 
@@ -110,12 +110,12 @@ To let the AI talk to Confluence, you need a token.
 2.1. Go to [id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
 2.2. Click "Create API token"
-![alt text](image-2.png)
+<img width="1565" height="698" alt="Image" src="https://github.com/user-attachments/assets/049607d9-6a8b-47de-9e84-8217350ef1f2" />
 2.3. Name it something like "AI Docs Search"
 2.4. Pick when it expires
-![alt text](image-3.png)
+<img width="1565" height="698" alt="Image" src="https://github.com/user-attachments/assets/a2661ac6-8d50-4e99-80bc-bc25959d9325" />
 2.5. **Save it somewhere safe** - you'll need it soon
-![alt text](image-4.png)
+<img width="1565" height="439" alt="Image" src="https://github.com/user-attachments/assets/2d04e6c6-0b72-4f22-a4b0-826d39b786df" />
 
 ### Step 3: Install `claude Desktop` 
 #### Step 3.1: Installtion
@@ -154,7 +154,7 @@ To let the AI talk to Confluence, you need a token.
     ```
 - [x]  I am getting below error message. 
 
- ![alt text](image-8.png)
+ <img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/cd52aea7-d177-4c00-84b4-269e83e1c172" />
 
 > [!IMPORTANT]
 > 
@@ -168,7 +168,7 @@ To let the AI talk to Confluence, you need a token.
 > 
     uvx --with "fakeredis==2.32.1" --with "redis>=5" mcp-atlassian
   
-![alt text](image-30.png)
+<img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/7b336e62-a2f1-4b23-bde1-dd8681ef4a78" />
 
 ### Step 6: Configure MCP server in claude desktop
 
