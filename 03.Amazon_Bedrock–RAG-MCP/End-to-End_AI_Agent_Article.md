@@ -214,7 +214,7 @@ Let's connect your claude desktop to MCP Server.
 > [!IMPORTANT]  
 > See [Authentication](https://mcp-atlassian.soomiles.com/docs/authentication) for details.
 
-6.2. **Set up MCP**:: Restart claude Desktop
+6.2. **Restart claude Desktop**
    - VERY IMPORTANT:
      - Close `claude Desktop` completely
      - Open task manager and close claude if running.
@@ -320,7 +320,8 @@ Choose what powers your search.
 > [!IMPORTANT]
 > Don't refresh the page else you have to create the whole thing again.
 
->  [!WARNING] I am getting below error message as I was using root credentail to login. So, we have to create local IAM user first and follow the same steps 5 to 7 again.
+>  [!WARNING] 
+> I am getting below error message as I was using root credentail to login. So, we have to create local IAM user first and follow the same steps 5 to 7 again.
 ![alt text](image-21.png)
 
 ### Step 10: Sync and Index Your Docs
@@ -371,7 +372,7 @@ Make sure it works.
    - Points to original pages
    - Makes sense
 
-### Step 12: Add It to Your IDE
+### Step 12: Add it to Your daily task
 
 Bring it into your daily work.
 
