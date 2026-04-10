@@ -157,17 +157,17 @@ To let the AI talk to Confluence, you need a token.
  ![alt text](image-8.png)
 
 > [!IMPORTANT]
- 
-- Ran this to fix the MCP Server
-   
-  Step 1️⃣ Undo the broken state (clean slate)
-    ```sh
+> 
+> Ran this to fix the MCP Server
+> 
+> Step 1️⃣ Undo the broken state (clean slate)
+>  
     pip install --force-reinstall "fakeredis>=2.32.1,<2.33" "redis>=5"
-    ```
-  Step 2️⃣ Force uvx to use the correct fakeredis version
-    ```sh
+  
+>  Step 2️⃣ Force uvx to use the correct fakeredis version
+> 
     uvx --with "fakeredis==2.32.1" --with "redis>=5" mcp-atlassian
-    ```
+  
 ![alt text](image-30.png)
 
 ### Step 6: Configure MCP server in claude desktop
