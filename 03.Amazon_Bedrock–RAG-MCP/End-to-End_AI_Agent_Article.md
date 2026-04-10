@@ -176,10 +176,10 @@ Let's connect your claude desktop to MCP Server.
 
 6.1. **Set up local MCP**:
    - Open Claude desktop and click on your profile and select the `setting`
-   ![alt text](image-31.png)
+   <img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/bb1fe7e2-5f70-42b6-9d46-0801a4a4b3a8" />
   - Click on developer | edit Configuration
   
-    ![alt text](image-32.png)
+    <img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/2a788854-3bce-41f9-a14d-c983671d8eb5" />
 
   - Open the `claude_desktop_config` file in notepad editor and make it following entry
      
@@ -222,7 +222,7 @@ Let's connect your claude desktop to MCP Server.
      
 6.3.  **Verify Local MCP server is running fine in Claude**:
 
-![alt text](image-7.png)
+<img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/443adf37-5a37-43fd-b739-c52d7a2e4090" />
 
 6.4. **Try it out**:
 - Ask something like 
@@ -246,8 +246,8 @@ Let's connect your claude desktop to MCP Server.
    ```
 
 *If it works without errors, you're good.*
-![alt text](image-5.png)
-![alt text](image-6.png)
+<img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/885427ac-1eab-46d4-960e-49bb9183c09b" />
+<img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/19993c0b-d3e3-4fb5-b37a-beba4e39dd77" />
 
 
 ### Step 7: Make a Knowledge Base in AWS Bedrock
@@ -258,22 +258,22 @@ For lots of docs, Bedrock does the heavy lifting.
    - Find the "Build" section
    - Click "Knowledge bases"
 
- ![alt text](image-10.png)
+ <img width="1351" height="562" alt="Image" src="https://github.com/user-attachments/assets/02dd66d1-7cd6-4890-9065-2b49c3aa3af0" />
 
 7.2. **Create a new one**:
    - Click "Create knowledge base with vector store"
-   ![alt text](image-11.png)
+   <img width="1351" height="562" alt="Image" src="https://github.com/user-attachments/assets/86fc322a-0237-4f18-aec5-a9d3fde39e8a" />
    - Name it like "Company_Docs_Brain"
    - Pick or make an IAM role for Bedrock
-   ![alt text](image-12.png)
+   <img width="1888" height="582" alt="Image" src="https://github.com/user-attachments/assets/93c43f07-4da8-4eb0-bd29-f4783a17e37e" />
 
 7.3. **Set up the data source**:
    - Choose "Confluence"
-   ![alt text](image-13.png)
+   <img width="1888" height="582" alt="Image" src="https://github.com/user-attachments/assets/7413981b-4aeb-42bd-ab65-bef87f642a6e" />
    - Click On Next
    - Add your Confluence URL <https://Yourname.atlassian.net>
    - Tag it for easy finding
-![alt text](image-18.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/6da28279-6db1-46a1-b87a-b7e2d4faadfd" />
 
 ### Step 8: Secure Your Credentials with AWS Secrets
 
@@ -285,10 +285,10 @@ Bedrock needs safe access to Confluence.
    - Save as key-value:
    - username: Your Confluence email
    - password: Your token
-![alt text](image-14.png)
-![alt text](image-15.png)
-![alt text](image-16.png)
-![alt text](image-17.png)
+<img width="1888" height="582" alt="Image" src="https://github.com/user-attachments/assets/429a12f7-5055-4193-8a69-aa9e35c4fe2f" />
+<img width="1888" height="747" alt="Image" src="https://github.com/user-attachments/assets/e447c17a-57de-4a69-a033-1ad177305b5a" />
+<img width="1888" height="292" alt="Image" src="https://github.com/user-attachments/assets/4324e4f6-3556-4fb8-bee7-e436369f3037" />
+<img width="1888" height="566" alt="Image" src="https://github.com/user-attachments/assets/0450f935-86bb-448a-9cc2-ef42539517ae" />
 
 8.3. **Grab the ARN**
 8.4. **Back in Bedrock**:
@@ -302,27 +302,27 @@ Choose what powers your search.
 9.1. **Embedding model**:
    - Go with Amazon `Titan Text Embedding V2`
    - It turns your docs into searchable vectors
-![alt text](image-19.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/cfa39c4a-e7ab-4176-8ef1-ccd06f77d8ed" />
 
 9.2. **Vector store**:
    - **Amazon OpenSearch Serverless**: Easy and scales
    - **Amazon S3 Vectors**: Cheap for big data
    - **Pinecone** or **Redis**: Other options
-![alt text](image-20.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/86990825-d559-4baa-8098-311c73fdd26c" />
 
 9.3. **Finish up**:
    - Check everything
    - Hit "Create"
    - Wait 5-10 minutes
 
-![alt text](image-22.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/ffdb1bfa-bb45-4d63-92cc-bb5cb7736c41" />
 
 > [!IMPORTANT]
 > Don't refresh the page else you have to create the whole thing again.
 
 >  [!WARNING] 
 > I am getting below error message as I was using root credentail to login. So, we have to create local IAM user first and follow the same steps 5 to 7 again.
-![alt text](image-21.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/dfc91b61-3ac6-415a-b4ba-879117a95838" />
 
 ### Step 10: Sync and Index Your Docs
 
@@ -331,16 +331,16 @@ Time to feed the AI.
 10.1. **First sync**:
    - Click "Sync" to pull in all Confluence pages
    - It breaks them up and makes vectors
-![alt text](image-23.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/880ffbb4-3496-40c9-9875-289f8a0d271b" />
 
 <details><summary><b>Troubleshooting</b></summary><br>
 I was getting below error message because I had given wrong key value in seceret manager
 
-![alt text](image-24.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/e3b5b145-ff6c-4b7e-ba79-6bdba9fac763" />
 
 - #### Fix:
    - I was using Username and Password, while it should be `username` and `password` all are in lower letter.
-![alt text](image-25.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/f5564418-c2b0-4db4-b224-49017b205b7a" />
 
 </details>
 
@@ -356,16 +356,16 @@ Make sure it works.
 11.1. **In Bedrock console**:
    - Click "Test knowledge base"
    - Pick any model
-![alt text](image-26.png)
-![alt text](image-27.png)
-![alt text](image-28.png)
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/8d0c1e32-fcb1-455b-b09c-a7f7937a4011" />
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/42cde7b8-60a6-4d2c-9b7b-1d7f29e4e980" />
+<img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/73783f81-72f0-4497-85b6-a9e19b02de26" />
 
    - Ask questions like:
    🔍 Example prompts:
 
     - 👉 Search Confluence for "AWS"
     - 👉 What is the AWS architecture model
-  ![alt text](image-29.png)
+  <img width="1888" height="729" alt="Image" src="https://github.com/user-attachments/assets/49e8dfcb-2065-4674-af82-bed8e34e1bed" />
 
 11.2. **What you should get**:
    - Good answers with links
