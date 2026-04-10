@@ -156,7 +156,8 @@ To let the AI talk to Confluence, you need a token.
 
  ![alt text](image-8.png)
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
+ 
 - Ran this to fix the MCP Server
    
   Step 1️⃣ Undo the broken state (clean slate)
