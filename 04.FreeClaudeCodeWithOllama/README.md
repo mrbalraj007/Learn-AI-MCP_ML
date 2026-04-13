@@ -31,8 +31,11 @@ With this setup, you can:
 
 ## ✅ Prerequisites
 
-- Windows / macOS / Linux system
-- Internet connection
+- Download ollama
+- Download Gitbash
+- NPM package
+- Windows / macOS / Linux system OS
+- Internet connection 
 - Basic familiarity with VS Code & terminal usage
 
 ---
@@ -70,6 +73,8 @@ npm -v
 1. Visit https://ollama.com
 2. [Download Ollama for your OS](https://ollama.com/download/windows)
 3. Install and launch the application
+![alt text](image.png)
+
 
 **Purpose:** Connects Claude Code with AI models
 
@@ -80,9 +85,12 @@ npm -v
 1. Open Ollama
 2. Go to Settings
 3. Click **Sign In**
+   ![alt text](image-1.png)
+   ![alt text](image-2.png)
 4. Complete login in browser
 
 ✅ Ollama accounts are **free**
+
 
 ---
 
@@ -93,7 +101,7 @@ Install [Claude Code](https://code.claude.com/docs/en/quickstart) globally using
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
-
+![alt text](image-3.png)
 ---
 
 ### Step 6: Verify Claude Code Installation
@@ -101,7 +109,7 @@ npm install -g @anthropic-ai/claude-code
 ```bash
 claude --version
 ```
-
+![alt text](image-4.png)
 If installed correctly, the version number will be displayed.
 
 ---
@@ -112,7 +120,7 @@ If installed correctly, the version number will be displayed.
 2. Go to **Extensions**
 3. Search for **Claude Code**
 4. Install the official extension
-
+![alt text](image-5.png)
 ---
 
 ## 🔗 Connecting Claude Code with Ollama
@@ -122,8 +130,12 @@ If installed correctly, the version number will be displayed.
 - Open Ollama Dashboard
 - Navigate to **Models**
 - Select **Minimax M2.7**
+![alt text](image-6.png)
 - Copy the provided launch command
-
+```sh
+ollama launch claude --model minimax-m2.7:cloud
+```
+![alt text](image-7.png)
 ✅ Model is cloud-hosted (no GPU or storage required)
 
 ---
@@ -133,14 +145,29 @@ If installed correctly, the version number will be displayed.
 In VS Code terminal:
 
 ```bash
-ollama launch claude --model minimax-m2.7
-```
+ollama launch claude --model minimax-m2.7:cloud
 
+# Breaking it down:
+✓ # ollama = starts the Ollama bridge
+✓ # launch = auto-setup command (no config needed)
+✓ # claude = tells it to launch Claude Code
+✓ # --model = specifies which AI brain to use
+✓ # minimax-m2.7:cloud = powerful AI model on Ollama's servers
+```
 This command:
 - Starts Ollama bridge
 - Launches Claude Code agent
 - Connects Minimax AI model
 
+I am getting below error message while launching Claude code.
+![alt text](image-8.png)
+Fix:
+Install the gitbash and relaunch VS Code editor
+![alt text](image-9.png)
+
+
+Now, it's fully available
+![alt text](image-10.png)
 ---
 
 ## 🚀 Example: Building a Landing Page with AI
