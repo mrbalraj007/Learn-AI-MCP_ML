@@ -178,8 +178,8 @@ Let's connect your claude desktop to MCP Server.
    - Open Claude desktop and click on your profile and select the `setting`
    <img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/bb1fe7e2-5f70-42b6-9d46-0801a4a4b3a8" />
   - Click on developer | edit Configuration
-  
-    <img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/2a788854-3bce-41f9-a14d-c983671d8eb5" />
+
+<img width="1714" height="839" alt="Image" src="https://github.com/user-attachments/assets/07cfe28f-f2c7-430d-a87e-64e173da4197" />
 
   - Open the `claude_desktop_config` file in notepad editor and make it following entry
      
