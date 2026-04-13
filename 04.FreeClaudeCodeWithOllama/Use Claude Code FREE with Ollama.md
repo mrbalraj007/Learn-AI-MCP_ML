@@ -269,4 +269,5 @@ Use this setup to build, experiment, and innovate faster—without limits.
 
 --Ref Link
 
-- https://www.youtube.com/watch?v=xMHG9pXlCpg&list=PLJcpyd04zn7oj5YyplnmW6GrkXm9LlUYq&index=12
+- Youtube
+  - [Use Claude Code FREE with Ollama ](https://www.youtube.com/watch?v=xMHG9pXlCpg&list=PLJcpyd04zn7oj5YyplnmW6GrkXm9LlUYq&index=12)
