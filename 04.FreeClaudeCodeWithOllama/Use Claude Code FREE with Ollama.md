@@ -73,7 +73,7 @@ npm -v
 1. Visit https://ollama.com
 2. [Download Ollama for your OS](https://ollama.com/download/windows)
 3. Install and launch the application
-![alt text](image.png)
+<img width="1306" height="723" alt="Image" src="https://github.com/user-attachments/assets/6d0e8ea5-59ae-4631-a042-fab97eb12307" />
 
 
 **Purpose:** Connects Claude Code with AI models
@@ -85,8 +85,8 @@ npm -v
 1. Open Ollama
 2. Go to Settings
 3. Click **Sign In**
-   ![alt text](image-1.png)
-   ![alt text](image-2.png)
+   <img width="809" height="630" alt="Image" src="https://github.com/user-attachments/assets/411a5485-d4a7-4e0f-93cd-55bfc5fa2d39" />
+   <img width="809" height="630" alt="Image" src="https://github.com/user-attachments/assets/b8360d72-2def-460b-bed9-5874e0194728" />
 4. Complete login in browser
 
 ✅ Ollama accounts are **free**
@@ -101,7 +101,7 @@ Install [Claude Code](https://code.claude.com/docs/en/quickstart) globally using
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
-![alt text](image-3.png)
+<img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/449c9f63-cc2b-4dc8-bbfd-5c4b0c395e32" />
 ---
 
 ### Step 6: Verify Claude Code Installation
@@ -109,7 +109,7 @@ npm install -g @anthropic-ai/claude-code
 ```bash
 claude --version
 ```
-![alt text](image-4.png)
+<img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/c580707f-663d-458f-88ba-99f218589f57" />
 If installed correctly, the version number will be displayed.
 
 ---
@@ -120,7 +120,7 @@ If installed correctly, the version number will be displayed.
 2. Go to **Extensions**
 3. Search for **Claude Code**
 4. Install the official extension
-![alt text](image-5.png)
+<img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/3f22a227-1113-4d11-b89c-f294e89bf2fa" />
 ---
 
 ## 🔗 Connecting Claude Code with Ollama
@@ -130,12 +130,12 @@ If installed correctly, the version number will be displayed.
 - Open Ollama Dashboard
 - Navigate to **Models**
 - Select **Minimax M2.7**
-![alt text](image-6.png)
+<img width="1249" height="556" alt="Image" src="https://github.com/user-attachments/assets/6977e563-a128-4053-b2f2-81ce544da527" />
 - Copy the provided launch command
 ```sh
 ollama launch claude --model minimax-m2.7:cloud
 ```
-![alt text](image-7.png)
+<img width="1249" height="556" alt="Image" src="https://github.com/user-attachments/assets/8ce9fde2-7927-4405-a444-3a00973dd286" />
 ✅ Model is cloud-hosted (no GPU or storage required)
 
 ---
@@ -162,16 +162,16 @@ This command:
 <details><summary><b>Troubleshooting</b></summary><br>
 I am getting below error message while launching Claude code.
 
-![alt text](image-8.png)
+<img width="1249" height="556" alt="Image" src="https://github.com/user-attachments/assets/ca93b805-8129-44ba-ba18-4a0da119b538" />
 
 fix:
 
 Install the gitbash and relaunch VS Code editor
-![alt text](image-9.png)
+<img width="1249" height="838" alt="Image" src="https://github.com/user-attachments/assets/1cda8625-c6fd-4d20-a10b-f2f62a2ba3ca" />
 </details>
 
 Now, it's fully available
-![alt text](image-10.png)
+<img width="1514" height="838" alt="Image" src="https://github.com/user-attachments/assets/920d2772-e152-4d40-8de3-26842b069c1c" />
 ---
 
 ## 🚀 Example: Building a Landing Page with AI
