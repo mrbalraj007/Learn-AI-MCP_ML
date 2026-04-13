@@ -159,12 +159,16 @@ This command:
 - Launches Claude Code agent
 - Connects Minimax AI model
 
+<details><summary><b>Troubleshooting</b></summary><br>
 I am getting below error message while launching Claude code.
+
 ![alt text](image-8.png)
-Fix:
+
+fix:
+
 Install the gitbash and relaunch VS Code editor
 ![alt text](image-9.png)
-
+</details>
 
 Now, it's fully available
 ![alt text](image-10.png)
