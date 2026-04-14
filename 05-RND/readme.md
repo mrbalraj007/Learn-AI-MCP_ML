@@ -52,13 +52,22 @@
 ### Example Sequence Diagram for Release Process
 
 ```mermaid
- Hello
- sequenceDiagram
-    Actor Developer
-    participant Team as Development Team
-    participant GitHub
-    participant Release as Release Workflow
-    participant Sync as Publish Workflow
-
-```
+  gitGraph TB:
+     commit id: " "
+     branch develop
+     commit id: "Previous history commits"
+     checkout main
+     merge develop id: "Sync previous release 1.2.0"
+     checkout develop
+     commit id: "More feature commits"
+     commit id: "Release Workflow triggered" type: HIGHLIGHT
+     branch Release-1.3.0
+     commit id: "Release 1.3.0"
+     checkout develop
+     commit id: "More Features"
+     checkout main
+     merge Release-1.3.0 id: "GH Release created" type: HIGHLIGHT tag: "1.3.0"
+     checkout develop
+     merge main id: "Sync v1.3.0"
+     commit id: "Even More Features"
 ```
