@@ -71,3 +71,47 @@
      merge main id: "Sync v1.3.0"
      commit id: "Even More Features"
 ```
+# Second Diagram:
+```mermaid
+  gitGraph TB:
+     commit id: " "
+     branch dev
+     commit id: "Previous history commits"
+     checkout main
+     merge dev id: "Sync previous release 1.2.0"
+     checkout dev
+     commit id: "More feature commits"
+     commit id: "Release Workflow triggered" type: HIGHLIGHT
+     branch Release-1.3.0
+     commit id: "Release 1.3.0"
+     checkout dev
+     commit id: "More Features"
+     checkout main
+     merge Release-1.3.0 id: "GH Release created" type: HIGHLIGHT tag: "1.3.0"
+     checkout dev
+     merge main id: "Sync v1.3.0"
+     commit id: "Even More Features"
+```
+
+# Third Diagram:
+```mermaid
+  gitGraph TB:
+     commit id: " "
+     branch dev
+     commit id: "Previous history commits"
+     checkout main
+     <!-- checkout main
+     merge dev id: "Sync previous release 1.2.0"
+     checkout dev
+     commit id: "More feature commits"
+     commit id: "Release Workflow triggered" type: HIGHLIGHT
+     branch Release-1.3.0
+     commit id: "Release 1.3.0"
+     checkout dev
+     commit id: "More Features"
+     checkout main
+     merge Release-1.3.0 id: "GH Release created" type: HIGHLIGHT tag: "1.3.0"
+     checkout dev
+     merge main id: "Sync v1.3.0"
+     commit id: "Even More Features" -->
+```
