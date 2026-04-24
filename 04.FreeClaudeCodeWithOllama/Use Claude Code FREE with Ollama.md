@@ -347,6 +347,7 @@ If installed correctly, the version number will be displayed.
 - Select **Minimax M2.7**
 <img width="1249" height="556" alt="Image" src="https://github.com/user-attachments/assets/6977e563-a128-4053-b2f2-81ce544da527" />
 - Copy the provided launch command
+
 ```sh
 ollama launch claude --model minimax-m2.7:cloud
 ```
