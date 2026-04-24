@@ -208,6 +208,74 @@ node -v
 npm -v
 ```
 </details>
+
+<details>
+<summary><b>If above both doesn't fix then run it</b></summary><br>
+
+**Check what PATH PowerShell is ACTUALLY using**
+Run:
+```Shell
+$env:Path -split ';'
+```
+Now look closely:
+
+Do you see C:\Program Files\nodejs?
+
+✅ YES → PATH is present but overridden
+❌ NO → Machine PATH is not being loaded
+
+**Step 3 — Check Machine vs User PATH (this is the key)**
+Run both:
+```Shell
+[System.Environment]::GetEnvironmentVariable("Path", "Machine")
+```
+```Shell
+[System.Environment]::GetEnvironmentVariable("Path", "User")
+```
+⚠️ Important discovery (very likely)
+
+On many Windows Server systems:
+
+User PATH overrides Machine PATH
+
+If User PATH exists and is malformed → Machine PATH is ignored
+
+
+**Step 4 — HARD FIX (works every time)**
+
+🔥 We will rebuild User PATH to INCLUDE Machine PATH
+
+Run this in PowerShell (Admin):
+
+```Shell
+$machinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+$userPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+if (-not $userPath.Contains("C:\Program Files\nodejs")) {
+    [System.Environment]::SetEnvironmentVariable(
+        "Path",
+        $userPath + ";" + $machinePath,
+        "User"
+    )
+}
+```
+✅ This forces:
+
+User PATH ✅
+Machine PATH ✅
+Node PATH ✅
+
+
+**Step 5 — HARD RESTART REQUIRED**
+Environment variables will not refresh properly until:
+✅ Do ONE of the following:
+
+Sign out of the Administrator account and sign back in
+OR
+Reboot the machine (best option)
+This is mandatory on Windows Server.
+</details>
+
 ---
 
 ### Step 3: Install Ollama
