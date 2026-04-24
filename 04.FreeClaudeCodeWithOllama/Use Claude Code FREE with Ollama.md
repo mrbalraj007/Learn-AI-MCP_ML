@@ -75,7 +75,7 @@ node -v # Should print "v24.15.0".
 npm -v # Should print "11.12.1".
 ```
 <details>
-<summary><b>Verify Chocolatey and Node js exists</b></summary><br>
+<summary><b>Verify Chocolatey exists</b></summary><br>
 
 **Step 1 — Verify Chocolatey exists**
 
@@ -156,6 +156,58 @@ source ~/.bashrc
 ```
 </details>
 
+<details>
+
+<summary><b>Verify Node exists</b></summary><br>
+
+**Step 1 — Locate where Node is actually installed**
+Run this in PowerShell (Admin):
+```Shell
+Get-ChildItem "C:\Program Files" -Directory | Where-Object Name -Match "node"
+```
+One of these should exist:
+```shell
+C:\Program Files\nodejs
+C:\Program Files (x86)\nodejs
+```
+Now check directly:
+```Shell
+Test-Path "C:\Program Files\nodejs\node.exe"
+Test-Path "C:\Program Files (x86)\nodejs\node.exe"
+```
+✅ One of these will return True.
+
+**Step 2 — Temporarily test Node (no PATH change yet)**
+Replace the path that exists and run:
+```Shell
+& "C:\Program Files\nodejs\node.exe" -v
+```
+(or x86 path if that’s the one)
+
+✅ If this prints v24.15.0, Node itself is perfectly fine.
+
+**Step 3 — Permanently fix PATH (SYSTEM‑WIDE)**
+This is the real fix.
+Run exactly this in PowerShell (Admin):
+```shell
+[System.Environment]::SetEnvironmentVariable(
+  "Path",
+  [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\Program Files\nodejs",
+  "Machine"
+)
+```
+This adds Node to the machine PATH, not just your user.
+
+**Step 4 — Restart PowerShell (MANDATORY)**
+- Close ALL PowerShell windows
+- Open new PowerShell (Admin)
+
+Then run:
+```Shell
+node -v
+npm -v
+```
+</details>
 ---
 
 ### Step 3: Install Ollama
