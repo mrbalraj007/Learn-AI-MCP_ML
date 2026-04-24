@@ -267,12 +267,17 @@ Node PATH ✅
 
 
 **Step 5 — HARD RESTART REQUIRED**
+
 Environment variables will not refresh properly until:
+
 ✅ Do ONE of the following:
 
 Sign out of the Administrator account and sign back in
+
 OR
+
 Reboot the machine (best option)
+
 This is mandatory on Windows Server.
 </details>
 
