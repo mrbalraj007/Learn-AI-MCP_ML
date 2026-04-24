@@ -62,9 +62,99 @@ Claude Code requires Node.js.
 4. Verify installation:
 
 ```bash
+# Download and install Chocolatey:
+powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
+
+# Download and install Node.js:
+choco install nodejs --version="24.15.0"
+
+# Verify the Node.js version:
+node -v # Should print "v24.15.0".
+
+# Verify npm version:
+npm -v # Should print "11.12.1".
+```
+<details>
+<summary><b>Verify Chocolatey and Node js exists</b></summary><br>
+
+**Step 1 — Verify Chocolatey exists**
+
+Run this in PowerShell (Admin):
+```bash
+Test-Path C:\ProgramData\chocolatey\bin\choco.exe
+```
+**Expected result:**
+```PowerShell
+True
+```
+✅ This confirms Chocolatey is installed correctly.
+
+
+**Step 2 — Add Chocolatey to PATH (Permanent Fix)**
+🔹 Add it for ALL users (recommended)
+Still in PowerShell (Admin):
+```PowerShell
+$env:Path += ";C:\ProgramData\chocolatey\bin"
+[Environment]::SetEnvironmentVariable(
+  "Path",
+  [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\ProgramData\chocolatey\bin",
+  "Machine"
+)
+```
+✅ This permanently fixes Chocolatey for:
+
+- PowerShell
+- Command Prompt
+- Git Bash
+- Any terminal
+
+
+**Step 3 — Restart PowerShell (IMPORTANT)**
+
+Close all PowerShell windows
+
+Open a new PowerShell (Admin)
+
+Then run:
+```PowerShell
+choco -v
+```
+You should see something like:
+```PowerShell
+2.x.x
+```
+✅ Chocolatey is now working.
+
+**Step 4 — Install Node.js (Correctly)**
+Now run:
+```PowerShell
+choco install nodejs --version="24.15.0" -y
+```
+Wait for it to finish.
+
+**Step 5 — Verify Node & npm**
+Still in PowerShell:
+```PowerShell
 node -v
 npm -v
 ```
+Expected:
+```PowerShell
+v24.15.0
+11.12.1
+```
+
+**Step 6 — Make Node work in Git Bash**
+
+Close ALL Git Bash windows
+Reopen Git Bash
+Run:
+If Git Bash still doesn’t see it, run once:
+```Shell
+echo 'export PATH="$PATH:/c/Program Files/nodejs"' >> ~/.bashrc
+source ~/.bashrc
+```
+</details>
 
 ---
 
