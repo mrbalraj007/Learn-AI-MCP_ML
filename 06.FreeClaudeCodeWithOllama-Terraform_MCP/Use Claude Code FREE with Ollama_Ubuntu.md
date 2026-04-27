@@ -4,14 +4,7 @@ A **step-by-step technical guide** to building AI-powered websites, MVPs, and ap
 
 ---
 
-## 📌 Introduction
 
-Many developers want to use AI coding assistants like **Claude Code**, but paid subscriptions are often a barrier. This project demonstrates how to use **Claude Code completely FREE** by integrating it with **Ollama** and a cloud-hosted AI model (**Minimax M2.7**), directly inside **VS Code**.
-
-With this setup, you can:
-- Build landing pages, apps, and MVPs
-- Use AI as a real coding agent
-- Avoid cloud usage fees and subscriptions
 
 ---
 
@@ -475,31 +468,10 @@ No deep coding knowledge required
 
 ---
 
-## 🏁 Conclusion
 
-This project demonstrates that **powerful AI development does not require expensive subscriptions**. By combining **Claude Code**, **Ollama**, and **Minimax M2.7**, you get a production-ready AI coding workflow at **zero cost**.
-
-Use this setup to build, experiment, and innovate faster—without limits.
 
 🚀 Build smarter. Build faster. Build FREE.
 
---Ref Link
-
-- Youtube
-  - [Use Claude Code FREE with Ollama ](https://www.youtube.com/watch?v=xMHG9pXlCpg&list=PLJcpyd04zn7oj5YyplnmW6GrkXm9LlUYq&index=12)
-
-https://www.youtube.com/watch?v=JC12VC7bpQk&list=PLJcpyd04zn7r8JWlF22m7W7lCxl1h2woN&index=4
-
-
-https://developer.hashicorp.com/terraform/mcp-server
-
-https://modelcontextprotocol.io/docs/getting-started/intro
-
-https://developer.hashicorp.com/terraform/mcp-server/deploy
-
-https://docs.docker.com/desktop/setup/install/windows-install/
-
-https://app.terraform.io/app/settings
 
 
 
@@ -508,13 +480,14 @@ curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 
-
+<!-- 
 
 # Install Docker
 
 Step 1 – Install Docker (if not installed)
 ```Shell
-sudo apt updatesudo apt install -y ca-certificates curl gnupg
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
 ```
 ```Shell
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -544,7 +517,7 @@ newgrp docker
 **Step 3 – Run Terraform MCP Server (STDIO mode)**
 This is the default and safest mode, designed for local MCP clients (VS Code, Claude Desktop).
 Shelldocker run -i --rm hashicorp/terraform-mcp-serverShow more lines
-✅ If you see the server waiting for JSON‑RPC input, it is running correctly.
+✅ If you see the server waiting for JSON‑RPC input, it is running correctly. -->
 
 # Claude Code Install
 **Recommended Method: Native Installer (No Node.js needed)**
@@ -698,7 +671,7 @@ sudo apt updatesudo apt install -y code
 code
 ```
 
-# Install Terraform
+<!-- # Install Terraform
 
 Recommended: Install Terraform via HashiCorp APT Repository
 This works unchanged on both Ubuntu 22.04 and 24.04.
@@ -735,17 +708,13 @@ sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```bash
 sudo apt update
 sudo apt install terraform
-```
-
+``` -->
+<!-- 
 ### 5️⃣ Verify installation
 ```bash
 terraform -version
-```
-### 🔹 (Optional) Enable shell tab‑completion
-```bash
-terraform -install-autocomplete
-source ~/.bashrc
-```
+``` -->
+
 
 when run the claude then run it below
 ```sh
@@ -790,8 +759,8 @@ export TFE_ADDRESS=https://app.terraform.io
 claude mcp add -s user terraform \
   -e TFE_ADDRESS
 ```
-aws configure list
+<!-- aws configure list
 aws configure list --profile my-profile
-aws sts get-caller-identity
+aws sts get-caller-identity -->
 
 and run the terraform command and it will create for you.
