@@ -792,6 +792,7 @@ jq '.["claude-dev.mcpServers"]' ~/.config/Code/User/settings.json
 # View the entire settings file
 cat ~/.config/Code/User/settings.json | jq '.'
  ```
+---
 
 <details><summary><b>Use .env File (Most Professional)</b></summary><br>
 
@@ -880,9 +881,13 @@ cat ~/.config/Code/.env  # Shows your actual token (file is chmod 600)
 ```
 </details>
 
+---
+
 ### 14.5 Restart VS Code
 
 Close and reopen VS Code for changes to take effect.
+
+---
 
 <details><summary><b>**Here are several CLI methods to update settings.json:**</b></summary><br>
 Method 1: Using jq (Best for JSON)
