@@ -1,19 +1,22 @@
-cat > update_vscode_settings.py << 'EOF'
 #!/usr/bin/env python3
 import json
+import shutil
 from pathlib import Path
 
 # VS Code settings path on Linux
 settings_path = Path.home() / '.config' / 'Code' / 'User' / 'settings.json'
 
 # Backup first
-import shutil
 shutil.copy(settings_path, str(settings_path) + '.backup')
-print(f"✅ Backed up to: {settings_path}.backup")
+print(f"Backed up to: {settings_path}.backup")
 
 # Read existing settings
-with open(settings_path, 'r') as f:
-    settings = json.load(f)
+try:
+    with open(settings_path, 'r') as f:
+        settings = json.load(f)
+except json.JSONDecodeError:
+    print("Warning: Existing settings.json is corrupted, starting fresh")
+    settings = {}
 
 # Add MCP configuration
 settings['claude-dev.mcpServers'] = {
@@ -33,5 +36,4 @@ settings['claude-dev.mcpServers'] = {
 with open(settings_path, 'w') as f:
     json.dump(settings, f, indent=2)
 
-print(f"✅ Settings updated at: {settings_path}")
-EOF
+print(f"Settings updated at: {settings_path}")
