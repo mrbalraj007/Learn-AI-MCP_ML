@@ -454,13 +454,25 @@ EOF
 
 **Replace `YOUR_TOKEN_HERE`** with your actual token from Step `8.2`.
 
+```sh
+cat /home/dc-ops/.terraform.d/credentials.tfrc.json
+ls -la ~/.terraform.d/credentials.tfrc.json
+```
+
 ### 9.3 Set secure permissions
+
+Terraform requires restrictive permissions on this file:
 
 ```bash
 chmod 600 ~/.terraform.d/credentials.tfrc.json
 ```
 
 This ensures only you can read the token.
+
+```bash
+ls -la ~/.terraform.d/credentials.tfrc.json
+```
+Should show: `-rw------- (owner read/write only)`
 
 ### 9.4 Verify configuration
 
@@ -473,9 +485,20 @@ If configured correctly, you should see:
 ✓ Token saved to ...
 ```
 
+### 9.5 Test It
+
+Verify Terraform can now authenticate:
+```bash
+terraform init
+```
+If it works, you'll see successful provider initialization. If there's a token issue, you'll get a clear `401 error`.
+
+![alt text](image-19.png)
 ---
 
 ## 💻 Step 10: Install VS Code (If Not Already Installed)
+
+**Recommended Method**: Microsoft APT Repository (Best for updates) This installs VS Code directly from Microsoft and keeps it automatically updated. 
 
 ### 10.1 Add Microsoft's GPG key
 
