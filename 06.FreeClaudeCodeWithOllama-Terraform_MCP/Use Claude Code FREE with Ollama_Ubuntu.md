@@ -519,128 +519,6 @@ This is the default and safest mode, designed for local MCP clients (VS Code, Cl
 Shelldocker run -i --rm hashicorp/terraform-mcp-serverShow more lines
 ✅ If you see the server waiting for JSON‑RPC input, it is running correctly. -->
 
-# Claude Code Install
-**Recommended Method: Native Installer (No Node.js needed)**
-This is the official, preferred approach for Ubuntu and is what Anthropic recommends in 2025–2026. It installs Claude Code into your home directory and auto‑updates safely. [code.claude.com], [morphllm.com]
-
-**Step 1: Update your system**
-```Shell
-sudo apt update
-```
-
-**Step 2: Install curl (if not already installed)**
-```Shell
-sudo apt install -y curl
-```
-
-Desktop Ubuntu usually has curl already, but server/minimal images often don’t.
-
-
-**Step 3: Run the Claude Code installer**
-```Shell
-curl -fsSL https://claude.ai/install.sh | bash
-```
-```sh
-root@dc-ops:~# curl -fsSL https://claude.ai/install.sh | bash
-Setting up Claude Code...
-
-✔ Claude Code successfully installed!
-
-  Version: 2.1.119
-
-  Location: ~/.local/bin/claude
-
-
-  Next: Run claude --help to get started
-
-⚠ Setup notes:
-  ● Native installation exists but ~/.local/bin is not in your PATH. Run:
-
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-
-
-✅ Installation complete!
-
-root@dc-ops:~# echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-root@dc-ops:~# claude --version
-2.1.119 (Claude Code)
-root@dc-ops:~#
-```
-
-What this does:
-```sh
-Installs the claude binary to ~/.local/bin/claude
-Stores versions under ~/.local/share/claude/
-Adds ~/.local/bin to your PATH (if needed)
-Enables automatic background updates
-```
-⚠ Do not use sudo for this command. It must be installed as your normal user.
-
-**Step 4: Verify installation**
-```Shell
-claude --version
-```
-If you see a version number, installation succeeded ✅.
-
-If claude: command not found, fix your PATH:
-```Shell
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-```
-
-**Step 5: Run diagnostics (recommended)**
-```Shell
-claude doctor
-```
-This checks network access, binaries, and environment setup.
-
-**2️⃣ Pull a Coding‑Capable Model**
-Claude Code needs:
-
-Function calling
-Tool execution
-Large context (64k+ preferred)
-
-**✅ Recommended starting models**
-```Shell
-ollama pull qwen3.5:cloud
-```
-
-Other strong options:
-
-- glm-5:cloud
-- kimi-k2.5:cloud
-- minimax-m2.7:cloud
-
-(Local‑only alternatives like qwen2.5-coder work, but tool use may be weaker). [docs.ollama.com]
-List installed models:
-```Shell
-ollama list
-```
-
-**3️⃣ One‑Command Launch (Easiest Way)**
-This is the recommended and cleanest method.
-```Shell
-ollama launch claude
-```
-
-- Ollama sets all required environment variables
-- Claude Code is launched
-- Model picker appears
-- Claude Code now talks to Ollama, not Anthropic
-
-➡ Choose your model (qwen3.5:cloud, etc.)
-Done.
-You are now using Claude Code with Ollama
-
-**(Optional) Run with a Fixed Model**
-```Shell
-ollama launch claude --model qwen3.5:cloud
-```
-*For non‑interactive / CI mode:*
-```Shell
-ollama launch claude --model qwen3.5:cloud --yes -- -p "explain this repo"
-```
-
 # Install VS Code
 
 **Recommended Method: Microsoft APT Repository (Best for updates)**
@@ -663,7 +541,8 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/re
 ```
 **4️⃣ Install VS Code**
 ```Shell
-sudo apt updatesudo apt install -y code
+sudo apt update
+sudo apt install -y code
 ```
 
 5️⃣ Launch VS Code

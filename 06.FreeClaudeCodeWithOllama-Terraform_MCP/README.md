@@ -527,6 +527,12 @@ sudo apt install code -y
 code --version
 ```
 
+```sh
+dc-ops@dc-ops:~$ code --version
+1.117.0
+10c8e557c8b9f9ed0a87f61f1c9a44bde731c409
+x64
+```
 ### 10.5 Clean up
 
 ```bash
@@ -552,11 +558,14 @@ code
 3. Search for **"Claude Code"**
 4. Click **Install** (look for the official Anthropic extension)
 
+<img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/3f22a227-1113-4d11-b89c-f294e89bf2fa" />
+
 **Option B: Via Command Line**
 
 ```bash
 code --install-extension Anthropic.claude-code
 ```
+![alt text](image-20.png)
 
 ### 11.3 Verify installation
 
@@ -566,9 +575,145 @@ code --install-extension Anthropic.claude-code
 
 ---
 
-## 🌉 Step 12: Configure Terraform MCP Server
+## 🌉 Step 12: Claude Code Install
 
-### 12.1 Create Docker network (optional but recommended)
+**Recommended Method: Native Installer (No Node.js needed)**
+This is the official, preferred approach for Ubuntu and is what Anthropic recommends in 2025–2026. It installs Claude Code into your home directory and auto‑updates safely.
+
+**Step 12.1: Update your system**
+```Shell
+sudo apt update
+```
+
+**Step 12.2: Install curl (if not already installed)**
+```Shell
+sudo apt install -y curl
+```
+> [!NOTE]
+*Desktop Ubuntu usually has curl already, but server/minimal images often don’t.*
+
+**Step 12.3: Run the Claude Code installer**
+```Shell
+curl -fsSL https://claude.ai/install.sh | bash
+```
+**Output:**
+
+```sh
+root@dc-ops:~# curl -fsSL https://claude.ai/install.sh | bash
+Setting up Claude Code...
+
+✔ Claude Code successfully installed!
+
+  Version: 2.1.119
+
+  Location: ~/.local/bin/claude
+
+
+  Next: Run claude --help to get started
+
+⚠ Setup notes:
+  ● Native installation exists but ~/.local/bin is not in your PATH. Run:
+
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+
+
+✅ Installation complete!
+
+root@dc-ops:~# echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+root@dc-ops:~# claude --version
+2.1.119 (Claude Code)
+root@dc-ops:~#
+```
+> [!IMPORTANT]
+What this does:
+>
+```sh
+Installs the claude binary to ~/.local/bin/claude
+Stores versions under ~/.local/share/claude/
+Adds ~/.local/bin to your PATH (if needed)
+Enables automatic background updates
+```
+> [!IMPORTANT]
+⚠ *Do not use sudo for this command. It must be installed as your normal user.*
+
+**Step 12.4: Verify installation**
+```Shell
+claude --version
+```
+If you see a version number, installation succeeded.
+
+If claude: command not found, fix your PATH:
+```Shell
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+```
+
+**Step 12.5: Run diagnostics (recommended)**
+```Shell
+claude doctor
+```
+This checks network access, binaries, and environment setup.
+
+**Step 12.6:  Pull a Coding‑Capable Model**
+
+Claude Code needs:
+
+- Function calling
+- Tool execution
+- Large context (64k+ preferred)
+
+**Step 12.7: Recommended starting models**
+```Shell
+ollama pull qwen3.5:cloud
+```
+
+Other strong options:
+
+- glm-5:cloud
+- kimi-k2.5:cloud
+- minimax-m2.7:cloud
+
+(Local‑only alternatives like qwen2.5-coder work, but tool use may be weaker). 
+
+**Step 12.8: List installed models:**
+```Shell
+ollama list
+
+dc-ops@dc-ops:~$ ollama list
+NAME             ID              SIZE    MODIFIED
+qwen3.5:cloud    a7bf6f7891c3    -       3 seconds ago
+dc-ops@dc-ops:~$
+```
+
+**Step 12.9: One‑Command Launch (Easiest Way)**
+This is the recommended and cleanest method.
+```Shell
+ollama launch claude
+```
+
+- Ollama sets all required environment variables
+- Claude Code is launched
+- Model picker appears
+- Claude Code now talks to Ollama, not Anthropic
+
+➡ Choose your model (qwen3.5:cloud, etc.)
+Done.
+You are now using Claude Code with Ollama
+
+![alt text](image-21.png)
+![alt text](image-22.png)
+
+**Step 12.10: (Optional) Run with a Fixed Model**
+```Shell
+ollama launch claude --model qwen3.5:cloud
+```
+*For non‑interactive / CI mode:*
+```Shell
+ollama launch claude --model qwen3.5:cloud --yes -- -p "explain this repo"
+```
+
+## 🌉 Step 13: Configure Terraform MCP Server
+
+### 13.1 Create Docker network (optional but recommended)
 
 ```bash
 docker network create terraform-network
@@ -576,7 +721,7 @@ docker network create terraform-network
 
 This allows containers to communicate if needed.
 
-### 12.2 Pull the Terraform MCP Server image
+### 13.2 Pull the Terraform MCP Server image
 
 ```bash
 docker pull hashicorp/terraform-mcp-server
@@ -587,20 +732,22 @@ Monitor the download:
 # Get image details
 docker images | grep terraform-mcp-server
 ```
+![alt text](image-23.png)
+![alt text](image-24.png)
 
 ---
 
-## 🔗 Step 13: Configure MCP in Claude Code
+## 🔗 Step 14: Configure MCP in Claude Code
 
-### 13.1 Open VS Code settings
+### 14.1 Open VS Code settings
 
 Press `Ctrl+,` (or go to **File → Preferences → Settings**)
 
-### 13.2 Open settings.json
+### 14.2 Open settings.json
 
 Click the icon in the top-right (looks like `{}`) to open JSON settings.
 
-### 13.3 Add MCP configuration
+### 14.3 Add MCP configuration
 
 Add this section to your `settings.json`:
 
@@ -621,19 +768,19 @@ Add this section to your `settings.json`:
 
 **Replace `YOUR_TOKEN_HERE`** with your Terraform Cloud token.
 
-### 13.4 Save settings
+### 14.4 Save settings
 
 Press `Ctrl+S` to save.
 
-### 13.5 Restart VS Code
+### 14.5 Restart VS Code
 
 Close and reopen VS Code for changes to take effect.
 
 ---
 
-## ✅ Step 14: Verify Everything Works
+## ✅ Step 15: Verify Everything Works
 
-### 14.1 Check Docker is running
+### 15.1 Check Docker is running
 
 ```bash
 docker ps
@@ -641,7 +788,7 @@ docker ps
 
 Should show container status (even if empty).
 
-### 14.2 Test Docker with Terraform image
+### 15.2 Test Docker with Terraform image
 
 ```bash
 docker run --rm hashicorp/terraform-mcp-server --version
@@ -649,13 +796,13 @@ docker run --rm hashicorp/terraform-mcp-server --version
 
 Should output Terraform version info.
 
-### 14.3 Check Terraform CLI
+### 15.3 Check Terraform CLI
 
 ```bash
 terraform -version
 ```
 
-### 14.4 Test AWS CLI
+### 15.4 Test AWS CLI
 
 ```bash
 aws sts get-caller-identity
@@ -663,7 +810,7 @@ aws sts get-caller-identity
 
 Should return your AWS account info (if configured).
 
-### 14.5 Verify Claude Code in VS Code
+### 15.5 Verify Claude Code in VS Code
 
 1. Open VS Code
 2. Click the Claude icon in the sidebar
@@ -672,16 +819,16 @@ Should return your AWS account info (if configured).
 
 ---
 
-## 🧪 Step 15: Test the Full Setup
+## 🧪 Step 16: Test the Full Setup
 
-### 15.1 Create a test Terraform project
+### 16.1 Create a test Terraform project
 
 ```bash
 mkdir -p ~/terraform-test
 cd ~/terraform-test
 ```
 
-### 15.2 Create a test file
+### 16.2 Create a test file
 
 ```bash
 cat > main.tf << EOF
@@ -706,14 +853,14 @@ provider "aws" {
 EOF
 ```
 
-### 15.3 Test with Claude Code
+### 16.3 Test with Claude Code
 
 1. Open the `main.tf` file in VS Code
 2. Open Claude Code panel (click Claude icon)
 3. Ask: **"Generate an S3 bucket resource with current best practices"**
 4. Claude should use live Terraform schemas to generate accurate code
 
-### 15.4 Validate the generated code
+### 16.4 Validate the generated code
 
 ```bash
 terraform init
@@ -724,9 +871,9 @@ If you get a valid plan output (even if empty), your setup is working! ✅
 
 ---
 
-## 🧠 Step 16: Integrate Ollama with Claude Code (Optional)
+## 🧠 Step 17: Integrate Ollama with Claude Code (Optional)
 
-### 16.1 Why use Ollama with Claude Code?
+### 17.1 Why use Ollama with Claude Code?
 
 Here's the deal: you've got three LLM options now:
 
@@ -738,13 +885,13 @@ Here's the deal: you've got three LLM options now:
 
 Many developers use Ollama locally for quick code generation, testing, and offline work. It's also great for learning without hitting API limits.
 
-### 16.2 Configure Ollama as MCP Server (Optional)
+### 17.2 Configure Ollama as MCP Server (Optional)
 
 If you want Claude Code to use Ollama's Qwen model, you can add it as an MCP server. This is optional—you can also just run Ollama separately.
 
 **Note:** Currently, Ollama doesn't have an official MCP server wrapper, but you can use it directly:
 
-### 16.3 Use Ollama from the command line
+### 17.3 Use Ollama from the command line
 
 You already have Ollama running. Test it directly:
 
@@ -754,7 +901,7 @@ ollama run qwen3.5:cloud "Write a Terraform resource for an AWS security group"
 
 The model will respond with code. No API calls, no internet required.
 
-### 16.4 Set up Ollama web interface (Optional)
+### 17.4 Set up Ollama web interface (Optional)
 
 Ollama includes a local web UI:
 
@@ -763,7 +910,7 @@ Ollama includes a local web UI:
 3. Select **qwen3.5:cloud** from the dropdown
 4. Chat directly with the model
 
-### 16.5 Use Ollama for quick testing
+### 17.5 Use Ollama for quick testing
 
 **Workflow idea:**
 1. Use Claude Code for complex infrastructure planning
@@ -772,7 +919,7 @@ Ollama includes a local web UI:
 
 This saves API costs and lets you work offline.
 
-### 16.6 Monitor Ollama performance
+### 17.6 Monitor Ollama performance
 
 Check what's running on your system:
 
