@@ -777,6 +777,109 @@ Add this section to your `settings.json`:
 
 Press `Ctrl+S` to save.
 
+**CLI to configure MCP Server in VS Code**
+
+- Make it executable `update_vscode_settings.py` and run:
+  ```bash
+    chmod +x update_vscode_settings.py
+    python3 update_vscode_settings.py
+  ```
+ **Verify MCP Server**
+ ```sh
+ # Check if MCP servers section exists
+jq '.["claude-dev.mcpServers"]' ~/.config/Code/User/settings.json
+
+# View the entire settings file
+cat ~/.config/Code/User/settings.json | jq '.'
+ ```
+
+<details><summary><b>Use .env File (Most Professional)</b></summary><br>
+
+**Step 1: Create a .env file**
+```sh
+cat > ~/.config/Code/.env << 'EOF'
+TF_TOKEN_app_terraform_io=sk-your-actual-terraform-token-here
+EOF
+```
+**Step 2: Secure the file (only readable by you)**
+```sh
+chmod 600 ~/.config/Code/.env
+```
+**Step 3: Load the environment variable**
+
+```sh
+# Using a heredoc (cleaner for multi-line)
+cat >> ~/.bashrc << 'EOF'
+# Load VS Code environment variables
+if [ -f ~/.config/Code/.env ]; then
+    export $(cat ~/.config/Code/.env | xargs)
+fi
+EOF
+```
+Optional: Verify first, then append
+```sh
+# Check if it's already there
+grep -q "Load VS Code environment variables" ~/.bashrc || cat >> ~/.bashrc << 'EOF'
+# Load VS Code environment variables
+if [ -f ~/.config/Code/.env ]; then
+    export $(cat ~/.config/Code/.env | xargs)
+fi
+EOF
+```
+
+**Step 4: Add .env to .gitignore
+```sh
+echo ".env" >> ~/.gitignore
+cat ~/.gitignore
+```
+**Step 4. Update settings.json with environment variable reference**
+```sh
+# 4. Update settings.json with environment variable reference
+python3 << 'SCRIPT'
+import json
+from pathlib import Path
+
+settings_path = Path.home() / '.config' / 'Code' / 'User' / 'settings.json'
+
+with open(settings_path) as f:
+    s = json.load(f)
+
+s['claude-dev.mcpServers'] = {
+    'terraform': {
+        'command': 'docker',
+        'args': [
+            'run',
+            '--rm',
+            '-e', 'TF_TOKEN_app_terraform_io=${TF_TOKEN_app_terraform_io}',
+            '-e', 'TF_API_ADDRESS=https://app.terraform.io',
+            'hashicorp/terraform-mcp-server'
+        ]
+    }
+}
+
+with open(settings_path, 'w') as f:
+    json.dump(s, f, indent=2)
+
+print("✅ Token stored safely!")
+SCRIPT
+```
+
+**Verify Without Exposing Token**
+
+**Check settings.json (safe - no token visible)**
+```sh
+jq '.["claude-dev.mcpServers"]' ~/.config/Code/User/settings.json
+```
+**Verify token is available in environment (only shows in your shell)**
+```sh
+echo $TF_TOKEN_app_terraform_io  # Shows your actual token
+```
+**List what's in .env (safe - only you can read)**
+```sh
+cat ~/.config/Code/.env  # Shows your actual token (file is chmod 600)
+```
+</details>
+
 ### 14.5 Restart VS Code
 
 Close and reopen VS Code for changes to take effect.
@@ -833,6 +936,70 @@ echo '  "claude-dev.mcpServers": {
   },' >> ~/.config/Code/User/settings.json
 ```
  Warning: This won't validate JSON syntax, so use with caution.
+
+Method 4: Using jq with Token Replacement (Advanced)
+If you want to replace YOUR_TOKEN_HERE automatically:
+
+```sh
+TOKEN="sk-your-actual-terraform-token"
+
+jq --arg token "$TOKEN" '.["claude-dev.mcpServers"] = {
+  "terraform": {
+    "command": "docker",
+    "args": [
+      "run",
+      "--rm",
+      "-e", ("TF_TOKEN_app_terraform_io=" + $token),
+      "-e", "TF_API_ADDRESS=https://app.terraform.io",
+      "hashicorp/terraform-mcp-server"
+    ]
+  }
+}' ~/.config/Code/User/settings.json > /tmp/settings.json && mv /tmp/settings.json ~/.config/Code/User/settings.json
+```
+
+
+If you don't want to expose token then follow below
+
+```bash
+# 1. Create .env file
+cat > ~/.config/Code/.env << 'EOF'
+TF_TOKEN_app_terraform_io=sk-your-actual-token
+EOF
+
+# 2. Secure it
+chmod 600 ~/.config/Code/.env
+
+# 3. Add to .bashrc (already shown above)
+
+# 4. Update settings.json with environment variable reference
+python3 << 'SCRIPT'
+import json
+from pathlib import Path
+
+settings_path = Path.home() / '.config' / 'Code' / 'User' / 'settings.json'
+
+with open(settings_path) as f:
+    s = json.load(f)
+
+s['claude-dev.mcpServers'] = {
+    'terraform': {
+        'command': 'docker',
+        'args': [
+            'run',
+            '--rm',
+            '-e', 'TF_TOKEN_app_terraform_io=${TF_TOKEN_app_terraform_io}',
+            '-e', 'TF_API_ADDRESS=https://app.terraform.io',
+            'hashicorp/terraform-mcp-server'
+        ]
+    }
+}
+
+with open(settings_path, 'w') as f:
+    json.dump(s, f, indent=2)
+
+print("✅ Token stored safely!")
+SCRIPT
+```
 
 
 </details>
