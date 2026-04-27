@@ -428,6 +428,7 @@ Create a free account if you don't have one.
 
 
 <img width="1718" height="695" alt="Image" src="https://github.com/user-attachments/assets/8ce4aca9-4245-414f-9912-113f6fc20da6" />
+
 ---
 
 ## 📝 Step 9: Configure Terraform with Your Token
@@ -1006,8 +1007,8 @@ print("✅ Token stored safely!")
 SCRIPT
 ```
 
-
 </details>
+
 ---
 
 ## ✅ Step 15: Verify Everything Works
