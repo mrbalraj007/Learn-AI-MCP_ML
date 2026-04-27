@@ -1105,6 +1105,72 @@ If you get a valid plan output (even if empty), your setup is working! ✅
 
 ---
 
+**Step 1: Load Your .env File**
+First, load all your environment variables from the .env file:
+```bash
+source ~/.config/Code/.env
+```
+**Verify the token is loaded:**
+```bash
+echo $TF_TOKEN_app_terraform_io
+```
+Should output: sk-your-actual-terraform-token-here
+
+
+**Step 2: Run the claude mcp add Command**
+Now run the command using the environment variable:
+```sh
+claude mcp add terraform -- \
+  docker run -i --rm \
+  -e TFE_ADDRESS=https://app.terraform.io \
+  -e TFE_TOKEN=$TF_TOKEN_app_terraform_io \
+  hashicorp/terraform-mcp-server
+```
+Notice: `-e TFE_TOKEN=$TF_TOKEN_app_terraform_io` references your loaded environment variable.
+
+**Step 3: Verify It Works**
+bash# Check if the MCP server was added
+```sh
+claude mcp list
+```
+You should see terraform in the list.
+
+**One-Liner (Load & Run Together)**
+If you want to do it all in one command:
+```sh
+source ~/.config/Code/.env && claude mcp add terraform -- \
+  docker run -i --rm \
+  -e TFE_ADDRESS=https://app.terraform.io \
+  -e TFE_TOKEN=$TF_TOKEN_app_terraform_io \
+  hashicorp/terraform-mcp-server
+```
+docker pull hashicorp/terraform-mcp-server
+
+```bash
+claude mcp add terraform -- \
+  docker run -i --rm \
+  -e TFE_ADDRESS=https://app.terraform.io \
+  -e TFE_TOKEN=******** \
+  hashicorp/terraform-mcp-server
+```
+```bash
+export TFE_TOKEN=xxxxx
+export TFE_ADDRESS=https://app.terraform.io
+
+claude mcp add -s user terraform \
+  -e TFE_ADDRESS
+```
+![alt text](image-27.png)
+
+**List all MCP servers**
+```sh
+claude mcp list
+```
+**Check terraform is in the list**
+```sh
+claude mcp list | grep terraform
+```
+
 ## 🧠 Step 17: Integrate Ollama with Claude Code (Optional)
 
 ### 17.1 Why use Ollama with Claude Code?
