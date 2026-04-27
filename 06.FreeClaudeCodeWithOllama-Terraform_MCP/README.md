@@ -702,6 +702,9 @@ You are now using Claude Code with Ollama
 ![alt text](image-21.png)
 ![alt text](image-22.png)
 
+
+![alt text](image-25.png)
+
 **Step 12.10: (Optional) Run with a Fixed Model**
 ```Shell
 ollama launch claude --model qwen3.5:cloud
@@ -747,20 +750,22 @@ Press `Ctrl+,` (or go to **File → Preferences → Settings**)
 
 Click the icon in the top-right (looks like `{}`) to open JSON settings.
 
+![alt text](image-26.png)
+
 ### 14.3 Add MCP configuration
 
 Add this section to your `settings.json`:
 
 ```json
-"claude-dev.mcpServers": {
-  "terraform": {
-    "command": "docker",
-    "args": [
-      "run",
-      "--rm",
-      "-e", "TF_TOKEN_app_terraform_io=YOUR_TOKEN_HERE",
-      "-e", "TF_API_ADDRESS=https://app.terraform.io",
-      "hashicorp/terraform-mcp-server"
+"claude-dev.mcpServers": {           // ← Section name (for Claude Dev extension)
+  "terraform": {                      // ← Server name (you can call it anything)
+    "command": "docker",              // ← What to run (Docker in this case)
+    "args": [                         // ← Arguments passed to Docker
+      "run",                          // ← Run a Docker container
+      "--rm",                         // ← Remove container after it finishes
+      "-e", "TF_TOKEN_app_terraform_io=YOUR_TOKEN_HERE",  // ← Environment variable
+      "-e", "TF_API_ADDRESS=https://app.terraform.io",   // ← Another env variable
+      "hashicorp/terraform-mcp-server" // ← Docker image name
     ]
   }
 }
@@ -776,6 +781,61 @@ Press `Ctrl+S` to save.
 
 Close and reopen VS Code for changes to take effect.
 
+<details><summary><b>**Here are several CLI methods to update settings.json:**</b></summary><br>
+Method 1: Using jq (Best for JSON)
+
+jq is a command-line JSON processor. First, install it:
+
+```sh
+sudo apt update
+sudo apt install jq
+```
+Then update your settings:
+```sh
+# Set the MCP Servers configuration
+jq '.["claude-dev.mcpServers"] = {
+  "terraform": {
+    "command": "docker",
+    "args": [
+      "run",
+      "--rm",
+      "-e", "TF_TOKEN_app_terraform_io=YOUR_TOKEN_HERE",
+      "-e", "TF_API_ADDRESS=https://app.terraform.io",
+      "hashicorp/terraform-mcp-server"
+    ]
+  }
+}' ~/.config/Code/User/settings.json > settings.json.tmp && mv settings.json.tmp ~/.config/Code/User/settings.json
+```
+Breakdown:
+```sh
+jq '...' = process JSON
+~/.config/Code/User/settings.json = VS Code settings location (Linux/Mac)
+For Windows: Use %APPDATA%\Code\User\settings.json
+```
+
+Method 2: Using sed (Git Bash / Unix-style)
+If you're in Git Bash on Windows:
+```sh
+# Create a backup first
+cp ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.backup
+
+# Add the MCP configuration before the closing brace
+sed -i '/"editor.theme"/a\  ,\n  "claude-dev.mcpServers": {\n    "terraform": {\n      "command": "docker",\n      "args": [\n        "run",\n        "--rm",\n        "-e", "TF_TOKEN_app_terraform_io=YOUR_TOKEN_HERE",\n        "-e", "TF_API_ADDRESS=https://app.terraform.io",\n        "hashicorp/terraform-mcp-server"\n      ]\n    }\n  }' ~/.config/Code/User/settings.json
+```
+Method 3: One-Liner (Using echo + JSON)
+```sh
+# Bash/Git Bash - append to settings.json
+echo '  "claude-dev.mcpServers": {
+    "terraform": {
+      "command": "docker",
+      "args": ["run", "--rm", "-e", "TF_TOKEN_app_terraform_io=YOUR_TOKEN_HERE", "-e", "TF_API_ADDRESS=https://app.terraform.io", "hashicorp/terraform-mcp-server"]
+    }
+  },' >> ~/.config/Code/User/settings.json
+```
+ Warning: This won't validate JSON syntax, so use with caution.
+
+
+</details>
 ---
 
 ## ✅ Step 15: Verify Everything Works
