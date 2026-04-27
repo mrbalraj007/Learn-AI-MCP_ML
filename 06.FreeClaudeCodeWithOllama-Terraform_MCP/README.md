@@ -133,7 +133,7 @@ Docker version 25.x.x (or newer)
 sudo systemctl start docker
 ```
 
-![alt text](image-11.png)
+<img width="1711" height="495" alt="Image" src="https://github.com/user-attachments/assets/2c222c3e-1ce7-4458-9fd0-72b83b1e1e5e" />
 
 ---
 
@@ -198,7 +198,7 @@ curl -fsSL https://ollama.ai/install.sh | sh
 
 This script handles everything—dependencies, permissions, and service setup.
 
-![alt text](image-12.png)
+<img width="1175" height="296" alt="Image" src="https://github.com/user-attachments/assets/97a523d8-e7da-4fae-9979-101fdc7b5b68" />
 
 ### 4.3 Verify installation
 
@@ -236,7 +236,7 @@ sudo systemctl enable ollama
 ```bash
 curl http://localhost:11434/api/tags
 ```
-![alt text](image-13.png)
+<img width="1718" height="500" alt="Image" src="https://github.com/user-attachments/assets/f526b55d-6739-4b07-aad0-0e93610f2116" />
 
 ### 4.6 Restart the Ollama service:
 
@@ -267,7 +267,7 @@ ollama pull qwen3.5:cloud
 ```
 
 This downloads the model to your local machine. 
-![alt text](image-14.png)
+<img width="1718" height="144" alt="Image" src="https://github.com/user-attachments/assets/df9f9ac8-e9b5-4075-b464-551459c28fd2" />
 
 **⏱️ Expected time:** 5-15 minutes (depends on internet speed)  
 **Storage needed:** ~2-4GB
@@ -293,7 +293,7 @@ You should see `qwen3.5:cloud` in the output:
 NAME                  ID              SIZE      MODIFIED
 qwen3.5:cloud         abc1234def56    2.2GB     1 minutes ago
 ```
-![alt text](image-15.png)
+<img width="1718" height="200" alt="Image" src="https://github.com/user-attachments/assets/1b843761-7a24-451b-8704-ba0b7d2cd5ba" />
 
 ### 5.4 Sign in to Ollama using the CLI
 
@@ -337,7 +337,7 @@ ollama run qwen3.5:cloud "Write a simple Hello World in Terraform"
 
 The model should respond with Terraform code. If it works, you're good to go.
 
-![alt text](image-16.png)
+<img width="1718" height="905" alt="Image" src="https://github.com/user-attachments/assets/46c394ba-9bca-43be-8f42-b06e52411b25" />
 ---
 
 ## ☁️ Step 6: Install AWS CLI v2
@@ -370,8 +370,7 @@ aws --version
 ```
 aws-cli/2.x.x Python/3.x.x ...
 ```
-![alt text](image-17.png)
-
+<img width="1718" height="905" alt="Image" src="https://github.com/user-attachments/assets/17cce9f1-e18a-4d2f-9a57-782d905e1c60" />
 ### 6.5 Clean up installer files
 
 ```bash
@@ -427,7 +426,8 @@ Create a free account if you don't have one.
 > [!CAUTION]
 *This is sensitive. Treat it like a password.*
 
-![alt text](image-18.png)
+
+<img width="1718" height="695" alt="Image" src="https://github.com/user-attachments/assets/8ce4aca9-4245-414f-9912-113f6fc20da6" />
 ---
 
 ## 📝 Step 9: Configure Terraform with Your Token
@@ -493,7 +493,7 @@ terraform init
 ```
 If it works, you'll see successful provider initialization. If there's a token issue, you'll get a clear `401 error`.
 
-![alt text](image-19.png)
+<img width="1456" height="705" alt="Image" src="https://github.com/user-attachments/assets/0c131cec-e9ca-4a4f-9843-8593f0cfff36" />
 ---
 
 ## 💻 Step 10: Install VS Code (If Not Already Installed)
@@ -565,7 +565,7 @@ code
 ```bash
 code --install-extension Anthropic.claude-code
 ```
-![alt text](image-20.png)
+<img width="1456" height="96" alt="Image" src="https://github.com/user-attachments/assets/4161302f-4b52-4f20-b080-b99ee346a306" />
 
 ### 11.3 Verify installation
 
@@ -699,11 +699,11 @@ ollama launch claude
 Done.
 You are now using Claude Code with Ollama
 
-![alt text](image-21.png)
-![alt text](image-22.png)
+<img width="1456" height="349" alt="Image" src="https://github.com/user-attachments/assets/868457f2-6e06-4434-877c-cfdc90121226" />
+<img width="1456" height="741" alt="Image" src="https://github.com/user-attachments/assets/22cf60fd-1af3-48ad-adab-58c4f57dc25b" />
 
 
-![alt text](image-25.png)
+<img width="1723" height="697" alt="Image" src="https://github.com/user-attachments/assets/a77127e4-323e-49f9-9687-a39ff2dc9f88" />
 
 **Step 12.10: (Optional) Run with a Fixed Model**
 ```Shell
@@ -735,8 +735,8 @@ Monitor the download:
 # Get image details
 docker images | grep terraform-mcp-server
 ```
-![alt text](image-23.png)
-![alt text](image-24.png)
+<img width="1456" height="286" alt="Image" src="https://github.com/user-attachments/assets/ec60dc2b-ae73-4e9f-9820-6dbb5078e53e" />
+<img width="1456" height="167" alt="Image" src="https://github.com/user-attachments/assets/21abb1f0-b5a3-4c38-98ad-a89c0692e9e5" />
 
 ---
 
@@ -750,7 +750,7 @@ Press `Ctrl+,` (or go to **File → Preferences → Settings**)
 
 Click the icon in the top-right (looks like `{}`) to open JSON settings.
 
-![alt text](image-26.png)
+<img width="1408" height="807" alt="Image" src="https://github.com/user-attachments/assets/233b505e-0a20-4b6e-a63d-5bc83e9251aa" />
 
 ### 14.3 Add MCP configuration
 
@@ -1160,7 +1160,7 @@ export TFE_ADDRESS=https://app.terraform.io
 claude mcp add -s user terraform \
   -e TFE_ADDRESS
 ```
-![alt text](image-27.png)
+<img width="1490" height="487" alt="Image" src="https://github.com/user-attachments/assets/12db1ffb-0b6b-4459-a5b3-63365c25b7cd" />
 
 **List all MCP servers**
 ```sh
