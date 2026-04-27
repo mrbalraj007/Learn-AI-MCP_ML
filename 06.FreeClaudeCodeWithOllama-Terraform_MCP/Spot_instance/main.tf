@@ -26,12 +26,12 @@ resource "aws_instance" "jenkins-svr" {
   vpc_security_group_ids = [aws_security_group.Jenkins-VM-SG.id]
   user_data              = templatefile("./jenkins_install.sh", {})
 
-  #  instance_market_options {
-  #    market_type = "spot"
-  #    spot_options {
-  #      max_price = "0.0051" # Set your maximum price for the spot instance
-  #    }
-  #  }
+   instance_market_options {
+     market_type = "spot"
+     spot_options {
+       max_price = "0.0051" # Set your maximum price for the spot instance
+     }
+   }
 
   tags = {
     Name = "Jenkins-Trivy-${count.index + 1}" # This will create Jenkins-Trivy-1 and Jenkins-Trivy-2
