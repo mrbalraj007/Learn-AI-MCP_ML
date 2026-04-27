@@ -1023,6 +1023,13 @@ docker run --rm hashicorp/terraform-mcp-server --version
 
 Should output Terraform version info.
 
+```sh
+dc-ops@dc-ops:~/Learn-AI-MCP_ML/06.FreeClaudeCodeWithOllama-Terraform_MCP$ docker run --rm hashicorp/terraform-mcp-server --version
+Terraform MCP Server
+Version: 0.5.1
+Commit:
+Build Date: 1970-01-01T00:00:01Z
+```
 ### 15.3 Check Terraform CLI
 
 ```bash
