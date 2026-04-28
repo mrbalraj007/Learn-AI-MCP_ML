@@ -46,8 +46,23 @@ claude --version
 
 # This will output something like: claude v2.1.0
 ```
+Run this command if `curl https://install.command.claude.ai | bash` if failed.
+```sh
+printf "nameserver 8.8.8.8\nnameserver 1.1.1.1\n" | sudo tee -a /etc/resolv.conf > /dev/null
+```
 
 **Key Point:** The native installer is now Anthropic's recommended method — one command, no Node.js dependency, automatic updates built in
+
+Extra Command
+```sh
+resolvectl status | grep "Link"
+sudo resolvectl dns ens160 8.8.8.8 1.1.1.1
+
+resolvectl query google.com
+curl -I https://google.com
+curl -I https://install.command.claude.ai
+```
+
 
 ### 1.3 Install Node.js (for npm-based MCP servers)
 
