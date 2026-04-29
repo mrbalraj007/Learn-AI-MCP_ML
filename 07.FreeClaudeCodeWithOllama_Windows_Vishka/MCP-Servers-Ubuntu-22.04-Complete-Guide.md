@@ -2,7 +2,7 @@
 
 ## Ubuntu 22.04 LTS + Claude Code + Ollama + uvx MCP Servers 
 
-**Last Updated:** April 2026  
+<!-- **Last Updated:** April 2026   -->
 **Status:** ✅ Tested & Verified Working  
 **Scope:** Production-ready MCP setup with proper error handling
 
