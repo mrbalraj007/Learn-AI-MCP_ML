@@ -728,7 +728,7 @@ claude mcp add <server-name> \
 
 ---
 
-### Step 8.1 MCP Server 1: Terraform Registry (terraform-mcp)
+### Step 8.1 `MCP Server 1`: Terraform Registry (terraform-mcp)
 
 **Purpose:** Query Terraform Registry for providers and modules  
 **Package:** `awslabs.terraform-mcp-server`  
@@ -767,7 +767,7 @@ claude
 
 ---
 
-### Step 8.2 MCP Server 2: AWS Core Operations (aws-core-mcp)
+### Step 8.2 `MCP Server 2`: AWS Core Operations (aws-core-mcp)
 
 **Purpose:** Core AWS API operations (EC2, S3, IAM, VPC, etc.)  
 **Package:** `awslabs.core-mcp-server`  
@@ -812,7 +812,7 @@ claude
 
 ---
 
-### Step 8.3 MCP Server 3: AWS Pricing & Cost Analysis (aws-pricing-mcp)
+### Step 8.3 `MCP Server 3`: AWS Pricing & Cost Analysis (aws-pricing-mcp)
 
 **Purpose:** Real-time AWS pricing data, cost estimation, cost analysis  
 **Package:** `awslabs.cost-explorer-mcp-server`  
@@ -863,7 +863,7 @@ claude
 
 ---
 
-### Step 8.4 MCP Server 4: EKS Cluster Management (eks-mcp)
+### Step 8.4 `MCP Server 4`: EKS Cluster Management (eks-mcp)
 
 **Purpose:** Query and manage EKS clusters, deployments, pods, troubleshooting  
 **Package:** `awslabs.eks-mcp-server`  
@@ -886,7 +886,7 @@ kubectl get nodes
 # Expected: Lists your EKS nodes
 ```
 
-#### Step 8.4.2: Add EKS MCP Server
+#### Step 8.4.2: Add EKS `MCP Server`
 
 ```bash
 # Add EKS MCP Server
@@ -916,7 +916,7 @@ claude
 
 ---
 
-### Step 8.5 Verify All MCP Servers Are Registered
+### Step 8.5 Verify All `MCP Servers` Are Registered
 
 ```bash
 # View your complete MCP configuration
@@ -1064,7 +1064,7 @@ watch -n 1 'ps aux | grep ollama'
 ollama list
 ```
 
-### Step 10.3 Optimize MCP Server Configuration
+### Step 10.3 Optimize `MCP Server` Configuration
 
 Create environment-specific configs:
 
@@ -1495,7 +1495,7 @@ claude mcp add my-server --scope workspace -- uvx my-package@latest
 
 ---
 
-### Environment Variables for MCP Servers
+### Environment Variables for `MCP Server `s
 
 Some servers need custom environment variables:
 
@@ -1576,7 +1576,7 @@ aws configure --profile prod
 # ✅ DO: Use IAM users with minimal permissions
 ```
 
-### 2. IAM Permissions for MCP Servers
+### 2. IAM Permissions for `MCP Servers`
 
 **Minimum permissions needed:**
 
@@ -1747,7 +1747,7 @@ Claude> "Review my AWS infrastructure:
 
 ## Cleanup & Maintenance
 
-### Remove a Single MCP Server
+### Remove a Single `MCP Server`
 
 ```bash
 claude mcp remove terraform-mcp
@@ -1762,7 +1762,7 @@ grep terraform-mcp ~/.claude.json  # Should not match
 cp ~/.claude.json ~/.claude.json.backup.$(date +%Y%m%d)
 ```
 
-### Update All MCP Servers
+### Update All `MCP Servers`
 
 ```bash
 # Reinstall with latest versions
