@@ -311,9 +311,9 @@ uvx python --version
 # Should output: Python 3.x.x
 ```
 ---
-## 🐳 Step 2: Install Docker
+## 🐳 Phase 3: Install Docker
 
-### 2.1 Remove old Docker versions (if any)
+### 3.1 Remove old Docker versions (if any)
 
 ```bash
 sudo apt remove docker docker-doc docker.io containerd runc -y
@@ -321,7 +321,7 @@ sudo apt remove docker docker-doc docker.io containerd runc -y
 
 This cleans up any existing Docker installations that might conflict.
 
-### 2.2 Install Docker's dependency packages
+### 3.2 Install Docker's dependency packages
 
 ```bash
 sudo apt install ca-certificates curl gnupg lsb-release -y
@@ -329,7 +329,7 @@ sudo apt install ca-certificates curl gnupg lsb-release -y
 
 These are required for secure Docker installation.
 
-### 2.3 Add Docker's GPG key
+### 3.3 Add Docker's GPG key
 
 ```bash
 sudo mkdir -p /etc/apt/keyrings
@@ -338,7 +338,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 
 This verifies that packages come from Docker's official repository.
 
-### 2.4 Set up Docker's APT repository
+### 3.4 Set up Docker's APT repository
 
 ```bash
 echo \
@@ -348,7 +348,7 @@ echo \
 
 This adds Docker's official Ubuntu repository.
 
-### 2.5 Install Docker Engine
+### 3.5 Install Docker Engine
 
 ```bash
 sudo apt update
@@ -361,7 +361,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 - `containerd.io`: Container runtime
 - `docker-compose-plugin`: For multi-container setups
 
-### 2.6 Add user to the Docker group
+### 3.6 Add user to the Docker group
 
 ```bash
 sudo usermod -aG docker $USER
@@ -369,7 +369,7 @@ sudo usermod -aG docker $USER
 
 This allows you to run Docker commands without `sudo`.
 
-### 2.6 Refresh user permission to the Docker group
+### 3.7 Refresh user permission to the Docker group
 
 ```bash
 newgrp docker
@@ -378,7 +378,7 @@ newgrp docker
 > [!IMPORTANT]
 If abobe doesn't work then log out and log back in (or restart) for this to take effect.
 
-### 2.7 Verify Docker Service
+### 3.8 Verify Docker Service
 
 After installation, verify that Docker is running:
 
@@ -388,7 +388,7 @@ docker --version
 
 **Expected output:**
 ```
-Docker version 25.x.x (or newer)
+Docker version 29.x.x (or newer)
 ```
 
 **If Docker is not running, start it manually:**
@@ -401,9 +401,9 @@ sudo systemctl start docker
 
 ---
 
-## PHASE 2 — VS Code
+## PHASE 4 — VS Code
 
-### Step 2.1 — Install VS Code
+### Step 4.1 — Install VS Code
 
 ```bash
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor \
@@ -417,7 +417,7 @@ sudo apt update && sudo apt install -y code
 code --version
 ```
 
-### Step 2.2 — Install Recommended VS Code Extensions
+### Step 4.2 — Install Recommended VS Code Extensions
 
 ```bash
 # Terraform / IaC
@@ -440,9 +440,9 @@ echo "✅ VS Code extensions installed"
 
 ---
 
-## PHASE 4 — Terraform
+## PHASE 5 — Terraform
 
-### Step 4.1 — Install Terraform via HashiCorp repo
+### Step 5.1 — Install Terraform via HashiCorp repo
 
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
@@ -457,7 +457,7 @@ sudo apt update && sudo apt install -y terraform
 terraform version
 ```
 
-### Step 4.2 — Install tfenv (optional — manage multiple Terraform versions)
+### Step 5.2 — Install tfenv (optional — manage multiple Terraform versions)
 
 ```bash
 git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
@@ -469,7 +469,7 @@ tfenv use 1.8.5
 terraform version
 ```
 
-### Step 4.3 — Verify Terraform is working
+### Step 5.3 — Verify Terraform is working
 
 ```bash
 mkdir -p ~/terraform-test && cd ~/terraform-test
@@ -496,11 +496,11 @@ cd ~ && rm -rf ~/terraform-test
 
 ---
 
-## PHASE 5 — Ollama + Qwen Model
+## PHASE 6 — Ollama + Qwen Model
 
-### 🧠 Step 5.1: Install Ollama (Local LLM)
+### 🧠 Step 6.1: Install Ollama (Local LLM)
 
-#### 5.1 What is Ollama?
+### 6.1 What is Ollama?
 
 Ollama lets you run large language models locally on your machine. No cloud dependencies, no API costs, no internet required for inference. Perfect for development and testing without hitting rate limits.
 
@@ -511,7 +511,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama --version
 ```
 
-#### Step 5.2 — Start Ollama Service
+### Step 6.2 — Start Ollama Service
 
 ```bash
 # Enable as systemd service (auto-starts on boot)
@@ -519,7 +519,7 @@ sudo systemctl enable ollama
 sudo systemctl start ollama
 sudo systemctl status ollama
 ```
-#### 5.3 Verify installation
+### 6.3 Verify installation
 
 ```bash
 ollama --version
@@ -530,7 +530,7 @@ ollama --version
 ollama version is 0.21.x
 ```
 
-#### 5.4 Pull Models for Coding
+### 6.4 Pull Models for Coding
 
 ```bash
 # Cloud models (no local resource usage)
@@ -556,7 +556,7 @@ ollama list
 | qwen3.5:cloud | - | 0 | Very Good | Fast | Cloud |
 | kimi-k2.5:cloud | - | 0 | Excellent | Medium | Cloud |
 
-### Step 5.4 — Pull and Run Qwen Model
+### Step 6.5 — Pull and Run Qwen Model
 
 ```bash
 # Pull Qwen2.5 (3B for low RAM, 7B for better quality)
@@ -575,7 +575,7 @@ curl http://localhost:11434/api/generate \
   -d '{"model": "qwen2.5:7b", "prompt": "Hello, who are you?", "stream": false}'
 ```
 
-### Step 5.6 — List Installed Models
+### Step 6.7 — List Installed Models
 
 ```bash
 ollama list
@@ -585,14 +585,14 @@ ollama list
 > Use `qwen2.5:7b` or check https://ollama.com/library/qwen2.5 for current tags.
 > Once Qwen3 is available on Ollama, it will appear as `qwen3:latest` etc.
 
-### 5.4 Sign in to Ollama using the CLI
+### 6.8 Sign in to Ollama using the CLI
 
-**5.4.1. Run the login command**
+**6.8.1. Run the login command**
 ```Shell
 ollama login
 ```
 
-**5.4.2. Complete browser authentication**
+**6.8.2. Complete browser authentication**
 
 After running the command, Ollama will:
 
@@ -606,7 +606,7 @@ After running the command, Ollama will:
 
 ✅ Once approved, the CLI session is authenticated automatically.
 
-**5.4.3. Verify you’re signed in**
+**6.8.3. Verify you’re signed in**
 Run:
 ```Shell
 ollama whoami
@@ -616,7 +616,7 @@ Example output:
 username@example.com
 ```
 
-**5.4.4. Run a Cloud model and Test the model locally**
+**6.8.4. Run a Cloud model and Test the model locally**
 Now Cloud models will work:
 
 Try a quick inference to make sure it's working:
@@ -631,9 +631,9 @@ The model should respond with Terraform code. If it works, you're good to go.
 
 ---
 
-## PHASE 6 — Claude Code (CLI)
+## PHASE 7 — Claude Code (CLI)
 
-### Step 6.1 — Install Claude Code
+### Step 7.1 — Install Claude Code
 
 ```bash
 # npm install -g @anthropic-ai/claude-code
@@ -672,7 +672,7 @@ npm config get prefix
 | After fix above | `~/.npm-global` | `dc-ops` ✅ |
 
 
-### Step 6.2 — Authenticate Claude Code
+### Step 7.2 — Authenticate Claude Code
 
 ```bash
 # This opens a browser for Anthropic login
@@ -683,7 +683,7 @@ ollama launch claude
 # claude whoami
 ```
 
-### Step 6.3 — Test Claude Code
+### Step 7.3 — Test Claude Code
 
 ```bash
 mkdir -p ~/claude-test && cd ~/claude-test
@@ -694,7 +694,7 @@ cd ~
 
 ---
 
-## Phase 3: Configure MCP Servers
+## Phase 8: Configure MCP Servers
 
 ### Overview: Adding MCP Servers to Claude Code
 
@@ -717,7 +717,7 @@ claude mcp add <server-name> \
 
 ---
 
-### 3.1 MCP Server 1: Terraform Registry (terraform-mcp)
+### 8.1 MCP Server 1: Terraform Registry (terraform-mcp)
 
 **Purpose:** Query Terraform Registry for providers and modules  
 **Package:** `awslabs.terraform-mcp-server`  
@@ -756,7 +756,7 @@ claude
 
 ---
 
-### 3.2 MCP Server 2: AWS Core Operations (aws-core-mcp)
+### 8.2 MCP Server 2: AWS Core Operations (aws-core-mcp)
 
 **Purpose:** Core AWS API operations (EC2, S3, IAM, VPC, etc.)  
 **Package:** `awslabs.core-mcp-server`  
@@ -801,7 +801,7 @@ claude
 
 ---
 
-### 3.3 MCP Server 3: AWS Pricing & Cost Analysis (aws-pricing-mcp)
+### 8.3 MCP Server 3: AWS Pricing & Cost Analysis (aws-pricing-mcp)
 
 **Purpose:** Real-time AWS pricing data, cost estimation, cost analysis  
 **Package:** `awslabs.cost-explorer-mcp-server`  
@@ -852,7 +852,7 @@ claude
 
 ---
 
-### 3.4 MCP Server 4: EKS Cluster Management (eks-mcp)
+### 8.4 MCP Server 4: EKS Cluster Management (eks-mcp)
 
 **Purpose:** Query and manage EKS clusters, deployments, pods, troubleshooting  
 **Package:** `awslabs.eks-mcp-server`  
@@ -905,7 +905,7 @@ claude
 
 ---
 
-### 3.5 Verify All MCP Servers Are Registered
+### 8.5 Verify All MCP Servers Are Registered
 
 ```bash
 # View your complete MCP configuration
@@ -922,7 +922,7 @@ python3 -m json.tool ~/.claude.json | grep -A 5 "mcpServers"
 ```
 ---
 
-### 4.2 Create CLAUDE.md for Project Guidelines
+### 8.6 Create CLAUDE.md for Project Guidelines
 
 ```bash
 cat > CLAUDE.md << 'EOF'
@@ -955,7 +955,7 @@ To auto-approve in dev: `--dangerously-skip-permissions` (testing only)
 EOF
 ```
 
-### 4.3 Create Alias for Quick Launch
+### 8.7 Create Alias for Quick Launch
 
 ```bash
 cat >> ~/.bashrc << 'EOF'
@@ -971,9 +971,9 @@ source ~/.bashrc
 
 ---
 
-## Phase 5: Testing & Validation (Day 3)
+## Phase 9: Testing & Validation (Day 3)
 
-### 5.1 Test Local LLM (Ollama)
+### 9.1 Test Local LLM (Ollama)
 
 ```bash
 # Launch Claude Code with local model
@@ -984,7 +984,7 @@ claude-local
 # Then ask: "Create a hello world Python script"
 ```
 
-### 5.2 Test AWS Pricing MCP
+### 9.2 Test AWS Pricing MCP
 
 ```bash
 # Inside Claude Code:
@@ -993,7 +993,7 @@ claude-local
 # Should return detailed pricing breakdown
 ```
 
-### 5.3 Test Terraform MCP
+### 9.3 Test Terraform MCP
 
 ```bash
 # Inside Claude Code:
@@ -1001,7 +1001,7 @@ claude-local
 # Should query terraform registry and return latest version
 ```
 
-### 5.4 Test EKS MCP
+### 9.4 Test EKS MCP
 
 ```bash
 # First, configure kubeconfig
@@ -1012,7 +1012,7 @@ aws eks update-kubeconfig --name YOUR_CLUSTER_NAME --region us-east-1
 # Should show your EKS cluster info
 ```
 
-### 5.5 Run Multi-Server Workflow
+### 9.5 Run Multi-Server Workflow
 
 ```bash
 # Inside Claude Code, ask:
@@ -1026,9 +1026,9 @@ aws eks update-kubeconfig --name YOUR_CLUSTER_NAME --region us-east-1
 
 ---
 
-## Phase 6: Optimization Tips (Optional)
+## Phase 10: Optimization Tips (Optional)
 
-### 6.1 Switch Between Local & Cloud Models
+### 10.1 Switch Between Local & Cloud Models
 
 ```bash
 # Quick switch to cloud model (no local resources)
@@ -1040,7 +1040,7 @@ ollama launch claude --model qwen2.5-coder:7b
 # Use cloud only for complex tasks, local for rapid iteration
 ```
 
-### 6.2 Monitor Ollama Resource Usage
+### 10.2 Monitor Ollama Resource Usage
 
 ```bash
 # Check Ollama logs
@@ -1053,7 +1053,7 @@ watch -n 1 'ps aux | grep ollama'
 ollama list
 ```
 
-### 6.3 Optimize MCP Server Configuration
+### 10.3 Optimize MCP Server Configuration
 
 Create environment-specific configs:
 
@@ -1078,11 +1078,9 @@ EOF
 ```
 ---
 
----
+## Phase 11: Verification & Testing
 
-## Phase 4: Verification & Testing
-
-### 4.1 Start Claude Code and Check MCP Servers
+### 11.1 Start Claude Code and Check MCP Servers
 
 ```bash
 # Start Claude Code with Ollama
@@ -1098,7 +1096,7 @@ claude
 # ✓ eks-mcp            Connected
 ```
 
-### 4.2 Test Each Server Individually
+### 11.2 Test Each Server Individually
 
 #### Test 1: Terraform Registry
 
@@ -1133,7 +1131,7 @@ Claude> "List all pods in the default namespace and their status"
 # Claude will call eks-mcp and show pod details
 ```
 
-### 4.3 Test Multi-Server Orchestration
+### 11.3 Test Multi-Server Orchestration
 
 Claude can use multiple MCP servers in a single request:
 
@@ -1147,7 +1145,7 @@ Claude> "I'm creating a Terraform project for an EKS cluster:
 # Claude orchestrates all 4 servers automatically
 ```
 
-### 4.4 Create a Validation Script
+### 11.4 Create a Validation Script
 
 ```bash
 #!/bin/bash
@@ -1227,7 +1225,7 @@ chmod +x ~/verify-mcp.sh
 ---
 
 
-## Phase 5: Troubleshooting
+## Phase 12: Troubleshooting
 
 ### Issue 1: MCP Servers Not Appearing in `/mcp`
 
