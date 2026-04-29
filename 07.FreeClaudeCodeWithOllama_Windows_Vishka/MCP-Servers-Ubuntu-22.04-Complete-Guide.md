@@ -598,12 +598,12 @@ ollama list
 
 ### 6.8 Sign in to Ollama using the CLI
 
-**6.8.1. Run the login command**
+**Step 6.8.1. Run the login command**
 ```Shell
 ollama login
 ```
 
-**6.8.2. Complete browser authentication**
+**Step 6.8.2. Complete browser authentication**
 
 After running the command, Ollama will:
 
@@ -617,7 +617,7 @@ After running the command, Ollama will:
 
 ✅ Once approved, the CLI session is authenticated automatically.
 
-**6.8.3. Verify you’re signed in**
+**Step 6.8.3. Verify you’re signed in**
 Run:
 ```Shell
 ollama whoami
@@ -627,7 +627,7 @@ Example output:
 username@example.com
 ```
 
-**6.8.4. Run a Cloud model and Test the model locally**
+**Step 6.8.4. Run a Cloud model and Test the model locally**
 Now Cloud models will work:
 
 Try a quick inference to make sure it's working:
