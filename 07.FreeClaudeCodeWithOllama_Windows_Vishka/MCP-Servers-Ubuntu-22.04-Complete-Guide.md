@@ -1896,6 +1896,7 @@ chmod +x ~/setup-mcp-complete.sh
 
 
 - Run the script after verifying everything works:
+- 
 ```bash
 chmod +x cleanup.sh
 ./cleanup.sh
