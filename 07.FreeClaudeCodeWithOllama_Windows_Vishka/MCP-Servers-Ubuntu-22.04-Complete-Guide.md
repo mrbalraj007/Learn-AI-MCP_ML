@@ -933,6 +933,36 @@ python3 -m json.tool ~/.claude.json | grep -A 5 "mcpServers"
 ```
 ---
 
+> [!IMPORTANT]
+This is your global/home scope config — all 4 MCPs registered from ~ live here.
+
+**All Config Locations Claude Code Uses**
+
+| Scope          | File Location                              | Contains            |
+|----------------|--------------------------------------------|---------------------|
+| Global / Home  | `~/.claude.json`                            | Your 4 MCPs ✅       |
+| Project-level  | `/path/to/project/.claude.json`             | Per-project MCPs    |
+| VS Code        | `~/.config/Code/User/settings.json`         | VS Code–specific    |
+
+**Quick Check Commands**
+```bash
+# View your main MCP config
+cat ~/.claude.json
+
+# Pretty print it clearly
+python3 -m json.tool ~/.claude.json
+
+# See only the mcpServers section
+python3 -c "import json; d=json.load(open('/home/dc-ops/.claude.json')); print(json.dumps(d.get('mcpServers',{}), indent=2))"
+```
+**Check If Any Project-Level Config Exists**
+```bash
+# Find all .claude.json files on your system
+find ~ -name ".claude.json" 2>/dev/null
+```
+This will show you every location where MCP configs are saved — including the leftover one inside ~/terraform-mcp-server if you haven't deleted it yet.
+
+---
 ### Step 8.6 Create CLAUDE.md for Project Guidelines
 
 ```bash
