@@ -44,6 +44,14 @@
        TTL        Core AWS      Cost Analysis      Kubernetes
      Registry    Operations     & Optimization     Management
 ```
+### Tools: 
+- VS Code
+- Claude Code
+- Ollama
+- Terraform
+- AWS CLI
+- MCP Servers
+
 
 ### MCP Server Details
 
