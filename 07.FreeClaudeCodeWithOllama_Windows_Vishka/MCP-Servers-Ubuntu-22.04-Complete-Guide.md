@@ -515,7 +515,7 @@ cd ~ && rm -rf ~/terraform-test
 
 Ollama lets you run large language models locally on your machine. No cloud dependencies, no API costs, no internet required for inference. Perfect for development and testing without hitting rate limits.
 
-#### Step 6.2 Download and install Ollama
+### Step 6.2 Download and install Ollama
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
@@ -655,8 +655,9 @@ curl -fsSL https://claude.ai/install.sh | bash
 # Verify Claude Version
 claude --version
 ```
-**Fix:**
-- If you are using npm to install claude then follow below
+
+> [!CAUTION]
+**Fix:** *If you are using npm to install claude then follow below*
 
 The Problem — npm EACCES Permission Error
 Your Node.js was installed via apt (system package), so /usr/lib/node_modules is owned by root. Running npm install -g as a regular user fails. Never use sudo npm install -g — that's a security risk.
@@ -960,7 +961,9 @@ python3 -c "import json; d=json.load(open('/home/dc-ops/.claude.json')); print(j
 # Find all .claude.json files on your system
 find ~ -name ".claude.json" 2>/dev/null
 ```
-This will show you every location where MCP configs are saved — including the leftover one inside ~/terraform-mcp-server if you haven't deleted it yet.
+This will show you every location where MCP configs are saved 
+
+<!-- — including the leftover one inside ~/terraform-mcp-server if you haven't deleted it yet. -->
 
 ---
 ### Step 8.6 Create CLAUDE.md for Project Guidelines
