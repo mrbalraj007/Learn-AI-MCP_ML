@@ -1,5 +1,6 @@
 # Complete MCP Servers Configuration Guide
-## Ubuntu 22.04 LTS + Claude Code + uvx
+
+## Ubuntu 22.04 LTS + Claude Code + Ollama + uvx MCP Servers 
 
 **Last Updated:** April 2026  
 **Status:** ✅ Tested & Verified Working  
@@ -51,6 +52,8 @@
 - Terraform
 - AWS CLI
 - MCP Servers
+- Docker
+- Docker-compose
 
 
 ### MCP Server Details

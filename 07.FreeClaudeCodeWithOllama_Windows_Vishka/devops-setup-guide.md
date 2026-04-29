@@ -1,12 +1,6 @@
 # Complete DevOps Setup Guide
 ## Ubuntu 22.04 on VMware Workstation 17 Pro
-### Tools: 
-- VS Code
-- Claude Code
-- Ollama
-- Terraform
-- AWS CLI
-- MCP Servers
+
 
 ---
 
