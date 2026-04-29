@@ -515,7 +515,7 @@ cd ~ && rm -rf ~/terraform-test
 
 Ollama lets you run large language models locally on your machine. No cloud dependencies, no API costs, no internet required for inference. Perfect for development and testing without hitting rate limits.
 
-#### 6.2 Download and install Ollama
+#### Step 6.2 Download and install Ollama
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
@@ -530,7 +530,7 @@ sudo systemctl enable ollama
 sudo systemctl start ollama
 sudo systemctl status ollama
 ```
-### 6.4 Verify installation
+### Step 6.4 Verify installation
 
 ```bash
 ollama --version
@@ -541,7 +541,7 @@ ollama --version
 ollama version is 0.21.x
 ```
 
-### 6.5 Pull Models for Coding
+### Step 6.5 Pull Models for Coding
 
 ```bash
 # Cloud models (no local resource usage)
