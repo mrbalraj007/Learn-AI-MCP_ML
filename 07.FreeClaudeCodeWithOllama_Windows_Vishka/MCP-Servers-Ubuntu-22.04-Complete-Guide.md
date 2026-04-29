@@ -69,7 +69,7 @@
 
 ## Phase 1: Prerequisites & Validation
 
-### 1.1 System Requirements
+### Step  1.1 System Requirements
 
 ```bash
 # Verify Ubuntu version
@@ -89,7 +89,7 @@ curl -I https://github.com
 # Should return HTTP 200 or 301
 ```
 
-### 1.2 Pre-flight Checks
+### Step 1.2 Pre-flight Checks
 
 ```bash
 #!/bin/bash
@@ -169,7 +169,7 @@ chmod +x validate-setup.sh
 
 ## Phase 2: Install Core Dependencies
 
-### 2.1 Update System Packages
+### Step 2.1 Update System Packages
 
 ```bash
 sudo apt update
@@ -187,7 +187,7 @@ sudo apt install -y \
     lsb-release
 ```
 
-### 2.2 Install/Verify Node.js (for Claude Code)
+### Step 2.2 Install/Verify Node.js (for Claude Code)
 
 ```bash
 # Check if already installed
@@ -205,7 +205,7 @@ node --version   # v20.x.x
 npm --version    # 10.x.x+
 ```
 
-### 2.3 Install uv (Critical for MCP Servers)
+### Step 2.3 Install uv (Critical for MCP Servers)
 
 **uv is a blazingly fast Python package installer** that manages uvx (virtual environments for single commands).
 
@@ -232,7 +232,7 @@ uvx --help
 - No installation pollution
 - Perfect for MCP servers
 
-### 2.4 Install AWS CLI v2
+### Step 2.4 Install AWS CLI v2
 
 ```bash
 # Download AWS CLI v2
@@ -254,7 +254,7 @@ aws --version
 rm -rf aws awscliv2.zip
 ```
 
-### 2.5 Configure AWS Credentials
+### Step 2.5 Configure AWS Credentials
 
 ```bash
 # Configure AWS (requires IAM Access Key + Secret)
@@ -288,7 +288,7 @@ aws sts get-caller-identity
 
 > **⚠️ Important:** AWS Pricing API only available in `us-east-1`. Always use this region for aws-pricing-mcp.
 
-### 2.6 Install kubectl (for EKS MCP only)
+### Step 2.6 Install kubectl (for EKS MCP only)
 
 ```bash
 # Download kubectl
@@ -305,7 +305,7 @@ kubectl version --client
 # Expected: Client Version: v1.x.x
 ```
 
-### 2.7 Verify All Dependencies
+### Step 2.7 Verify All Dependencies
 
 ```bash
 # Quick check
@@ -324,7 +324,7 @@ uvx python --version
 ---
 ## 🐳 Phase 3: Install Docker
 
-### 3.1 Remove old Docker versions (if any)
+### Step 3.1 Remove old Docker versions (if any)
 
 ```bash
 sudo apt remove docker docker-doc docker.io containerd runc -y
@@ -332,7 +332,7 @@ sudo apt remove docker docker-doc docker.io containerd runc -y
 
 This cleans up any existing Docker installations that might conflict.
 
-### 3.2 Install Docker's dependency packages
+### Step 3.2 Install Docker's dependency packages
 
 ```bash
 sudo apt install ca-certificates curl gnupg lsb-release -y
@@ -340,7 +340,7 @@ sudo apt install ca-certificates curl gnupg lsb-release -y
 
 These are required for secure Docker installation.
 
-### 3.3 Add Docker's GPG key
+### Step 3.3 Add Docker's GPG key
 
 ```bash
 sudo mkdir -p /etc/apt/keyrings
@@ -349,7 +349,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 
 This verifies that packages come from Docker's official repository.
 
-### 3.4 Set up Docker's APT repository
+### Step 3.4 Set up Docker's APT repository
 
 ```bash
 echo \
@@ -359,7 +359,7 @@ echo \
 
 This adds Docker's official Ubuntu repository.
 
-### 3.5 Install Docker Engine
+### Step 3.5 Install Docker Engine
 
 ```bash
 sudo apt update
@@ -372,7 +372,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 - `containerd.io`: Container runtime
 - `docker-compose-plugin`: For multi-container setups
 
-### 3.6 Add user to the Docker group
+### Step 3.6 Add user to the Docker group
 
 ```bash
 sudo usermod -aG docker $USER
@@ -380,7 +380,7 @@ sudo usermod -aG docker $USER
 
 This allows you to run Docker commands without `sudo`.
 
-### 3.7 Refresh user permission to the Docker group
+### Step 3.7 Refresh user permission to the Docker group
 
 ```bash
 newgrp docker
@@ -389,7 +389,7 @@ newgrp docker
 > [!IMPORTANT]
 If abobe doesn't work then log out and log back in (or restart) for this to take effect.
 
-### 3.8 Verify Docker Service
+### Step 3.8 Verify Docker Service
 
 After installation, verify that Docker is running:
 
@@ -511,7 +511,7 @@ cd ~ && rm -rf ~/terraform-test
 
 ### 🧠 Step 6.1: Install Ollama (Local LLM)
 
-### 6.1 What is Ollama?
+### Step 6.1 What is Ollama?
 
 Ollama lets you run large language models locally on your machine. No cloud dependencies, no API costs, no internet required for inference. Perfect for development and testing without hitting rate limits.
 
@@ -728,7 +728,7 @@ claude mcp add <server-name> \
 
 ---
 
-### 8.1 MCP Server 1: Terraform Registry (terraform-mcp)
+### Step 8.1 MCP Server 1: Terraform Registry (terraform-mcp)
 
 **Purpose:** Query Terraform Registry for providers and modules  
 **Package:** `awslabs.terraform-mcp-server`  
@@ -767,7 +767,7 @@ claude
 
 ---
 
-### 8.2 MCP Server 2: AWS Core Operations (aws-core-mcp)
+### Step 8.2 MCP Server 2: AWS Core Operations (aws-core-mcp)
 
 **Purpose:** Core AWS API operations (EC2, S3, IAM, VPC, etc.)  
 **Package:** `awslabs.core-mcp-server`  
@@ -812,7 +812,7 @@ claude
 
 ---
 
-### 8.3 MCP Server 3: AWS Pricing & Cost Analysis (aws-pricing-mcp)
+### Step 8.3 MCP Server 3: AWS Pricing & Cost Analysis (aws-pricing-mcp)
 
 **Purpose:** Real-time AWS pricing data, cost estimation, cost analysis  
 **Package:** `awslabs.cost-explorer-mcp-server`  
@@ -863,14 +863,14 @@ claude
 
 ---
 
-### 8.4 MCP Server 4: EKS Cluster Management (eks-mcp)
+### Step 8.4 MCP Server 4: EKS Cluster Management (eks-mcp)
 
 **Purpose:** Query and manage EKS clusters, deployments, pods, troubleshooting  
 **Package:** `awslabs.eks-mcp-server`  
 **Installs via:** uvx  
 **Requirements:** AWS credentials, kubectl installed, kubeconfig configured
 
-#### Step 1: Configure kubectl for EKS Access
+#### Step 8.4.1: Configure kubectl for EKS Access
 
 ```bash
 # If you have an EKS cluster, configure kubectl access
@@ -886,7 +886,7 @@ kubectl get nodes
 # Expected: Lists your EKS nodes
 ```
 
-#### Step 2: Add EKS MCP Server
+#### Step 8.4.2: Add EKS MCP Server
 
 ```bash
 # Add EKS MCP Server
@@ -916,7 +916,7 @@ claude
 
 ---
 
-### 8.5 Verify All MCP Servers Are Registered
+### Step 8.5 Verify All MCP Servers Are Registered
 
 ```bash
 # View your complete MCP configuration
@@ -933,7 +933,7 @@ python3 -m json.tool ~/.claude.json | grep -A 5 "mcpServers"
 ```
 ---
 
-### 8.6 Create CLAUDE.md for Project Guidelines
+### Step 8.6 Create CLAUDE.md for Project Guidelines
 
 ```bash
 cat > CLAUDE.md << 'EOF'
@@ -966,7 +966,7 @@ To auto-approve in dev: `--dangerously-skip-permissions` (testing only)
 EOF
 ```
 
-### 8.7 Create Alias for Quick Launch
+### Step 8.7 Create Alias for Quick Launch
 
 ```bash
 cat >> ~/.bashrc << 'EOF'
@@ -984,7 +984,7 @@ source ~/.bashrc
 
 ## Phase 9: Testing & Validation (Day 3)
 
-### 9.1 Test Local LLM (Ollama)
+### Step 9.1 Test Local LLM (Ollama)
 
 ```bash
 # Launch Claude Code with local model
@@ -995,7 +995,7 @@ claude-local
 # Then ask: "Create a hello world Python script"
 ```
 
-### 9.2 Test AWS Pricing MCP
+### Step 9.2 Test AWS Pricing MCP
 
 ```bash
 # Inside Claude Code:
@@ -1004,7 +1004,7 @@ claude-local
 # Should return detailed pricing breakdown
 ```
 
-### 9.3 Test Terraform MCP
+### Step 9.3 Test Terraform MCP
 
 ```bash
 # Inside Claude Code:
@@ -1012,7 +1012,7 @@ claude-local
 # Should query terraform registry and return latest version
 ```
 
-### 9.4 Test EKS MCP
+### Step 9.4 Test EKS MCP
 
 ```bash
 # First, configure kubeconfig
@@ -1023,7 +1023,7 @@ aws eks update-kubeconfig --name YOUR_CLUSTER_NAME --region us-east-1
 # Should show your EKS cluster info
 ```
 
-### 9.5 Run Multi-Server Workflow
+### Step 9.5 Run Multi-Server Workflow
 
 ```bash
 # Inside Claude Code, ask:
@@ -1039,7 +1039,7 @@ aws eks update-kubeconfig --name YOUR_CLUSTER_NAME --region us-east-1
 
 ## Phase 10: Optimization Tips (Optional)
 
-### 10.1 Switch Between Local & Cloud Models
+### Step 10.1 Switch Between Local & Cloud Models
 
 ```bash
 # Quick switch to cloud model (no local resources)
@@ -1051,7 +1051,7 @@ ollama launch claude --model qwen2.5-coder:7b
 # Use cloud only for complex tasks, local for rapid iteration
 ```
 
-### 10.2 Monitor Ollama Resource Usage
+### Step 10.2 Monitor Ollama Resource Usage
 
 ```bash
 # Check Ollama logs
@@ -1064,7 +1064,7 @@ watch -n 1 'ps aux | grep ollama'
 ollama list
 ```
 
-### 10.3 Optimize MCP Server Configuration
+### Step 10.3 Optimize MCP Server Configuration
 
 Create environment-specific configs:
 
@@ -1091,7 +1091,7 @@ EOF
 
 ## Phase 11: Verification & Testing
 
-### 11.1 Start Claude Code and Check MCP Servers
+### Step 11.1 Start Claude Code and Check MCP Servers
 
 ```bash
 # Start Claude Code with Ollama
@@ -1107,7 +1107,7 @@ claude
 # ✓ eks-mcp            Connected
 ```
 
-### 11.2 Test Each Server Individually
+### Step 11.2 Test Each Server Individually
 
 #### Test 1: Terraform Registry
 
