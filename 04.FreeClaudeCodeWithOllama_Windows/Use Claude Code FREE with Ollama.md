@@ -62,6 +62,9 @@ Claude Code requires Node.js.
 4. Verify installation:
 
 ```bash
+# Bypass execution policy only for this install
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
 # Download and install Chocolatey:
 powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
 
