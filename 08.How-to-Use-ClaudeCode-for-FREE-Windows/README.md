@@ -395,7 +395,8 @@ irm https://claude.ai/install.ps1 | iex
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
-> [!NOTE] [Officially Page](https://code.claude.com/docs/en/overview)
+> [!NOTE]
+> [Officially Page](https://code.claude.com/docs/en/overview)
 > If you see The token '&&' is not a valid statement separator, you’re in PowerShell, not CMD. If you see 'irm' is not recognized as an internal or external command, you’re in CMD, not PowerShell. Your prompt shows PS C:\ when you’re in PowerShell and C:\ without the PS when you’re in CMD.
 ---
 
