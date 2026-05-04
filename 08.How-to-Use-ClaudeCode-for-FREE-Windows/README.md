@@ -118,7 +118,7 @@ This setup involves:
 
 ## Step-by-Step Implementation
 
-### Phase 1: Environment Setup (5 minutes)
+### Phase 1: Environment Setup
 
 #### Step 1.1: Verify Node.js Installation
 
@@ -390,6 +390,9 @@ Install [Claude Code](https://code.claude.com/docs/en/quickstart) globally using
 ```bash
 irm https://claude.ai/install.ps1 | iex
 ```
+
+![alt text](image-11.png)
+
 **Windows CMD:**
 ```bash
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
@@ -400,17 +403,28 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 > If you see The token '&&' is not a valid statement separator, you’re in PowerShell, not CMD. If you see 'irm' is not recognized as an internal or external command, you’re in CMD, not PowerShell. Your prompt shows PS C:\ when you’re in PowerShell and C:\ without the PS when you’re in CMD.
 ---
 
-### Step 6: Verify Claude Code Installation
+**Add to System PATH (all users)**
+```bash
+$path = [Environment]::GetEnvironmentVariable("Path", "Machine")
+$newPath = "$path;C:\Users\Administrator\.local\bin"
+[Environment]::SetEnvironmentVariable("Path", $newPath, "Machine")
+```
+
+> [!IMPORTANT] 
+> *Close and reopen your terminal to make it effective*
+
+**Verify Claude Code Installation**
 
 ```bash
 claude --version
 ```
-<img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/c580707f-663d-458f-88ba-99f218589f57" />
+![alt text](image-12.png)
+
 If installed correctly, the version number will be displayed.
 
 ---
 
-### Step 7: Install Claude Code VS Code Extension
+### Phase 3: Install Claude Code VS Code Extension**
 
 1. Open VS Code
 2. Go to **Extensions**
@@ -419,28 +433,13 @@ If installed correctly, the version number will be displayed.
 <img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/3f22a227-1113-4d11-b89c-f294e89bf2fa" />
 ---
 
+### Phase 4: OpenRouter API Configuration
 
+**Connect Claude to OpenRouter**
 
-### Phase 2: Dependency Installation (3 minutes)
+Instead of logging in with Anthropic directly, connect `Claude Code` to `OpenRouter`. This requires setting a few environment variables.
 
-#### Step 2.1: Install Required npm Packages
-
-```bash
-# Install axios for HTTP requests (alternative: built-in fetch API)
-npm install axios dotenv
-
-# Install optional: nodemon for development auto-reload
-npm install --save-dev nodemon
-```
-
-**Why these packages:**
-- `axios`: Simplified HTTP client with better error handling
-- `dotenv`: Securely load environment variables from .env file
-- `nodemon`: Auto-restart Node.js when files change (development convenience)
-
-### Phase 3: OpenRouter API Configuration (8 minutes)
-
-#### Step 3.1: Create OpenRouter Account
+#### Step 4.1: Create OpenRouter Account
 
 1. Navigate to https://openrouter.ai
 2. Click "Sign Up"
@@ -448,7 +447,7 @@ npm install --save-dev nodemon
 4. Verify email address
 5. Accept terms and conditions
 
-#### Step 3.2: Generate API Key
+#### Step 4.2: Generate API Key
 
 1. Log in to OpenRouter dashboard
 2. Click your profile icon (top-right corner)
@@ -456,9 +455,55 @@ npm install --save-dev nodemon
 4. Click "Create New Key" button
 5. Copy the generated API key (appears only once—save securely)
 
+![alt text](image-13.png)
+
 **Security Note:** Never commit API keys to version control. Always use environment variables.
 
-#### Step 3.3: Create Environment Configuration File
+#### Step 4.3: Find Free Model in OpenRouter
+
+We need to find a free model in `Openrouter` and select the model which suite you.
+
+![alt text](image-14.png)
+
+
+#### Step 4.4: Configure `settings.json`
+
+1. Edit `settings.json` as per following path and add the following configuration.
+```sh
+C:\Users\<YourComputerName>\.claude\settings.json
+```
+Edit in `setting.json` and save it.
+
+```sh
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-YOUR_API_KEY_HERE",  # Type your OpenRouter Token Value
+    "ANTHROPIC_API_KEY": "",
+    "ANTHROPIC_MODEL": "nvidia/nemotron-3-super-120b-a12b:free"  # Here you need to type your actual Model Name
+  },
+  "effortLevel": "high",
+  "theme": "dark"
+}
+```
+
+**Go to your project**
+```sh
+PS C:\Users\Administrator\Desktop\claude-code-free-setup> pwd
+
+Path
+----
+C:\Users\Administrator\Desktop\claude-code-free-setup
+```
+
+**Open your terminal and type `claude` and it will not ask you for subscription.**
+```shell
+PS C:\Users\Administrator\Desktop\claude-code-free-setup> claude
+```
+![alt text](image-15.png)
+
+
+#### Step 4.5: Create Environment Configuration File (Optional)
 
 In your project root, create `.env` file:
 
@@ -467,6 +512,21 @@ OPENROUTER_API_KEY=sk-or-v1-YOUR_API_KEY_HERE
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 CLAUDE_MODEL=claude-3-5-sonnet-20241022
 ```
+
+*Project Settings File*
+
+Alternatively, you can configure Claude Code using a project-level settings file at .claude/settings.local.json in your project root:
+
+```bash
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "<your-openrouter-api-key>",
+    "ANTHROPIC_API_KEY": ""
+  }
+}
+```
+Replace <your-openrouter-api-key> with your actual OpenRouter API key.
 
 Create `.gitignore` to prevent accidental commit:
 
@@ -477,229 +537,14 @@ node_modules/
 .DS_Store
 ```
 
-### Phase 4: Core Implementation (7 minutes)
-
-#### Step 4.1: Create Main Application File
-
-Create `claude-api.js`:
-
-```javascript
-require('dotenv').config();
-const axios = require('axios');
-
-class ClaudeCodeClient {
-  constructor() {
-    this.apiKey = process.env.OPENROUTER_API_KEY;
-    this.baseUrl = process.env.OPENROUTER_BASE_URL;
-    this.model = process.env.CLAUDE_MODEL;
-    
-    if (!this.apiKey) {
-      throw new Error('OPENROUTER_API_KEY not found in environment variables');
-    }
-  }
-
-  async generateCode(prompt, language = 'javascript') {
-    try {
-      const response = await axios.post(
-        `${this.baseUrl}/chat/completions`,
-        {
-          model: this.model,
-          messages: [
-            {
-              role: 'user',
-              content: `Generate ${language} code for: ${prompt}`
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 2048
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${this.apiKey}`,
-            'Content-Type': 'application/json',
-            'HTTP-Referer': 'http://localhost',
-            'X-Title': 'Claude-Code-Free'
-          }
-        }
-      );
-
-      return {
-        success: true,
-        code: response.data.choices[0].message.content,
-        usage: response.data.usage
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message,
-        details: error.response?.data
-      };
-    }
-  }
-
-  async debugCode(code, error) {
-    try {
-      const response = await axios.post(
-        `${this.baseUrl}/chat/completions`,
-        {
-          model: this.model,
-          messages: [
-            {
-              role: 'user',
-              content: `Debug this code:\n\n${code}\n\nError: ${error}`
-            }
-          ],
-          temperature: 0.5,
-          max_tokens: 1500
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${this.apiKey}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-
-      return {
-        success: true,
-        suggestion: response.data.choices[0].message.content,
-        usage: response.data.usage
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message
-      };
-    }
-  }
-}
-
-module.exports = ClaudeCodeClient;
-```
-
-#### Step 4.2: Create Test Script
-
-Create `test.js`:
-
-```javascript
-const ClaudeCodeClient = require('./claude-api');
-
-async function main() {
-  const claude = new ClaudeCodeClient();
-
-  console.log('🚀 Testing Claude Code via OpenRouter...\n');
-
-  // Test 1: Code Generation
-  console.log('Test 1: Generate a REST API endpoint\n');
-  const codeResult = await claude.generateCode(
-    'Create an Express.js API endpoint that returns a list of users with filtering capability',
-    'javascript'
-  );
-
-  if (codeResult.success) {
-    console.log('Generated Code:');
-    console.log(codeResult.code);
-    console.log(`\nTokens Used: ${codeResult.usage.completion_tokens} (completion) / ${codeResult.usage.prompt_tokens} (prompt)\n`);
-  } else {
-    console.log('Error:', codeResult.error);
-  }
-
-  // Test 2: Debugging
-  console.log('\n---\n');
-  console.log('Test 2: Debug Code\n');
-  const debugResult = await claude.debugCode(
-    'const x = [1, 2, 3]; console.log(x.map(n => n * 2));',
-    'TypeError: x.map is not a function'
-  );
-
-  if (debugResult.success) {
-    console.log('Debug Suggestion:');
-    console.log(debugResult.suggestion);
-  } else {
-    console.log('Error:', debugResult.error);
-  }
-}
-
-main().catch(console.error);
-```
-
-#### Step 4.3: Update package.json
-
-Modify the `scripts` section:
-
-```json
-{
-  "scripts": {
-    "start": "node test.js",
-    "dev": "nodemon test.js"
-  }
-}
-```
-
-### Phase 5: Testing & Validation (5 minutes)
-
-#### Step 5.1: Run Initial Test
-
-```bash
-# Execute the test script
-npm start
-```
-
-**Expected Output:**
-```
-🚀 Testing Claude Code via OpenRouter...
-
-Test 1: Generate a REST API endpoint
-
-Generated Code:
-[Claude AI generated code here...]
-
-Tokens Used: 342 (completion) / 45 (prompt)
-
----
-
-Test 2: Debug Code
-
-Debug Suggestion:
-[Debug analysis here...]
-```
-
-#### Step 5.2: Monitor Token Usage
+### Phase 5: Monitor Token Usage
 
 Track OpenRouter dashboard usage:
 - Navigate to https://openrouter.ai
 - Check "Usage" page to see API calls and token consumption
 - Monitor costs (typically $0.003-$0.015 per 1K tokens depending on model)
 
-### Phase 6: Integration into IDE (Optional - 5 minutes)
-
-#### For VS Code Users:
-
-1. Install "REST Client" extension (ID: humao.rest-client)
-2. Create `requests.http`:
-
-```http
-@baseUrl = https://openrouter.ai/api/v1
-@apiKey = sk-or-v1-YOUR_API_KEY
-
-### Generate Code Request
-POST {{baseUrl}}/chat/completions
-Authorization: Bearer {{apiKey}}
-Content-Type: application/json
-
-{
-  "model": "claude-3-5-sonnet-20241022",
-  "messages": [
-    {
-      "role": "user",
-      "content": "Write a function to validate email addresses using regex"
-    }
-  ],
-  "max_tokens": 1500
-}
-```
-
-3. Click "Send Request" to test directly in VS Code
+![alt text](image-16.png)
 
 ---
 
@@ -733,20 +578,6 @@ const apiKey = process.env.OPENROUTER_API_KEY;
 - Implement request queueing for batch operations
 - Add exponential backoff retry logic
 
-```javascript
-// Exponential backoff retry mechanism
-async function callWithRetry(fn, maxRetries = 3) {
-  for (let i = 0; i < maxRetries; i++) {
-    try {
-      return await fn();
-    } catch (error) {
-      if (i === maxRetries - 1) throw error;
-      const delay = Math.pow(2, i) * 1000; // 1s, 2s, 4s
-      await new Promise(resolve => setTimeout(resolve, delay));
-    }
-  }
-}
-```
 
 ### Challenge 3: Model Version Compatibility
 
@@ -773,14 +604,6 @@ CLAUDE_MODEL=claude-3-opus-20240229       # Alternative
 - Detailed logging for development
 - Validation of API response format
 
-```javascript
-const response = await axios.post(...).catch(error => {
-  console.error('API Status:', error.response?.status);
-  console.error('Error Message:', error.response?.data?.error);
-  console.error('Headers:', error.response?.headers);
-  throw error;
-});
-```
 
 ### Challenge 5: Token Cost Optimization
 
@@ -850,97 +673,6 @@ const response = await axios.post(...).catch(error => {
 
 ---
 
-## Troubleshooting & FAQs
-
-### ❓ Q1: "Invalid API Key" Error
-
-**Causes & Solutions:**
-
-```
-Issue: 401 Unauthorized
-└─ Check 1: API key correctly copied from OpenRouter?
-   └─ Navigate to OpenRouter > Profile > Keys
-   └─ Re-copy key (exact match required)
-
-└─ Check 2: .env file properly configured?
-   └─ Verify: OPENROUTER_API_KEY=sk-or-v1-... (no spaces)
-   └─ Restart Node.js process (cache issue)
-
-└─ Check 3: API key not revoked?
-   └─ OpenRouter dashboard might have rotated keys
-   └─ Generate new key and update .env
-```
-
-### ❓ Q2: Slow Response Times
-
-**Troubleshooting Steps:**
-
-1. Check OpenRouter status page for outages
-2. Verify network connectivity: `ping openrouter.ai`
-3. Reduce `max_tokens` parameter to speed up generation
-4. Monitor rate limiting: Check error response headers
-5. Consider switching to faster model variant
-
-### ❓ Q3: High Token Consumption
-
-**Optimization Tips:**
-
-```javascript
-// BEFORE: 450 tokens
-"Generate a complete REST API with CRUD operations..."
-
-// AFTER: 180 tokens (60% reduction)
-"Write Express CRUD endpoints for users resource"
-
-// Token savings strategy:
-// 1. Remove unnecessary context
-// 2. Use technical shorthand
-// 3. Be specific about output format
-// 4. Reduce explanation requests
-```
-
-### ❓ Q4: Docker Deployment
-
-**Dockerfile Example:**
-
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm ci --only=production
-
-COPY . .
-
-# Mount .env at runtime
-ENV NODE_ENV=production
-
-CMD ["node", "test.js"]
-```
-
-**Run Container:**
-
-```bash
-docker build -t claude-code-free .
-docker run --env-file .env claude-code-free
-```
-
-### ❓ Q5: How Do I Update the Model?
-
-```bash
-# Option 1: Edit .env file
-CLAUDE_MODEL=claude-3-opus-20240229
-
-# Option 2: Check available models
-# Visit: https://openrouter.ai/docs/models
-
-# Option 3: Pass as environment variable at runtime
-CLAUDE_MODEL=claude-3-opus-20240229 npm start
-```
-
----
-
 ## Conclusion
 
 ### Project Summary
@@ -986,10 +718,19 @@ The democratization of AI tools represents a fundamental shift in software devel
 
 ## Additional Resources
 
+### YouTube
+  - [Use Claude Code FREE with Ollama ](https://www.youtube.com/watch?v=6IW6F_y_EQE&list=PLJcpyd04zn7pg7uc0N5LgwRasQvjPLVVb&index=21
+  )
+
 ### Official Documentation
 - OpenRouter API Docs: https://openrouter.ai/docs
 - Node.js Documentation: https://nodejs.org/docs
 - Claude Model Information: https://openrouter.ai/docs/models
+- 👉 Try Claude Code here: https://claude.com/product/claude-code
+- 👉 Try NodeJS here: https://nodejs.org/en
+- 👉 Try OpenRouter here: https://openrouter.ai
+- 👉 OpenRouter Claude Code Doc: https://openrouter.ai/docs/guides/coding-agents/claude-code-integration
+
 
 ### Community & Support
 - OpenRouter Discord: https://openrouter.ai/discord
@@ -1001,21 +742,7 @@ The democratization of AI tools represents a fundamental shift in software devel
 - **Other API Providers:** Together AI, Replicate, Hugging Face
 - **IDE Integrations:** VS Code extensions, JetBrains plugins
 
-### Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2024 | Initial release with basic code generation and debugging |
-| 1.1 | 2024 | Added Docker support and advanced error handling |
-| 1.2 | 2024 | Optimized token usage and added batch processing |
 
----
 
-**Document prepared for:** Developers, DevOps Engineers, Cloud Architects  
-**Difficulty Level:** Beginner to Intermediate  
-**Time to Complete:** 30-45 minutes  
-**Prerequisites:** Basic command-line knowledge, JavaScript fundamentals
 
----
-
-*This document represents a comprehensive technical guide for implementing cost-effective AI coding solutions. All information has been verified against current OpenRouter and Claude API documentation as of 2024.*

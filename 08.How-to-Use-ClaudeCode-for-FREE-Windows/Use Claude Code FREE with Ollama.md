@@ -222,21 +222,3 @@ This project demonstrates that **powerful AI development does not require expens
 Use this setup to build, experiment, and innovate faster—without limits.
 
 🚀 Build smarter. Build faster. Build FREE.
-
---Ref Link
-
-- Youtube
-  - [Use Claude Code FREE with Ollama ](https://www.youtube.com/watch?v=xMHG9pXlCpg&list=PLJcpyd04zn7oj5YyplnmW6GrkXm9LlUYq&index=12)
-
-
-
-https://www.youtube.com/watch?v=6IW6F_y_EQE&list=PLJcpyd04zn7pg7uc0N5LgwRasQvjPLVVb&index=21
-
-
-- 👉 Try Claude Code here: https://claude.com/product/claude-code
-- 👉 Try NodeJS here: https://nodejs.org/en
-- 👉 Try OpenRouter here: https://openrouter.ai
-- 👉 OpenRouter Claude Code Doc: https://openrouter.ai/docs/guides/coding-agents/claude-code-integration
-
-
-Node js is a runtime environment and claude code is build on Nodejs.
