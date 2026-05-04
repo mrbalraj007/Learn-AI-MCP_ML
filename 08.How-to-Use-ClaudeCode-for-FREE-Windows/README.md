@@ -391,7 +391,7 @@ Install [Claude Code](https://code.claude.com/docs/en/quickstart) globally using
 irm https://claude.ai/install.ps1 | iex
 ```
 
-![alt text](image-11.png)
+<img width="1115" height="456" alt="Image" src="https://github.com/user-attachments/assets/bf836ba0-c201-48a8-b92c-4d74068426db" />
 
 **Windows CMD:**
 ```bash
@@ -418,7 +418,7 @@ $newPath = "$path;C:\Users\Administrator\.local\bin"
 ```bash
 claude --version
 ```
-![alt text](image-12.png)
+<img width="930" height="256" alt="Image" src="https://github.com/user-attachments/assets/3e69c734-30ff-4d1f-888c-59e3d67e3019" />
 
 If installed correctly, the version number will be displayed.
 
@@ -455,7 +455,7 @@ Instead of logging in with Anthropic directly, connect `Claude Code` to `OpenRou
 4. Click "Create New Key" button
 5. Copy the generated API key (appears only once—save securely)
 
-![alt text](image-13.png)
+<img width="1706" height="807" alt="Image" src="https://github.com/user-attachments/assets/5442f231-e49a-4837-8420-4da82d1b2d12" />
 
 **Security Note:** Never commit API keys to version control. Always use environment variables.
 
@@ -463,7 +463,7 @@ Instead of logging in with Anthropic directly, connect `Claude Code` to `OpenRou
 
 We need to find a free model in `Openrouter` and select the model which suite you.
 
-![alt text](image-14.png)
+<img width="1706" height="807" alt="Image" src="https://github.com/user-attachments/assets/cc57ac0a-9d35-426f-bc40-65e740e140a0" />
 
 
 #### Step 4.4: Configure `settings.json`
@@ -500,7 +500,7 @@ C:\Users\Administrator\Desktop\claude-code-free-setup
 ```shell
 PS C:\Users\Administrator\Desktop\claude-code-free-setup> claude
 ```
-![alt text](image-15.png)
+<img width="1706" height="807" alt="Image" src="https://github.com/user-attachments/assets/51b299ac-41b0-4f6a-bba5-c80bd5d9b7b0" />
 
 
 #### Step 4.5: Create Environment Configuration File (Optional)
@@ -544,7 +544,7 @@ Track OpenRouter dashboard usage:
 - Check "Usage" page to see API calls and token consumption
 - Monitor costs (typically $0.003-$0.015 per 1K tokens depending on model)
 
-![alt text](image-16.png)
+<img width="1710" height="708" alt="Image" src="https://github.com/user-attachments/assets/52e77c87-eb4e-49ad-8801-d7b1c2883603" />
 
 ---
 
