@@ -11,9 +11,8 @@
 4. [Step-by-Step Implementation](#step-by-step-implementation)
 5. [Challenges Addressed](#challenges-addressed)
 6. [Project Benefits](#project-benefits)
-7. [Troubleshooting & FAQs](#troubleshooting--faqs)
-8. [Conclusion](#conclusion)
-9. [Additional Resources](#additional-resources)
+7. [Conclusion](#conclusion)
+8. [Additional Resources](#additional-resources)
 
 ---
 
