@@ -178,7 +178,7 @@ You'll see package downloads on the first run, then the local API server starts.
 > [!NOTE]
 > *You always have to keep running this API Server in the background to use Nvida Nim with Claude Code*.
 
-![alt text](image.png)
+<img width="619" height="243" alt="Image" src="https://github.com/user-attachments/assets/26557fee-a6c9-463b-af2d-9b68f38a0db1" />
 
 ### Step 7 — Install Claude Code
 
@@ -191,7 +191,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 Restart your terminal once after installation.
 
-![alt text](image-1.png)
+<img width="658" height="297" alt="Image" src="https://github.com/user-attachments/assets/a8c27a24-e29b-46f9-ba86-b3585ab0ab3f" />
 
 ### Step 8 — Launch Claude Code (Pointed at NVIDIA NIM)
 
@@ -217,7 +217,7 @@ Choose **Dark Mode** when prompted, then press Enter. Claude Code will start up 
 
 You should see the localhost URL confirming the NIM endpoint is active.
 
-![alt text](image-2.png)
+<img width="904" height="606" alt="Image" src="https://github.com/user-attachments/assets/0656bf34-5428-415c-9e9a-3ffd0271de8a" />
 
 ---
 
