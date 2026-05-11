@@ -143,6 +143,9 @@ Inside `.env`, you'll see two fields to fill in:
 ```env
 NVIDIA_NIM_API_KEY=your_api_key_here
 NVIDIA_NIM_MODEL=nvidia/deepseek-v4-0709-pro
+
+# You will see like below
+MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"
 ```
 
 **To get your API key:**
@@ -187,6 +190,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 Restart your terminal once after installation.
+
 ![alt text](image-1.png)
 
 ### Step 8 — Launch Claude Code (Pointed at NVIDIA NIM)
