@@ -197,6 +197,9 @@ Restart your terminal once after installation.
 
 Navigate to your project folder, then run the startup command (it sets the `ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY` environment variables before invoking `claude`):
 
+> [!CAUTION] 
+> ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+
 ```bash
 cd ~/your-project-folder
 
