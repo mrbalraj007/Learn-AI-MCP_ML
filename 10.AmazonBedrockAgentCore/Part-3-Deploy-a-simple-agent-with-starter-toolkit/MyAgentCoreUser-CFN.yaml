@@ -1,38 +1,65 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Description: >
-  Creates IAM User MyAgentCoreUser with managed policies and custom inline policy.
-  Creates IAM Role MyAgentCoreExecutionRole with custom managed policy and trust policy.
-  Access Key ID and Secret are exposed in Outputs.
+  MyAgentCore IAM Stack v6
+  - IAM User (MyAgentCoreUser) with 2 AWS managed + 1 customer managed policy
+  - IAM Role (MyAgentCoreExecutionRole) with custom policy + trust policy
+  - Access Key with outputs
+  v6 Fix: Added xray:UpdateIndexingRule + full X-Ray indexing actions to both
+          User managed policy and Execution Role.
+          Note: The ValidationException on X-Ray Delivery Destination is a
+          TIMING issue (destination is PENDING, not ACTIVE yet) — not a
+          permissions issue. Re-run agentcore launch after 10-15 minutes.
 
+# =============================================================================
+# OUTPUTS
+# =============================================================================
+Outputs:
+
+  MyAgentCoreUserName:
+    Description: IAM User name
+    Value: !Ref MyAgentCoreUser
+
+  MyAgentCoreUserArn:
+    Description: IAM User ARN
+    Value: !GetAtt MyAgentCoreUser.Arn
+
+  MyAgentCoreAccessKeyId:
+    Description: Access Key ID for MyAgentCoreUser
+    Value: !Ref MyAgentCoreAccessKey
+
+  MyAgentCoreSecretAccessKey:
+    Description: Secret Access Key for MyAgentCoreUser (store securely)
+    Value: !GetAtt MyAgentCoreAccessKey.SecretAccessKey
+
+  MyAgentCoreExecutionRoleArn:
+    Description: ARN of MyAgentCoreExecutionRole
+    Value: !GetAtt MyAgentCoreExecutionRole.Arn
+
+  MyAgentCoreExecutionRoleName:
+    Description: Name of MyAgentCoreExecutionRole
+    Value: !Ref MyAgentCoreExecutionRole
+
+  MyAgentCoreUserPolicyArn:
+    Description: ARN of the customer managed policy attached to MyAgentCoreUser
+    Value: !Ref MyAgentCoreUserManagedPolicy
+
+# =============================================================================
+# RESOURCES
+# =============================================================================
 Resources:
 
-  # ==============================================================
-  # SECTION 1 - IAM USER
-  # ==============================================================
-
-  # IAM User with AWS Managed Policies
-  MyAgentCoreUser:
-    Type: AWS::IAM::User
+  # ---------------------------------------------------------------------------
+  # CUSTOMER MANAGED POLICY for MyAgentCoreUser
+  # Using AWS::IAM::ManagedPolicy (6144 byte limit) instead of inline
+  # policy (2048 byte limit) to accommodate all required permissions.
+  # ---------------------------------------------------------------------------
+  MyAgentCoreUserManagedPolicy:
+    Type: AWS::IAM::ManagedPolicy
     Properties:
-      UserName: MyAgentCoreUser
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
-        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
-      Tags:
-        - Key: ManagedBy
-          Value: CloudFormation
-        - Key: Purpose
-          Value: BedrockAgentCore
-
-  # Custom Inline Policy for MyAgentCoreUser
-  MyAgentCoreUserPolicy:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: MyAgentCoreUserPolicy
-      Users:
-        - !Ref MyAgentCoreUser
+      ManagedPolicyName: MyAgentCoreUserPolicy-Customer
+      Description: "Customer managed policy for MyAgentCoreUser covering Bedrock AgentCore, ECR, CodeBuild, IAM, S3, X-Ray, Application Signals, and CloudTrail permissions for agentcore launch and observability."
       PolicyDocument:
-        Version: "2012-10-17"
+        Version: '2012-10-17'
         Statement:
 
           - Sid: BedrockAgentCoreAccess
@@ -40,7 +67,7 @@ Resources:
             Action:
               - bedrock-agentcore:*
               - bedrock:*
-            Resource: "*"
+            Resource: '*'
 
           - Sid: ECRFullAccessForAgentBuilds
             Effect: Allow
@@ -58,7 +85,7 @@ Resources:
               - ecr:SetRepositoryPolicy
               - ecr:DeleteRepository
               - ecr:ListImages
-            Resource: "*"
+            Resource: '*'
 
           - Sid: CodeBuildAndLogsAccess
             Effect: Allow
@@ -74,7 +101,38 @@ Resources:
               - logs:GetLogEvents
               - logs:DescribeLogGroups
               - logs:DescribeLogStreams
-            Resource: "*"
+            Resource: '*'
+
+          - Sid: CloudWatchLogsDelivery
+            Effect: Allow
+            Action:
+              - logs:CreateDeliveryDestination
+              - logs:UpdateDeliveryDestination
+              - logs:PutDeliveryDestination
+              - logs:PutDeliveryDestinationPolicy
+              - logs:PutDeliverySource
+              - logs:CreateDeliverySource
+              - logs:DeleteDeliverySource
+              - logs:CreateDelivery
+              - logs:GetDelivery
+              - logs:GetDeliveryDestination
+              - logs:GetDeliverySource
+              - logs:DeleteDelivery
+              - logs:DeleteDeliveryDestination
+              - logs:DeleteDeliverySource
+              - logs:DescribeDeliveries
+              - logs:DescribeDeliveryDestinations
+              - logs:DescribeDeliverySources
+              - logs:PutResourcePolicy
+              - logs:GetResourcePolicy
+              - logs:DescribeResourcePolicies
+              - logs:DeleteResourcePolicy
+              - logs:CreateDestination
+              - logs:PutDestination
+              - logs:DeleteDestination
+              - logs:DescribeDestinations
+              - logs:PutDestinationPolicy
+            Resource: '*'
 
           - Sid: IAMRoleManagement
             Effect: Allow
@@ -84,7 +142,8 @@ Resources:
               - iam:PassRole
               - iam:AttachRolePolicy
               - iam:PutRolePolicy
-            Resource: "*"
+              - iam:CreateServiceLinkedRole
+            Resource: '*'
 
           - Sid: S3AccessOptional
             Effect: Allow
@@ -93,126 +152,99 @@ Resources:
               - s3:PutObject
               - s3:CreateBucket
               - s3:ListBucket
-            Resource: "*"
+              - s3:PutLifecycleConfiguration
+              - s3:GetLifecycleConfiguration
+              - s3:DeleteBucket
+            Resource: '*'
 
-  # Programmatic Access Key for MyAgentCoreUser
-  MyAgentCoreUserAccessKey:
+          # -----------------------------------------------------------------
+          # v6 FIX: Expanded X-Ray permissions
+          # xray:UpdateIndexingRule was missing — called after
+          # UpdateTraceSegmentDestination succeeds to configure Transaction
+          # Search indexing rules. Added full indexing rule CRUD + sampling.
+          # -----------------------------------------------------------------
+          - Sid: XRayFullAccess
+            Effect: Allow
+            Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+              - xray:UpdateTraceSegmentDestination
+              - xray:GetTraceSegmentDestination
+              - xray:UpdateIndexingRule
+              - xray:GetIndexingRule
+              - xray:ListIndexingRules
+              - xray:GetSamplingRules
+              - xray:UpdateSamplingRule
+              - xray:CreateSamplingRule
+              - xray:DeleteSamplingRule
+              - xray:GetSamplingStatisticSummaries
+              - xray:GetSamplingTargets
+              - xray:GetServiceGraph
+              - xray:GetTraceSummaries
+              - xray:GetTrace
+              - xray:BatchGetTraces
+            Resource: '*'
+
+          - Sid: ApplicationSignalsAccess
+            Effect: Allow
+            Action:
+              - application-signals:StartDiscovery
+              - application-signals:GetService
+              - application-signals:ListServices
+              - application-signals:GetServiceLevelObjective
+              - application-signals:ListServiceLevelObjectives
+              - application-signals:ListServiceDependencies
+              - application-signals:ListServiceDependents
+              - application-signals:ListServiceOperations
+            Resource: '*'
+
+          - Sid: CloudTrailServiceLinkedChannel
+            Effect: Allow
+            Action:
+              - cloudtrail:CreateServiceLinkedChannel
+              - cloudtrail:GetServiceLinkedChannel
+              - cloudtrail:UpdateServiceLinkedChannel
+              - cloudtrail:DeleteServiceLinkedChannel
+              - cloudtrail:ListServiceLinkedChannels
+            Resource: '*'
+
+  # ---------------------------------------------------------------------------
+  # IAM USER
+  # ---------------------------------------------------------------------------
+  MyAgentCoreUser:
+    Type: AWS::IAM::User
+    DependsOn: MyAgentCoreUserManagedPolicy
+    Properties:
+      UserName: MyAgentCoreUser
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+        - !Ref MyAgentCoreUserManagedPolicy
+      Tags:
+        - Key: Purpose
+          Value: BedrockAgentCore
+        - Key: ManagedBy
+          Value: CloudFormation
+
+  # ---------------------------------------------------------------------------
+  # ACCESS KEY
+  # ---------------------------------------------------------------------------
+  MyAgentCoreAccessKey:
     Type: AWS::IAM::AccessKey
     Properties:
       UserName: !Ref MyAgentCoreUser
       Status: Active
 
-  # ==============================================================
-  # SECTION 2 - IAM ROLE (MyAgentCoreExecutionRole)
-  # ==============================================================
-
-  # Step 1 - Custom Managed Policy: MyAgentCoreExecutionRoleCustomPolicy
-  # Source: MyAgentCoreExecutionRoleCustomPolicy.txt
-  MyAgentCoreExecutionRoleCustomPolicy:
-    Type: AWS::IAM::ManagedPolicy
-    Properties:
-      ManagedPolicyName: MyAgentCoreExecutionRoleCustomPolicy
-      Description: Custom policy for MyAgentCoreExecutionRole - Bedrock AgentCore runtime permissions
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-
-          - Sid: BedrockModelAccess
-            Effect: Allow
-            Action:
-              - bedrock:InvokeModel
-              - bedrock:InvokeModelWithResponseStream
-              - bedrock:ListFoundationModels
-              - bedrock:GetFoundationModel
-            Resource: "*"
-
-          - Sid: AgentCoreRuntime
-            Effect: Allow
-            Action:
-              - bedrock-agentcore:*
-            Resource: "*"
-
-          - Sid: ECRAccess
-            Effect: Allow
-            Action:
-              - ecr:GetAuthorizationToken
-              - ecr:BatchCheckLayerAvailability
-              - ecr:GetDownloadUrlForLayer
-              - ecr:BatchGetImage
-              - ecr:DescribeImages
-              - ecr:DescribeRepositories
-            Resource: "*"
-
-          - Sid: CloudWatchLogsAccess
-            Effect: Allow
-            Action:
-              - logs:CreateLogGroup
-              - logs:CreateLogStream
-              - logs:PutLogEvents
-              - logs:GetLogEvents
-              - logs:DescribeLogGroups
-              - logs:DescribeLogStreams
-            Resource: "arn:aws:logs:*:*:*"
-
-          - Sid: CloudWatchObservability
-            Effect: Allow
-            Action:
-              - cloudwatch:PutMetricData
-              - cloudwatch:GetMetricData
-              - cloudwatch:GetMetricStatistics
-              - cloudwatch:ListMetrics
-            Resource: "*"
-
-          - Sid: S3Access
-            Effect: Allow
-            Action:
-              - s3:GetObject
-              - s3:PutObject
-              - s3:ListBucket
-            Resource:
-              - "arn:aws:s3:::*"
-
-          - Sid: CodeBuildAccess
-            Effect: Allow
-            Action:
-              - codebuild:StartBuild
-              - codebuild:BatchGetBuilds
-              - codebuild:BatchGetProjects
-              - codebuild:CreateProject
-              - codebuild:DeleteProject
-              - codebuild:UpdateProject
-            Resource: "*"
-
-          - Sid: IAMPassRole
-            Effect: Allow
-            Action:
-              - iam:PassRole
-            Resource: "*"
-
-          - Sid: STSAccess
-            Effect: Allow
-            Action:
-              - sts:GetCallerIdentity
-              - sts:AssumeRole
-            Resource: "*"
-
-          - Sid: XRayTracingAccess
-            Effect: Allow
-            Action:
-              - xray:PutTraceSegments
-              - xray:PutTelemetryRecords
-            Resource: "*"
-
-  # Step 2 - IAM Role: MyAgentCoreExecutionRole
-  # Trust Policy: codebuild, ecs-tasks, bedrock-agentcore
-  # Source: MyAgentCoreExecutionRoleTrustPolicy.txt
+  # ---------------------------------------------------------------------------
+  # IAM ROLE - MyAgentCoreExecutionRole
+  # ---------------------------------------------------------------------------
   MyAgentCoreExecutionRole:
     Type: AWS::IAM::Role
     Properties:
       RoleName: MyAgentCoreExecutionRole
-      Description: Execution role for Amazon Bedrock AgentCore runtime
+      Description: Execution role for Bedrock AgentCore runtime, CodeBuild, and ECS tasks
       AssumeRolePolicyDocument:
-        Version: "2012-10-17"
+        Version: '2012-10-17'
         Statement:
           - Effect: Allow
             Principal:
@@ -221,51 +253,171 @@ Resources:
                 - ecs-tasks.amazonaws.com
                 - bedrock-agentcore.amazonaws.com
             Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - !Ref MyAgentCoreExecutionRoleCustomPolicy
+      Policies:
+        - PolicyName: MyAgentCoreExecutionRoleCustomPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+
+              - Sid: BedrockModelAccess
+                Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                  - bedrock:ListFoundationModels
+                  - bedrock:GetFoundationModel
+                Resource: '*'
+
+              - Sid: AgentCoreRuntime
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:*
+                Resource: '*'
+
+              - Sid: ECRAccess
+                Effect: Allow
+                Action:
+                  - ecr:GetAuthorizationToken
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:GetDownloadUrlForLayer
+                  - ecr:BatchGetImage
+                  - ecr:DescribeImages
+                  - ecr:DescribeRepositories
+                Resource: '*'
+
+              - Sid: CloudWatchLogsAccess
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - logs:GetLogEvents
+                  - logs:DescribeLogGroups
+                  - logs:DescribeLogStreams
+                Resource: 'arn:aws:logs:*:*:*'
+
+              - Sid: CloudWatchLogsDelivery
+                Effect: Allow
+                Action:
+                  - logs:CreateDeliveryDestination
+                  - logs:UpdateDeliveryDestination
+                  - logs:PutDeliveryDestination
+                  - logs:PutDeliveryDestinationPolicy
+                  - logs:PutDeliverySource
+                  - logs:CreateDeliverySource
+                  - logs:DeleteDeliverySource
+                  - logs:CreateDelivery
+                  - logs:GetDelivery
+                  - logs:GetDeliveryDestination
+                  - logs:GetDeliverySource
+                  - logs:DeleteDelivery
+                  - logs:DeleteDeliveryDestination
+                  - logs:DeleteDeliverySource
+                  - logs:DescribeDeliveries
+                  - logs:DescribeDeliveryDestinations
+                  - logs:DescribeDeliverySources
+                  - logs:PutResourcePolicy
+                  - logs:GetResourcePolicy
+                  - logs:DescribeResourcePolicies
+                  - logs:DeleteResourcePolicy
+                  - logs:CreateDestination
+                  - logs:PutDestination
+                  - logs:DeleteDestination
+                  - logs:DescribeDestinations
+                  - logs:PutDestinationPolicy
+                Resource: '*'
+
+              - Sid: CloudWatchObservability
+                Effect: Allow
+                Action:
+                  - cloudwatch:PutMetricData
+                  - cloudwatch:GetMetricData
+                  - cloudwatch:GetMetricStatistics
+                  - cloudwatch:ListMetrics
+                Resource: '*'
+
+              - Sid: S3Access
+                Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:ListBucket
+                Resource: 'arn:aws:s3:::*'
+
+              - Sid: CodeBuildAccess
+                Effect: Allow
+                Action:
+                  - codebuild:StartBuild
+                  - codebuild:BatchGetBuilds
+                  - codebuild:BatchGetProjects
+                  - codebuild:CreateProject
+                  - codebuild:DeleteProject
+                  - codebuild:UpdateProject
+                Resource: '*'
+
+              - Sid: IAMPassRole
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource: '*'
+
+              - Sid: STSAccess
+                Effect: Allow
+                Action:
+                  - sts:GetCallerIdentity
+                  - sts:AssumeRole
+                Resource: '*'
+
+              # ---------------------------------------------------------------
+              # v6 FIX: Full X-Ray permissions on Role including indexing rules
+              # ---------------------------------------------------------------
+              - Sid: XRayFullAccess
+                Effect: Allow
+                Action:
+                  - xray:PutTraceSegments
+                  - xray:PutTelemetryRecords
+                  - xray:UpdateTraceSegmentDestination
+                  - xray:GetTraceSegmentDestination
+                  - xray:UpdateIndexingRule
+                  - xray:GetIndexingRule
+                  - xray:ListIndexingRules
+                  - xray:GetSamplingRules
+                  - xray:UpdateSamplingRule
+                  - xray:CreateSamplingRule
+                  - xray:DeleteSamplingRule
+                  - xray:GetSamplingStatisticSummaries
+                  - xray:GetSamplingTargets
+                  - xray:GetServiceGraph
+                  - xray:GetTraceSummaries
+                  - xray:GetTrace
+                  - xray:BatchGetTraces
+                Resource: '*'
+
+              - Sid: ApplicationSignalsAccess
+                Effect: Allow
+                Action:
+                  - application-signals:StartDiscovery
+                  - application-signals:GetService
+                  - application-signals:ListServices
+                  - application-signals:GetServiceLevelObjective
+                  - application-signals:ListServiceLevelObjectives
+                  - application-signals:ListServiceDependencies
+                  - application-signals:ListServiceDependents
+                  - application-signals:ListServiceOperations
+                Resource: '*'
+
+              - Sid: CloudTrailServiceLinkedChannel
+                Effect: Allow
+                Action:
+                  - cloudtrail:CreateServiceLinkedChannel
+                  - cloudtrail:GetServiceLinkedChannel
+                  - cloudtrail:UpdateServiceLinkedChannel
+                  - cloudtrail:DeleteServiceLinkedChannel
+                  - cloudtrail:ListServiceLinkedChannels
+                Resource: '*'
+
       Tags:
+        - Key: Purpose
+          Value: BedrockAgentCore
         - Key: ManagedBy
           Value: CloudFormation
-        - Key: Purpose
-          Value: BedrockAgentCoreExecution
-
-# ==============================================================
-# OUTPUTS
-# ==============================================================
-Outputs:
-
-  IAMUserName:
-    Description: "IAM User Name"
-    Value: !Ref MyAgentCoreUser
-    Export:
-      Name: !Sub "${AWS::StackName}-IAMUserName"
-
-  AccessKeyId:
-    Description: "Access Key ID for MyAgentCoreUser"
-    Value: !Ref MyAgentCoreUserAccessKey
-    Export:
-      Name: !Sub "${AWS::StackName}-AccessKeyId"
-
-  SecretAccessKey:
-    Description: "Secret Access Key - copy immediately, will not be shown again"
-    Value: !GetAtt MyAgentCoreUserAccessKey.SecretAccessKey
-    Export:
-      Name: !Sub "${AWS::StackName}-SecretAccessKey"
-
-  ExecutionRoleName:
-    Description: "IAM Execution Role Name"
-    Value: !Ref MyAgentCoreExecutionRole
-    Export:
-      Name: !Sub "${AWS::StackName}-ExecutionRoleName"
-
-  ExecutionRoleArn:
-    Description: "IAM Execution Role ARN - use this in AgentCore configurations"
-    Value: !GetAtt MyAgentCoreExecutionRole.Arn
-    Export:
-      Name: !Sub "${AWS::StackName}-ExecutionRoleArn"
-
-  CustomPolicyArn:
-    Description: "ARN of MyAgentCoreExecutionRoleCustomPolicy"
-    Value: !Ref MyAgentCoreExecutionRoleCustomPolicy
-    Export:
-      Name: !Sub "${AWS::StackName}-CustomPolicyArn"
