@@ -64,6 +64,7 @@ Claude Code requires Node.js.
 ```bash
 # Bypass execution policy only for this install
 Set-ExecutionPolicy Bypass -Scope Process -Force
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 # Download and install Chocolatey:
 powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
