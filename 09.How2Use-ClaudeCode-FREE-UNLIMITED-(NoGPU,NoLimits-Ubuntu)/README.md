@@ -170,31 +170,37 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
 # uv run main.py
 ```
-
 You'll see package downloads on the first run, then the local API server starts. **Keep this terminal window open** — Claude Code needs it running in the background.
 
 > [!NOTE]
-> You always have to keep running this API Server in the background to use Nvida Nim with Claude Code.
+> *You always have to keep running this API Server in the background to use Nvida Nim with Claude Code*.
+
+![alt text](image.png)
 
 ### Step 7 — Install Claude Code
 
 Open a **new** terminal window and run:
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+# npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 Restart your terminal once after installation.
+![alt text](image-1.png)
 
 ### Step 8 — Launch Claude Code (Pointed at NVIDIA NIM)
 
-Navigate to your project folder, then run the startup command (available on the compilefuture website — it sets the `ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY` environment variables before invoking `claude`):
+Navigate to your project folder, then run the startup command (it sets the `ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY` environment variables before invoking `claude`):
 
 ```bash
 cd ~/your-project-folder
 
 # The exact command sets env vars for the NIM endpoint — copy from compilefuture.com
-ANTHROPIC_BASE_URL=http://localhost:<port> ANTHROPIC_API_KEY=dummy claude
+
+# ANTHROPIC_BASE_URL=http://localhost:<port> ANTHROPIC_API_KEY=dummy claude
+
+ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 Choose **Dark Mode** when prompted, then press Enter. Claude Code will start up and connect to the local NIM proxy.
@@ -206,6 +212,8 @@ Choose **Dark Mode** when prompted, then press Enter. Claude Code will start up 
 ```
 
 You should see the localhost URL confirming the NIM endpoint is active.
+
+![alt text](image-2.png)
 
 ---
 
@@ -406,4 +414,4 @@ If you're on Windows and haven't set up WSL2 yet, this is honestly a good opport
 
 ---
 
-*This document is based on a technical walkthrough video covering the free Claude Code + NVIDIA NIM setup. Commands and model names are subject to change as both platforms evolve — always cross-reference with the official sites listed above.*
+
