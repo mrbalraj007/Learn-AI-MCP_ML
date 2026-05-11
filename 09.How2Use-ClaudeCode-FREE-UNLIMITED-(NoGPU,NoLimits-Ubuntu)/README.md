@@ -418,6 +418,7 @@ If you're on Windows and haven't set up WSL2 yet, this is honestly a good opport
 > - Claude Code Official Docs: [https://docs.anthropic.com/en/docs/claude-code](https://docs.anthropic.com/en/docs/claude-code)
 > - UV Python Manager: [https://docs.astral.sh/uv](https://docs.astral.sh/uv)
 > - Setup Commands & Resources: [https://compilefuture.com](https://compilefuture.com)
+> - Youtube Video [Claude Code FREE UNLIMITED (No Ollama, No GPU!)](https://www.youtube.com/watch?v=7_bmIT8HZXI&list=PLJcpyd04zn7pg7uc0N5LgwRasQvjPLVVb&index=29)
 
 ---
 
