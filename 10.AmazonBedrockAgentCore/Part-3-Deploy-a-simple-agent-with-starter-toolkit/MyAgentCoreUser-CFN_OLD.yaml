@@ -1,0 +1,146 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Creates IAM User 'MyAgentCoreUser' with:
+    - AWS Managed Policies: CloudWatchLogsFullAccess, AmazonBedrockFullAccess
+    - Custom Inline Policy: MyAgentCoreUserPolicy (Bedrock AgentCore, ECR, CodeBuild, IAM, S3)
+    - Access Key (ID + Secret exposed in Outputs)
+  WARNING: The Secret Access Key appears in CloudFormation Outputs in plain text.
+  Copy it immediately and store it in AWS Secrets Manager or a password vault.
+
+# ============================================================
+# RESOURCES
+# ============================================================
+Resources:
+
+  # ----------------------------------------------------------
+  # 1. IAM User — MyAgentCoreUser
+  #    AWS Managed Policies attached directly via ManagedPolicyArns
+  # ----------------------------------------------------------
+  MyAgentCoreUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: MyAgentCoreUser
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+      Tags:
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Purpose
+          Value: BedrockAgentCore
+
+  # ----------------------------------------------------------
+  # 2. Custom Inline Policy — MyAgentCoreUserPolicy
+  #    Sourced from MyAgentCoreUserPolicy.txt (provided)
+  # ----------------------------------------------------------
+  MyAgentCoreUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MyAgentCoreUserPolicy
+      Users:
+        - !Ref MyAgentCoreUser
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+
+          # ---- Bedrock AgentCore + Full Bedrock Access ----
+          - Sid: BedrockAgentCoreAccess
+            Effect: Allow
+            Action:
+              - bedrock-agentcore:*
+              - bedrock:*
+            Resource: "*"
+
+          # ---- ECR — Full access needed for Agent image builds ----
+          - Sid: ECRFullAccessForAgentBuilds
+            Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:DescribeRepositories
+              - ecr:CreateRepository
+              - ecr:BatchCheckLayerAvailability
+              - ecr:InitiateLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:CompleteLayerUpload
+              - ecr:PutImage
+              - ecr:DescribeImages
+              - ecr:GetRepositoryPolicy
+              - ecr:SetRepositoryPolicy
+              - ecr:DeleteRepository
+              - ecr:ListImages
+            Resource: "*"
+
+          # ---- CodeBuild + CloudWatch Logs ----
+          - Sid: CodeBuildAndLogsAccess
+            Effect: Allow
+            Action:
+              - codebuild:CreateProject
+              - codebuild:UpdateProject
+              - codebuild:StartBuild
+              - codebuild:BatchGetBuilds
+              - codebuild:DeleteProject
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Resource: "*"
+
+          # ---- IAM Role Management ----
+          - Sid: IAMRoleManagement
+            Effect: Allow
+            Action:
+              - iam:GetRole
+              - iam:CreateRole
+              - iam:PassRole
+              - iam:AttachRolePolicy
+              - iam:PutRolePolicy
+            Resource: "*"
+
+          # ---- S3 Access (optional — for agent state/artifacts) ----
+          - Sid: S3AccessOptional
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:CreateBucket
+              - s3:ListBucket
+            Resource: "*"
+
+  # ----------------------------------------------------------
+  # 3. Programmatic Access Key
+  # ----------------------------------------------------------
+  MyAgentCoreUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref MyAgentCoreUser
+      Status: Active
+
+# ============================================================
+# OUTPUTS
+# ⚠️  Secret Access Key is shown in PLAIN TEXT.
+#    Retrieve it immediately from the Outputs tab and store securely.
+#    You will NOT be able to retrieve the secret key again after this.
+# ============================================================
+Outputs:
+
+  IAMUserName:
+    Description: "IAM User Name created by this stack"
+    Value: !Ref MyAgentCoreUser
+    Export:
+      Name: !Sub "${AWS::StackName}-IAMUserName"
+
+  AccessKeyId:
+    Description: "Access Key ID for MyAgentCoreUser"
+    Value: !Ref MyAgentCoreUserAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-AccessKeyId"
+
+  SecretAccessKey:
+    Description: >
+      Secret Access Key for MyAgentCoreUser.
+      WARNING: Copy this immediately — it will not be shown again after stack creation.
+    Value: !GetAtt MyAgentCoreUserAccessKey.SecretAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-SecretAccessKey"

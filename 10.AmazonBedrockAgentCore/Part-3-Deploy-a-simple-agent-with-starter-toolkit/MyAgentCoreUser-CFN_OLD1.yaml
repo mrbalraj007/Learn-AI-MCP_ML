@@ -1,0 +1,119 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Creates IAM User MyAgentCoreUser with managed policies CloudWatchLogsFullAccess
+  and AmazonBedrockFullAccess, a custom inline policy MyAgentCoreUserPolicy,
+  and an Access Key. Access Key ID and Secret are exposed in Outputs.
+
+Resources:
+
+  # IAM User with AWS Managed Policies
+  MyAgentCoreUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: MyAgentCoreUser
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+      Tags:
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Purpose
+          Value: BedrockAgentCore
+
+  # Custom Inline Policy - MyAgentCoreUserPolicy
+  MyAgentCoreUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MyAgentCoreUserPolicy
+      Users:
+        - !Ref MyAgentCoreUser
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+
+          - Sid: BedrockAgentCoreAccess
+            Effect: Allow
+            Action:
+              - bedrock-agentcore:*
+              - bedrock:*
+            Resource: "*"
+
+          - Sid: ECRFullAccessForAgentBuilds
+            Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:DescribeRepositories
+              - ecr:CreateRepository
+              - ecr:BatchCheckLayerAvailability
+              - ecr:InitiateLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:CompleteLayerUpload
+              - ecr:PutImage
+              - ecr:DescribeImages
+              - ecr:GetRepositoryPolicy
+              - ecr:SetRepositoryPolicy
+              - ecr:DeleteRepository
+              - ecr:ListImages
+            Resource: "*"
+
+          - Sid: CodeBuildAndLogsAccess
+            Effect: Allow
+            Action:
+              - codebuild:CreateProject
+              - codebuild:UpdateProject
+              - codebuild:StartBuild
+              - codebuild:BatchGetBuilds
+              - codebuild:DeleteProject
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Resource: "*"
+
+          - Sid: IAMRoleManagement
+            Effect: Allow
+            Action:
+              - iam:GetRole
+              - iam:CreateRole
+              - iam:PassRole
+              - iam:AttachRolePolicy
+              - iam:PutRolePolicy
+            Resource: "*"
+
+          - Sid: S3AccessOptional
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:CreateBucket
+              - s3:ListBucket
+            Resource: "*"
+
+  # Programmatic Access Key
+  MyAgentCoreUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref MyAgentCoreUser
+      Status: Active
+
+Outputs:
+
+  IAMUserName:
+    Description: "IAM User Name created by this stack"
+    Value: !Ref MyAgentCoreUser
+    Export:
+      Name: !Sub "${AWS::StackName}-IAMUserName"
+
+  AccessKeyId:
+    Description: "Access Key ID for MyAgentCoreUser"
+    Value: !Ref MyAgentCoreUserAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-AccessKeyId"
+
+  SecretAccessKey:
+    Description: "Secret Access Key for MyAgentCoreUser - copy immediately from Outputs tab"
+    Value: !GetAtt MyAgentCoreUserAccessKey.SecretAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-SecretAccessKey"

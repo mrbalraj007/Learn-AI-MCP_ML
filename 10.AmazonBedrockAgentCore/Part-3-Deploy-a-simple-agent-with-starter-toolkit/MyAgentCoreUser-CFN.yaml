@@ -1,0 +1,271 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Creates IAM User MyAgentCoreUser with managed policies and custom inline policy.
+  Creates IAM Role MyAgentCoreExecutionRole with custom managed policy and trust policy.
+  Access Key ID and Secret are exposed in Outputs.
+
+Resources:
+
+  # ==============================================================
+  # SECTION 1 - IAM USER
+  # ==============================================================
+
+  # IAM User with AWS Managed Policies
+  MyAgentCoreUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: MyAgentCoreUser
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+      Tags:
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Purpose
+          Value: BedrockAgentCore
+
+  # Custom Inline Policy for MyAgentCoreUser
+  MyAgentCoreUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MyAgentCoreUserPolicy
+      Users:
+        - !Ref MyAgentCoreUser
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+
+          - Sid: BedrockAgentCoreAccess
+            Effect: Allow
+            Action:
+              - bedrock-agentcore:*
+              - bedrock:*
+            Resource: "*"
+
+          - Sid: ECRFullAccessForAgentBuilds
+            Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:DescribeRepositories
+              - ecr:CreateRepository
+              - ecr:BatchCheckLayerAvailability
+              - ecr:InitiateLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:CompleteLayerUpload
+              - ecr:PutImage
+              - ecr:DescribeImages
+              - ecr:GetRepositoryPolicy
+              - ecr:SetRepositoryPolicy
+              - ecr:DeleteRepository
+              - ecr:ListImages
+            Resource: "*"
+
+          - Sid: CodeBuildAndLogsAccess
+            Effect: Allow
+            Action:
+              - codebuild:CreateProject
+              - codebuild:UpdateProject
+              - codebuild:StartBuild
+              - codebuild:BatchGetBuilds
+              - codebuild:DeleteProject
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Resource: "*"
+
+          - Sid: IAMRoleManagement
+            Effect: Allow
+            Action:
+              - iam:GetRole
+              - iam:CreateRole
+              - iam:PassRole
+              - iam:AttachRolePolicy
+              - iam:PutRolePolicy
+            Resource: "*"
+
+          - Sid: S3AccessOptional
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:CreateBucket
+              - s3:ListBucket
+            Resource: "*"
+
+  # Programmatic Access Key for MyAgentCoreUser
+  MyAgentCoreUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref MyAgentCoreUser
+      Status: Active
+
+  # ==============================================================
+  # SECTION 2 - IAM ROLE (MyAgentCoreExecutionRole)
+  # ==============================================================
+
+  # Step 1 - Custom Managed Policy: MyAgentCoreExecutionRoleCustomPolicy
+  # Source: MyAgentCoreExecutionRoleCustomPolicy.txt
+  MyAgentCoreExecutionRoleCustomPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: MyAgentCoreExecutionRoleCustomPolicy
+      Description: Custom policy for MyAgentCoreExecutionRole - Bedrock AgentCore runtime permissions
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+
+          - Sid: BedrockModelAccess
+            Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+              - bedrock:InvokeModelWithResponseStream
+              - bedrock:ListFoundationModels
+              - bedrock:GetFoundationModel
+            Resource: "*"
+
+          - Sid: AgentCoreRuntime
+            Effect: Allow
+            Action:
+              - bedrock-agentcore:*
+            Resource: "*"
+
+          - Sid: ECRAccess
+            Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+              - ecr:DescribeImages
+              - ecr:DescribeRepositories
+            Resource: "*"
+
+          - Sid: CloudWatchLogsAccess
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Resource: "arn:aws:logs:*:*:*"
+
+          - Sid: CloudWatchObservability
+            Effect: Allow
+            Action:
+              - cloudwatch:PutMetricData
+              - cloudwatch:GetMetricData
+              - cloudwatch:GetMetricStatistics
+              - cloudwatch:ListMetrics
+            Resource: "*"
+
+          - Sid: S3Access
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:ListBucket
+            Resource:
+              - "arn:aws:s3:::*"
+
+          - Sid: CodeBuildAccess
+            Effect: Allow
+            Action:
+              - codebuild:StartBuild
+              - codebuild:BatchGetBuilds
+              - codebuild:BatchGetProjects
+              - codebuild:CreateProject
+              - codebuild:DeleteProject
+              - codebuild:UpdateProject
+            Resource: "*"
+
+          - Sid: IAMPassRole
+            Effect: Allow
+            Action:
+              - iam:PassRole
+            Resource: "*"
+
+          - Sid: STSAccess
+            Effect: Allow
+            Action:
+              - sts:GetCallerIdentity
+              - sts:AssumeRole
+            Resource: "*"
+
+          - Sid: XRayTracingAccess
+            Effect: Allow
+            Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Resource: "*"
+
+  # Step 2 - IAM Role: MyAgentCoreExecutionRole
+  # Trust Policy: codebuild, ecs-tasks, bedrock-agentcore
+  # Source: MyAgentCoreExecutionRoleTrustPolicy.txt
+  MyAgentCoreExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MyAgentCoreExecutionRole
+      Description: Execution role for Amazon Bedrock AgentCore runtime
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+                - ecs-tasks.amazonaws.com
+                - bedrock-agentcore.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Ref MyAgentCoreExecutionRoleCustomPolicy
+      Tags:
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Purpose
+          Value: BedrockAgentCoreExecution
+
+# ==============================================================
+# OUTPUTS
+# ==============================================================
+Outputs:
+
+  IAMUserName:
+    Description: "IAM User Name"
+    Value: !Ref MyAgentCoreUser
+    Export:
+      Name: !Sub "${AWS::StackName}-IAMUserName"
+
+  AccessKeyId:
+    Description: "Access Key ID for MyAgentCoreUser"
+    Value: !Ref MyAgentCoreUserAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-AccessKeyId"
+
+  SecretAccessKey:
+    Description: "Secret Access Key - copy immediately, will not be shown again"
+    Value: !GetAtt MyAgentCoreUserAccessKey.SecretAccessKey
+    Export:
+      Name: !Sub "${AWS::StackName}-SecretAccessKey"
+
+  ExecutionRoleName:
+    Description: "IAM Execution Role Name"
+    Value: !Ref MyAgentCoreExecutionRole
+    Export:
+      Name: !Sub "${AWS::StackName}-ExecutionRoleName"
+
+  ExecutionRoleArn:
+    Description: "IAM Execution Role ARN - use this in AgentCore configurations"
+    Value: !GetAtt MyAgentCoreExecutionRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ExecutionRoleArn"
+
+  CustomPolicyArn:
+    Description: "ARN of MyAgentCoreExecutionRoleCustomPolicy"
+    Value: !Ref MyAgentCoreExecutionRoleCustomPolicy
+    Export:
+      Name: !Sub "${AWS::StackName}-CustomPolicyArn"
