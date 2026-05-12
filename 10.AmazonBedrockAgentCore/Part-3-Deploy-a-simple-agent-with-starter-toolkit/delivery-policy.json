@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowBedrockAgentCoreService",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "bedrock-agentcore.amazonaws.com"
+      },
+      "Action": "logs:CreateDelivery",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "373160674113"
+        }
+      }
+    },
+    {
+      "Sid": "AllowCWLogsDeliveryService",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "delivery.logs.amazonaws.com"
+      },
+      "Action": "logs:CreateDelivery",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "373160674113"
+        }
+      }
+    },
+    {
+      "Sid": "AllowAccountRoot",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::373160674113:root"
+      },
+      "Action": "logs:CreateDelivery",
+      "Resource": "*"
+    }
+  ]
+}

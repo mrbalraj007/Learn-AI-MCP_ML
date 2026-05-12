@@ -1,18 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >
-  MyAgentCore IAM Stack v7
+  MyAgentCore IAM Stack v6
   - IAM User (MyAgentCoreUser) with 2 AWS managed + 1 customer managed policy
   - IAM Role (MyAgentCoreExecutionRole) with custom policy + trust policy
   - Access Key with outputs
-  v7 Changes vs v6:
-    - Confirmed parity: all permissions (X-Ray full, CW Logs Delivery, CloudTrail,
-      Application Signals, iam:CreateServiceLinkedRole) present in BOTH
-      MyAgentCoreUserManagedPolicy AND MyAgentCoreExecutionRole inline policy.
-    - Added iam:CreateServiceLinkedRole to Execution Role (was only on User policy).
-    - Added explicit note: do NOT manually edit policies — let CFN manage them.
-  Root cause of v6 errors: manually applied JSON policy files were outdated stubs
-  that overrode the CFN-managed policies, stripping out X-Ray, CW Logs Delivery,
-  CloudTrail, and Application Signals permissions.
+  v6 Fix: Added xray:UpdateIndexingRule + full X-Ray indexing actions to both
+          User managed policy and Execution Role.
+          Note: The ValidationException on X-Ray Delivery Destination is a
+          TIMING issue (destination is PENDING, not ACTIVE yet) — not a
+          permissions issue. Re-run agentcore launch after 10-15 minutes.
 
 # =============================================================================
 # OUTPUTS
@@ -56,23 +52,16 @@ Resources:
   # CUSTOMER MANAGED POLICY for MyAgentCoreUser
   # Using AWS::IAM::ManagedPolicy (6144 byte limit) instead of inline
   # policy (2048 byte limit) to accommodate all required permissions.
-  #
-  # WARNING: Do NOT manually edit this policy in the console or via CLI after
-  # deployment. The CFN stack manages it. Manual edits will be overwritten on
-  # the next stack update and may break agentcore launch in the meantime.
   # ---------------------------------------------------------------------------
   MyAgentCoreUserManagedPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
       ManagedPolicyName: MyAgentCoreUserPolicy-Customer
-      Description: "Customer managed policy for MyAgentCoreUser: Bedrock AgentCore, ECR, CodeBuild, IAM, S3, X-Ray, CW Logs Delivery, Application Signals, CloudTrail."
+      Description: "Customer managed policy for MyAgentCoreUser covering Bedrock AgentCore, ECR, CodeBuild, IAM, S3, X-Ray, Application Signals, and CloudTrail permissions for agentcore launch and observability."
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
 
-          # -------------------------------------------------------------------
-          # Bedrock AgentCore + Bedrock model access
-          # -------------------------------------------------------------------
           - Sid: BedrockAgentCoreAccess
             Effect: Allow
             Action:
@@ -80,9 +69,6 @@ Resources:
               - bedrock:*
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # ECR — build and push agent container images
-          # -------------------------------------------------------------------
           - Sid: ECRFullAccessForAgentBuilds
             Effect: Allow
             Action:
@@ -101,9 +87,6 @@ Resources:
               - ecr:ListImages
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # CodeBuild + basic CloudWatch Logs
-          # -------------------------------------------------------------------
           - Sid: CodeBuildAndLogsAccess
             Effect: Allow
             Action:
@@ -120,11 +103,6 @@ Resources:
               - logs:DescribeLogStreams
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # CloudWatch Logs Delivery pipeline
-          # Required by agentcore observability to configure delivery
-          # destinations for traces and structured logs.
-          # -------------------------------------------------------------------
           - Sid: CloudWatchLogsDelivery
             Effect: Allow
             Action:
@@ -156,11 +134,6 @@ Resources:
               - logs:PutDestinationPolicy
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # IAM — role and service-linked role management
-          # iam:CreateServiceLinkedRole needed for agentcore to create
-          # service-linked roles on first launch (e.g. for ECS, Bedrock).
-          # -------------------------------------------------------------------
           - Sid: IAMRoleManagement
             Effect: Allow
             Action:
@@ -172,9 +145,6 @@ Resources:
               - iam:CreateServiceLinkedRole
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # S3 — optional artifact / state storage
-          # -------------------------------------------------------------------
           - Sid: S3AccessOptional
             Effect: Allow
             Action:
@@ -187,15 +157,12 @@ Resources:
               - s3:DeleteBucket
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # X-Ray — full access including Transaction Search indexing rules
-          # xray:UpdateTraceSegmentDestination  → called during observability
-          #   setup to point traces at the delivery destination.
-          # xray:UpdateIndexingRule             → called after the above to
-          #   configure Transaction Search indexing rules.
-          # Both were missing from the manually applied policy JSON — this was
-          # the primary cause of the AccessDeniedException errors.
-          # -------------------------------------------------------------------
+          # -----------------------------------------------------------------
+          # v6 FIX: Expanded X-Ray permissions
+          # xray:UpdateIndexingRule was missing — called after
+          # UpdateTraceSegmentDestination succeeds to configure Transaction
+          # Search indexing rules. Added full indexing rule CRUD + sampling.
+          # -----------------------------------------------------------------
           - Sid: XRayFullAccess
             Effect: Allow
             Action:
@@ -218,9 +185,6 @@ Resources:
               - xray:BatchGetTraces
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # Application Signals — GenAI observability dashboard
-          # -------------------------------------------------------------------
           - Sid: ApplicationSignalsAccess
             Effect: Allow
             Action:
@@ -234,9 +198,6 @@ Resources:
               - application-signals:ListServiceOperations
             Resource: '*'
 
-          # -------------------------------------------------------------------
-          # CloudTrail — service-linked channel for agentcore audit trail
-          # -------------------------------------------------------------------
           - Sid: CloudTrailServiceLinkedChannel
             Effect: Allow
             Action:
@@ -276,17 +237,12 @@ Resources:
 
   # ---------------------------------------------------------------------------
   # IAM ROLE - MyAgentCoreExecutionRole
-  # Assumed by: codebuild, ecs-tasks, bedrock-agentcore
-  #
-  # v7: Added iam:CreateServiceLinkedRole (was missing from Role, present
-  # only on User policy in v6). Also confirmed full parity with User policy
-  # for X-Ray, CW Logs Delivery, CloudTrail, and Application Signals.
   # ---------------------------------------------------------------------------
   MyAgentCoreExecutionRole:
     Type: AWS::IAM::Role
     Properties:
       RoleName: MyAgentCoreExecutionRole
-      Description: "Execution role for Bedrock AgentCore runtime, CodeBuild, and ECS tasks. Managed by CloudFormation."
+      Description: Execution role for Bedrock AgentCore runtime, CodeBuild, and ECS tasks
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -340,12 +296,6 @@ Resources:
                   - logs:DescribeLogStreams
                 Resource: 'arn:aws:logs:*:*:*'
 
-              # ---------------------------------------------------------------
-              # CloudWatch Logs Delivery — required for observability pipeline
-              # This was present in the CFN v6 Role but was MISSING from the
-              # manually applied MyAgentCoreExecutionRoleCustomPolicy.json,
-              # causing "Access Denied for this Delivery Destination" errors.
-              # ---------------------------------------------------------------
               - Sid: CloudWatchLogsDelivery
                 Effect: Allow
                 Action:
@@ -409,7 +359,6 @@ Resources:
                 Effect: Allow
                 Action:
                   - iam:PassRole
-                  - iam:CreateServiceLinkedRole
                 Resource: '*'
 
               - Sid: STSAccess
@@ -420,9 +369,7 @@ Resources:
                 Resource: '*'
 
               # ---------------------------------------------------------------
-              # X-Ray — full access including Transaction Search indexing
-              # The manually applied JSON only had PutTraceSegments and
-              # PutTelemetryRecords — missing 14 additional actions.
+              # v6 FIX: Full X-Ray permissions on Role including indexing rules
               # ---------------------------------------------------------------
               - Sid: XRayFullAccess
                 Effect: Allow
@@ -446,9 +393,6 @@ Resources:
                   - xray:BatchGetTraces
                 Resource: '*'
 
-              # ---------------------------------------------------------------
-              # Application Signals — GenAI observability dashboard
-              # ---------------------------------------------------------------
               - Sid: ApplicationSignalsAccess
                 Effect: Allow
                 Action:
@@ -462,9 +406,6 @@ Resources:
                   - application-signals:ListServiceOperations
                 Resource: '*'
 
-              # ---------------------------------------------------------------
-              # CloudTrail — service-linked channel
-              # ---------------------------------------------------------------
               - Sid: CloudTrailServiceLinkedChannel
                 Effect: Allow
                 Action:

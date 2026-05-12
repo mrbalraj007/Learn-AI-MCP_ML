@@ -31,19 +31,6 @@ log_section "SYSTEM UPDATE (apt)"
 log_info "Updating apt package index..."
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y \
-  curl \
-  wget \
-  unzip \
-  zip \
-  jq \
-  git \
-  build-essential \
-  software-properties-common \
-  ca-certificates \
-  gnupg \
-  lsb-release
-  
 log_ok "System packages are up to date."
 
 # =============================================================================
