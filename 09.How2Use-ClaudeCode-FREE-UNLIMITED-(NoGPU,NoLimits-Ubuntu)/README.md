@@ -8,19 +8,37 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Why This Setup Exists](#why-this-setup-exists)
-- [Tools & Technologies Used](#tools--technologies-used)
-- [Key Points at a Glance](#key-points-at-a-glance)
-- [Prerequisites](#prerequisites)
-- [Setup Guide — macOS / Linux](#setup-guide--macos--linux)
-- [Setup Guide — Windows (WSL2)](#setup-guide--windows-wsl2)
-- [Running Claude Code (Daily Workflow)](#running-claude-code-daily-workflow)
-- [Supported Free Models on NVIDIA NIM](#supported-free-models-on-nvidia-nim)
-- [Challenges & How to Handle Them](#challenges--how-to-handle-them)
-- [Benefits of This Approach](#benefits-of-this-approach)
-- [Quick Demo — What You Can Build](#quick-demo--what-you-can-build)
-- [Conclusion](#conclusion)
+- [Claude Code — Free \& Unlimited with NVIDIA NIM API (No Ollama, No GPU Required)](#claude-code--free--unlimited-with-nvidia-nim-api-no-ollama-no-gpu-required)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Why This Setup Exists](#why-this-setup-exists)
+  - [Tools \& Technologies Used](#tools--technologies-used)
+  - [Key Points at a Glance](#key-points-at-a-glance)
+  - [Prerequisites](#prerequisites)
+  - [Setup Guide — macOS / Linux](#setup-guide--macos--linux)
+    - [Step 1 — Install UV](#step-1--install-uv)
+    - [Step 2 — Install Python 3.14 via UV](#step-2--install-python-314-via-uv)
+    - [Step 3 — Download the NVIDIA NIM Proxy Folder](#step-3--download-the-nvidia-nim-proxy-folder)
+    - [Step 4 — Create Your `.env` File](#step-4--create-your-env-file)
+    - [Step 5 — Configure Your API Key and Model](#step-5--configure-your-api-key-and-model)
+    - [Step 6 — Start the NVIDIA NIM Proxy Server](#step-6--start-the-nvidia-nim-proxy-server)
+    - [Step 7 — Install Claude Code](#step-7--install-claude-code)
+    - [Step 8 — Launch Claude Code (Pointed at NVIDIA NIM)](#step-8--launch-claude-code-pointed-at-nvidia-nim)
+  - [Setup Guide — Windows (WSL2)](#setup-guide--windows-wsl2)
+    - [Step 1 — Install WSL2](#step-1--install-wsl2)
+    - [Step 2 — Install Ubuntu from the Microsoft Store](#step-2--install-ubuntu-from-the-microsoft-store)
+    - [Step 3 — Open Ubuntu and Install UV](#step-3--open-ubuntu-and-install-uv)
+    - [Step 4 — Install Python 3.14](#step-4--install-python-314)
+    - [Step 5 — Create a Working Directory and Download NIM](#step-5--create-a-working-directory-and-download-nim)
+    - [Step 6 — Edit the `.env` File](#step-6--edit-the-env-file)
+    - [Step 7 — Start the NIM Proxy Server](#step-7--start-the-nim-proxy-server)
+    - [Step 8 — Install and Launch Claude Code](#step-8--install-and-launch-claude-code)
+  - [Running Claude Code (Daily Workflow)](#running-claude-code-daily-workflow)
+  - [Supported Free Models on NVIDIA NIM](#supported-free-models-on-nvidia-nim)
+  - [Challenges \& How to Handle Them](#challenges--how-to-handle-them)
+  - [Benefits of This Approach](#benefits-of-this-approach)
+  - [Quick Demo — What You Can Build](#quick-demo--what-you-can-build)
+  - [Conclusion](#conclusion)
 
 ---
 
@@ -420,6 +438,16 @@ If you're on Windows and haven't set up WSL2 yet, this is honestly a good opport
 > - Setup Commands & Resources: [https://compilefuture.com](https://compilefuture.com)
 > - Youtube Video [Claude Code FREE UNLIMITED (No Ollama, No GPU!)](https://www.youtube.com/watch?v=7_bmIT8HZXI&list=PLJcpyd04zn7pg7uc0N5LgwRasQvjPLVVb&index=29)
 
+> - Youtube Video [Claude Code FREE Unlimited )](https://www.youtube.com/watch?v=NSprKf-giBo&list=PLJcpyd04zn7pg7uc0N5LgwRasQvjPLVVb&index=26)
+
+**Shortcut link**
+```sh
+cmd /k "cd /d C:\free-claude-code  && uv run python server.py"
+
+# and 
+
+powershell.exe -NoExit -Command "$env:ANTHROPIC_BASE_URL='http://localhost:8082'; $env:ANTHROPIC_AUTH_TOKEN='freccc'; claude"
+```
 ---
 
 
