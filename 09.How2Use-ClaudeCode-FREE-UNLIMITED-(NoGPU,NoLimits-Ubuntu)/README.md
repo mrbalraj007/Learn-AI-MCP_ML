@@ -165,6 +165,11 @@ NVIDIA_NIM_MODEL=nvidia/deepseek-v4-0709-pro
 # You will see like below
 MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"
 ```
+**To replace your model using command:**
+
+```sh
+sed -i 's|MODEL="nvidia_nim/z-ai/glm4.7"|MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"|' .env
+```
 
 **To get your API key:**
 
@@ -442,7 +447,8 @@ If you're on Windows and haven't set up WSL2 yet, this is honestly a good opport
 
 **Shortcut link**
 ```sh
-cmd /k "cd /d C:\free-claude-code  && uv run python server.py"
+#cmd /k "cd /d C:\free-claude-code  && uv run python server.py"
+powershell.exe -NoExit -Command "cd 'C:\free-claude-code'; uv run python server.py"
 
 # and 
 
