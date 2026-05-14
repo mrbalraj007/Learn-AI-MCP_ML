@@ -107,10 +107,12 @@ https://jsondiff.com/
 https://jsoncompare.org/
 ```
 Next Steps:
- ```sh
- agentcore status                                                  ```                                                      
+```sh
+ agentcore status                                                
+```                                                      
 
-```sh                                                     agentcore invoke '{"prompt": "Hello"}'
+```sh                                                     
+agentcore invoke '{"prompt": "Hello"}'
 ```                                    
 # To destroy the agentcore
 ```sh
@@ -118,7 +120,7 @@ agentcore destroy --agent myagent
 agentcore destroy --agent myagent --force
 ```
 
-# Wait for update, then wait 15 mins for X-Ray destination to go ACTIVE, then:
+<!-- # Wait for update, then wait 15 mins for X-Ray destination to go ACTIVE, then:
 agentcore launch
 
 
@@ -139,7 +141,7 @@ Also Clean S3 Bucket Created Earlier
 
 Your deployment created:
 
-bedrock-agentcore-codebuild-sources-373160674113-us-east-1
+bedrock-agentcore-codebuild-sources-373160674113-us-east-1 -->
 
 # Delete contents:
 ```sh
@@ -221,27 +223,31 @@ aws logs describe-delivery-destinations \
   ```
 
   # 1. See ALL delivery destinations and their names
+```sh
 aws logs describe-delivery-destinations \
   --region us-east-1 \
   --query 'deliveryDestinations[*].{Name:name,Arn:arn,Type:deliveryDestinationType}' \
   --output table
-
+```
 # 2. See the resource policy on each destination
+```sh
 aws logs describe-delivery-destinations \
   --region us-east-1 \
   --query 'deliveryDestinations[*].{Name:name,Policy:policyDocument}' \
   --output json
-
+```
 # 3. See existing deliveries (source→destination links)
+```sh
 aws logs describe-deliveries \
   --region us-east-1 \
   --output table
-
+```
 # 4. See delivery sources
+```sh
 aws logs describe-delivery-sources \
   --region us-east-1 \
   --output table
-
+```
 
 =================
 
