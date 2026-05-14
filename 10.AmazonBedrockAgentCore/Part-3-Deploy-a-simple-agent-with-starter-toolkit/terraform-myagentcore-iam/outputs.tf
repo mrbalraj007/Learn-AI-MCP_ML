@@ -1,14 +1,5 @@
-output "access_key_id" {
-  value = aws_iam_access_key.myagent_user_key.id
-}
-
-output "secret_access_key" {
-  value     = aws_iam_access_key.myagent_user_key.secret
-  sensitive = true
-}
-
 output "iam_user_name" {
-  value = aws_iam_user.myagent_user.name
+  value = data.aws_iam_user.existing_user.user_name
 }
 
 output "execution_role_arn" {
