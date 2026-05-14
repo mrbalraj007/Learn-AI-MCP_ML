@@ -254,3 +254,10 @@ touch terraform-myagentcore-iam/{provider.tf,variables.tf,main.tf,iam-user.tf,ia
 terraform output access_key_id
 terraform output secret_access_key
 ```
+
+```sh
+aws iam list-roles \
+--query 'Roles[*].[RoleName,RoleLastUsed.LastUsedDate]' \
+--output table
+```
+

@@ -6,6 +6,48 @@
 # Purpose : Identify and delete unused IAM roles safely
 # ============================================================
 
+
+#============================================================
+# How to Use
+
+# 1. Save Script
+# vi delete-unused-iam-roles.sh
+
+# Paste the script.
+
+# 2. Make Executable
+# chmod +x delete-unused-iam-roles.sh
+
+# 3. Dry Run (Recommended First)
+
+# By default:
+# DRY_RUN=true
+
+# Run:
+# ./delete-unused-iam-roles.sh
+
+# This only shows what would be deleted.
+
+# 4. Interactive Delete
+# Change:
+# DRY_RUN=false
+# AUTO_DELETE=false
+
+# Then run:
+
+# ./delete-unused-iam-roles.sh
+
+# You will be prompted for each role.
+
+# 5. Automatic Delete
+
+# Change:
+# DRY_RUN=false
+# AUTO_DELETE=true
+
+# Then run:
+# ./delete-unused-iam-roles.sh
+# ============================================================ 
 set -euo pipefail
 
 # -----------------------------
@@ -13,8 +55,8 @@ set -euo pipefail
 # -----------------------------
 
 UNUSED_DAYS=90
-DRY_RUN=true
-AUTO_DELETE=false
+DRY_RUN=true # true for dry run, false to enable deletion
+AUTO_DELETE=false # true to auto delete without confirmation, false to prompt for each role
 
 # -----------------------------
 # FUNCTIONS
