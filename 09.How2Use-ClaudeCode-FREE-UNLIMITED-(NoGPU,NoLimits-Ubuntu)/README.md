@@ -39,6 +39,7 @@
   - [Benefits of This Approach](#benefits-of-this-approach)
   - [Quick Demo — What You Can Build](#quick-demo--what-you-can-build)
   - [Conclusion](#conclusion)
+  - [\`\`\`](#)
 
 ---
 
@@ -453,6 +454,22 @@ powershell.exe -NoExit -Command "cd 'C:\free-claude-code'; uv run python server.
 # and 
 
 powershell.exe -NoExit -Command "$env:ANTHROPIC_BASE_URL='http://localhost:8082'; $env:ANTHROPIC_AUTH_TOKEN='freccc'; claude"
+```
+```sh
+# Create desktop shortcuts (one-time)
+# Shortcut 1 - Start the Proxy
+- Right-click Desktop -> New -> Shortcut
+Paste the path below -> Next -> name it "1 - Start Proxy" -> Finish
+```
+powershell.exe -NoExit -Command "cd 'C:\Users\yourname\free-claude-code'; uv run python server.py"
+```
+- Shortcut 2 - Launch Claude Code
+- Right-click Desktop -> New -> Shortcut
+Paste the path below -> Next -> name it "2 - Launch Claude Code" -> Finish
+
+```
+powershell.exe -NoExit -Command "$env:ANTHROPIC_BASE_URL='http://localhost: 8082' ;
+$env: ANTHROPIC_AUTH_TOKEN='freecc'; claude"
 ```
 ---
 
