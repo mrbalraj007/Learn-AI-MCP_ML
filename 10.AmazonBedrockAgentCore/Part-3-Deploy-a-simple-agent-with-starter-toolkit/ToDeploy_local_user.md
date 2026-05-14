@@ -1,4 +1,17 @@
-# TO Deploy it 
+Go to folder `/home/dc-ops/nvidia-nim` and run the following
+
+```sh
+uv run uvicorn server:app --host 0.0.0.0 --port 8082
+```
+in another windows
+
+```sh
+ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+```
+and enjoy the claude code in free.
+
+
+<!-- # TO Deploy it 
 ```bash
 aws cloudformation deploy \
   --stack-name MyAgentCoreStack \
@@ -65,7 +78,8 @@ aws cloudformation update-stack \
 
 Once deleted it will return ValidationError: Stack with id MyAgentCoreStack does not exist — that confirms it's fully gone.
 
-Note: The IAM Access Key is also deleted automatically since it's part of the stack. No manual cleanup needed.
+Note: The IAM Access Key is also deleted automatically since it's part of the stack. No manual cleanup needed.  -->
+
 
 
 rm -rf ~/bedrock-env
