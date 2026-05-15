@@ -178,6 +178,9 @@ echo -e "${GREEN}[4/7]${NC} Delete CloudWatch Log Groups"
 LOG_GROUP_PREFIXES=(
     "/aws/bedrock-agentcore/runtimes/${AGENT_NAME}"
     "/aws/codebuild/${AGENT_NAME}"
+    "/aws/vendedlogs/bedrock-agentcore/memory/APPLICATION_LOGS/${AGENT_NAME}"
+    "/aws/vendedlogs/bedrock-agentcore/memory/${AGENT_NAME}"
+    "/aws/vendedlogs/bedrock-agentcore/${AGENT_NAME}"
 )
 
 FOUND_ANY=false
@@ -196,6 +199,21 @@ for PREFIX in "${LOG_GROUP_PREFIXES[@]}"; do
         done
     fi
 done
+
+# Broader vendedlogs catch-all using contains (catches any remaining agent-related logs)
+VENDED_LOGS=$(aws logs describe-log-groups \
+    --region "$REGION" \
+    --log-group-name-prefix "/aws/vendedlogs" \
+    --query "logGroups[?contains(logGroupName, '${AGENT_NAME}')].logGroupName" \
+    --output text 2>/dev/null || true)
+
+if [[ -n "$VENDED_LOGS" && "$VENDED_LOGS" != "None" ]]; then
+    for lg in $VENDED_LOGS; do
+        echo "  Found vendedlogs log group: ${lg}"
+        run "aws logs delete-log-group --log-group-name ${lg} --region ${REGION}"
+        FOUND_ANY=true
+    done
+fi
 
 if [ "$FOUND_ANY" = false ]; then
     echo "  No log groups found for ${AGENT_NAME}"

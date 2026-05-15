@@ -21,7 +21,7 @@ agentcore -V
 agentcore --help
 ```
 ```sh
-agentcore configure -e myllmagent.py
+agentcore configure -e myagentwithsesmgmt.py
 ```
 ```sh
 agentcore launch
@@ -42,8 +42,8 @@ agentcore invoke '{"prompt": "Write a poem on Autumn"}'
 ```                                    
 # To destroy the agentcore
 ```sh
-agentcore destroy --agent myllmagent.py
-agentcore destroy --agent myllmagent.py --force
+agentcore destroy --agent myagentwithsesmgmt.py
+agentcore destroy --agent myagentwithsesmgmt.py --force
 ```
 
 **To find out all models in AWS**
