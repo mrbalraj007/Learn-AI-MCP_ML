@@ -22,3 +22,5 @@ terraform.tfstate.backup
 *.json
 .claude
 *.claude
+ansible.log
+*.log
