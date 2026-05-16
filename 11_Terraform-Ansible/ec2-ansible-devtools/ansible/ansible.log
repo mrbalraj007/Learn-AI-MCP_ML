@@ -1,0 +1,2045 @@
+2026-05-16 12:22:19,822 p=4597 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with auto plugin: 'Display' object has no attribute 'deprecate'
+
+2026-05-16 12:22:19,822 p=4597 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with yaml plugin: Plugin configuration YAML file, not YAML inventory
+
+2026-05-16 12:22:19,822 p=4597 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with ini plugin: Invalid host pattern 'plugin:' supplied, ending in ':' is not
+allowed, this character is reserved to provide a port.
+
+2026-05-16 12:22:19,822 p=4597 u=dc-ops n=ansible | [WARNING]: Unable to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml as an inventory source
+
+2026-05-16 12:22:19,822 p=4597 u=dc-ops n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2026-05-16 12:22:19,823 p=4597 u=dc-ops n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2026-05-16 12:23:23,821 p=4729 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with auto plugin: 'Display' object has no attribute 'deprecate'
+
+2026-05-16 12:23:23,821 p=4729 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with yaml plugin: Plugin configuration YAML file, not YAML inventory
+
+2026-05-16 12:23:23,821 p=4729 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with ini plugin: Invalid host pattern 'plugin:' supplied, ending in ':' is not
+allowed, this character is reserved to provide a port.
+
+2026-05-16 12:23:23,821 p=4729 u=dc-ops n=ansible | [WARNING]: Unable to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml as an inventory source
+
+2026-05-16 12:23:23,821 p=4729 u=dc-ops n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2026-05-16 12:23:23,823 p=4729 u=dc-ops n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2026-05-16 12:23:32,995 p=4758 u=dc-ops n=ansible | Using /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/ansible.cfg as config file
+2026-05-16 12:23:33,117 p=4758 u=dc-ops n=ansible | Using inventory plugin 'ansible_collections.amazon.aws.plugins.inventory.aws_ec2' to process inventory source '/home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml'
+2026-05-16 12:23:33,120 p=4758 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with auto plugin: 'Display' object has no attribute 'deprecate'
+
+2026-05-16 12:23:33,120 p=4758 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with yaml plugin: Plugin configuration YAML file, not YAML inventory
+
+2026-05-16 12:23:33,120 p=4758 u=dc-ops n=ansible | [WARNING]:  * Failed to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml with ini plugin: Invalid host pattern 'plugin:' supplied, ending in ':' is not
+allowed, this character is reserved to provide a port.
+
+2026-05-16 12:23:33,120 p=4758 u=dc-ops n=ansible | [WARNING]: Unable to parse /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/inventory/aws_ec2.yml as an inventory source
+
+2026-05-16 12:23:33,120 p=4758 u=dc-ops n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2026-05-16 12:23:33,122 p=4758 u=dc-ops n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2026-05-16 12:23:33,228 p=4758 u=dc-ops n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: role_devtools
+
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | PLAY [Install DevTools on EC2 Instances] **********************************************************************************************************************************************************************************
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | skipping: no hosts matched
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | PLAY RECAP ****************************************************************************************************************************************************************************************************************
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 0 seconds
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | Saturday 16 May 2026  12:23:33 +1000 (0:00:00.001)       0:00:00.001 ********** 
+2026-05-16 12:23:33,229 p=4758 u=dc-ops n=ansible | =============================================================================== 
+2026-05-16 12:24:38,232 p=4802 u=dc-ops n=ansible | # /home/dc-ops/.local/lib/python3.10/site-packages/ansible_collections
+Collection Version
+---------- -------
+
+2026-05-16 12:24:38,233 p=4802 u=dc-ops n=ansible | amazon.aws 8.2.1  
+2026-05-16 12:26:22,277 p=5011 u=dc-ops n=ansible | Starting galaxy collection install process
+2026-05-16 12:26:22,346 p=5011 u=dc-ops n=ansible | Process install dependency map
+2026-05-16 12:26:22,347 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:22,447 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:22,548 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:22,648 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:22,762 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:22,863 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:22,964 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:23,065 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:23,165 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:23,267 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:23,368 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:23,469 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:23,570 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:23,671 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:23,772 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:23,873 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:23,974 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:24,075 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:24,176 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:24,276 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:24,377 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:24,479 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:24,580 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:24,681 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:24,783 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:24,885 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:24,986 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:25,088 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:25,190 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:25,291 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:25,393 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:25,495 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:25,596 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:25,698 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:25,799 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:25,900 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:26,001 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:26,102 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:26,204 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:26,305 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:26,407 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:26,509 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:26,610 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:26,711 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:26,811 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:26,912 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:27,013 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:27,113 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:27,214 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:27,314 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:27,415 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:27,515 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:27,615 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:27,716 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:27,818 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:27,919 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:28,020 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:28,121 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:28,222 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:28,324 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:28,425 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:28,527 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:28,629 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:28,731 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:28,833 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:28,934 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:29,036 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:29,137 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:29,239 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:29,342 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:29,443 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:29,546 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:29,648 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:29,749 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:29,850 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:29,950 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:30,051 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:30,152 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:30,253 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:30,354 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:30,455 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:30,557 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:30,660 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:30,761 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:30,862 p=5011 u=dc-ops n=ansible | Starting collection install process
+2026-05-16 12:26:30,862 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:30,871 p=5011 u=dc-ops n=ansible | Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/amazon-aws-11.3.0.tar.gz to /home/dc-ops/.ansible/tmp/ansible-local-5011qtrrtv1o/tmpz6s2u53p/amazon-aws-11.3.0-ef62i9g4
+2026-05-16 12:26:30,963 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:31,064 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:31,166 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:31,267 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:31,369 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:31,471 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:31,572 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:31,673 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:31,775 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:31,875 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:31,976 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:32,078 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:32,179 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:32,280 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:32,382 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:32,483 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:32,585 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:32,686 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:32,787 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:32,887 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:32,988 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:33,088 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:33,189 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:33,289 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:33,390 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:33,490 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:33,590 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:33,692 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:33,794 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:33,895 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:33,997 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:34,098 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:34,199 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:34,300 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:34,402 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:34,503 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:34,604 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:34,705 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:34,806 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:34,909 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:35,012 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:35,113 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:35,214 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:35,316 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:35,417 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:35,519 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:35,620 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:35,722 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:35,823 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:35,924 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:36,027 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:36,165 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:36,266 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:36,367 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:36,469 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:36,570 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:36,672 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:36,773 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:36,874 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:36,975 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:37,077 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:37,178 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:37,279 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:37,380 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:37,481 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:37,582 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:37,682 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:37,784 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:37,885 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:37,985 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:38,087 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:38,188 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:38,290 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:38,392 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:38,493 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:38,600 p=5011 u=dc-ops n=ansible | Installing 'amazon.aws:11.3.0' to '/home/dc-ops/.ansible/collections/ansible_collections/amazon/aws'
+2026-05-16 12:26:38,600 p=5011 u=dc-ops n=ansible | |
+2026-05-16 12:26:38,701 p=5011 u=dc-ops n=ansible | /
+2026-05-16 12:26:38,801 p=5011 u=dc-ops n=ansible | -
+2026-05-16 12:26:38,902 p=5011 u=dc-ops n=ansible | \
+2026-05-16 12:26:39,002 p=5011 u=dc-ops n=ansible | amazon.aws:11.3.0 was installed successfully
+2026-05-16 12:27:04,434 p=5092 u=dc-ops n=ansible | # /home/dc-ops/.ansible/collections/ansible_collections
+Collection Version
+---------- -------
+
+2026-05-16 12:27:04,435 p=5092 u=dc-ops n=ansible | amazon.aws 11.3.0 
+2026-05-16 12:27:04,435 p=5092 u=dc-ops n=ansible | # /home/dc-ops/.local/lib/python3.10/site-packages/ansible_collections
+Collection Version
+---------- -------
+
+2026-05-16 12:27:04,435 p=5092 u=dc-ops n=ansible | amazon.aws 8.2.1  
+2026-05-16 12:27:46,870 p=5188 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:27:46,880 p=5188 u=dc-ops n=botocore.credentials | Found credentials in shared credentials file: ~/.aws/credentials
+2026-05-16 12:27:49,172 p=5188 u=dc-ops n=ansible | @all:
+  |--@ungrouped:
+  |--@aws_ec2:
+  |  |--98.81.134.151
+  |--@role_devtools:
+  |  |--98.81.134.151
+  |--@env_dev:
+  |  |--98.81.134.151
+  |--@project_devtools_lab:
+  |  |--98.81.134.151
+2026-05-16 12:28:00,848 p=5230 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:28:00,888 p=5230 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:28:07,188 p=5230 u=dc-ops n=ansible | [WARNING]: Platform linux on host 98.81.134.151 is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2026-05-16 12:28:07,188 p=5230 u=dc-ops n=ansible | 98.81.134.151 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2026-05-16 12:29:14,360 p=5909 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:29:14,398 p=5909 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:29:19,069 p=5909 u=dc-ops n=ansible | 98.81.134.151 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2026-05-16 12:29:19,370 p=5947 u=dc-ops n=ansible | Using /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/ansible.cfg as config file
+2026-05-16 12:29:19,501 p=5947 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:29:19,555 p=5947 u=dc-ops n=ansible | PLAY [Install DevTools on EC2 Instances] **********************************************************************************************************************************************************************************
+2026-05-16 12:29:19,559 p=5947 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:29:19,559 p=5947 u=dc-ops n=ansible | TASK [Gathering Facts] ****************************************************************************************************************************************************************************************************
+2026-05-16 12:29:19,559 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:29:19 +1000 (0:00:00.005)       0:00:00.005 ********** 
+2026-05-16 12:29:23,097 p=5947 u=dc-ops n=ansible | ok: [98.81.134.151]
+2026-05-16 12:29:23,101 p=5947 u=dc-ops n=ansible | TASK [PREFLIGHT | Wait for SSH to be available] ***************************************************************************************************************************************************************************
+2026-05-16 12:29:23,101 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:29:23 +1000 (0:00:03.541)       0:00:03.546 ********** 
+2026-05-16 12:29:38,554 p=5947 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  elapsed: 15
+2026-05-16 12:29:38,562 p=5947 u=dc-ops n=ansible | TASK [PREFLIGHT | Gather facts after SSH is ready] ************************************************************************************************************************************************************************
+2026-05-16 12:29:38,562 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:29:38 +1000 (0:00:15.461)       0:00:19.008 ********** 
+2026-05-16 12:29:42,007 p=5947 u=dc-ops n=ansible | ok: [98.81.134.151]
+2026-05-16 12:29:42,011 p=5947 u=dc-ops n=ansible | TASK [PREFLIGHT | Print instance information] *****************************************************************************************************************************************************************************
+2026-05-16 12:29:42,011 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:29:42 +1000 (0:00:03.448)       0:00:22.456 ********** 
+2026-05-16 12:29:42,030 p=5947 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg:
+  - 'Hostname    : ip-172-31-27-115'
+  - 'OS          : Ubuntu 22.04'
+  - 'Architecture: x86_64'
+  - 'Public IP   : 98.81.134.151'
+2026-05-16 12:29:42,033 p=5947 u=dc-ops n=ansible | TASK [PREFLIGHT | Update apt cache and upgrade packages] ******************************************************************************************************************************************************************
+2026-05-16 12:29:42,033 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:29:42 +1000 (0:00:00.022)       0:00:22.479 ********** 
+2026-05-16 12:30:08,841 p=5947 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  msg: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    The following NEW packages will be installed:
+      linux-aws-6.8-headers-6.8.0-1055 linux-aws-6.8-tools-6.8.0-1055
+      linux-headers-6.8.0-1055-aws linux-image-6.8.0-1055-aws
+      linux-modules-6.8.0-1055-aws linux-tools-6.8.0-1055-aws
+    The following packages will be upgraded:
+      curl distro-info-data libcurl3-gnutls libcurl4 libnghttp2-14 libpng16-16
+      linux-aws linux-headers-aws linux-image-aws linux-tools-common sed vim
+      vim-common vim-runtime vim-tiny xxd
+    16 upgraded, 6 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 72.3 MB of archives.
+    After this operation, 287 MB of additional disk space will be used.
+    Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 sed amd64 4.8-1ubuntu2.1 [188 kB]
+    Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 distro-info-data all 0.52ubuntu0.12 [5488 B]
+    Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 xxd amd64 2:8.2.3995-1ubuntu2.29 [51.0 kB]
+    Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim amd64 2:8.2.3995-1ubuntu2.29 [1728 kB]
+    Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-tiny amd64 2:8.2.3995-1ubuntu2.29 [706 kB]
+    Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-runtime all 2:8.2.3995-1ubuntu2.29 [6825 kB]
+    Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-common all 2:8.2.3995-1ubuntu2.29 [81.5 kB]
+    Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnghttp2-14 amd64 1.43.0-1ubuntu0.3 [76.7 kB]
+    Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpng16-16 amd64 1.6.37-3ubuntu0.5 [192 kB]
+    Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 curl amd64 7.81.0-1ubuntu1.24 [194 kB]
+    Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl4 amd64 7.81.0-1ubuntu1.24 [291 kB]
+    Get:12 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl3-gnutls amd64 7.81.0-1ubuntu1.24 [285 kB]
+    Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-modules-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [25.4 MB]
+    Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-image-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [14.8 MB]
+    Get:15 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws amd64 6.8.0-1055.58~22.04.1 [1722 B]
+    Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-image-aws amd64 6.8.0-1055.58~22.04.1 [2474 B]
+    Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws-6.8-headers-6.8.0-1055 all 6.8.0-1055.58~22.04.1 [13.7 MB]
+    Get:18 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-headers-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [3696 kB]
+    Get:19 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-headers-aws amd64 6.8.0-1055.58~22.04.1 [2382 B]
+    Get:20 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-tools-common all 5.15.0-179.189 [282 kB]
+    Get:21 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws-6.8-tools-6.8.0-1055 amd64 6.8.0-1055.58~22.04.1 [3756 kB]
+    Get:22 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-tools-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [1798 B]
+    Fetched 72.3 MB in 1s (88.7 MB/s)
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 72824 files and directories currently installed.)
+    Preparing to unpack .../sed_4.8-1ubuntu2.1_amd64.deb ...
+    Unpacking sed (4.8-1ubuntu2.1) over (4.8-1ubuntu2) ...
+    Setting up sed (4.8-1ubuntu2.1) ...
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 72824 files and directories currently installed.)
+    Preparing to unpack .../00-distro-info-data_0.52ubuntu0.12_all.deb ...
+    Unpacking distro-info-data (0.52ubuntu0.12) over (0.52ubuntu0.11) ...
+    Preparing to unpack .../01-xxd_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking xxd (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../02-vim_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking vim (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../03-vim-tiny_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking vim-tiny (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../04-vim-runtime_2%3a8.2.3995-1ubuntu2.29_all.deb ...
+    Unpacking vim-runtime (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../05-vim-common_2%3a8.2.3995-1ubuntu2.29_all.deb ...
+    Unpacking vim-common (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../06-libnghttp2-14_1.43.0-1ubuntu0.3_amd64.deb ...
+    Unpacking libnghttp2-14:amd64 (1.43.0-1ubuntu0.3) over (1.43.0-1ubuntu0.2) ...
+    Preparing to unpack .../07-libpng16-16_1.6.37-3ubuntu0.5_amd64.deb ...
+    Unpacking libpng16-16:amd64 (1.6.37-3ubuntu0.5) over (1.6.37-3ubuntu0.4) ...
+    Preparing to unpack .../08-curl_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking curl (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Preparing to unpack .../09-libcurl4_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking libcurl4:amd64 (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Preparing to unpack .../10-libcurl3-gnutls_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Selecting previously unselected package linux-modules-6.8.0-1055-aws.
+    Preparing to unpack .../11-linux-modules-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-modules-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-image-6.8.0-1055-aws.
+    Preparing to unpack .../12-linux-image-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Preparing to unpack .../13-linux-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Preparing to unpack .../14-linux-image-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-image-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Selecting previously unselected package linux-aws-6.8-headers-6.8.0-1055.
+    Preparing to unpack .../15-linux-aws-6.8-headers-6.8.0-1055_6.8.0-1055.58~22.04.1_all.deb ...
+    Unpacking linux-aws-6.8-headers-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-headers-6.8.0-1055-aws.
+    Preparing to unpack .../16-linux-headers-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-headers-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Preparing to unpack .../17-linux-headers-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-headers-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Preparing to unpack .../18-linux-tools-common_5.15.0-179.189_all.deb ...
+    Unpacking linux-tools-common (5.15.0-179.189) over (5.15.0-177.187) ...
+    Selecting previously unselected package linux-aws-6.8-tools-6.8.0-1055.
+    Preparing to unpack .../19-linux-aws-6.8-tools-6.8.0-1055_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-aws-6.8-tools-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-tools-6.8.0-1055-aws.
+    Preparing to unpack .../20-linux-tools-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-tools-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-aws-6.8-headers-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-headers-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up distro-info-data (0.52ubuntu0.12) ...
+    Setting up libnghttp2-14:amd64 (1.43.0-1ubuntu0.3) ...
+    Setting up linux-headers-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.24) ...
+    Setting up xxd (2:8.2.3995-1ubuntu2.29) ...
+    Setting up vim-common (2:8.2.3995-1ubuntu2.29) ...
+    Setting up libpng16-16:amd64 (1.6.37-3ubuntu0.5) ...
+    Setting up libcurl4:amd64 (7.81.0-1ubuntu1.24) ...
+    Setting up curl (7.81.0-1ubuntu1.24) ...
+    Setting up vim-runtime (2:8.2.3995-1ubuntu2.29) ...
+    Setting up linux-tools-common (5.15.0-179.189) ...
+    Setting up linux-aws-6.8-tools-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Setting up vim (2:8.2.3995-1ubuntu2.29) ...
+    Setting up vim-tiny (2:8.2.3995-1ubuntu2.29) ...
+    Setting up linux-tools-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    I: /boot/vmlinuz is now a symlink to vmlinuz-6.8.0-1055-aws
+    I: /boot/initrd.img is now a symlink to initrd.img-6.8.0-1055-aws
+    Setting up linux-modules-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-image-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-aws (6.8.0-1055.58~22.04.1) ...
+    Processing triggers for man-db (2.10.2-1) ...
+    Processing triggers for install-info (6.8-4build1) ...
+    Processing triggers for libc-bin (2.35-0ubuntu3.13) ...
+    Processing triggers for linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    /etc/kernel/postinst.d/initramfs-tools:
+    update-initramfs: Generating /boot/initrd.img-6.8.0-1055-aws
+    /etc/kernel/postinst.d/zz-update-grub:
+    Sourcing file `/etc/default/grub'
+    Sourcing file `/etc/default/grub.d/40-force-partuuid.cfg'
+    Sourcing file `/etc/default/grub.d/50-cloudimg-settings.cfg'
+    Sourcing file `/etc/default/grub.d/init-select.cfg'
+    Generating grub configuration file ...
+    GRUB_FORCE_PARTUUID is set, will attempt initrdless boot
+    Found linux image: /boot/vmlinuz-6.8.0-1055-aws
+    Found initrd image: /boot/microcode.cpio /boot/initrd.img-6.8.0-1055-aws
+    Found linux image: /boot/vmlinuz-6.8.0-1053-aws
+    Found initrd image: /boot/microcode.cpio /boot/initrd.img-6.8.0-1053-aws
+    Warning: os-prober will not be executed to detect other bootable partitions.
+    Systems on them will not be added to the GRUB boot configuration.
+    Check GRUB_DISABLE_OS_PROBER documentation entry.
+    Adding boot menu entry for UEFI Firmware Settings ...
+    done
+  
+    Pending kernel upgrade!
+  
+    Running kernel version:
+      6.8.0-1053-aws
+  
+    Diagnostics:
+      The currently running kernel version is not the expected kernel version 6.8.0-1055-aws.
+  
+    Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+  
+    Services to be restarted:
+     systemctl restart packagekit.service
+  
+    No containers need to be restarted.
+  
+    No user sessions are running outdated binaries.
+  
+    No VM guests are running outdated hypervisor (qemu) binaries on this host.
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    The following NEW packages will be installed:
+      linux-aws-6.8-headers-6.8.0-1055 linux-aws-6.8-tools-6.8.0-1055
+      linux-headers-6.8.0-1055-aws linux-image-6.8.0-1055-aws
+      linux-modules-6.8.0-1055-aws linux-tools-6.8.0-1055-aws
+    The following packages will be upgraded:
+      curl distro-info-data libcurl3-gnutls libcurl4 libnghttp2-14 libpng16-16
+      linux-aws linux-headers-aws linux-image-aws linux-tools-common sed vim
+      vim-common vim-runtime vim-tiny xxd
+    16 upgraded, 6 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 72.3 MB of archives.
+    After this operation, 287 MB of additional disk space will be used.
+    Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 sed amd64 4.8-1ubuntu2.1 [188 kB]
+    Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 distro-info-data all 0.52ubuntu0.12 [5488 B]
+    Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 xxd amd64 2:8.2.3995-1ubuntu2.29 [51.0 kB]
+    Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim amd64 2:8.2.3995-1ubuntu2.29 [1728 kB]
+    Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-tiny amd64 2:8.2.3995-1ubuntu2.29 [706 kB]
+    Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-runtime all 2:8.2.3995-1ubuntu2.29 [6825 kB]
+    Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-common all 2:8.2.3995-1ubuntu2.29 [81.5 kB]
+    Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnghttp2-14 amd64 1.43.0-1ubuntu0.3 [76.7 kB]
+    Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpng16-16 amd64 1.6.37-3ubuntu0.5 [192 kB]
+    Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 curl amd64 7.81.0-1ubuntu1.24 [194 kB]
+    Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl4 amd64 7.81.0-1ubuntu1.24 [291 kB]
+    Get:12 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl3-gnutls amd64 7.81.0-1ubuntu1.24 [285 kB]
+    Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-modules-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [25.4 MB]
+    Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-image-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [14.8 MB]
+    Get:15 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws amd64 6.8.0-1055.58~22.04.1 [1722 B]
+    Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-image-aws amd64 6.8.0-1055.58~22.04.1 [2474 B]
+    Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws-6.8-headers-6.8.0-1055 all 6.8.0-1055.58~22.04.1 [13.7 MB]
+    Get:18 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-headers-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [3696 kB]
+    Get:19 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-headers-aws amd64 6.8.0-1055.58~22.04.1 [2382 B]
+    Get:20 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-tools-common all 5.15.0-179.189 [282 kB]
+    Get:21 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-aws-6.8-tools-6.8.0-1055 amd64 6.8.0-1055.58~22.04.1 [3756 kB]
+    Get:22 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-tools-6.8.0-1055-aws amd64 6.8.0-1055.58~22.04.1 [1798 B]
+    Fetched 72.3 MB in 1s (88.7 MB/s)
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 72824 files and directories currently installed.)
+    Preparing to unpack .../sed_4.8-1ubuntu2.1_amd64.deb ...
+    Unpacking sed (4.8-1ubuntu2.1) over (4.8-1ubuntu2) ...
+    Setting up sed (4.8-1ubuntu2.1) ...
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 72824 files and directories currently installed.)
+    Preparing to unpack .../00-distro-info-data_0.52ubuntu0.12_all.deb ...
+    Unpacking distro-info-data (0.52ubuntu0.12) over (0.52ubuntu0.11) ...
+    Preparing to unpack .../01-xxd_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking xxd (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../02-vim_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking vim (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../03-vim-tiny_2%3a8.2.3995-1ubuntu2.29_amd64.deb ...
+    Unpacking vim-tiny (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../04-vim-runtime_2%3a8.2.3995-1ubuntu2.29_all.deb ...
+    Unpacking vim-runtime (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../05-vim-common_2%3a8.2.3995-1ubuntu2.29_all.deb ...
+    Unpacking vim-common (2:8.2.3995-1ubuntu2.29) over (2:8.2.3995-1ubuntu2.28) ...
+    Preparing to unpack .../06-libnghttp2-14_1.43.0-1ubuntu0.3_amd64.deb ...
+    Unpacking libnghttp2-14:amd64 (1.43.0-1ubuntu0.3) over (1.43.0-1ubuntu0.2) ...
+    Preparing to unpack .../07-libpng16-16_1.6.37-3ubuntu0.5_amd64.deb ...
+    Unpacking libpng16-16:amd64 (1.6.37-3ubuntu0.5) over (1.6.37-3ubuntu0.4) ...
+    Preparing to unpack .../08-curl_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking curl (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Preparing to unpack .../09-libcurl4_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking libcurl4:amd64 (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Preparing to unpack .../10-libcurl3-gnutls_7.81.0-1ubuntu1.24_amd64.deb ...
+    Unpacking libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.24) over (7.81.0-1ubuntu1.23) ...
+    Selecting previously unselected package linux-modules-6.8.0-1055-aws.
+    Preparing to unpack .../11-linux-modules-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-modules-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-image-6.8.0-1055-aws.
+    Preparing to unpack .../12-linux-image-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Preparing to unpack .../13-linux-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Preparing to unpack .../14-linux-image-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-image-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Selecting previously unselected package linux-aws-6.8-headers-6.8.0-1055.
+    Preparing to unpack .../15-linux-aws-6.8-headers-6.8.0-1055_6.8.0-1055.58~22.04.1_all.deb ...
+    Unpacking linux-aws-6.8-headers-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-headers-6.8.0-1055-aws.
+    Preparing to unpack .../16-linux-headers-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-headers-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Preparing to unpack .../17-linux-headers-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-headers-aws (6.8.0-1055.58~22.04.1) over (6.8.0-1053.56~22.04.1) ...
+    Preparing to unpack .../18-linux-tools-common_5.15.0-179.189_all.deb ...
+    Unpacking linux-tools-common (5.15.0-179.189) over (5.15.0-177.187) ...
+    Selecting previously unselected package linux-aws-6.8-tools-6.8.0-1055.
+    Preparing to unpack .../19-linux-aws-6.8-tools-6.8.0-1055_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-aws-6.8-tools-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Selecting previously unselected package linux-tools-6.8.0-1055-aws.
+    Preparing to unpack .../20-linux-tools-6.8.0-1055-aws_6.8.0-1055.58~22.04.1_amd64.deb ...
+    Unpacking linux-tools-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-aws-6.8-headers-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-headers-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up distro-info-data (0.52ubuntu0.12) ...
+    Setting up libnghttp2-14:amd64 (1.43.0-1ubuntu0.3) ...
+    Setting up linux-headers-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.24) ...
+    Setting up xxd (2:8.2.3995-1ubuntu2.29) ...
+    Setting up vim-common (2:8.2.3995-1ubuntu2.29) ...
+    Setting up libpng16-16:amd64 (1.6.37-3ubuntu0.5) ...
+    Setting up libcurl4:amd64 (7.81.0-1ubuntu1.24) ...
+    Setting up curl (7.81.0-1ubuntu1.24) ...
+    Setting up vim-runtime (2:8.2.3995-1ubuntu2.29) ...
+    Setting up linux-tools-common (5.15.0-179.189) ...
+    Setting up linux-aws-6.8-tools-6.8.0-1055 (6.8.0-1055.58~22.04.1) ...
+    Setting up vim (2:8.2.3995-1ubuntu2.29) ...
+    Setting up vim-tiny (2:8.2.3995-1ubuntu2.29) ...
+    Setting up linux-tools-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    I: /boot/vmlinuz is now a symlink to vmlinuz-6.8.0-1055-aws
+    I: /boot/initrd.img is now a symlink to initrd.img-6.8.0-1055-aws
+    Setting up linux-modules-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-image-aws (6.8.0-1055.58~22.04.1) ...
+    Setting up linux-aws (6.8.0-1055.58~22.04.1) ...
+    Processing triggers for man-db (2.10.2-1) ...
+    Processing triggers for install-info (6.8-4build1) ...
+    Processing triggers for libc-bin (2.35-0ubuntu3.13) ...
+    Processing triggers for linux-image-6.8.0-1055-aws (6.8.0-1055.58~22.04.1) ...
+    /etc/kernel/postinst.d/initramfs-tools:
+    update-initramfs: Generating /boot/initrd.img-6.8.0-1055-aws
+    /etc/kernel/postinst.d/zz-update-grub:
+    Sourcing file `/etc/default/grub'
+    Sourcing file `/etc/default/grub.d/40-force-partuuid.cfg'
+    Sourcing file `/etc/default/grub.d/50-cloudimg-settings.cfg'
+    Sourcing file `/etc/default/grub.d/init-select.cfg'
+    Generating grub configuration file ...
+    GRUB_FORCE_PARTUUID is set, will attempt initrdless boot
+    Found linux image: /boot/vmlinuz-6.8.0-1055-aws
+    Found initrd image: /boot/microcode.cpio /boot/initrd.img-6.8.0-1055-aws
+    Found linux image: /boot/vmlinuz-6.8.0-1053-aws
+    Found initrd image: /boot/microcode.cpio /boot/initrd.img-6.8.0-1053-aws
+    Warning: os-prober will not be executed to detect other bootable partitions.
+    Systems on them will not be added to the GRUB boot configuration.
+    Check GRUB_DISABLE_OS_PROBER documentation entry.
+    Adding boot menu entry for UEFI Firmware Settings ...
+    done
+  
+    Pending kernel upgrade!
+  
+    Running kernel version:
+      6.8.0-1053-aws
+  
+    Diagnostics:
+      The currently running kernel version is not the expected kernel version 6.8.0-1055-aws.
+  
+    Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+  
+    Services to be restarted:
+     systemctl restart packagekit.service
+  
+    No containers need to be restarted.
+  
+    No user sessions are running outdated binaries.
+  
+    No VM guests are running outdated hypervisor (qemu) binaries on this host.
+  stdout_lines: <omitted>
+2026-05-16 12:30:08,850 p=5947 u=dc-ops n=ansible | TASK [APT | Install base packages] ****************************************************************************************************************************************************************************************
+2026-05-16 12:30:08,850 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:30:08 +1000 (0:00:26.817)       0:00:49.296 ********** 
+2026-05-16 12:30:08,877 p=5947 u=dc-ops n=ansible | fatal: [98.81.134.151]: FAILED! => 
+  msg: |-
+    The task includes an option with an undefined variable.. 'apt_packages' is undefined
+  
+    The error appears to be in '/home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/playbooks/install_packages.yml': line 52, column 7, but may
+    be elsewhere in the file depending on the exact syntax problem.
+  
+    The offending line appears to be:
+  
+        # ──────────────────────────────────────────────────────────────────────────
+        - name: "APT | Install base packages"
+          ^ here
+2026-05-16 12:30:08,878 p=5947 u=dc-ops n=ansible | PLAY RECAP ****************************************************************************************************************************************************************************************************************
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | 98.81.134.151              : ok=5    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 49 seconds
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | Saturday 16 May 2026  12:30:08 +1000 (0:00:00.028)       0:00:49.325 ********** 
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | =============================================================================== 
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | PREFLIGHT | Update apt cache and upgrade packages ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 26.82s
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | PREFLIGHT | Wait for SSH to be available -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 15.46s
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | Gathering Facts ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 3.54s
+2026-05-16 12:30:08,879 p=5947 u=dc-ops n=ansible | PREFLIGHT | Gather facts after SSH is ready ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 3.45s
+2026-05-16 12:30:08,880 p=5947 u=dc-ops n=ansible | APT | Install base packages ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.03s
+2026-05-16 12:30:08,880 p=5947 u=dc-ops n=ansible | PREFLIGHT | Print instance information ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.02s
+2026-05-16 12:38:07,919 p=7518 u=dc-ops n=ansible | Using /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/ansible.cfg as config file
+2026-05-16 12:38:08,048 p=7518 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:38:08,058 p=7518 u=dc-ops n=botocore.credentials | Found credentials in shared credentials file: ~/.aws/credentials
+2026-05-16 12:38:10,140 p=7518 u=dc-ops n=ansible | PLAY [Install DevTools on EC2 Instances] *****************************************************************************************************************************************************************
+2026-05-16 12:38:10,148 p=7518 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:38:10,148 p=7518 u=dc-ops n=ansible | TASK [PREFLIGHT | Wait for SSH to be available] **********************************************************************************************************************************************************
+2026-05-16 12:38:10,148 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:10 +1000 (0:00:00.008)       0:00:00.008 ********** 
+2026-05-16 12:38:25,977 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  elapsed: 15
+2026-05-16 12:38:25,990 p=7518 u=dc-ops n=ansible | TASK [PREFLIGHT | Gather facts after SSH is ready] *******************************************************************************************************************************************************
+2026-05-16 12:38:25,990 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:25 +1000 (0:00:15.842)       0:00:15.851 ********** 
+2026-05-16 12:38:29,397 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151]
+2026-05-16 12:38:29,408 p=7518 u=dc-ops n=ansible | TASK [PREFLIGHT | Print instance information] ************************************************************************************************************************************************************
+2026-05-16 12:38:29,408 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:29 +1000 (0:00:03.417)       0:00:19.269 ********** 
+2026-05-16 12:38:29,433 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg:
+  - 'Hostname    : ip-172-31-27-115'
+  - 'OS          : Ubuntu 22.04'
+  - 'Architecture: x86_64'
+  - 'Public IP   : 98.81.134.151'
+2026-05-16 12:38:29,440 p=7518 u=dc-ops n=ansible | TASK [PREFLIGHT | Update apt cache and upgrade packages] *************************************************************************************************************************************************
+2026-05-16 12:38:29,440 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:29 +1000 (0:00:00.031)       0:00:19.300 ********** 
+2026-05-16 12:38:32,764 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  msg: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+  stdout_lines: <omitted>
+2026-05-16 12:38:32,772 p=7518 u=dc-ops n=ansible | TASK [APT | Install base packages] ***********************************************************************************************************************************************************************
+2026-05-16 12:38:32,772 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:32 +1000 (0:00:03.331)       0:00:22.632 ********** 
+2026-05-16 12:38:42,597 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  cache_update_time: 1778899115
+  cache_updated: true
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Suggested packages:
+      zip
+    The following NEW packages will be installed:
+      apt-transport-https unzip
+    0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 176 kB of archives.
+    After this operation, 556 kB of additional disk space will be used.
+    Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 apt-transport-https all 2.4.14 [1510 B]
+    Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 unzip amd64 6.0-26ubuntu3.2 [175 kB]
+    Fetched 176 kB in 0s (5284 kB/s)
+    Selecting previously unselected package apt-transport-https.
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 103432 files and directories currently installed.)
+    Preparing to unpack .../apt-transport-https_2.4.14_all.deb ...
+    Unpacking apt-transport-https (2.4.14) ...
+    Selecting previously unselected package unzip.
+    Preparing to unpack .../unzip_6.0-26ubuntu3.2_amd64.deb ...
+    Unpacking unzip (6.0-26ubuntu3.2) ...
+    Setting up apt-transport-https (2.4.14) ...
+    Setting up unzip (6.0-26ubuntu3.2) ...
+    Processing triggers for man-db (2.10.2-1) ...
+  
+    Pending kernel upgrade!
+  
+    Running kernel version:
+      6.8.0-1053-aws
+  
+    Diagnostics:
+      The currently running kernel version is not the expected kernel version 6.8.0-1055-aws.
+  
+    Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+  
+    Services to be restarted:
+     systemctl restart packagekit.service
+  
+    No containers need to be restarted.
+  
+    No user sessions are running outdated binaries.
+  
+    No VM guests are running outdated hypervisor (qemu) binaries on this host.
+  stdout_lines: <omitted>
+2026-05-16 12:38:42,605 p=7518 u=dc-ops n=ansible | TASK [APT | Show installed packages] *********************************************************************************************************************************************************************
+2026-05-16 12:38:42,605 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:42 +1000 (0:00:09.833)       0:00:32.466 ********** 
+2026-05-16 12:38:42,636 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg: 'Installed: curl, unzip, tmux, git, wget, ca-certificates, gnupg, lsb-release, apt-transport-https, software-properties-common, python3, python3-pip'
+2026-05-16 12:38:42,639 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Create keyrings directory] ****************************************************************************************************************************************************************
+2026-05-16 12:38:42,640 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:42 +1000 (0:00:00.034)       0:00:32.500 ********** 
+2026-05-16 12:38:44,660 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  gid: 0
+  group: root
+  mode: '0755'
+  owner: root
+  path: /etc/apt/keyrings
+  size: 4096
+  state: directory
+  uid: 0
+2026-05-16 12:38:44,667 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Download Docker GPG key] ******************************************************************************************************************************************************************
+2026-05-16 12:38:44,667 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:44 +1000 (0:00:02.027)       0:00:34.528 ********** 
+2026-05-16 12:38:46,119 p=7518 u=dc-ops n=ansible | [WARNING]: Module remote_tmp /root/.ansible/tmp did not exist and was created with a mode of 0700, this may cause issues when running as another user. To avoid this, create the remote_tmp dir with the
+correct permissions manually
+
+2026-05-16 12:38:46,121 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  checksum_dest: null
+  checksum_src: f5b5bd1487cefc0c53c947e11ca202e86b33dbad
+  dest: /etc/apt/keyrings/docker.asc
+  elapsed: 0
+  gid: 0
+  group: root
+  md5sum: 1afae06b34a13c1b3d9cb61a26285a15
+  mode: '0644'
+  msg: OK (3817 bytes)
+  owner: root
+  size: 3817
+  src: /root/.ansible/tmp/ansible-moduletmp-1778899125.9722183-r68r5y6x/tmpgmq82y23
+  state: file
+  status_code: 200
+  uid: 0
+  url: https://download.docker.com/linux/ubuntu/gpg
+2026-05-16 12:38:46,128 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Add Docker apt repository] ****************************************************************************************************************************************************************
+2026-05-16 12:38:46,128 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:46 +1000 (0:00:01.460)       0:00:35.988 ********** 
+2026-05-16 12:38:54,227 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+  sources_added:
+  - /etc/apt/sources.list.d/docker.list
+  sources_removed: []
+  state: present
+2026-05-16 12:38:54,235 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Install Docker CE and related packages] ***************************************************************************************************************************************************
+2026-05-16 12:38:54,235 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:38:54 +1000 (0:00:08.107)       0:00:44.096 ********** 
+2026-05-16 12:39:16,580 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  cache_update_time: 1778899137
+  cache_updated: true
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    The following additional packages will be installed:
+      docker-ce-rootless-extras pigz
+    Suggested packages:
+      cgroupfs-mount | cgroup-lite docker-model-plugin
+    The following NEW packages will be installed:
+      containerd.io docker-buildx-plugin docker-ce docker-ce-cli
+      docker-ce-rootless-extras docker-compose-plugin pigz
+    0 upgraded, 7 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 99.0 MB of archives.
+    After this operation, 378 MB of additional disk space will be used.
+    Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy/universe amd64 pigz amd64 2.6-1 [63.6 kB]
+    Get:2 https://download.docker.com/linux/ubuntu jammy/stable amd64 containerd.io amd64 2.2.3-1~ubuntu.22.04~jammy [23.6 MB]
+    Get:3 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-cli amd64 5:29.5.0-1~ubuntu.22.04~jammy [17.0 MB]
+    Get:4 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce amd64 5:29.5.0-1~ubuntu.22.04~jammy [23.0 MB]
+    Get:5 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-buildx-plugin amd64 0.34.0-1~ubuntu.22.04~jammy [17.2 MB]
+    Get:6 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-rootless-extras amd64 5:29.5.0-1~ubuntu.22.04~jammy [10.2 MB]
+    Get:7 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-compose-plugin amd64 5.1.3-1~ubuntu.22.04~jammy [8023 kB]
+    Fetched 99.0 MB in 1s (86.1 MB/s)
+    Selecting previously unselected package containerd.io.
+    (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 103454 files and directories currently installed.)
+    Preparing to unpack .../0-containerd.io_2.2.3-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking containerd.io (2.2.3-1~ubuntu.22.04~jammy) ...
+    Selecting previously unselected package docker-ce-cli.
+    Preparing to unpack .../1-docker-ce-cli_5%3a29.5.0-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking docker-ce-cli (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Selecting previously unselected package docker-ce.
+    Preparing to unpack .../2-docker-ce_5%3a29.5.0-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking docker-ce (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Selecting previously unselected package pigz.
+    Preparing to unpack .../3-pigz_2.6-1_amd64.deb ...
+    Unpacking pigz (2.6-1) ...
+    Selecting previously unselected package docker-buildx-plugin.
+    Preparing to unpack .../4-docker-buildx-plugin_0.34.0-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking docker-buildx-plugin (0.34.0-1~ubuntu.22.04~jammy) ...
+    Selecting previously unselected package docker-ce-rootless-extras.
+    Preparing to unpack .../5-docker-ce-rootless-extras_5%3a29.5.0-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking docker-ce-rootless-extras (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Selecting previously unselected package docker-compose-plugin.
+    Preparing to unpack .../6-docker-compose-plugin_5.1.3-1~ubuntu.22.04~jammy_amd64.deb ...
+    Unpacking docker-compose-plugin (5.1.3-1~ubuntu.22.04~jammy) ...
+    Setting up docker-buildx-plugin (0.34.0-1~ubuntu.22.04~jammy) ...
+    Setting up containerd.io (2.2.3-1~ubuntu.22.04~jammy) ...
+    Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+    Setting up docker-compose-plugin (5.1.3-1~ubuntu.22.04~jammy) ...
+    Setting up docker-ce-cli (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Setting up pigz (2.6-1) ...
+    Setting up docker-ce-rootless-extras (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Setting up docker-ce (5:29.5.0-1~ubuntu.22.04~jammy) ...
+    Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+    Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+    Processing triggers for man-db (2.10.2-1) ...
+  
+    Pending kernel upgrade!
+  
+    Running kernel version:
+      6.8.0-1053-aws
+  
+    Diagnostics:
+      The currently running kernel version is not the expected kernel version 6.8.0-1055-aws.
+  
+    Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+  
+    Services to be restarted:
+     systemctl restart packagekit.service
+  
+    No containers need to be restarted.
+  
+    No user sessions are running outdated binaries.
+  
+    No VM guests are running outdated hypervisor (qemu) binaries on this host.
+  stdout_lines: <omitted>
+2026-05-16 12:39:16,588 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Enable and start Docker service] **********************************************************************************************************************************************************
+2026-05-16 12:39:16,588 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:16 +1000 (0:00:22.352)       0:01:06.448 ********** 
+2026-05-16 12:39:19,289 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  enabled: true
+  name: docker
+  state: started
+  status:
+    ActiveEnterTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ActiveEnterTimestampMonotonic: '1399411170'
+    ActiveExitTimestamp: n/a
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: active
+    After: containerd.service system.slice sysinit.target network-online.target basic.target nss-lookup.target firewalld.service docker.socket systemd-journald.socket time-set.target
+    AllowIsolate: 'no'
+    AssertResult: 'yes'
+    AssertTimestamp: Sat 2026-05-16 02:39:13 UTC
+    AssertTimestampMonotonic: '1398868444'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '[not set]'
+    CPUAccounting: 'yes'
+    CPUAffinityFromNUMA: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUQuotaPeriodUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '[not set]'
+    CPUUsageNSec: '379902000'
+    CPUWeight: '[not set]'
+    CacheDirectoryMode: '0755'
+    CanFreeze: 'yes'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
+    CleanResult: success
+    CollectMode: inactive
+    ConditionResult: 'yes'
+    ConditionTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ConditionTimestampMonotonic: '1398868442'
+    ConfigurationDirectoryMode: '0755'
+    Conflicts: shutdown.target
+    ControlGroup: /system.slice/docker.service
+    ControlPID: '0'
+    CoredumpFilter: '0x33'
+    DefaultDependencies: 'yes'
+    DefaultMemoryLow: '0'
+    DefaultMemoryMin: '0'
+    Delegate: 'yes'
+    DelegateControllers: cpu cpuacct cpuset io blkio memory devices pids bpf-firewall bpf-devices bpf-foreign bpf-socket-bind
+    Description: Docker Application Container Engine
+    DevicePolicy: auto
+    Documentation: https://docs.docker.com
+    DynamicUser: 'no'
+    EffectiveCPUs: 0-1
+    EffectiveMemoryNodes: '0'
+    ExecMainCode: '0'
+    ExecMainExitTimestamp: n/a
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '9881'
+    ExecMainStartTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ExecMainStartTimestampMonotonic: '1398869635'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/bin/kill ; argv[]=/bin/kill -s HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecReloadEx: '{ path=/bin/kill ; argv[]=/bin/kill -s HUP $MAINPID ; flags= ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/bin/dockerd ; argv[]=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock ; ignore_errors=no ; start_time=[Sat 2026-05-16 02:39:13 UTC] ; stop_time=[n/a] ; pid=9881 ; code=(null) ; status=0/0 }'
+    ExecStartEx: '{ path=/usr/bin/dockerd ; argv[]=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock ; flags= ; start_time=[Sat 2026-05-16 02:39:13 UTC] ; stop_time=[n/a] ; pid=9881 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FinalKillSignal: '9'
+    FragmentPath: /lib/systemd/system/docker.service
+    FreezerState: running
+    GID: '[not set]'
+    GuessMainPID: 'yes'
+    IOAccounting: 'no'
+    IOReadBytes: '18446744073709551615'
+    IOReadOperations: '18446744073709551615'
+    IOSchedulingClass: '2'
+    IOSchedulingPriority: '4'
+    IOWeight: '[not set]'
+    IOWriteBytes: '18446744073709551615'
+    IOWriteOperations: '18446744073709551615'
+    IPAccounting: 'no'
+    IPEgressBytes: '[no data]'
+    IPEgressPackets: '[no data]'
+    IPIngressBytes: '[no data]'
+    IPIngressPackets: '[no data]'
+    Id: docker.service
+    IgnoreOnIsolate: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestamp: n/a
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestamp: Sat 2026-05-16 02:39:13 UTC
+    InactiveExitTimestampMonotonic: '1398870259'
+    InvocationID: b14ca27ab161462c874535e11171e22e
+    JobRunningTimeoutUSec: infinity
+    JobTimeoutAction: none
+    JobTimeoutUSec: infinity
+    KeyringMode: private
+    KillMode: process
+    KillSignal: '15'
+    LimitAS: infinity
+    LimitASSoft: infinity
+    LimitCORE: infinity
+    LimitCORESoft: infinity
+    LimitCPU: infinity
+    LimitCPUSoft: infinity
+    LimitDATA: infinity
+    LimitDATASoft: infinity
+    LimitFSIZE: infinity
+    LimitFSIZESoft: infinity
+    LimitLOCKS: infinity
+    LimitLOCKSSoft: infinity
+    LimitMEMLOCK: '8388608'
+    LimitMEMLOCKSoft: '8388608'
+    LimitMSGQUEUE: '819200'
+    LimitMSGQUEUESoft: '819200'
+    LimitNICE: '0'
+    LimitNICESoft: '0'
+    LimitNOFILE: '524288'
+    LimitNOFILESoft: '1024'
+    LimitNPROC: infinity
+    LimitNPROCSoft: infinity
+    LimitRSS: infinity
+    LimitRSSSoft: infinity
+    LimitRTPRIO: '0'
+    LimitRTPRIOSoft: '0'
+    LimitRTTIME: infinity
+    LimitRTTIMESoft: infinity
+    LimitSIGPENDING: '15261'
+    LimitSIGPENDINGSoft: '15261'
+    LimitSTACK: infinity
+    LimitSTACKSoft: '8388608'
+    LoadState: loaded
+    LockPersonality: 'no'
+    LogLevelMax: '-1'
+    LogRateLimitBurst: '0'
+    LogRateLimitIntervalUSec: '0'
+    LogsDirectoryMode: '0755'
+    MainPID: '9881'
+    ManagedOOMMemoryPressure: auto
+    ManagedOOMMemoryPressureLimit: '0'
+    ManagedOOMPreference: none
+    ManagedOOMSwap: auto
+    MemoryAccounting: 'yes'
+    MemoryAvailable: infinity
+    MemoryCurrent: '28807168'
+    MemoryDenyWriteExecute: 'no'
+    MemoryHigh: infinity
+    MemoryLimit: infinity
+    MemoryLow: '0'
+    MemoryMax: infinity
+    MemoryMin: '0'
+    MemorySwapMax: infinity
+    MountAPIVFS: 'no'
+    NFileDescriptorStore: '0'
+    NRestarts: '0'
+    NUMAPolicy: n/a
+    Names: docker.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMPolicy: continue
+    OOMScoreAdjust: '-500'
+    OnFailureJobMode: replace
+    OnSuccessJobMode: fail
+    Perpetual: 'no'
+    PrivateDevices: 'no'
+    PrivateIPC: 'no'
+    PrivateMounts: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'no'
+    PrivateUsers: 'no'
+    ProcSubset: all
+    ProtectClock: 'no'
+    ProtectControlGroups: 'no'
+    ProtectHome: 'no'
+    ProtectHostname: 'no'
+    ProtectKernelLogs: 'no'
+    ProtectKernelModules: 'no'
+    ProtectKernelTunables: 'no'
+    ProtectProc: default
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    ReloadResult: success
+    RemainAfterExit: 'no'
+    RemoveIPC: 'no'
+    Requires: docker.socket sysinit.target system.slice
+    Restart: always
+    RestartKillSignal: '15'
+    RestartUSec: 2s
+    RestrictNamespaces: 'no'
+    RestrictRealtime: 'no'
+    RestrictSUIDSGID: 'no'
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    RuntimeDirectoryPreserve: 'no'
+    RuntimeMaxUSec: infinity
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '3'
+    StartLimitIntervalUSec: 1min
+    StartupBlockIOWeight: '[not set]'
+    StartupCPUShares: '[not set]'
+    StartupCPUWeight: '[not set]'
+    StartupIOWeight: '[not set]'
+    StateChangeTimestamp: Sat 2026-05-16 02:39:13 UTC
+    StateChangeTimestampMonotonic: '1399411170'
+    StateDirectoryMode: '0755'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: running
+    SuccessAction: none
+    SyslogFacility: '3'
+    SyslogLevel: '6'
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '2147483646'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'yes'
+    TasksCurrent: '9'
+    TasksMax: infinity
+    TimeoutAbortUSec: 1min 30s
+    TimeoutCleanUSec: infinity
+    TimeoutStartFailureMode: terminate
+    TimeoutStartUSec: infinity
+    TimeoutStopFailureMode: terminate
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    TriggeredBy: docker.socket
+    Type: notify
+    UID: '[not set]'
+    UMask: '0022'
+    UnitFilePreset: enabled
+    UnitFileState: enabled
+    UtmpMode: init
+    WantedBy: multi-user.target
+    Wants: containerd.service network-online.target
+    WatchdogSignal: '6'
+    WatchdogTimestamp: n/a
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2026-05-16 12:39:19,293 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Add users to docker group] ****************************************************************************************************************************************************************
+2026-05-16 12:39:19,293 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:19 +1000 (0:00:02.704)       0:01:09.153 ********** 
+2026-05-16 12:39:20,709 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => (item=ubuntu) => changed=true 
+  ansible_loop_var: item
+  append: true
+  comment: Ubuntu
+  group: 1000
+  groups: docker
+  home: /home/ubuntu
+  item: ubuntu
+  move_home: false
+  name: ubuntu
+  shell: /bin/bash
+  state: present
+  uid: 1000
+2026-05-16 12:39:20,726 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Verify Docker installation] ***************************************************************************************************************************************************************
+2026-05-16 12:39:20,727 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:20 +1000 (0:00:01.433)       0:01:10.587 ********** 
+2026-05-16 12:39:21,990 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - docker
+  - --version
+  delta: '0:00:00.017075'
+  end: '2026-05-16 02:39:21.872719'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:39:21.855644'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: Docker version 29.5.0, build 98f1464
+  stdout_lines: <omitted>
+2026-05-16 12:39:21,998 p=7518 u=dc-ops n=ansible | TASK [DOCKER | Show Docker version] **********************************************************************************************************************************************************************
+2026-05-16 12:39:21,998 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:21 +1000 (0:00:01.271)       0:01:11.859 ********** 
+2026-05-16 12:39:22,021 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg: Docker version 29.5.0, build 98f1464
+2026-05-16 12:39:22,024 p=7518 u=dc-ops n=ansible | TASK [KUBECTL | Check if kubectl already installed at correct version] ***********************************************************************************************************************************
+2026-05-16 12:39:22,025 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:22 +1000 (0:00:00.026)       0:01:11.885 ********** 
+2026-05-16 12:39:23,208 p=7518 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd: kubectl version --client --output=yaml
+  failed_when_result: false
+  msg: '[Errno 2] No such file or directory: b''kubectl'''
+  rc: 2
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: ''
+  stdout_lines: <omitted>
+2026-05-16 12:39:23,216 p=7518 u=dc-ops n=ansible | TASK [KUBECTL | Download kubectl binary] *****************************************************************************************************************************************************************
+2026-05-16 12:39:23,216 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:23 +1000 (0:00:01.191)       0:01:13.077 ********** 
+2026-05-16 12:39:25,116 p=7518 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  checksum_dest: null
+  checksum_src: cbd0b9794c4f3cc3761a38ba9642a868acb395f6
+  dest: /usr/local/bin/kubectl
+  elapsed: 0
+  gid: 0
+  group: root
+  md5sum: b444ff54040d0506823535d9010b86e7
+  mode: '0755'
+  msg: OK (51454104 bytes)
+  owner: root
+  size: 51454104
+  src: /root/.ansible/tmp/ansible-moduletmp-1778899164.4163406-m5v8qnhe/tmpdvzgu4xn
+  state: file
+  status_code: 200
+  uid: 0
+  url: https://dl.k8s.io/release/v1.30.2/bin/linux/amd64/kubectl
+2026-05-16 12:39:25,123 p=7518 u=dc-ops n=ansible | TASK [KUBECTL | Verify kubectl installation] *************************************************************************************************************************************************************
+2026-05-16 12:39:25,123 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:25 +1000 (0:00:01.906)       0:01:14.983 ********** 
+2026-05-16 12:39:26,526 p=7518 u=dc-ops n=ansible | fatal: [98.81.134.151]: FAILED! => changed=false 
+  cmd:
+  - kubectl
+  - version
+  - --client
+  - --short
+  delta: '0:00:00.054258'
+  end: '2026-05-16 02:39:26.359798'
+  msg: non-zero return code
+  rc: 1
+  start: '2026-05-16 02:39:26.305540'
+  stderr: |-
+    error: unknown flag: --short
+    See 'kubectl version --help' for usage.
+  stderr_lines: <omitted>
+  stdout: ''
+  stdout_lines: <omitted>
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************************************
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | 98.81.134.151              : ok=16   changed=6    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | Playbook run took 0 days, 0 hours, 1 minutes, 16 seconds
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | Saturday 16 May 2026  12:39:26 +1000 (0:00:01.405)       0:01:16.388 ********** 
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | =============================================================================== 
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | DOCKER | Install Docker CE and related packages -------------------------------------------------------------------------------------------------------------------------------------------------- 22.35s
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | PREFLIGHT | Wait for SSH to be available --------------------------------------------------------------------------------------------------------------------------------------------------------- 15.84s
+2026-05-16 12:39:26,528 p=7518 u=dc-ops n=ansible | APT | Install base packages ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 9.83s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Add Docker apt repository ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 8.11s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | PREFLIGHT | Gather facts after SSH is ready ------------------------------------------------------------------------------------------------------------------------------------------------------- 3.42s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | PREFLIGHT | Update apt cache and upgrade packages ------------------------------------------------------------------------------------------------------------------------------------------------- 3.33s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Enable and start Docker service ---------------------------------------------------------------------------------------------------------------------------------------------------------- 2.70s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Create keyrings directory ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 2.03s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | KUBECTL | Download kubectl binary ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.91s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Download Docker GPG key ------------------------------------------------------------------------------------------------------------------------------------------------------------------ 1.46s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Add users to docker group ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.43s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | KUBECTL | Verify kubectl installation ------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.41s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Verify Docker installation --------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.27s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | KUBECTL | Check if kubectl already installed at correct version ----------------------------------------------------------------------------------------------------------------------------------- 1.19s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | APT | Show installed packages --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.03s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | PREFLIGHT | Print instance information ------------------------------------------------------------------------------------------------------------------------------------------------------------ 0.03s
+2026-05-16 12:39:26,529 p=7518 u=dc-ops n=ansible | DOCKER | Show Docker version ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.03s
+2026-05-16 12:46:12,334 p=8117 u=dc-ops n=ansible | Using /home/dc-ops/terracode-local-user/11_Terraform-Ansible/ec2-ansible-devtools/ansible/ansible.cfg as config file
+2026-05-16 12:46:12,459 p=8117 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:46:12,468 p=8117 u=dc-ops n=botocore.credentials | Found credentials in shared credentials file: ~/.aws/credentials
+2026-05-16 12:46:14,519 p=8117 u=dc-ops n=ansible | PLAY [Install DevTools on EC2 Instances] *****************************************************************************************************************************************************************
+2026-05-16 12:46:14,526 p=8117 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:46:14,526 p=8117 u=dc-ops n=ansible | TASK [PREFLIGHT | Wait for SSH to be available] **********************************************************************************************************************************************************
+2026-05-16 12:46:14,526 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:14 +1000 (0:00:00.009)       0:00:00.009 ********** 
+2026-05-16 12:46:30,306 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  elapsed: 15
+2026-05-16 12:46:30,315 p=8117 u=dc-ops n=ansible | TASK [PREFLIGHT | Gather facts after SSH is ready] *******************************************************************************************************************************************************
+2026-05-16 12:46:30,316 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:30 +1000 (0:00:15.789)       0:00:15.798 ********** 
+2026-05-16 12:46:35,323 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151]
+2026-05-16 12:46:35,327 p=8117 u=dc-ops n=ansible | TASK [PREFLIGHT | Print instance information] ************************************************************************************************************************************************************
+2026-05-16 12:46:35,327 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:35 +1000 (0:00:05.011)       0:00:20.810 ********** 
+2026-05-16 12:46:35,341 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg:
+  - 'Hostname    : ip-172-31-27-115'
+  - 'OS          : Ubuntu 22.04'
+  - 'Architecture: x86_64'
+  - 'Public IP   : 98.81.134.151'
+2026-05-16 12:46:35,344 p=8117 u=dc-ops n=ansible | TASK [PREFLIGHT | Update apt cache and upgrade packages] *************************************************************************************************************************************************
+2026-05-16 12:46:35,345 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:35 +1000 (0:00:00.017)       0:00:20.827 ********** 
+2026-05-16 12:46:38,773 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  msg: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Calculating upgrade...
+    0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+  stdout_lines: <omitted>
+2026-05-16 12:46:38,780 p=8117 u=dc-ops n=ansible | TASK [APT | Install base packages] ***********************************************************************************************************************************************************************
+2026-05-16 12:46:38,781 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:38 +1000 (0:00:03.435)       0:00:24.263 ********** 
+2026-05-16 12:46:43,182 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cache_update_time: 1778899601
+  cache_updated: true
+2026-05-16 12:46:43,192 p=8117 u=dc-ops n=ansible | TASK [APT | Show installed packages] *********************************************************************************************************************************************************************
+2026-05-16 12:46:43,192 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:43 +1000 (0:00:04.411)       0:00:28.675 ********** 
+2026-05-16 12:46:43,213 p=8117 u=dc-ops n=ansible | skipping: [98.81.134.151] => 
+  false_condition: apt_result.changed
+2026-05-16 12:46:43,220 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Create keyrings directory] ****************************************************************************************************************************************************************
+2026-05-16 12:46:43,220 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:43 +1000 (0:00:00.027)       0:00:28.702 ********** 
+2026-05-16 12:46:45,755 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  gid: 0
+  group: root
+  mode: '0755'
+  owner: root
+  path: /etc/apt/keyrings
+  size: 4096
+  state: directory
+  uid: 0
+2026-05-16 12:46:45,764 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Download Docker GPG key] ******************************************************************************************************************************************************************
+2026-05-16 12:46:45,764 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:45 +1000 (0:00:02.544)       0:00:31.246 ********** 
+2026-05-16 12:46:47,694 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  dest: /etc/apt/keyrings/docker.asc
+  elapsed: 0
+  gid: 0
+  group: root
+  mode: '0644'
+  msg: 'HTTP Error 304: Not Modified'
+  owner: root
+  size: 3817
+  state: file
+  status_code: 304
+  uid: 0
+  url: https://download.docker.com/linux/ubuntu/gpg
+2026-05-16 12:46:47,702 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Add Docker apt repository] ****************************************************************************************************************************************************************
+2026-05-16 12:46:47,702 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:47 +1000 (0:00:01.937)       0:00:33.184 ********** 
+2026-05-16 12:46:49,436 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+  sources_added: []
+  sources_removed: []
+  state: present
+2026-05-16 12:46:49,445 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Install Docker CE and related packages] ***************************************************************************************************************************************************
+2026-05-16 12:46:49,445 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:49 +1000 (0:00:01.743)       0:00:34.927 ********** 
+2026-05-16 12:46:53,421 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cache_update_time: 1778899612
+  cache_updated: true
+2026-05-16 12:46:53,430 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Enable and start Docker service] **********************************************************************************************************************************************************
+2026-05-16 12:46:53,430 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:53 +1000 (0:00:03.984)       0:00:38.912 ********** 
+2026-05-16 12:46:56,498 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  enabled: true
+  name: docker
+  state: started
+  status:
+    ActiveEnterTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ActiveEnterTimestampMonotonic: '1399411170'
+    ActiveExitTimestamp: n/a
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: active
+    After: containerd.service system.slice sysinit.target network-online.target basic.target nss-lookup.target firewalld.service docker.socket systemd-journald.socket time-set.target
+    AllowIsolate: 'no'
+    AssertResult: 'yes'
+    AssertTimestamp: Sat 2026-05-16 02:39:13 UTC
+    AssertTimestampMonotonic: '1398868444'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '[not set]'
+    CPUAccounting: 'yes'
+    CPUAffinityFromNUMA: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUQuotaPeriodUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '[not set]'
+    CPUUsageNSec: '421253000'
+    CPUWeight: '[not set]'
+    CacheDirectoryMode: '0755'
+    CanFreeze: 'yes'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
+    CleanResult: success
+    CollectMode: inactive
+    ConditionResult: 'yes'
+    ConditionTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ConditionTimestampMonotonic: '1398868442'
+    ConfigurationDirectoryMode: '0755'
+    Conflicts: shutdown.target
+    ControlGroup: /system.slice/docker.service
+    ControlPID: '0'
+    CoredumpFilter: '0x33'
+    DefaultDependencies: 'yes'
+    DefaultMemoryLow: '0'
+    DefaultMemoryMin: '0'
+    Delegate: 'yes'
+    DelegateControllers: cpu cpuacct cpuset io blkio memory devices pids bpf-firewall bpf-devices bpf-foreign bpf-socket-bind
+    Description: Docker Application Container Engine
+    DevicePolicy: auto
+    Documentation: https://docs.docker.com
+    DynamicUser: 'no'
+    EffectiveCPUs: 0-1
+    EffectiveMemoryNodes: '0'
+    ExecMainCode: '0'
+    ExecMainExitTimestamp: n/a
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '9881'
+    ExecMainStartTimestamp: Sat 2026-05-16 02:39:13 UTC
+    ExecMainStartTimestampMonotonic: '1398869635'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/bin/kill ; argv[]=/bin/kill -s HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecReloadEx: '{ path=/bin/kill ; argv[]=/bin/kill -s HUP $MAINPID ; flags= ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/bin/dockerd ; argv[]=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock ; ignore_errors=no ; start_time=[Sat 2026-05-16 02:39:13 UTC] ; stop_time=[n/a] ; pid=9881 ; code=(null) ; status=0/0 }'
+    ExecStartEx: '{ path=/usr/bin/dockerd ; argv[]=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock ; flags= ; start_time=[Sat 2026-05-16 02:39:13 UTC] ; stop_time=[n/a] ; pid=9881 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FinalKillSignal: '9'
+    FragmentPath: /lib/systemd/system/docker.service
+    FreezerState: running
+    GID: '[not set]'
+    GuessMainPID: 'yes'
+    IOAccounting: 'no'
+    IOReadBytes: '18446744073709551615'
+    IOReadOperations: '18446744073709551615'
+    IOSchedulingClass: '2'
+    IOSchedulingPriority: '4'
+    IOWeight: '[not set]'
+    IOWriteBytes: '18446744073709551615'
+    IOWriteOperations: '18446744073709551615'
+    IPAccounting: 'no'
+    IPEgressBytes: '[no data]'
+    IPEgressPackets: '[no data]'
+    IPIngressBytes: '[no data]'
+    IPIngressPackets: '[no data]'
+    Id: docker.service
+    IgnoreOnIsolate: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestamp: n/a
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestamp: Sat 2026-05-16 02:39:13 UTC
+    InactiveExitTimestampMonotonic: '1398870259'
+    InvocationID: b14ca27ab161462c874535e11171e22e
+    JobRunningTimeoutUSec: infinity
+    JobTimeoutAction: none
+    JobTimeoutUSec: infinity
+    KeyringMode: private
+    KillMode: process
+    KillSignal: '15'
+    LimitAS: infinity
+    LimitASSoft: infinity
+    LimitCORE: infinity
+    LimitCORESoft: infinity
+    LimitCPU: infinity
+    LimitCPUSoft: infinity
+    LimitDATA: infinity
+    LimitDATASoft: infinity
+    LimitFSIZE: infinity
+    LimitFSIZESoft: infinity
+    LimitLOCKS: infinity
+    LimitLOCKSSoft: infinity
+    LimitMEMLOCK: '8388608'
+    LimitMEMLOCKSoft: '8388608'
+    LimitMSGQUEUE: '819200'
+    LimitMSGQUEUESoft: '819200'
+    LimitNICE: '0'
+    LimitNICESoft: '0'
+    LimitNOFILE: '524288'
+    LimitNOFILESoft: '1024'
+    LimitNPROC: infinity
+    LimitNPROCSoft: infinity
+    LimitRSS: infinity
+    LimitRSSSoft: infinity
+    LimitRTPRIO: '0'
+    LimitRTPRIOSoft: '0'
+    LimitRTTIME: infinity
+    LimitRTTIMESoft: infinity
+    LimitSIGPENDING: '15261'
+    LimitSIGPENDINGSoft: '15261'
+    LimitSTACK: infinity
+    LimitSTACKSoft: '8388608'
+    LoadState: loaded
+    LockPersonality: 'no'
+    LogLevelMax: '-1'
+    LogRateLimitBurst: '0'
+    LogRateLimitIntervalUSec: '0'
+    LogsDirectoryMode: '0755'
+    MainPID: '9881'
+    ManagedOOMMemoryPressure: auto
+    ManagedOOMMemoryPressureLimit: '0'
+    ManagedOOMPreference: none
+    ManagedOOMSwap: auto
+    MemoryAccounting: 'yes'
+    MemoryAvailable: infinity
+    MemoryCurrent: '28381184'
+    MemoryDenyWriteExecute: 'no'
+    MemoryHigh: infinity
+    MemoryLimit: infinity
+    MemoryLow: '0'
+    MemoryMax: infinity
+    MemoryMin: '0'
+    MemorySwapMax: infinity
+    MountAPIVFS: 'no'
+    NFileDescriptorStore: '0'
+    NRestarts: '0'
+    NUMAPolicy: n/a
+    Names: docker.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMPolicy: continue
+    OOMScoreAdjust: '-500'
+    OnFailureJobMode: replace
+    OnSuccessJobMode: fail
+    Perpetual: 'no'
+    PrivateDevices: 'no'
+    PrivateIPC: 'no'
+    PrivateMounts: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'no'
+    PrivateUsers: 'no'
+    ProcSubset: all
+    ProtectClock: 'no'
+    ProtectControlGroups: 'no'
+    ProtectHome: 'no'
+    ProtectHostname: 'no'
+    ProtectKernelLogs: 'no'
+    ProtectKernelModules: 'no'
+    ProtectKernelTunables: 'no'
+    ProtectProc: default
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    ReloadResult: success
+    RemainAfterExit: 'no'
+    RemoveIPC: 'no'
+    Requires: docker.socket sysinit.target system.slice
+    Restart: always
+    RestartKillSignal: '15'
+    RestartUSec: 2s
+    RestrictNamespaces: 'no'
+    RestrictRealtime: 'no'
+    RestrictSUIDSGID: 'no'
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    RuntimeDirectoryPreserve: 'no'
+    RuntimeMaxUSec: infinity
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '3'
+    StartLimitIntervalUSec: 1min
+    StartupBlockIOWeight: '[not set]'
+    StartupCPUShares: '[not set]'
+    StartupCPUWeight: '[not set]'
+    StartupIOWeight: '[not set]'
+    StateChangeTimestamp: Sat 2026-05-16 02:39:13 UTC
+    StateChangeTimestampMonotonic: '1399411170'
+    StateDirectoryMode: '0755'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: running
+    SuccessAction: none
+    SyslogFacility: '3'
+    SyslogLevel: '6'
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '2147483646'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'yes'
+    TasksCurrent: '9'
+    TasksMax: infinity
+    TimeoutAbortUSec: 1min 30s
+    TimeoutCleanUSec: infinity
+    TimeoutStartFailureMode: terminate
+    TimeoutStartUSec: infinity
+    TimeoutStopFailureMode: terminate
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    TriggeredBy: docker.socket
+    Type: notify
+    UID: '[not set]'
+    UMask: '0022'
+    UnitFilePreset: enabled
+    UnitFileState: enabled
+    UtmpMode: init
+    WantedBy: multi-user.target
+    Wants: containerd.service network-online.target
+    WatchdogSignal: '6'
+    WatchdogTimestamp: n/a
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2026-05-16 12:46:56,507 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Add users to docker group] ****************************************************************************************************************************************************************
+2026-05-16 12:46:56,507 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:56 +1000 (0:00:03.077)       0:00:41.989 ********** 
+2026-05-16 12:46:58,017 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=ubuntu) => changed=false 
+  ansible_loop_var: item
+  append: true
+  comment: Ubuntu
+  group: 1000
+  groups: docker
+  home: /home/ubuntu
+  item: ubuntu
+  move_home: false
+  name: ubuntu
+  shell: /bin/bash
+  state: present
+  uid: 1000
+2026-05-16 12:46:58,029 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Verify Docker installation] ***************************************************************************************************************************************************************
+2026-05-16 12:46:58,029 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:58 +1000 (0:00:01.521)       0:00:43.511 ********** 
+2026-05-16 12:46:59,365 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - docker
+  - --version
+  delta: '0:00:00.017904'
+  end: '2026-05-16 02:46:59.200877'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:46:59.182973'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: Docker version 29.5.0, build 98f1464
+  stdout_lines: <omitted>
+2026-05-16 12:46:59,373 p=8117 u=dc-ops n=ansible | TASK [DOCKER | Show Docker version] **********************************************************************************************************************************************************************
+2026-05-16 12:46:59,373 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:59 +1000 (0:00:01.344)       0:00:44.856 ********** 
+2026-05-16 12:46:59,398 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg: Docker version 29.5.0, build 98f1464
+2026-05-16 12:46:59,402 p=8117 u=dc-ops n=ansible | TASK [KUBECTL | Check if kubectl already installed at correct version] ***********************************************************************************************************************************
+2026-05-16 12:46:59,402 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:46:59 +1000 (0:00:00.028)       0:00:44.884 ********** 
+2026-05-16 12:47:00,745 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - kubectl
+  - version
+  - --client
+  - --output=yaml
+  delta: '0:00:00.055665'
+  end: '2026-05-16 02:47:00.602600'
+  failed_when_result: false
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:00.546935'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    clientVersion:
+      buildDate: "2024-06-11T20:29:44Z"
+      compiler: gc
+      gitCommit: 39683505b630ff2121012f3c5b16215a1449d5ed
+      gitTreeState: clean
+      gitVersion: v1.30.2
+      goVersion: go1.22.4
+      major: "1"
+      minor: "30"
+      platform: linux/amd64
+    kustomizeVersion: v5.0.4-0.20230601165947-6ce0bf390ce3
+  stdout_lines: <omitted>
+2026-05-16 12:47:00,752 p=8117 u=dc-ops n=ansible | TASK [KUBECTL | Download kubectl binary] *****************************************************************************************************************************************************************
+2026-05-16 12:47:00,752 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:00 +1000 (0:00:01.350)       0:00:46.234 ********** 
+2026-05-16 12:47:00,768 p=8117 u=dc-ops n=ansible | skipping: [98.81.134.151] => changed=false 
+  false_condition: |-
+    kubectl_check.rc != 0 or kubectl_version not in (kubectl_check.stdout | default(''))
+  skip_reason: Conditional result was False
+2026-05-16 12:47:00,773 p=8117 u=dc-ops n=ansible | TASK [KUBECTL | Verify kubectl installation] *************************************************************************************************************************************************************
+2026-05-16 12:47:00,773 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:00 +1000 (0:00:00.020)       0:00:46.255 ********** 
+2026-05-16 12:47:02,232 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - kubectl
+  - version
+  - --client
+  - --output=yaml
+  delta: '0:00:00.092456'
+  end: '2026-05-16 02:47:02.028580'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:01.936124'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    clientVersion:
+      buildDate: "2024-06-11T20:29:44Z"
+      compiler: gc
+      gitCommit: 39683505b630ff2121012f3c5b16215a1449d5ed
+      gitTreeState: clean
+      gitVersion: v1.30.2
+      goVersion: go1.22.4
+      major: "1"
+      minor: "30"
+      platform: linux/amd64
+    kustomizeVersion: v5.0.4-0.20230601165947-6ce0bf390ce3
+  stdout_lines: <omitted>
+2026-05-16 12:47:02,239 p=8117 u=dc-ops n=ansible | TASK [KUBECTL | Show kubectl version] ********************************************************************************************************************************************************************
+2026-05-16 12:47:02,239 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:02 +1000 (0:00:01.465)       0:00:47.721 ********** 
+2026-05-16 12:47:02,265 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg: |-
+    clientVersion:
+      buildDate: "2024-06-11T20:29:44Z"
+      compiler: gc
+      gitCommit: 39683505b630ff2121012f3c5b16215a1449d5ed
+      gitTreeState: clean
+      gitVersion: v1.30.2
+      goVersion: go1.22.4
+      major: "1"
+      minor: "30"
+      platform: linux/amd64
+    kustomizeVersion: v5.0.4-0.20230601165947-6ce0bf390ce3
+2026-05-16 12:47:02,269 p=8117 u=dc-ops n=ansible | TASK [KIND | Check if kind already installed] ************************************************************************************************************************************************************
+2026-05-16 12:47:02,269 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:02 +1000 (0:00:00.030)       0:00:47.752 ********** 
+2026-05-16 12:47:03,672 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd: kind version
+  failed_when_result: false
+  msg: '[Errno 2] No such file or directory: b''kind'''
+  rc: 2
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: ''
+  stdout_lines: <omitted>
+2026-05-16 12:47:03,681 p=8117 u=dc-ops n=ansible | TASK [KIND | Download kind binary] ***********************************************************************************************************************************************************************
+2026-05-16 12:47:03,681 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:03 +1000 (0:00:01.411)       0:00:49.163 ********** 
+2026-05-16 12:47:05,107 p=8117 u=dc-ops n=ansible | changed: [98.81.134.151] => changed=true 
+  checksum_dest: null
+  checksum_src: d29fb1476f7ea12308110cdd377edcd13f82d832
+  dest: /usr/local/bin/kind
+  elapsed: 0
+  gid: 0
+  group: root
+  md5sum: b5ccb04e45c9005b8decfc4362cff8ed
+  mode: '0755'
+  msg: OK (6534249 bytes)
+  owner: root
+  size: 6534249
+  src: /root/.ansible/tmp/ansible-moduletmp-1778899624.812067-ui11n0dm/tmp5q9dleev
+  state: file
+  status_code: 200
+  uid: 0
+  url: https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64
+2026-05-16 12:47:05,115 p=8117 u=dc-ops n=ansible | TASK [KIND | Verify kind installation] *******************************************************************************************************************************************************************
+2026-05-16 12:47:05,115 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:05 +1000 (0:00:01.433)       0:00:50.597 ********** 
+2026-05-16 12:47:06,396 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - kind
+  - version
+  delta: '0:00:00.004976'
+  end: '2026-05-16 02:47:06.255458'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:06.250482'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: kind v0.23.0 go1.21.10 linux/amd64
+  stdout_lines: <omitted>
+2026-05-16 12:47:06,401 p=8117 u=dc-ops n=ansible | TASK [KIND | Show kind version] **************************************************************************************************************************************************************************
+2026-05-16 12:47:06,401 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:06 +1000 (0:00:01.286)       0:00:51.883 ********** 
+2026-05-16 12:47:06,416 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg: kind v0.23.0 go1.21.10 linux/amd64
+2026-05-16 12:47:06,419 p=8117 u=dc-ops n=ansible | TASK [VERIFY | Check curl version] ***********************************************************************************************************************************************************************
+2026-05-16 12:47:06,419 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:06 +1000 (0:00:00.017)       0:00:51.901 ********** 
+2026-05-16 12:47:07,653 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - curl
+  - --version
+  delta: '0:00:00.023454'
+  end: '2026-05-16 02:47:07.420217'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:07.396763'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.20
+    Release-Date: 2022-01-05
+    Protocols: dict file ftp ftps gopher gophers http https imap imaps ldap ldaps mqtt pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp
+    Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets zstd
+  stdout_lines: <omitted>
+2026-05-16 12:47:07,664 p=8117 u=dc-ops n=ansible | TASK [VERIFY | Check unzip version] **********************************************************************************************************************************************************************
+2026-05-16 12:47:07,665 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:07 +1000 (0:00:01.245)       0:00:53.147 ********** 
+2026-05-16 12:47:08,959 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - unzip
+  - -v
+  delta: '0:00:00.004492'
+  end: '2026-05-16 02:47:08.811232'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:08.806740'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.
+  
+    Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip/ ;
+    see ftp://ftp.info-zip.org/pub/infozip/UnZip.html for other sites.
+  
+    Compiled with gcc 11.4.0 for Unix (Linux ELF).
+  
+    UnZip special compilation options:
+            ACORN_FTYPE_NFS
+            COPYRIGHT_CLEAN (PKZIP 0.9x unreducing method not supported)
+            SET_DIR_ATTRIB
+            SYMLINKS (symbolic links supported, if RTL and file system permit)
+            TIMESTAMP
+            UNIXBACKUP
+            USE_EF_UT_TIME
+            USE_UNSHRINK (PKZIP/Zip 1.x unshrinking method supported)
+            USE_DEFLATE64 (PKZIP 4.x Deflate64(tm) supported)
+            UNICODE_SUPPORT [wide-chars, char coding: UTF-8] (handle UTF-8 paths)
+            LARGE_FILE_SUPPORT (large files over 2 GiB supported)
+            ZIP64_SUPPORT (archives using Zip64 for large files supported)
+            USE_BZIP2 (PKZIP 4.6+, using bzip2 lib version 1.0.8, 13-Jul-2019)
+            VMS_TEXT_CONV
+            WILD_STOP_AT_DIR
+            [decryption, version 2.11 of 05 Jan 2007]
+  
+    UnZip and ZipInfo environment options:
+               UNZIP:  [none]
+            UNZIPOPT:  [none]
+             ZIPINFO:  [none]
+          ZIPINFOOPT:  [none]
+  stdout_lines: <omitted>
+2026-05-16 12:47:08,968 p=8117 u=dc-ops n=ansible | TASK [VERIFY | Check tmux version] ***********************************************************************************************************************************************************************
+2026-05-16 12:47:08,968 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:08 +1000 (0:00:01.303)       0:00:54.450 ********** 
+2026-05-16 12:47:10,201 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => changed=false 
+  cmd:
+  - tmux
+  - -V
+  delta: '0:00:00.015565'
+  end: '2026-05-16 02:47:10.058132'
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:10.042567'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: tmux 3.2a
+  stdout_lines: <omitted>
+2026-05-16 12:47:10,206 p=8117 u=dc-ops n=ansible | TASK [VERIFY | Show curl/unzip/tmux versions] ************************************************************************************************************************************************************
+2026-05-16 12:47:10,206 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:10 +1000 (0:00:01.237)       0:00:55.688 ********** 
+2026-05-16 12:47:10,223 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg:
+  - 'curl  : curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.20'
+  - 'unzip : UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.'
+  - 'tmux  : tmux 3.2a'
+2026-05-16 12:47:10,226 p=8117 u=dc-ops n=ansible | TASK [SUMMARY | Collect all installed tool versions] *****************************************************************************************************************************************************
+2026-05-16 12:47:10,226 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:10 +1000 (0:00:00.020)       0:00:55.708 ********** 
+2026-05-16 12:47:11,443 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=docker --version) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - docker
+  - --version
+  delta: '0:00:00.017139'
+  end: '2026-05-16 02:47:11.221528'
+  failed_when_result: false
+  item: docker --version
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:11.204389'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: Docker version 29.5.0, build 98f1464
+  stdout_lines: <omitted>
+2026-05-16 12:47:12,845 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=docker compose version) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - docker
+  - compose
+  - version
+  delta: '0:00:00.050767'
+  end: '2026-05-16 02:47:12.696861'
+  failed_when_result: false
+  item: docker compose version
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:12.646094'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: Docker Compose version v5.1.3
+  stdout_lines: <omitted>
+2026-05-16 12:47:14,025 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=kubectl version --client --output=yaml) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - kubectl
+  - version
+  - --client
+  - --output=yaml
+  delta: '0:00:00.054818'
+  end: '2026-05-16 02:47:13.883371'
+  failed_when_result: false
+  item: kubectl version --client --output=yaml
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:13.828553'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    clientVersion:
+      buildDate: "2024-06-11T20:29:44Z"
+      compiler: gc
+      gitCommit: 39683505b630ff2121012f3c5b16215a1449d5ed
+      gitTreeState: clean
+      gitVersion: v1.30.2
+      goVersion: go1.22.4
+      major: "1"
+      minor: "30"
+      platform: linux/amd64
+    kustomizeVersion: v5.0.4-0.20230601165947-6ce0bf390ce3
+  stdout_lines: <omitted>
+2026-05-16 12:47:15,304 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=kind version) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - kind
+  - version
+  delta: '0:00:00.004995'
+  end: '2026-05-16 02:47:15.161235'
+  failed_when_result: false
+  item: kind version
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:15.156240'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: kind v0.23.0 go1.21.10 linux/amd64
+  stdout_lines: <omitted>
+2026-05-16 12:47:16,424 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=curl --version) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - curl
+  - --version
+  delta: '0:00:00.010963'
+  end: '2026-05-16 02:47:16.287084'
+  failed_when_result: false
+  item: curl --version
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:16.276121'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.20
+    Release-Date: 2022-01-05
+    Protocols: dict file ftp ftps gopher gophers http https imap imaps ldap ldaps mqtt pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp
+    Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets zstd
+  stdout_lines: <omitted>
+2026-05-16 12:47:17,677 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=tmux -V) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - tmux
+  - -V
+  delta: '0:00:00.011807'
+  end: '2026-05-16 02:47:17.524550'
+  failed_when_result: false
+  item: tmux -V
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:17.512743'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: tmux 3.2a
+  stdout_lines: <omitted>
+2026-05-16 12:47:18,887 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=unzip -v) => changed=false 
+  ansible_loop_var: item
+  cmd:
+  - unzip
+  - -v
+  delta: '0:00:00.004256'
+  end: '2026-05-16 02:47:18.747056'
+  failed_when_result: false
+  item: unzip -v
+  msg: ''
+  rc: 0
+  start: '2026-05-16 02:47:18.742800'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: |-
+    UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.
+  
+    Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip/ ;
+    see ftp://ftp.info-zip.org/pub/infozip/UnZip.html for other sites.
+  
+    Compiled with gcc 11.4.0 for Unix (Linux ELF).
+  
+    UnZip special compilation options:
+            ACORN_FTYPE_NFS
+            COPYRIGHT_CLEAN (PKZIP 0.9x unreducing method not supported)
+            SET_DIR_ATTRIB
+            SYMLINKS (symbolic links supported, if RTL and file system permit)
+            TIMESTAMP
+            UNIXBACKUP
+            USE_EF_UT_TIME
+            USE_UNSHRINK (PKZIP/Zip 1.x unshrinking method supported)
+            USE_DEFLATE64 (PKZIP 4.x Deflate64(tm) supported)
+            UNICODE_SUPPORT [wide-chars, char coding: UTF-8] (handle UTF-8 paths)
+            LARGE_FILE_SUPPORT (large files over 2 GiB supported)
+            ZIP64_SUPPORT (archives using Zip64 for large files supported)
+            USE_BZIP2 (PKZIP 4.6+, using bzip2 lib version 1.0.8, 13-Jul-2019)
+            VMS_TEXT_CONV
+            WILD_STOP_AT_DIR
+            [decryption, version 2.11 of 05 Jan 2007]
+  
+    UnZip and ZipInfo environment options:
+               UNZIP:  [none]
+            UNZIPOPT:  [none]
+             ZIPINFO:  [none]
+          ZIPINFOOPT:  [none]
+  stdout_lines: <omitted>
+2026-05-16 12:47:18,900 p=8117 u=dc-ops n=ansible | TASK [SUMMARY | Print final installation report] *********************************************************************************************************************************************************
+2026-05-16 12:47:18,900 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:18 +1000 (0:00:08.673)       0:01:04.382 ********** 
+2026-05-16 12:47:18,924 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['docker', '--version']) => 
+  msg: Docker version 29.5.0, build 98f1464
+2026-05-16 12:47:18,925 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['docker', 'compose', 'version']) => 
+  msg: Docker Compose version v5.1.3
+2026-05-16 12:47:18,928 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['kubectl', 'version', '--client', '--output=yaml']) => 
+  msg: 'clientVersion:'
+2026-05-16 12:47:18,931 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['kind', 'version']) => 
+  msg: kind v0.23.0 go1.21.10 linux/amd64
+2026-05-16 12:47:18,934 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['curl', '--version']) => 
+  msg: curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.20
+2026-05-16 12:47:18,939 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['tmux', '-V']) => 
+  msg: tmux 3.2a
+2026-05-16 12:47:18,945 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => (item=['unzip', '-v']) => 
+  msg: UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.
+2026-05-16 12:47:18,949 p=8117 u=dc-ops n=ansible | TASK [SUMMARY | All packages installed successfully ✓] ***************************************************************************************************************************************************
+2026-05-16 12:47:18,949 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:18 +1000 (0:00:00.049)       0:01:04.432 ********** 
+2026-05-16 12:47:18,963 p=8117 u=dc-ops n=ansible | ok: [98.81.134.151] => 
+  msg:
+  - ============================================================
+  - ' DevTools Installation Complete'
+  - ============================================================
+  - ' Host     : ip-172-31-27-115 (98.81.134.151)'
+  - ' OS       : Ubuntu 22.04'
+  - ' Tools    : docker, kubectl, kind, curl, unzip, tmux'
+  - ============================================================
+  - ' SSH: ssh -i ansible/devtools-lab-key.pem ubuntu@98.81.134.151'
+  - ============================================================
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************************************
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | 98.81.134.151              : ok=27   changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | Playbook run took 0 days, 0 hours, 1 minutes, 4 seconds
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | Saturday 16 May 2026  12:47:18 +1000 (0:00:00.014)       0:01:04.446 ********** 
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | =============================================================================== 
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | PREFLIGHT | Wait for SSH to be available --------------------------------------------------------------------------------------------------------------------------------------------------------- 15.79s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | SUMMARY | Collect all installed tool versions ----------------------------------------------------------------------------------------------------------------------------------------------------- 8.67s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | PREFLIGHT | Gather facts after SSH is ready ------------------------------------------------------------------------------------------------------------------------------------------------------- 5.01s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | APT | Install base packages ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 4.41s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | DOCKER | Install Docker CE and related packages --------------------------------------------------------------------------------------------------------------------------------------------------- 3.98s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | PREFLIGHT | Update apt cache and upgrade packages ------------------------------------------------------------------------------------------------------------------------------------------------- 3.44s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | DOCKER | Enable and start Docker service ---------------------------------------------------------------------------------------------------------------------------------------------------------- 3.08s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | DOCKER | Create keyrings directory ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 2.54s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | DOCKER | Download Docker GPG key ------------------------------------------------------------------------------------------------------------------------------------------------------------------ 1.94s
+2026-05-16 12:47:18,964 p=8117 u=dc-ops n=ansible | DOCKER | Add Docker apt repository ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.74s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | DOCKER | Add users to docker group ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.52s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | KUBECTL | Verify kubectl installation ------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.47s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | KIND | Download kind binary ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.43s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | KIND | Check if kind already installed ------------------------------------------------------------------------------------------------------------------------------------------------------------ 1.41s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | KUBECTL | Check if kubectl already installed at correct version ----------------------------------------------------------------------------------------------------------------------------------- 1.35s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | DOCKER | Verify Docker installation --------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.34s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | VERIFY | Check unzip version ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.30s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | KIND | Verify kind installation ------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.29s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | VERIFY | Check curl version ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.25s
+2026-05-16 12:47:18,965 p=8117 u=dc-ops n=ansible | VERIFY | Check tmux version ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.24s
+2026-05-16 12:48:39,893 p=8507 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:48:39,898 p=8507 u=dc-ops n=ansible | @all:
+  |--@ungrouped:
+  |--@aws_ec2:
+  |  |--98.81.134.151
+  |--@role_devtools:
+  |  |--98.81.134.151
+  |--@env_dev:
+  |  |--98.81.134.151
+  |--@project_devtools_lab:
+  |  |--98.81.134.151
+2026-05-16 12:48:50,598 p=8535 u=dc-ops n=ansible | [DEPRECATION WARNING]: The 'tags' host variable is deprecated. Use 'ec2_tags' instead. This feature will be removed from amazon.aws in a release after 2026-12-01. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+2026-05-16 12:48:50,648 p=8535 u=dc-ops n=ansible | [WARNING]: Found variable using reserved name: tags
+
+2026-05-16 12:48:55,290 p=8535 u=dc-ops n=ansible | 98.81.134.151 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}

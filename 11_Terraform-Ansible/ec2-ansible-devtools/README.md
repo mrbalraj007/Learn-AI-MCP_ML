@@ -63,6 +63,9 @@ ansible-galaxy collection install amazon.aws
 
 # 5. AWS CLI
 pip3 install awscli
+
+# pip3 install ansible boto3 botocore awscli
+# ansible-galaxy collection install amazon.aws
 ```
 
 ---
@@ -76,7 +79,7 @@ aws configure
 # OR export environment variables:
 export AWS_ACCESS_KEY_ID="AKIA..."
 export AWS_SECRET_ACCESS_KEY="..."
-export AWS_DEFAULT_REGION="ap-southeast-2"
+export AWS_DEFAULT_REGION="us-east-1"
 ```
 
 ### Step 2 — Clone / enter project directory
@@ -198,3 +201,63 @@ This removes the EC2 instance, security group, and key pair from AWS.
 | `amazon.aws collection not found` | Run `ansible-galaxy collection install amazon.aws` |
 | `No subscriptions found` | AWS credentials not set — run `aws configure` |
 | Dynamic inventory empty | Run `ansible-inventory -i inventory/aws_ec2.yml --list` to debug |
+
+
+*****************
+
+Fix — upgrade the collection to 9.x
+```bash
+ansible-galaxy collection install 'amazon.aws:>=9.0.0' --force
+```
+🚀 Step-by-Step Guide
+**Step 1 — Install prerequisites on your local machine**
+```bash
+pip3 install ansible boto3 botocore awscli
+ansible-galaxy collection install amazon.aws
+```
+**Step 2 — Configure AWS credentials**
+```bash
+aws configure
+
+# OR
+export AWS_ACCESS_KEY_ID="AKIA..."
+export AWS_SECRET_ACCESS_KEY="..."
+export AWS_DEFAULT_REGION="ap-southeast-2"
+```
+
+**Step 3 — Edit your variables**
+```bash
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+```
+Change aws_region and optionally restrict allowed_ssh_cidr to your IP (security best practice).
+
+**Step 4 — Run the single deploy script**
+```bash
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh
+```
+
+**This fully automates:**
+
+- ✅ Preflight checks (tools + AWS creds + Python libs)
+- 🏗️ terraform init → plan → apply (creates EC2, SG, SSH key)
+- ⏳ Waits for SSH to become available
+- 🔍 Tests Ansible dynamic inventory ping (falls back to 
+static if needed)
+- 📦 Runs the playbook — installs Docker, kubectl, kind, curl, unzip, tmux
+- 📋 Prints instance IP and ready-to-use SSH command
+
+**Step 5 — Tear down when done**
+```bash
+./scripts/destroy.sh
+```
+
+# 🔑 Key Design Decisions
+
+| Feature | How it works |
+|---|---|
+| **Dynamic Inventory** | Uses the Ansible `aws_ec2` dynamic inventory plugin with filters: `tag:Project=devtools-lab` and `tag:AnsibleRole=devtools`. Any EC2 instance with these tags is automatically discovered and managed by Ansible. |
+| **SSH Key Management** | SSH key pair is automatically generated using Terraform `tls_private_key` resource and stored locally as `ansible/devtools-lab-key.pem`. |
+| **Docker Installation** | Docker is installed from the official Docker CE APT repository instead of the default Ubuntu snap package for better compatibility and stability. |
+| **kubectl / kind Installation** | `kubectl` and `kind` are downloaded directly from their official binary releases. Installation tasks are idempotent and skip re-download if the correct version already exists. |
+| **Idempotent Configuration** | The Ansible playbook is fully idempotent. Re-running the playbook is safe because tasks validate the current state and installed versions before making changes. |

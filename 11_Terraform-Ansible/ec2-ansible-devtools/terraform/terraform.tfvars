@@ -2,7 +2,7 @@
 # terraform.tfvars  — copy this to terraform.tfvars and fill in your values
 ###############################################################################
 
-aws_region       = "ap-southeast-2"      # ← Change to your region
+aws_region       = "us-east-1"      # ← Change to your region
 project_name     = "devtools-lab"
 environment      = "dev"
 instance_type    = "t3.medium"

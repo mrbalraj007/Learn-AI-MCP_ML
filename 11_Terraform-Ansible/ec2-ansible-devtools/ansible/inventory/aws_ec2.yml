@@ -1,30 +1,90 @@
+# ###############################################################################
+# # Ansible Dynamic Inventory — AWS EC2 Plugin
+# # File: ansible/inventory/aws_ec2.yml
+# #
+# # Requirements:
+# #   pip install boto3 botocore
+# #   ansible-galaxy collection install amazon.aws
+# ###############################################################################
+
+# plugin: amazon.aws.aws_ec2
+
+# # ─── AWS Connection ──────────────────────────────────────────────────────────
+# # Region(s) to query — match your Terraform region
+# regions:
+#   - ap-southeast-2        # ← Change to match var.aws_region in Terraform
+
+# # Use AWS credentials from environment variables / ~/.aws/credentials
+# # No hardcoded credentials here (best practice)
+
+# # ─── Filter: Only target instances we created ────────────────────────────────
+# filters:
+#   tag:Project: "devtools-lab"       # Must match var.project_name in Terraform
+#   tag:AnsibleRole: "devtools"
+#   instance-state-name: "running"
+
+# # ─── Grouping ────────────────────────────────────────────────────────────────
+# # Creates Ansible groups from instance tags automatically
+# keyed_groups:
+#   - key: tags.AnsibleRole
+#     prefix: role
+#     separator: "_"
+#   - key: tags.Environment
+#     prefix: env
+#     separator: "_"
+#   - key: tags.Project
+#     prefix: project
+#     separator: "_"
+
+# # ─── Host Variables ──────────────────────────────────────────────────────────
+# # Expose extra EC2 metadata as Ansible host vars
+# hostnames:
+#   - ip-address               # Use public IP as the hostname Ansible connects to
+#   - dns-name                 # Fallback: public DNS
+
+# compose:
+#   # Tell Ansible to connect via public IP
+#   ansible_host: public_ip_address
+
+#   # SSH connection settings
+#   ansible_user: "'ubuntu'"
+#   ansible_ssh_private_key_file: "'./devtools-lab-key.pem'"
+#   ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o ConnectTimeout=30'"
+
+# # ─── Include extra metadata ──────────────────────────────────────────────────
+# include_extra_api_calls: true
+
+# # ─── Cache settings (avoid repeated API calls) ───────────────────────────────
+# cache: true
+# cache_plugin: jsonfile
+# cache_connection: /tmp/aws_ec2_inventory_cache
+# cache_timeout: 300          # 5 minutes
+
 ###############################################################################
 # Ansible Dynamic Inventory — AWS EC2 Plugin
 # File: ansible/inventory/aws_ec2.yml
 #
 # Requirements:
 #   pip install boto3 botocore
-#   ansible-galaxy collection install amazon.aws
+#   ansible-galaxy collection install 'amazon.aws:==8.2.1'
+#
+# NOTE: No inline comments on value lines — Ansible YAML parser is strict.
 ###############################################################################
 
 plugin: amazon.aws.aws_ec2
 
-# ─── AWS Connection ──────────────────────────────────────────────────────────
-# Region(s) to query — match your Terraform region
+# Region must match var.aws_region used in Terraform
+# Check your region: aws configure get region
 regions:
-  - ap-southeast-2        # ← Change to match var.aws_region in Terraform
+  - us-east-1
 
-# Use AWS credentials from environment variables / ~/.aws/credentials
-# No hardcoded credentials here (best practice)
-
-# ─── Filter: Only target instances we created ────────────────────────────────
+# Only discover instances we created (matched by tags)
 filters:
-  tag:Project: "devtools-lab"       # Must match var.project_name in Terraform
+  tag:Project: "devtools-lab"
   tag:AnsibleRole: "devtools"
   instance-state-name: "running"
 
-# ─── Grouping ────────────────────────────────────────────────────────────────
-# Creates Ansible groups from instance tags automatically
+# Auto-create Ansible groups from EC2 tags
 keyed_groups:
   - key: tags.AnsibleRole
     prefix: role
@@ -36,26 +96,19 @@ keyed_groups:
     prefix: project
     separator: "_"
 
-# ─── Host Variables ──────────────────────────────────────────────────────────
-# Expose extra EC2 metadata as Ansible host vars
+# Use public IP as the Ansible connection hostname
 hostnames:
-  - ip-address               # Use public IP as the hostname Ansible connects to
-  - dns-name                 # Fallback: public DNS
+  - ip-address
+  - dns-name
 
 compose:
-  # Tell Ansible to connect via public IP
   ansible_host: public_ip_address
-
-  # SSH connection settings
   ansible_user: "'ubuntu'"
   ansible_ssh_private_key_file: "'./devtools-lab-key.pem'"
   ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o ConnectTimeout=30'"
 
-# ─── Include extra metadata ──────────────────────────────────────────────────
-include_extra_api_calls: true
-
-# ─── Cache settings (avoid repeated API calls) ───────────────────────────────
+# Cache API responses for 5 minutes to avoid repeated AWS calls
 cache: true
 cache_plugin: jsonfile
 cache_connection: /tmp/aws_ec2_inventory_cache
-cache_timeout: 300          # 5 minutes
+cache_timeout: 300

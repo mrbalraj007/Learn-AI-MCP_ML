@@ -142,7 +142,7 @@
         kubectl_version not in (kubectl_check.stdout | default(''))
 
     - name: "KUBECTL | Verify kubectl installation"
-      ansible.builtin.command: kubectl version --client --short
+      ansible.builtin.command: kubectl version --client --output=yaml
       register: kubectl_version_output
       changed_when: false
 
@@ -214,7 +214,7 @@
       loop:
         - docker --version
         - docker compose version
-        - kubectl version --client --short
+        - kubectl version --client --output=yaml
         - kind version
         - curl --version
         - tmux -V
