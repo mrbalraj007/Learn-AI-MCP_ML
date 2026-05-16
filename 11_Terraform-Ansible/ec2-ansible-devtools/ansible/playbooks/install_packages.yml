@@ -1,0 +1,244 @@
+###############################################################################
+# Ansible Playbook — Install DevTools on EC2
+# File: ansible/playbooks/install_packages.yml
+#
+# Installs: docker, kubectl, kind, curl, unzip, tmux
+# Target:   All EC2 instances tagged AnsibleRole=devtools (via dynamic inventory)
+###############################################################################
+
+---
+- name: Install DevTools on EC2 Instances
+  hosts: role_devtools          # Matched by dynamic inventory keyed_group on tag
+  become: true
+  gather_facts: true
+
+  pre_tasks:
+    ##########################################################################
+    # PREFLIGHT — Verify connectivity and wait for instance to be ready
+    ##########################################################################
+
+    - name: "PREFLIGHT | Wait for SSH to be available"
+      ansible.builtin.wait_for_connection:
+        delay: 10
+        timeout: 180
+        sleep: 5
+
+    - name: "PREFLIGHT | Gather facts after SSH is ready"
+      ansible.builtin.setup:
+
+    - name: "PREFLIGHT | Print instance information"
+      ansible.builtin.debug:
+        msg:
+          - "Hostname    : {{ ansible_hostname }}"
+          - "OS          : {{ ansible_distribution }} {{ ansible_distribution_version }}"
+          - "Architecture: {{ ansible_architecture }}"
+          - "Public IP   : {{ ansible_host }}"
+
+    - name: "PREFLIGHT | Update apt cache and upgrade packages"
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: safe
+        cache_valid_time: 3600
+
+  ##############################################################################
+  # TASK BLOCKS
+  ##############################################################################
+
+  tasks:
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # BLOCK 1 — APT base packages (curl, unzip, tmux, git, etc.)
+    # ──────────────────────────────────────────────────────────────────────────
+    - name: "APT | Install base packages"
+      ansible.builtin.apt:
+        name: "{{ apt_packages }}"
+        state: present
+        update_cache: true
+      register: apt_result
+
+    - name: "APT | Show installed packages"
+      ansible.builtin.debug:
+        msg: "Installed: {{ apt_packages | join(', ') }}"
+      when: apt_result.changed
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # BLOCK 2 — Docker CE (official Docker repository)
+    # ──────────────────────────────────────────────────────────────────────────
+    - name: "DOCKER | Create keyrings directory"
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: "0755"
+
+    - name: "DOCKER | Download Docker GPG key"
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: "0644"
+        force: false
+
+    - name: "DOCKER | Add Docker apt repository"
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [arch={{ arch }}
+          signed-by=/etc/apt/keyrings/docker.asc]
+          https://download.docker.com/linux/ubuntu
+          {{ ansible_distribution_release }} stable
+        state: present
+        filename: docker
+
+    - name: "DOCKER | Install Docker CE and related packages"
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+        update_cache: true
+      register: docker_install
+
+    - name: "DOCKER | Enable and start Docker service"
+      ansible.builtin.systemd:
+        name: docker
+        enabled: true
+        state: started
+
+    - name: "DOCKER | Add users to docker group"
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: docker
+        append: true
+      loop: "{{ docker_users }}"
+
+    - name: "DOCKER | Verify Docker installation"
+      ansible.builtin.command: docker --version
+      register: docker_version_output
+      changed_when: false
+
+    - name: "DOCKER | Show Docker version"
+      ansible.builtin.debug:
+        msg: "{{ docker_version_output.stdout }}"
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # BLOCK 3 — kubectl
+    # ──────────────────────────────────────────────────────────────────────────
+    - name: "KUBECTL | Check if kubectl already installed at correct version"
+      ansible.builtin.command: kubectl version --client --output=yaml
+      register: kubectl_check
+      changed_when: false
+      failed_when: false
+
+    - name: "KUBECTL | Download kubectl binary"
+      ansible.builtin.get_url:
+        url: "{{ kubectl_binary_url }}"
+        dest: "{{ kubectl_install_dir }}/kubectl"
+        mode: "0755"
+        owner: root
+        group: root
+      when: >
+        kubectl_check.rc != 0 or
+        kubectl_version not in (kubectl_check.stdout | default(''))
+
+    - name: "KUBECTL | Verify kubectl installation"
+      ansible.builtin.command: kubectl version --client --short
+      register: kubectl_version_output
+      changed_when: false
+
+    - name: "KUBECTL | Show kubectl version"
+      ansible.builtin.debug:
+        msg: "{{ kubectl_version_output.stdout }}"
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # BLOCK 4 — kind (Kubernetes IN Docker)
+    # ──────────────────────────────────────────────────────────────────────────
+    - name: "KIND | Check if kind already installed"
+      ansible.builtin.command: kind version
+      register: kind_check
+      changed_when: false
+      failed_when: false
+
+    - name: "KIND | Download kind binary"
+      ansible.builtin.get_url:
+        url: "{{ kind_binary_url }}"
+        dest: "{{ kind_install_dir }}/kind"
+        mode: "0755"
+        owner: root
+        group: root
+      when: >
+        kind_check.rc != 0 or
+        kind_version not in (kind_check.stdout | default(''))
+
+    - name: "KIND | Verify kind installation"
+      ansible.builtin.command: kind version
+      register: kind_version_output
+      changed_when: false
+
+    - name: "KIND | Show kind version"
+      ansible.builtin.debug:
+        msg: "{{ kind_version_output.stdout }}"
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # BLOCK 5 — Verify curl, unzip, tmux are present and working
+    # ──────────────────────────────────────────────────────────────────────────
+    - name: "VERIFY | Check curl version"
+      ansible.builtin.command: curl --version
+      register: curl_ver
+      changed_when: false
+
+    - name: "VERIFY | Check unzip version"
+      ansible.builtin.command: unzip -v
+      register: unzip_ver
+      changed_when: false
+
+    - name: "VERIFY | Check tmux version"
+      ansible.builtin.command: tmux -V
+      register: tmux_ver
+      changed_when: false
+
+    - name: "VERIFY | Show curl/unzip/tmux versions"
+      ansible.builtin.debug:
+        msg:
+          - "curl  : {{ curl_ver.stdout_lines[0] }}"
+          - "unzip : {{ unzip_ver.stdout_lines[0] }}"
+          - "tmux  : {{ tmux_ver.stdout }}"
+
+  ##############################################################################
+  # POST TASKS — Summary
+  ##############################################################################
+
+  post_tasks:
+    - name: "SUMMARY | Collect all installed tool versions"
+      ansible.builtin.command: "{{ item }}"
+      loop:
+        - docker --version
+        - docker compose version
+        - kubectl version --client --short
+        - kind version
+        - curl --version
+        - tmux -V
+        - unzip -v
+      register: version_summary
+      changed_when: false
+      failed_when: false
+
+    - name: "SUMMARY | Print final installation report"
+      ansible.builtin.debug:
+        msg: "{{ item.stdout_lines[0] | default('not found') }}"
+      loop: "{{ version_summary.results }}"
+      loop_control:
+        label: "{{ item.cmd }}"
+
+    - name: "SUMMARY | All packages installed successfully ✓"
+      ansible.builtin.debug:
+        msg:
+          - "============================================================"
+          - " DevTools Installation Complete"
+          - "============================================================"
+          - " Host     : {{ ansible_hostname }} ({{ ansible_host }})"
+          - " OS       : {{ ansible_distribution }} {{ ansible_distribution_version }}"
+          - " Tools    : docker, kubectl, kind, curl, unzip, tmux"
+          - "============================================================"
+          - " SSH: ssh -i ansible/devtools-lab-key.pem ubuntu@{{ ansible_host }}"
+          - "============================================================"
