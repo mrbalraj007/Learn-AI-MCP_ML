@@ -334,3 +334,5 @@ ansible-playbook playbooks/install-tools.yml
 ansible-inventory --list
 ansible-inventory --graph
 ```
+
+rsync -avzP dc-ops@192.168.1.212:/home/dc-ops/ans-1 .
