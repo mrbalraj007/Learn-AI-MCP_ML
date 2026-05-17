@@ -1,0 +1,11 @@
+# Ansible Requirements File
+# File: ansible/requirements.txt
+# 
+# Install with: pip3 install -r requirements.txt
+#
+
+ansible>=2.12.0,<3.0.0
+ansible-lint>=6.0.0
+jinja2>=3.0.0
+netaddr>=0.7.18
+paramiko>=2.12.0

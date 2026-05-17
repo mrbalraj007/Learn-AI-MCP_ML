@@ -1,0 +1,319 @@
+---
+# Ansible Playbook: Install Packages on EC2 Instances
+# File: ansible/playbooks/install_packages.yml
+# 
+# Installs: Docker, kubectl, curl, kind, unzip, tmux
+# Requirements:
+#   - SSH key accessible at ~/.ssh/terraform_ec2_key.pem
+#   - Python 3 on target machines
+#
+
+- name: Install Required Packages on EC2 Instances
+  hosts: all
+  become: yes
+  gather_facts: yes
+  vars:
+    # Package versions (hardcoded for consistency)
+    kubectl_version: "v1.28.0"
+    kind_version: "v0.20.0"
+    docker_version: "24.0.0"
+    
+    # Docker daemon settings
+    docker_daemon_json: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3"
+        },
+        "live-restore": true,
+        "userland-proxy": false
+      }
+  
+  pre_tasks:
+    - name: Wait for system to be ready
+      wait_for_connection:
+        delay: 5
+        timeout: 300
+      tags:
+        - always
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+      tags:
+        - packages
+        - pre-tasks
+
+    - name: Display system information
+      debug:
+        msg: |
+          System Information:
+          - Hostname: {{ ansible_hostname }}
+          - OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          - Kernel: {{ ansible_kernel }}
+          - IP Address: {{ ansible_default_ipv4.address }}
+      tags:
+        - always
+
+  tasks:
+    # ============================================
+    # Task 1: Install system dependencies
+    # ============================================
+    - name: Install system dependencies
+      apt:
+        name:
+          - curl
+          - wget
+          - git
+          - build-essential
+          - unzip
+          - tmux
+          - htop
+          - net-tools
+          - jq
+          - apt-transport-https
+          - ca-certificates
+          - gnupg
+          - lsb-release
+          - software-properties-common
+        state: present
+        update_cache: yes
+      tags:
+        - packages
+        - system-deps
+      register: system_packages_result
+
+    - name: Display system packages installation result
+      debug:
+        msg: "System packages installed successfully"
+      when: system_packages_result is succeeded
+      tags:
+        - packages
+        - system-deps
+
+    # ============================================
+    # Task 2: Install Docker
+    # ============================================
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      tags:
+        - docker
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+        state: present
+      tags:
+        - docker
+
+    - name: Install Docker CE
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: present
+        update_cache: yes
+      tags:
+        - docker
+      register: docker_install_result
+
+    - name: Configure Docker daemon
+      copy:
+        content: "{{ docker_daemon_json }}"
+        dest: /etc/docker/daemon.json
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - docker
+      notify:
+        - restart docker
+
+    - name: Create docker group
+      group:
+        name: docker
+        state: present
+      tags:
+        - docker
+
+    - name: Add ubuntu user to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+      tags:
+        - docker
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+        daemon_reload: yes
+      tags:
+        - docker
+
+    # ============================================
+    # Task 3: Install kubectl
+    # ============================================
+    - name: Add Kubernetes GPG key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+      tags:
+        - kubectl
+
+    - name: Add Kubernetes repository
+      apt_repository:
+        repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+        state: present
+        filename: kubernetes
+      tags:
+        - kubectl
+
+    - name: Install kubectl
+      apt:
+        name: kubectl
+        state: present
+        update_cache: yes
+      tags:
+        - kubectl
+      register: kubectl_install_result
+
+    - name: Configure kubectl bash completion
+      shell: kubectl completion bash | tee /etc/bash_completion.d/kubectl > /dev/null
+      when: kubectl_install_result is succeeded
+      tags:
+        - kubectl
+
+    # ============================================
+    # Task 4: Install kind (Kubernetes in Docker)
+    # ============================================
+    - name: Download kind binary
+      get_url:
+        url: "https://kind.sigs.k8s.io/dl/{{ kind_version }}/kind-linux-amd64"
+        dest: /usr/local/bin/kind
+        mode: '0755'
+        owner: root
+        group: root
+      tags:
+        - kind
+      register: kind_download_result
+
+    - name: Verify kind installation
+      command: kind version
+      changed_when: false
+      when: kind_download_result is succeeded
+      tags:
+        - kind
+      register: kind_version_result
+
+    # ============================================
+    # Task 5: Verify all installations
+    # ============================================
+    - name: Verify package installations
+      block:
+        - name: Check curl version
+          command: curl --version
+          changed_when: false
+          register: curl_version
+          tags:
+            - verify
+
+        - name: Check unzip version
+          command: unzip -v
+          changed_when: false
+          register: unzip_version
+          tags:
+            - verify
+
+        - name: Check tmux version
+          command: tmux -V
+          changed_when: false
+          register: tmux_version
+          tags:
+            - verify
+
+        - name: Check Docker version
+          command: docker --version
+          changed_when: false
+          register: docker_version_check
+          tags:
+            - verify
+
+        - name: Check kubectl version
+          command: kubectl version --client --short
+          changed_when: false
+          register: kubectl_version_check
+          tags:
+            - verify
+
+        - name: Check kind version
+          command: kind version
+          changed_when: false
+          register: kind_version_check
+          tags:
+            - verify
+
+        - name: Display all versions
+          debug:
+            msg: |
+              ✓ Package Installation Summary for {{ inventory_hostname }}
+              ========================================
+              curl: {{ curl_version.stdout.split('\n')[0] }}
+              unzip: {{ unzip_version.stdout.split('\n')[0] }}
+              tmux: {{ tmux_version.stdout }}
+              Docker: {{ docker_version_check.stdout }}
+              kubectl: {{ kubectl_version_check.stdout }}
+              kind: {{ kind_version_check.stdout }}
+              ========================================
+              Installation completed successfully!
+          tags:
+            - verify
+
+  handlers:
+    - name: restart docker
+      systemd:
+        name: docker
+        state: restarted
+        enabled: yes
+      tags:
+        - docker
+
+  post_tasks:
+    - name: Create installation log
+      copy:
+        content: |
+          Installation Completed: {{ ansible_date_time.iso8601 }}
+          Hostname: {{ ansible_hostname }}
+          IP Address: {{ ansible_default_ipv4.address }}
+          
+          Installed Packages:
+          - curl
+          - unzip
+          - tmux
+          - Docker {{ docker_version }}
+          - kubectl (Kubernetes)
+          - kind {{ kind_version }}
+        dest: /var/log/package_installation.log
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - post-tasks
+
+    - name: Print completion message
+      debug:
+        msg: "{{ inventory_hostname }} configuration completed successfully!"
+      tags:
+        - always
+
+  tags:
+    - install_packages

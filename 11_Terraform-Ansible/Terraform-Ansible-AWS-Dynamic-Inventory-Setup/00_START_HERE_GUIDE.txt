@@ -1,0 +1,479 @@
+# COMPLETE TERRAFORM + ANSIBLE SETUP - FILE GUIDE & QUICK START
+================================================================================
+
+CREATED FILES SUMMARY
+================================================================================
+
+This package contains a complete, production-ready solution for automating EC2 
+provisioning and configuration. Below is the complete list of files and how to use them.
+
+DOCUMENTATION FILES (START HERE!)
+================================================================================
+
+1. terraform_ansible_setup_guide.docx
+   └─ RECOMMENDED: Professional Word document with complete setup guide
+   └─ Contains: Screenshots, formatted tables, step-by-step instructions
+   └─ Read first on your machine for detailed guidance
+
+2. SETUP_GUIDE.md  
+   └─ Comprehensive markdown guide with all details
+   └─ Contains: Architecture diagrams, code samples, troubleshooting
+   └─ Reference for detailed technical information
+
+3. README.md
+   └─ Quick reference and project overview
+   └─ Contains: Project structure, usage examples, verification checklist
+   └─ Quick lookup for common tasks
+
+TERRAFORM CONFIGURATION FILES (Terra-1 VM)
+================================================================================
+
+Directory: Terraform-Config/
+
+Root Configuration Files (use these):
+├─ root_main.tf
+│  └─ Main Terraform configuration (rename to main.tf in ~/terraform/)
+│  └─ Provisions EC2 instances and generates inventory
+│  └─ Uses the EC2 module from modules/ec2/
+│
+├─ root_variables.tf (rename to variables.tf)
+│  └─ Variable definitions for root configuration
+│  
+├─ root_outputs.tf (rename to outputs.tf)
+│  └─ Output definitions - displays IPs and generates inventory
+│  
+└─ terraform.tfvars
+   └─ CRITICAL: Customize this file with your values
+   └─ UPDATE: public_key_content with your SSH public key
+   └─ UPDATE: aws_region, environment, project_name as needed
+   └─ UPDATE: allowed_ssh_cidr to restrict SSH access
+
+EC2 Module (Reusable - modules/ec2/):
+├─ modules/ec2/main.tf
+│  └─ EC2 instance and security group resource definitions
+│  └─ Handles IAM, volumes, networking
+│  
+├─ modules/ec2/variables.tf
+│  └─ Module input variables with validation
+│  
+└─ modules/ec2/outputs.tf
+   └─ Module outputs including dynamic inventory JSON
+
+HOW TO SET UP TERRAFORM (Terra-1):
+1. Create directory: mkdir -p ~/terraform/modules/ec2
+2. Copy root_*.tf files to ~/terraform/ (rename removing "root_" prefix)
+3. Copy modules/ec2/* to ~/terraform/modules/ec2/
+4. Copy terraform.tfvars to ~/terraform/
+5. Edit terraform.tfvars with your public SSH key and preferences
+6. Run: bash setup_terraform.sh (in the Scripts directory)
+
+ANSIBLE CONFIGURATION FILES (Ans-1 VM)
+================================================================================
+
+Directory: Ansible-Config/
+
+├─ playbooks/install_packages.yml
+│  └─ Main installation playbook
+│  └─ Installs: Docker, kubectl, kind, curl, tmux, unzip
+│  └─ Features: Verification, logging, handlers, tags for granular execution
+│
+├─ inventory/dynamic_inventory.py
+│  └─ Python script to parse Terraform inventory
+│  └─ Makes inventory.json compatible with Ansible
+│  └─ Handles: host parsing, group variables, dynamic updates
+│
+├─ ansible.cfg
+│  └─ Ansible configuration file
+│  └─ Sets inventory path, connection settings, logging
+│  └─ Already configured for this project
+│
+└─ requirements.txt
+   └─ Python dependencies for Ansible
+   └─ Install with: pip3 install -r requirements.txt
+
+HOW TO SET UP ANSIBLE (Ans-1):
+1. Create directory: mkdir -p ~/ansible/{inventory,playbooks,logs,roles,group_vars,host_vars}
+2. Copy ansible.cfg to ~/ansible/
+3. Copy requirements.txt to ~/ansible/
+4. Copy install_packages.yml to ~/ansible/playbooks/
+5. Copy dynamic_inventory.py to ~/ansible/inventory/
+6. Run: bash setup_ansible.sh (in the Scripts directory)
+7. Copy inventory.json from Terraform output to ~/ansible/inventory/
+
+AUTOMATION SCRIPTS
+================================================================================
+
+Directory: Scripts/
+
+1. setup_terraform.sh (Run on Terra-1)
+   └─ Automated setup for Terraform environment
+   └─ Checks: Prerequisites, tools, credentials
+   └─ Creates: SSH keys, directory structure, configurations
+   └─ Usage: bash setup_terraform.sh
+   └─ Time: 2-3 minutes
+
+2. setup_ansible.sh (Run on Ans-1)
+   └─ Automated setup for Ansible environment
+   └─ Checks: Python, Ansible, SSH configuration
+   └─ Creates: Directory structure, configurations
+   └─ Usage: bash setup_ansible.sh
+   └─ Time: 2-3 minutes
+
+3. verify_deployment.sh (Run after Ansible completes)
+   └─ Post-deployment verification script
+   └─ Checks: EC2 status, package installations, connectivity
+   └─ Usage: bash verify_deployment.sh
+   └─ Shows: Passed/failed counts, detailed status
+
+QUICK START GUIDE (30 MINUTES)
+================================================================================
+
+ON TERRA-1 VM (Terraform Server):
+─────────────────────────────────
+
+# 1. Update system
+sudo apt-get update && sudo apt-get upgrade -y
+
+# 2. Run setup script
+bash Scripts/setup_terraform.sh
+
+# 3. Edit terraform configuration
+nano Terraform-Config/terraform.tfvars
+# EDIT: public_key_content = your SSH public key
+# (Get with: cat ~/.ssh/terraform_ec2_key.pub)
+
+# 4. Setup terraform directory
+mkdir -p ~/terraform/modules/ec2
+cp Terraform-Config/root_main.tf ~/terraform/main.tf
+cp Terraform-Config/root_variables.tf ~/terraform/variables.tf
+cp Terraform-Config/root_outputs.tf ~/terraform/outputs.tf
+cp Terraform-Config/terraform.tfvars ~/terraform/
+cp -r Terraform-Config/modules/ec2/* ~/terraform/modules/ec2/
+
+# 5. Initialize and apply
+cd ~/terraform
+terraform init
+terraform plan -out=tfplan
+terraform apply tfplan
+
+# 6. Wait for completion (5-10 minutes)
+# Verify: terraform output
+
+# 7. Copy inventory to Ans-1 (after terraform completes)
+scp terraform/inventory/inventory.json user@ans-1:~/ansible/inventory/
+scp ~/.ssh/terraform_ec2_key user@ans-1:~/.ssh/
+
+
+ON ANS-1 VM (Ansible Server):
+─────────────────────────────
+
+# 1. Update system
+sudo apt-get update && sudo apt-get upgrade -y
+
+# 2. Run setup script
+bash Scripts/setup_ansible.sh
+
+# 3. Setup ansible directory
+mkdir -p ~/ansible/{inventory,playbooks,logs,roles,group_vars,host_vars}
+cp Ansible-Config/ansible.cfg ~/ansible/
+cp Ansible-Config/requirements.txt ~/ansible/
+cp Ansible-Config/playbooks/* ~/ansible/playbooks/
+cp Ansible-Config/inventory/dynamic_inventory.py ~/ansible/inventory/
+
+# 4. Install Python dependencies
+pip3 install -r ~/ansible/requirements.txt
+
+# 5. Fix SSH key permissions (after copying from Terra-1)
+chmod 600 ~/.ssh/terraform_ec2_key
+
+# 6. Test connectivity
+cd ~/ansible
+ansible all -i inventory/inventory.json -m ping
+
+# 7. Run playbook (10-15 minutes)
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml
+
+# 8. Verify installation
+ansible all -i inventory/inventory.json -m shell -a "docker --version"
+ansible all -i inventory/inventory.json -m shell -a "kubectl version --client"
+
+
+STEP-BY-STEP DETAILED PROCESS
+================================================================================
+
+STEP 1: PREPARATION (5 minutes)
+────────────────────────────────
+□ VMware: Create Terra-1 VM (Ubuntu 22.04)
+□ VMware: Create Ans-1 VM (Ubuntu 22.04)
+□ Network: Configure VMs to reach each other
+□ Network: Configure VMs to reach Internet
+□ AWS: Create IAM user with EC2 permissions
+□ AWS: Generate Access Key and Secret Key
+
+STEP 2: TERRA-1 SETUP (10 minutes)
+──────────────────────────────────
+□ SSH into Terra-1 VM
+□ Download all files to ~/terraform_ansible_setup/
+□ Edit terraform.tfvars with your public SSH key
+□ Run: bash Scripts/setup_terraform.sh
+□ Run: cd ~/terraform && terraform init
+□ Run: terraform plan -out=tfplan (review output)
+□ Run: terraform apply tfplan (wait for completion)
+
+STEP 3: FILE TRANSFER (1 minute)
+────────────────────────────────
+□ On Terra-1: terraform output (note the IPs)
+□ Transfer files: scp terraform/inventory/inventory.json user@ans-1:~/ansible/inventory/
+□ Transfer SSH key: scp ~/.ssh/terraform_ec2_key user@ans-1:~/.ssh/
+
+STEP 4: ANS-1 SETUP (10 minutes)
+────────────────────────────────
+□ SSH into Ans-1 VM
+□ Download all files (or copy from Terra-1)
+□ Run: bash Scripts/setup_ansible.sh
+□ Run: pip3 install -r Ansible-Config/requirements.txt
+□ Run: chmod 600 ~/.ssh/terraform_ec2_key
+□ Run: ansible all -i inventory/inventory.json -m ping
+
+STEP 5: ANSIBLE EXECUTION (15 minutes)
+──────────────────────────────────────
+□ Run: cd ~/ansible
+□ Run: ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml
+□ Wait for completion (shows PLAY RECAP at end)
+□ Verify success (all changes should show ok or changed, 0 failed)
+
+STEP 6: VERIFICATION (5 minutes)
+────────────────────────────────
+□ Run: bash Scripts/verify_deployment.sh
+□ SSH to EC2 instance: ssh -i ~/.ssh/terraform_ec2_key ubuntu@<IP>
+□ Run on EC2: docker --version
+□ Run on EC2: kubectl version --client
+□ Run on EC2: kind version
+
+
+COMMON COMMANDS REFERENCE
+================================================================================
+
+TERRAFORM (Terra-1):
+───────────────────
+# Show Terraform version
+terraform version
+
+# Initialize Terraform
+terraform init
+
+# Show current variables
+terraform var
+
+# Plan infrastructure changes
+terraform plan -out=tfplan
+
+# Apply infrastructure changes
+terraform apply tfplan
+
+# Show current state
+terraform show
+
+# Show output values
+terraform output
+
+# Destroy infrastructure (cleanup)
+terraform destroy
+
+# Show specific output
+terraform output ec2_public_ips
+
+
+ANSIBLE (Ans-1):
+────────────────
+# Test SSH connectivity to all hosts
+ansible all -i inventory/inventory.json -m ping
+
+# Get system information
+ansible all -i inventory/inventory.json -m setup
+
+# Run a shell command on all hosts
+ansible all -i inventory/inventory.json -m shell -a "docker ps"
+
+# Run the main playbook
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml
+
+# Run with verbose output (for debugging)
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml -vvv
+
+# Run only specific tags
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml --tags docker
+
+# Dry-run (check mode)
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml --check
+
+# Skip specific tags
+ansible-playbook -i inventory/inventory.json playbooks/install_packages.yml --skip-tags docker
+
+
+EXPECTED OUTPUTS
+================================================================================
+
+TERRAFORM SUCCESSFUL APPLY:
+───────────────────────────
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+
+Outputs:
+ec2_instance_ids = ["i-0123456789abcdef0", "i-0123456789abcdef1"]
+ec2_public_ips = ["203.0.113.1", "203.0.113.2"]
+inventory_summary = [
+  {
+    "instance_id" = "i-0123456789abcdef0"
+    "instance_name" = "dev-k8s-cluster-1"
+    "instance_state" = "running"
+    "private_ip" = "10.0.0.10"
+    "public_ip" = "203.0.113.1"
+  },
+  ...
+]
+
+
+ANSIBLE SUCCESSFUL PLAYBOOK:
+─────────────────────────────
+PLAY RECAP ************************************************************
+dev-k8s-cluster-1 : ok=X changed=Y failed=0 unreachable=0 skipped=0
+dev-k8s-cluster-2 : ok=X changed=Y failed=0 unreachable=0 skipped=0
+
+✓ All instances configured successfully
+
+
+TROUBLESHOOTING TIPS
+================================================================================
+
+Problem: "AWS credentials not found"
+Solution: Run 'aws configure' and enter your Access Key and Secret Key
+
+Problem: "SSH Permission denied"
+Solution: chmod 600 ~/.ssh/terraform_ec2_key
+
+Problem: "Ansible cannot connect"
+Solution: 
+  1. Check security group allows SSH (port 22)
+  2. Check EC2 has public IP assigned
+  3. Test manually: ssh -i ~/.ssh/terraform_ec2_key ubuntu@<IP>
+
+Problem: "Package installation failed"
+Solution:
+  1. Run: ansible-playbook ... -vvv (for verbose output)
+  2. Check EC2 internet connectivity
+  3. Check apt repositories are accessible
+
+For comprehensive troubleshooting, see SETUP_GUIDE.md
+
+
+FILE ORGANIZATION CHECKLIST
+================================================================================
+
+On Terra-1 VM, create this structure:
+───────────────────────────────────
+~/terraform/
+├── main.tf                    (from root_main.tf)
+├── variables.tf               (from root_variables.tf)
+├── outputs.tf                 (from root_outputs.tf)
+├── terraform.tfvars           (EDIT THIS!)
+└── modules/
+    └── ec2/
+        ├── main.tf
+        ├── variables.tf
+        └── outputs.tf
+
+On Ans-1 VM, create this structure:
+───────────────────────────────────
+~/ansible/
+├── ansible.cfg
+├── requirements.txt
+├── inventory/
+│   ├── inventory.json         (copy from Terraform output)
+│   └── dynamic_inventory.py
+├── playbooks/
+│   └── install_packages.yml
+├── roles/                     (for future use)
+├── logs/                      (auto-created by Ansible)
+├── group_vars/                (for future use)
+└── host_vars/                 (for future use)
+
+~/.ssh/
+├── terraform_ec2_key          (copied from Terra-1, chmod 600)
+└── terraform_ec2_key.pub
+
+
+WHAT GETS INSTALLED
+================================================================================
+
+System Packages:
+- curl, wget, git, build-essential, unzip, tmux
+- htop, net-tools, jq
+- apt-transport-https, ca-certificates, gnupg, lsb-release
+
+Docker Stack:
+- Docker CE (latest version)
+- docker-ce-cli
+- containerd.io
+- docker-compose-plugin
+
+Kubernetes Stack:
+- kubectl (latest)
+- kind (v0.20.0)
+
+All installed and verified to be working!
+
+
+NEXT STEPS AFTER DEPLOYMENT
+================================================================================
+
+1. Test Docker:
+   docker run hello-world
+   docker ps
+   docker images
+
+2. Test Kubernetes (kind):
+   kind create cluster --name test-cluster
+   kind get clusters
+   kubectl get nodes
+
+3. Scale infrastructure:
+   Edit terraform.tfvars: instance_count = 5
+   Run: terraform apply
+
+4. Monitor instances:
+   AWS Console → EC2 Dashboard
+   Or: aws ec2 describe-instances
+
+5. SSH into instances:
+   ssh -i ~/.ssh/terraform_ec2_key ubuntu@<EC2_PUBLIC_IP>
+
+
+SUPPORT & DOCUMENTATION
+================================================================================
+
+For detailed information, refer to:
+1. terraform_ansible_setup_guide.docx - Professional formatted guide
+2. SETUP_GUIDE.md - Comprehensive markdown documentation  
+3. README.md - Project overview and quick reference
+
+All files are well-commented with inline documentation.
+
+
+VERSION INFORMATION
+================================================================================
+Solution Version: 1.0
+Created: 2024
+Environment: VMware Workstation Pro 17 + Ubuntu 22.04 LTS
+Terraform: v1.6.0+
+Ansible: v2.12.0+
+Python: 3.8+
+AWS: All regions supported
+
+
+END OF GUIDE
+================================================================================
+
+You're ready to go! Start with reading the Word document for a comprehensive guide,
+then follow the quick start steps above.
+
+Good luck with your infrastructure automation!
