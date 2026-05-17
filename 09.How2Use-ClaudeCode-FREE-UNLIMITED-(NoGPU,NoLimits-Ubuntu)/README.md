@@ -169,7 +169,7 @@ MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"
 **To replace your model using command:**
 
 ```sh
-sed -i 's|MODEL="nvidia_nim/z-ai/glm4.7"|MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"|' .env
+sed -i 's|MODEL="nvidia_nim/nvidia/nemotron-3-super-120b-a12b"|MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"|' .env
 ```
 
 **To get your API key:**
