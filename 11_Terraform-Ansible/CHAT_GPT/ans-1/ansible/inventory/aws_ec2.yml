@@ -1,0 +1,21 @@
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - us-east-1
+
+filters:
+  instance-state-name: running
+  tag:Project: devtools-lab
+  tag:AnsibleRole: devtools
+
+hostnames:
+  - public-ip-address
+
+compose:
+  ansible_host: public_ip_address
+
+keyed_groups:
+  - key: tags.AnsibleRole
+    prefix: role
+
+strict: false
