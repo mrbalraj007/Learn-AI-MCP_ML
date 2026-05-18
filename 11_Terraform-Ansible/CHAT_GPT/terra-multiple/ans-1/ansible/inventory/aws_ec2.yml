@@ -1,0 +1,31 @@
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - us-east-1
+
+filters:
+  instance-state-name: running
+  tag:Project: devtools-lab
+  tag:AnsibleRole: devtools
+
+hostnames:
+  - public-ip-address
+
+compose:
+  ansible_host: public_ip_address
+
+  ansible_connection: >
+    'winrm' if platform == 'windows' else 'ssh'
+
+  ansible_user: >
+    'Administrator' if platform == 'windows' else 'ubuntu'
+
+groups:
+  linux: "'ubuntu' in platform_details | lower or 'linux' in platform_details | lower"
+  windows: platform == 'windows'
+
+keyed_groups:
+  - key: tags.AnsibleRole
+    prefix: role
+
+strict: false

@@ -1,0 +1,60 @@
+---
+- name: Install IIS and deploy simple webpage
+  hosts: devtools #windows
+  gather_facts: yes
+
+  tasks:
+
+    - name: Configure WinRM HTTPS listener
+      ansible.windows.win_shell: |
+        $cert = New-SelfSignedCertificate -DnsName $env:COMPUTERNAME -CertStoreLocation Cert:\LocalMachine\My
+        New-Item -Path WSMan:\Localhost\Listener -Transport HTTPS -Address * -CertificateThumbprint $cert.Thumbprint -Force -ErrorAction SilentlyContinue
+      register: winrm_listener
+      ignore_errors: yes
+
+    - name: Enable Basic authentication on WinRM
+      ansible.windows.win_shell: |
+        Set-Item -Path WSMan:\Localhost\Service\Auth\Basic -Value $true
+        Set-Item -Path WSMan:\Localhost\Service\AllowUnencrypted -Value $true
+
+    - name: Open Windows Firewall for WinRM
+      ansible.windows.win_shell: |
+        New-NetFirewallRule -DisplayName "WinRM HTTP" -Direction Inbound -Protocol TCP -LocalPort 5985 -Action Allow -ErrorAction SilentlyContinue
+        New-NetFirewallRule -DisplayName "WinRM HTTPS" -Direction Inbound -Protocol TCP -LocalPort 5986 -Action Allow -ErrorAction SilentlyContinue
+      ignore_errors: yes
+
+    - name: Install IIS Web Server
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: present
+        include_management_tools: yes
+
+    - name: Create website directory
+      ansible.windows.win_file:
+        path: C:\inetpub\wwwroot\mysite
+        state: directory
+
+    - name: Deploy simple HTML page
+      ansible.windows.win_copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Welcome</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 80px auto; max-width: 600px; text-align: center; }
+              h1 { color: #333; }
+            </style>
+          </head>
+          <body>
+            <h1>Hello from IIS</h1>
+            <p>Deployed by Ansible on {{ ansible_hostname }}.</p>
+          </body>
+          </html>
+        dest: C:\inetpub\wwwroot\mysite\index.html
+
+    - name: Ensure IIS is running
+      ansible.windows.win_service:
+        name: W3SVC
+        state: started
+        start_mode: auto

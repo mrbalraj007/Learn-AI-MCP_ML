@@ -1,0 +1,89 @@
+---
+- name: Install IIS and deploy simple webpage
+  hosts: devtools #windows
+  gather_facts: yes
+
+  tasks:
+
+    - name: Configure WinRM for Ansible
+      when: ansible_os_family == 'Windows'
+      block:
+
+        - name: Enable PSRemoting
+          ansible.windows.win_shell: |
+            if (-not (Get-Service WinRM).Status -eq 'Running') { Start-Service WinRM }
+            if (-not (Get-WSManInstance -ResourceURI winrm/config/Listener -Enumerate)) {
+              Enable-PSRemoting -Force -SkipNetworkProfileCheck
+            }
+          changed_when: false
+
+        - name: Ensure WinRM settings are correct
+          ansible.windows.win_shell: |
+            winrm set winrm/config/service '@{AllowUnencrypted="true"}'
+            winrm set winrm/config/service/auth '@{Basic="true"}'
+            winrm set winrm/config '@{MaxTimeoutms="1800000"}'
+            winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="1024"}'
+          changed_when: false
+
+        - name: Add HTTPS listener if missing
+          ansible.windows.win_shell: |
+            $listeners = Get-WSManInstance -ResourceURI winrm/config/Listener -Enumerate
+            if (-not ($listeners | Where-Object { $_.Transport -eq 'HTTPS' })) {
+              $cert = New-SelfSignedCertificate -DnsName $env:COMPUTERNAME -CertStoreLocation Cert:\LocalMachine\My
+              New-Item -Path WSMan:\Localhost\Listener -Transport HTTPS -Address * -CertificateThumbprint $cert.Thumbprint -Force
+              Write-Host 'HTTPS listener created'
+            } else {
+              Write-Host 'HTTPS listener already exists'
+            }
+          register: https_listener
+
+        - name: Open firewall for WinRM if not present
+          ansible.windows.win_shell: |
+            if (-not (Get-NetFirewallRule -DisplayName 'WinRM HTTP' -ErrorAction SilentlyContinue)) {
+              New-NetFirewallRule -DisplayName 'WinRM HTTP' -Direction Inbound -Protocol TCP -LocalPort 5985 -Action Allow
+            }
+            if (-not (Get-NetFirewallRule -DisplayName 'WinRM HTTPS' -ErrorAction SilentlyContinue)) {
+              New-NetFirewallRule -DisplayName 'WinRM HTTPS' -Direction Inbound -Protocol TCP -LocalPort 5986 -Action Allow
+            }
+          changed_when: false
+
+    - name: Show HTTPS listener status
+      ansible.builtin.debug:
+        msg: "{{ https_listener.stdout_lines }}"
+      when: https_listener.stdout_lines is defined
+
+    - name: Install IIS Web Server
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: present
+        include_management_tools: yes
+
+    - name: Create website directory
+      ansible.windows.win_file:
+        path: C:\inetpub\wwwroot\mysite
+        state: directory
+
+    - name: Deploy simple HTML page
+      ansible.windows.win_copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Welcome</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 80px auto; max-width: 600px; text-align: center; }
+              h1 { color: #333; }
+            </style>
+          </head>
+          <body>
+            <h1>Hello from IIS</h1>
+            <p>Deployed by Ansible on {{ ansible_hostname }}.</p>
+          </body>
+          </html>
+        dest: C:\inetpub\wwwroot\mysite\index.html
+
+    - name: Ensure IIS is running
+      ansible.windows.win_service:
+        name: W3SVC
+        state: started
+        start_mode: auto
