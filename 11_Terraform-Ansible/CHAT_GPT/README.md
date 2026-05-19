@@ -311,6 +311,11 @@ Then reload:
 
 source ~/.bashrc
 ```
+
+**Install pywinrm package**
+```sh
+ssh 192.168.1.212 "source ~/ansible-venv/bin/activate && pip install pywinrm"```
+
 # Command
 
 ```sh
