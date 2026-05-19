@@ -242,3 +242,6 @@ claude mcp add ansible-mcp \
 ```sh
 claude mcp remove ansible-mcp
 ```
+
+> Prompt
+*Once both are confirmed working, you'll be able to ask Claude things like "Write a playbook to deploy nginx on my inventory group webservers and estimate the EC2 cost for the target instances" — with terraform-mcp and ansible-mcp working together.*
