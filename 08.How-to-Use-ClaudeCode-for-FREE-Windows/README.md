@@ -143,6 +143,7 @@ Claude Code requires Node.js.
 
 ```bash
 # Bypass execution policy only for this install
+Get-ExecutionPolicy -List
 Set-ExecutionPolicy Bypass -Scope Process -Force
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
@@ -432,6 +433,155 @@ If installed correctly, the version number will be displayed.
 4. Install the official extension
 <img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/3f22a227-1113-4d11-b89c-f294e89bf2fa" />
 ---
+
+> [!CAUTION] ====================How to install UV on Windows VM====================
+
+<details>
+<summary><b>How to install UV on Windows</b></summary><br>
+
+**Install uv**
+
+
+**Step 1 — Open PowerShell as Administrator**
+
+```sh
+Press:
+
+Start → PowerShell → Right Click → Run as Administrator
+```
+
+**Step 2 — Fix PowerShell Execution Policy**
+
+Run:
+```sh
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Press:
+Y
+
+Verify: 
+Get-ExecutionPolicy -List
+```
+
+**Step 3 — Install uv**
+*The recommended installation method on Windows is:*
+```sh
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+**Outcome**
+```sh
+PS C:\> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+downloading uv 0.11.16 (x86_64-pc-windows-msvc)
+installing to C:\Users\Administrator\.local\bin
+  uv.exe
+  uvx.exe
+  uvw.exe
+everything's installed!
+
+To add C:\Users\Administrator\.local\bin to your PATH, either restart your shell or run:
+
+    set Path=C:\Users\Administrator\.local\bin;%Path%   (cmd)
+    $env:Path = "C:\Users\Administrator\.local\bin;$env:Path"   (powershell)
+PS C:\>
+```
+
+After installation, close PowerShell completely and reopen it.
+
+**Step 4 — Verify uv Installation**
+
+Run:
+```sh
+uv --version
+```
+You should see something like:
+```sh
+uv 0.x.x
+```
+
+**Step 5 — Install Python 3.14 Using uv**
+
+Run:
+```sh
+uv python install 3.14
+```
+
+This downloads and installs Python 3.14 automatically.
+
+**Step 6 — Verify Python Installation**
+
+List installed Python versions:
+```sh
+uv python list
+```
+
+You should see Python 3.14 in the list.
+
+**Step 7 — Use Python 3.14**
+
+Run Python directly:
+```sh
+uv run --python 3.14 python --version
+```
+Expected:
+```sh
+Python 3.14.x
+```
+
+**Step 8 — Create a Virtual Environment (Recommended)**
+
+Go to your project folder:
+```sh
+cd C:\Projects
+mkdir demo
+cd demo
+```
+
+**Create venv:**
+```sh
+uv venv --python 3.14
+```
+
+**Activate it:**
+```sh
+.venv\Scripts\activate
+```
+
+Verify:
+```sh
+python --version
+```
+
+**Step 9 — Install Packages**
+
+Example:
+```sh
+uv pip install requests boto3
+```
+
+**Step 10 — Common Troubleshooting**
+If uv command is not found
+
+Check:
+```sh
+$env:Path
+```
+You should see:
+```sh
+C:\Users\<USERNAME>\.local\bin
+```
+If not, temporarily add it:
+```sh
+$env:Path += ";$HOME\.local\bin"
+```
+Then retry:
+```sh
+uv --version
+```
+</details>
+
+---
+
+
 
 ### Phase 4: OpenRouter API Configuration
 
@@ -741,7 +891,6 @@ The democratization of AI tools represents a fundamental shift in software devel
 - **Local Alternatives:** Ollama, LocalAI (self-hosted)
 - **Other API Providers:** Together AI, Replicate, Hugging Face
 - **IDE Integrations:** VS Code extensions, JetBrains plugins
-
 
 
 
