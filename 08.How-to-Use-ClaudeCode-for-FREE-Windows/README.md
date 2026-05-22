@@ -432,12 +432,14 @@ If installed correctly, the version number will be displayed.
 3. Search for **Claude Code**
 4. Install the official extension
 <img width="972" height="836" alt="Image" src="https://github.com/user-attachments/assets/3f22a227-1113-4d11-b89c-f294e89bf2fa" />
+
 ---
 
-> [!CAUTION] ====================How to install UV on Windows VM====================
+
+> [!CAUTION] **How to install UV on Windows VM** 
 
 <details>
-<summary><b>How to install UV on Windows</b></summary><br>
+<summary><b>Follow below procedure to install</b></summary><br>
 
 **Install uv**
 
