@@ -1,4 +1,17 @@
 #!/bin/sh
+# Ensure jq and curl are in PATH (winget / MSYS2 / choco locations)
+for p in \
+  "$HOME/AppData/Local/Microsoft/WinGet/Links" \
+  "/c/Users/Administrator/AppData/Local/Microsoft/WinGet/Links" \
+  "/mingw64/bin" \
+  "/usr/bin" \
+  "/c/ProgramData/chocolatey/bin" \
+  "/c/Program Files/Git/usr/bin" \
+  "/c/Program Files/Git/mingw64/bin"; do
+  case ":$PATH:" in *":$p:"*) ;; *) [ -d "$p" ] && PATH="$p:$PATH" ;; esac
+done
+export PATH
+
 input=$(cat)
 
 cwd=$(echo "$input" | jq -r '.cwd')
