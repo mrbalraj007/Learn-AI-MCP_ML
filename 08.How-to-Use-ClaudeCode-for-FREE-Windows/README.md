@@ -436,7 +436,8 @@ If installed correctly, the version number will be displayed.
 ---
 
 
-> [!CAUTION] **How to install UV on Windows VM** 
+> [!CAUTION] 
+> **How to install UV on Windows VM** 
 
 <details>
 <summary><b>Follow below procedure to install</b></summary><br>
