@@ -108,13 +108,14 @@ claude mcp add terraform -- C:\tools\terraform-mcp-server\terraform-mcp-server.e
 > [!NOTE]
 The /mcp command runs in the current project context (test_C\Lab-02). The Terraform MCP server you showed earlier was configured as a local (project-scoped) config in a
   different directory — ~\test_D\terraform-mcp-server.
+<br>
 
 
 
 > [!IMPORTANT] Local MCP configs are per-project, so each project needs its own setup. You can add it to this project too:
   *claude mcp add terraform -s local -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe stdio*
 
-
+<br>
 
 > [!CAUTION] If you want it available in every project, add it at the global scope instead:
 > *claude mcp add terraform -s user -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe stdio*
