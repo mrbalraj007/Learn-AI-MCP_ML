@@ -114,13 +114,13 @@ The /mcp command runs in the current project context (test_C\Lab-02). The Terraf
 
 > [!IMPORTANT] 
 > Local MCP configs are per-project, so each project needs its own setup. You can add it to this project too:
-  *claude mcp add terraform -s local -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe stdio*
+  *claude mcp add terraform -s local -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe*
 
 <br>
 
 > [!CAUTION] 
 > If you want it available in every project, add it at the global scope instead:
-> *claude mcp add terraform -s user -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe stdio*
+> *claude mcp add terraform -s user -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe*
 
 ---
 
@@ -174,3 +174,22 @@ Test dir:   Your Terraform working directory (e.g., .\src\terraform\)
 ```
 
 Once you confirm the binary runs and tools show up in the MCP list, you're ready to use it against your Azure Terraform code. Let me know which client you're using (Desktop vs Code CLI) and I can tailor the config further.
+
+
+```sh
+Fixed. The issue was that when you ran:
+
+  claude mcp add terraform -s user -- stdio C:\tools\terraform-mcp-server\terraform-mcp-server.exe stdio
+
+  The claude mcp add command treats the first token after -- as the command name, so stdio became the command field and the actual binary path got pushed into args. I've
+  swapped them so now:
+
+  - command: C:\tools\terraform-mcp-server\terraform-mcp-server.exe
+  - args: ["stdio"]
+
+  The correct add command would have been:
+
+  claude mcp add terraform -s user -- "C:\tools\terraform-mcp-server\terraform-mcp-server.exe" stdio
+
+  No stdio before the path. Restart Claude Code and the connection should work now.
+```
