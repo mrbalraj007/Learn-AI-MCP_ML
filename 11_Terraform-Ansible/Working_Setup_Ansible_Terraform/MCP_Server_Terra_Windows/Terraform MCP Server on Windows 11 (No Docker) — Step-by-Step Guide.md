@@ -146,7 +146,9 @@ Should show terraform in the connected servers list.
 
 **Step 7 — Test Against Your Terraform Code**
 
+> [!NOTE]
 Navigate to a folder with your Terraform files, then in Claude (Desktop or Code), try prompts like:
+
 ```sh
 - Validate the Terraform code in the current directory
 - Run a terraform plan against my current workspace and summarise what will change
