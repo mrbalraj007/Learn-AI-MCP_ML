@@ -548,6 +548,9 @@ uv --version
 ```bash
 irm https://claude.ai/install.ps1 | iex
 ```
+> [!NOTE]
+> *Be patient as it will take 2- 3 min for installation*
+
 
 <img width="1115" height="456" alt="Image" src="https://github.com/user-attachments/assets/bf836ba0-c201-48a8-b92c-4d74068426db" />
 
