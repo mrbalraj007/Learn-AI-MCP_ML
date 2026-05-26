@@ -1,4 +1,5 @@
-# Free Claude Code Setup: Complete Technical Implementation Guide
+# Claude Code + NVIDIA NIM + Terraform MCP: A Full Stack AI Dev Setup
+<!-- # Free Claude Code Setup: Complete Technical Implementation Guide -->
 
 ### I've Been Using Claude Code for Free — Here's the Exact Setup Nobody Talks About
 
