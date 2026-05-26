@@ -488,11 +488,10 @@ Python 3.14.x
 
 **Step 2.9 — Create a Virtual Environment (Recommended)**
 
-Go to your project folder:
+Create a new folder 
 ```sh
-cd C:\YourProjects
-mkdir uv-env
-cd uv-env
+mkdir test_demo
+cd  test_demo
 ```
 
 **Create venv:**
