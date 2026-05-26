@@ -544,7 +544,7 @@ uv --version
 
 **Step 3.1 — Install [Claude Code](https://code.claude.com/docs/en/quickstart) using powershell:**
 
-**Step 3.1.1 - Open Windows PowerShell as a administrator:**
+**Step 3.1.1 - Open `new Windows PowerShell` as a administrator:**
 ```bash
 irm https://claude.ai/install.ps1 | iex
 ```
