@@ -67,6 +67,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 # Download and install Chocolatey:
 powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
 
+# Open a new terminal and run the below command 
 # Download and install Node.js:
 choco install nodejs --version="24.15.0"
 
