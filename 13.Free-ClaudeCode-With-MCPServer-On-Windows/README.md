@@ -488,8 +488,9 @@ Python 3.14.x
 
 **Step 2.9 — Create a Virtual Environment (Recommended)**
 
-Create a new folder 
+Go to your project and create virtual environment
 ```sh
+cd:\projectname
 mkdir test_demo
 cd  test_demo
 ```
