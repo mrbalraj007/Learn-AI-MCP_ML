@@ -491,8 +491,8 @@ Python 3.14.x
 Go to your project folder:
 ```sh
 cd C:\YourProjects
-mkdir demo
-cd demo
+mkdir uv-env
+cd uv-env
 ```
 
 **Create venv:**
