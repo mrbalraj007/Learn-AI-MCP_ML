@@ -17,22 +17,24 @@ This is the guide I wish I had when I started.
 
 ---
 ## **Tech stack involved:**
-- `Node.js` — Claude Code CLI runtime requirement
-- `npm` — Package manager for the install
+- `Node.js` — Claude Code CLI runtime requirement [Download Link]((https://nodejs.org/en/download))
+- `npm` — Package manager for the install [Download Link]((https://nodejs.org/en/download))
 - `uv` — Fast Python package/environment manager (from Astral)
 - `Python 3.14` — Proxy server runtime
 - `Go` — Required to build the Terraform MCP server binary
-- `Git` — Clone the proxy repo
-- `Terraform` — For the MCP integration
-- `NVIDIA NIM API` — The free model endpoint
+- `Git` — Clone the proxy repo [Download Link]((https://git-scm.com/install/windows))   
+- `Terraform` — For the MCP integration  [Download Link]((https://developer.hashicorp.com/terraform/install))
+- `NVIDIA NIM API` — The free model endpoint  [Download Link]((https://build.nvidia.com/))  
 - `DeepSeek V4 Pro` — The model doing the actual work
 - `uvicorn` — ASGI server that runs the local proxy
+- `AWS CLI` - AWS configuration    [Download Link]((https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html))  
 
 Let's go.
 
 ## Step-by-Step Implementation
 
 ### Environment Setup
+
 
 #### Step 1: Verify `Node.js` Installation
 
@@ -279,6 +281,106 @@ OR
 Reboot the machine (best option)
 
 This is mandatory on Windows Server.
+</details>
+
+---
+
+<details><summary><b>Basic AWS Profile Setup</b></summary><br>
+1. Basic AWS Profile Setup
+
+Run this command:
+```sh
+aws configure --profile my-profile
+
+It will prompt you for:
+	• AWS Access Key ID 
+	• AWS Secret Access Key 
+	• Default region name (e.g. ap-southeast-2) 
+	• Default output format (json, table, text) 
+```
+
+Input:
+```sh
+AWS Access Key ID [None]: AKIAxxxxxxxxxxxx
+AWS Secret Access Key [None]: xxxxxxxxxxxxxxxx
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+```
+
+2. Where AWS Stores Profile
+
+```sh
+# Linux / Mac:
+~/.aws/credentials
+~/.aws/config
+
+# Windows:
+C:\Users\<YourUser>\.aws\credentials
+C:\Users\<YourUser>\.aws\config
+```
+
+3. File Format Example
+```sh
+credentials file:
+
+[default]
+aws_access_key_id=AKIAxxxxxxxx
+aws_secret_access_key=xxxxxxxxxxxx
+
+[dev-account]
+aws_access_key_id=AKIAyyyyyyyy
+aws_secret_access_key=yyyyyyyyyyyy
+config file:
+
+[default]
+region=us-east-1
+output=json
+
+[profile dev-account]
+region=ap-southeast-2
+output=json
+```
+
+4. Use a Specific Profile
+```sh
+Run commands with profile:
+
+aws s3 ls --profile dev-account
+```
+Or set environment variable:
+```sh
+export AWS_PROFILE=dev-account   # Linux/Mac
+setx AWS_PROFILE dev-account     # Windows (permanent)
+```
+
+5. List All Profiles
+```sh
+aws configure list-profiles
+```
+
+6. Test Profile
+```sh
+aws sts get-caller-identity --profile dev-account
+```
+
+**Best Practice (Enterprise / MNC)**
+```
+• Use named profiles per account/environment 
+		○ dev 
+		○ qa 
+		○ prod 
+• Avoid using default profile in automation 
+• Prefer IAM roles / SSO in production setups 
+
+
+# 🔐 Bonus: AWS SSO Profile (Modern Approach)
+
+aws configure sso --profile dev-sso
+
+Then login:
+aws sso login --profile dev-sso
+```
+
 </details>
 
 ---
