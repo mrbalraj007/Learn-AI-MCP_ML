@@ -659,7 +659,7 @@ You should see the localhost URL confirming the NIM endpoint is active.
 
 
 
-### Step 10: Verify the MCP Server is Loaded**
+### Step 10: Verify the MCP Server is Loaded
 
 **Step 10.1 — Create Project Directory**
 
