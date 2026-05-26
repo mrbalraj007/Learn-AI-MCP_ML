@@ -1,8 +1,8 @@
 # Free Claude Code Setup: Complete Technical Implementation Guide
 
-## I've Been Using Claude Code for Free — Here's the Exact Setup Nobody Talks About
+### I've Been Using Claude Code for Free — Here's the Exact Setup Nobody Talks About
 
-> **TL;DR:** You can run Claude Code against NVIDIA's free NIM API (powered by DeepSeek V4 Pro) through a local proxy — with full MCP Terraform server support. This guide walks through every step, every error I hit, and exactly how I fixed them.
+> You can run Claude Code against NVIDIA's free NIM API (powered by DeepSeek V4 Pro) through a local proxy — with full MCP Terraform server support. This guide walks through every step, every error I hit, and exactly how I fixed them.
 
 ---
 
