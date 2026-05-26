@@ -756,10 +756,13 @@ Edit `~/.claude.json` (or run ``claude mcp add`):
 ```powershell
 claude mcp add terraform -s user -- "C:\tools\terraform-mcp-server\terraform-mcp-server.exe" stdio
 ```
-
-
-**Step 8.2 — Restart the MCP Client**
-- Claude Code CLI: No restart needed; config is read fresh each session.
+**Verify MCP Server:**
+```sh
+claude mcp list
+claude mcp get terraform # name of the MCP Server
+```
+<!-- **Step 8.2 — Restart the MCP Client**
+- Claude Code CLI: No restart needed; config is read fresh each session. -->
 
 ---
 
