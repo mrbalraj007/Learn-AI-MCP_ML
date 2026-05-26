@@ -710,6 +710,27 @@ The MCP server runs actual Terraform commands in your working directory and feed
 | 10 | Verify Terraform MCP works | `mcp list` + test prompts |
 
 ---
+## Things That Tripped Me Up (So They Don't Trip You Up)
+
+**The `&&` separator error in PowerShell** — CMD commands don't translate directly. If you're copy-pasting from docs, check which shell you're in. `PS C:\` = PowerShell. `C:\` = CMD.
+
+**Node installed but not found** — Almost always a PATH issue. The machine-level PATH fix in Step 1 solves it 99% of the time. On Windows Server specifically, you often need a full sign-out/reboot for it to take effect.
+
+**uv not found after install** — You need to manually add `~\.local\bin` to PATH in the current session. The installer tells you exactly what to run; don't skip that output.
+
+**Proxy 403 or connection refused errors** — Make sure the uvicorn server (Step 6) is still running in its own terminal. If you closed it, restart it before launching Claude Code.
+
+**MCP not showing in `mcp list`** — Double check the path in `~/.claude.json`. On Windows, backslashes in JSON need to be doubled (`C:\\tools\\...`).
+
+---
+
+## Why This Works the Way It Works
+
+Claude Code respects two environment variables: `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN`. When you override the base URL to point at `localhost:8082`, all API traffic goes to your local proxy instead of Anthropic's servers. The proxy then reformats the request to match NVIDIA NIM's API spec and forwards it to the NIM cloud. The response comes back, gets reformatted again, and Claude Code receives it exactly as if Anthropic had responded.
+
+The `freecc` token is just a dummy value — the proxy doesn't validate it. The real authentication happens between the proxy and NVIDIA NIM using your NIM API key.
+
+---
 
 ## What This Setup Gives You
 

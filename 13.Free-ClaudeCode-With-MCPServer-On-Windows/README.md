@@ -429,22 +429,6 @@ The `freecc` token is just a dummy value — the proxy doesn't validate it. The 
 
 ---
 
-## What This Setup Gives You
-
-- Claude Code with MCP Terraform support running against a capable model
-- No monthly subscription required — just stay within NIM's free tier limits
-- Full VS Code extension integration
-- A foundation you can extend — swap models, add more MCP servers, integrate into pipelines
-
-The NVIDIA NIM free tier is generous enough for day-to-day dev work. If you ever outgrow it, the proxy architecture makes swapping to a paid provider trivial — just update the `.env` and point to a different endpoint.
-
----
-
-## Final Thought
-
-The most interesting part of this setup isn't the cost saving — it's the architecture lesson. Once you understand that Claude Code is just an API client, and any compatible server can sit behind it, a lot of possibilities open up. Local models via Ollama, OpenRouter, your own fine-tuned endpoints — the pattern is the same.
-
-If this saved you time, share it. Someone else is probably closing that pricing tab right now.
 
 ---
 <!-- 
