@@ -665,7 +665,7 @@ MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"
 
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
-# presh all for Python popup window
+# presh allow for Python popup window
 
 # uv run main.py
 ```
