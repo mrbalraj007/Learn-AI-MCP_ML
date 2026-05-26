@@ -1,14 +1,19 @@
 # Free Claude Code Setup: Complete Technical Implementation Guide
 
 ---
-## Prerequisites
+## **Tech stack involved:**
+- `Node.js` — Claude Code CLI runtime requirement
+- `npm` — Package manager for the install
+- `uv` — Fast Python package/environment manager (from Astral)
+- `Python 3.14` — Proxy server runtime
+- `Go` — Required to build the Terraform MCP server binary
+- `Git` — Clone the proxy repo
+- `Terraform` — For the MCP integration
+- `NVIDIA NIM API` — The free model endpoint
+- `DeepSeek V4 Pro` — The model doing the actual work
+- `uvicorn` — ASGI server that runs the local proxy
 
-- Terraform
-- Git
-- go
-- node.js
-- npm
-- uv
+Let's go.
 
 ## Step-by-Step Implementation
 
