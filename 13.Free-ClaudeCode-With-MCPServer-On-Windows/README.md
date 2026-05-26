@@ -734,6 +734,8 @@ C:\tools\terraform-mcp-server\terraform-mcp-server.exe --version
 C:\tools\terraform-mcp-server\terraform-mcp-server.exe --help
 ```
 
+---
+
 ### Step 8:  Configure the MCP Client**
 
 **Step 8.1 —For Claude Code CLI**
