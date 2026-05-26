@@ -17,7 +17,7 @@ This is the guide I wish I had when I started.
 
 ---
 ## **Tech stack involved:**
-- `Node.js` — Claude Code CLI runtime requirement [Download Link]((https://nodejs.org/en/download))
+- `Node.js` — Claude Code CLI runtime requirement: [Download Link](https://nodejs.org/en/download)
 - `npm` — Package manager for the install [Download Link]((https://nodejs.org/en/download))
 - `uv` — Fast Python package/environment manager (from Astral)
 - `Python 3.14` — Proxy server runtime
