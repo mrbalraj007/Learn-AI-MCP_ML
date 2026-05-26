@@ -689,10 +689,27 @@ Navigate to a folder with your Terraform files, then in Claude (Desktop or Code)
 - List all providers used in this Terraform configuration
 - Check for any drift in the resources defined here
 ```
-The MCP server proxies these requests by executing Terraform commands in the context of your working directory.
 
+The MCP server runs actual Terraform commands in your working directory and feeds the results back into Claude's context. It's genuinely impressive once you see it in action.
 
+---
 
+## Full Setup Recap
+
+| Step | What You're Doing | Tool |
+|------|-------------------|------|
+| 1 | Install Node.js runtime | `choco` / installer |
+| 2 | Install Python env manager | `uv` |
+| 3 | Install Claude Code CLI | `curl` / `irm` |
+| 4 | Install VS Code extension | VS Code Marketplace |
+| 5 | Clone & configure NIM proxy | `git`, `.env` |
+| 6 | Start the local proxy server | `uvicorn` |
+| 7 | Build Terraform MCP binary | `go build` |
+| 8 | Register MCP with Claude Code | `~/.claude.json` |
+| 9 | Launch Claude Code → NIM | env vars + `claude` |
+| 10 | Verify Terraform MCP works | `mcp list` + test prompts |
+
+---
 
 
 
