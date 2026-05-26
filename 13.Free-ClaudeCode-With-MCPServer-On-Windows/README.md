@@ -289,11 +289,17 @@ This is mandatory on Windows Server.
 > This is a very important piece of information.
 
 <details><summary><b>Basic AWS Profile Setup</b></summary><br>
+
+0. List All Profiles
+```sh
+aws configure list-profiles
+```
+
 1. Basic AWS Profile Setup
 
 Run this command:
 ```sh
-aws configure --profile my-profile
+aws configure --profile terraformlab
 
 It will prompt you for:
 	• AWS Access Key ID 
