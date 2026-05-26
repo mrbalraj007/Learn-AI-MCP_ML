@@ -719,7 +719,7 @@ C:\tools\terraform-mcp-server\terraform-mcp-server.exe -->
 git clone https://github.com/hashicorp/terraform-mcp-server.git
 cd terraform-mcp-server
 
-# Build the Windows binary
+# Build the Windows binary in a new ternimal
 go build -o terraform-mcp-server.exe ./cmd/terraform-mcp-server
 
 # Move to a permanent location
