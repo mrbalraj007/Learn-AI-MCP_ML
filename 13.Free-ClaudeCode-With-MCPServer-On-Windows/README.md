@@ -696,7 +696,7 @@ Restart your terminal once after installation.
 
 **Step 7.1 — Verify and install `Go` packages**
 
-Open PowerShell as Administrator and verify/install these:
+Open a new PowerShell as Administrator and verify/install these:
 
 a) Check if Go is installed (needed only if building from source)
 ```powershell
