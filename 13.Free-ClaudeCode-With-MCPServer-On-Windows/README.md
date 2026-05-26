@@ -284,6 +284,8 @@ This is mandatory on Windows Server.
 </details>
 
 ---
+> [!IMPORTANT]
+> This is a very important piece of information.
 
 <details><summary><b>Basic AWS Profile Setup</b></summary><br>
 1. Basic AWS Profile Setup
