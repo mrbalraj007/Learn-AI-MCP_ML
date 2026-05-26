@@ -1,25 +1,14 @@
 # Free Claude Code Setup: Complete Technical Implementation Guide
 
 ---
-## Step 2 — Prerequisites
+## Prerequisites
 
-Open PowerShell as Administrator and verify/install these:
-
-a) Check if Go is installed (needed only if building from source)
-```powershell
-go version
-```
-If missing → download from https://go.dev/dl/ (Windows .msi installer). Install and reopen PowerShell.
-
-**b) Check Git**
-powershellgit --version
-If missing → https://git-scm.com/download/win
-
-**c) Check Terraform CLI is in PATH (you likely have this already)**
-```powershell
-terraform version
-```
-
+- Terraform
+- Git
+- go
+- node.js
+- npm
+- uv
 
 ## Step-by-Step Implementation
 
