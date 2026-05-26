@@ -447,9 +447,9 @@ The most interesting part of this setup isn't the cost saving — it's the archi
 If this saved you time, share it. Someone else is probably closing that pricing tab right now.
 
 ---
-
+<!-- 
 *Built and tested on Windows Server 2025 with Git Bash and PowerShell. The proxy and MCP server work equally well on Ubuntu/macOS — just substitute the Windows-specific PATH commands with their shell equivalents.*
 
 ---
 
-**Tags:** `#claudecode` `#ai` `#devops` `#terraform` `#nvidia` `#llm` `#fretools` `#developer` `#vscode` `#mcp`
+**Tags:** `#claudecode` `#ai` `#devops` `#terraform` `#nvidia` `#llm` `#fretools` `#developer` `#vscode` `#mcp` -->
