@@ -17,17 +17,17 @@ This is the guide I wish I had when I started.
 
 ---
 ## **Tech stack involved:**
-- `Node.js` — Claude Code CLI runtime requirement: [Download Link](https://nodejs.org/en/download)
-- `npm` — Package manager for the install [Download Link]((https://nodejs.org/en/download))
+- `Node.js` — Claude Code CLI runtime requirement - [Download Link](https://nodejs.org/en/download)
+- `npm` — Package manager for the install - [Download Link](https://nodejs.org/en/download)
 - `uv` — Fast Python package/environment manager (from Astral)
 - `Python 3.14` — Proxy server runtime
 - `Go` — Required to build the Terraform MCP server binary
-- `Git` — Clone the proxy repo [Download Link]((https://git-scm.com/install/windows))   
-- `Terraform` — For the MCP integration  [Download Link]((https://developer.hashicorp.com/terraform/install))
-- `NVIDIA NIM API` — The free model endpoint  [Download Link]((https://build.nvidia.com/))  
+- `Git` — Clone the proxy repo - [Download Link](https://git-scm.com/install/windows)   
+- `Terraform` — For the MCP integration - [Download Link](https://developer.hashicorp.com/terraform/install)
+- `NVIDIA NIM API` — The free model endpoint - [Download Link](https://build.nvidia.com/)
 - `DeepSeek V4 Pro` — The model doing the actual work
 - `uvicorn` — ASGI server that runs the local proxy
-- `AWS CLI` - AWS configuration    [Download Link]((https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html))  
+- `AWS CLI` - AWS configuration - [Download Link](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)  
 
 Let's go.
 
