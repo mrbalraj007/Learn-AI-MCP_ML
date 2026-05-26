@@ -665,6 +665,8 @@ MODEL="nvidia_nim/deepseek-ai/deepseek-v4-pro"
 
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
+# presh all for Python popup window
+
 # uv run main.py
 ```
 You'll see package downloads on the first run, then the local API server starts. **Keep this terminal window open** — Claude Code needs it running in the background.
