@@ -554,7 +554,8 @@ irm https://claude.ai/install.ps1 | iex
 
 <img width="1115" height="456" alt="Image" src="https://github.com/user-attachments/assets/bf836ba0-c201-48a8-b92c-4d74068426db" />
 
-**Windows CMD:**
+<details><summary><b>Windows CMD</b></summary><br>
+
 ```bash
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
@@ -562,6 +563,8 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 > [!NOTE]
 > [Officially Page](https://code.claude.com/docs/en/overview)
 > If you see The token '&&' is not a valid statement separator, you’re in PowerShell, not CMD. If you see 'irm' is not recognized as an internal or external command, you’re in CMD, not PowerShell. Your prompt shows PS C:\ when you’re in PowerShell and C:\ without the PS when you’re in CMD.
+</details>
+
 ---
 
 **Step 3.2 — Add to System PATH (all users)**
