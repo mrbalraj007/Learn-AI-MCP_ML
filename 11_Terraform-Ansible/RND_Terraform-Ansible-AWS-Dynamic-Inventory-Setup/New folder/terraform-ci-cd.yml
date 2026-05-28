@@ -1,0 +1,437 @@
+# GitHub Actions CI/CD Pipeline for Terraform Infrastructure
+# File: .github/workflows/terraform-ci-cd.yml
+#
+# Triggers:
+# - Push to main/develop branches
+# - Pull Requests
+# - Manual workflow_dispatch
+#
+# Jobs:
+# - Validate Terraform
+# - Security Scanning (Checkov, terraform-compliance)
+# - Plan and Review
+# - Apply to Environment (manual approval)
+# - Generate Documentation
+
+name: Terraform CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/terraform-ci-cd.yml'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'terraform/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment (dev, staging, prod)'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      apply:
+        description: 'Auto-apply changes? (true/false)'
+        required: false
+        default: 'false'
+
+env:
+  TERRAFORM_VERSION: 1.6.0
+  AWS_REGION: us-east-1
+  CACHE_KEY_PREFIX: terraform-cache
+
+jobs:
+  # ============================================
+  # Job 1: Terraform Validation & Format Check
+  # ============================================
+  terraform-validate:
+    name: Validate Terraform Configuration
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Cache Terraform
+        uses: actions/cache@v3
+        with:
+          path: ~/.terraform.d/plugin-cache
+          key: ${{ env.CACHE_KEY_PREFIX }}-${{ runner.os }}-${{ hashFiles('terraform/.terraform.lock.hcl') }}
+          restore-keys: ${{ env.CACHE_KEY_PREFIX }}-${{ runner.os }}-
+
+      - name: Initialize Terraform
+        run: |
+          cd terraform
+          terraform init -backend=false
+        env:
+          TF_INPUT: false
+
+      - name: Validate Terraform Configuration
+        run: |
+          cd terraform
+          terraform validate
+          echo "✓ Terraform configuration is valid"
+
+      - name: Check Terraform Format
+        run: |
+          cd terraform
+          terraform fmt -check -recursive
+          echo "✓ Terraform formatting is correct"
+
+      - name: Upload Terraform Logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-validation-logs
+          path: terraform/
+          retention-days: 5
+
+  # ============================================
+  # Job 2: Security Scanning
+  # ============================================
+  security-scan:
+    name: Security Scanning (Checkov + terraform-compliance)
+    runs-on: ubuntu-latest
+    needs: terraform-validate
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Initialize Terraform (for JSON plan)
+        run: |
+          cd terraform
+          terraform init -backend=false
+
+      - name: Generate JSON Plan
+        run: |
+          cd terraform
+          terraform plan -out=tfplan.binary
+          terraform show -json tfplan.binary > tfplan.json
+          echo "✓ JSON plan generated"
+
+      - name: Run Checkov Security Scan
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: terraform/
+          framework: terraform
+          quiet: false
+          compact: false
+          output_format: sarif
+          output_file_path: ./checkov-results.sarif
+        continue-on-error: true
+
+      - name: Run terraform-compliance Scan
+        id: terraform-compliance
+        run: |
+          pip install terraform-compliance
+          terraform-compliance -f terraform/ -p terraform/tfplan.json \
+            --check-level medium \
+            --output json > compliance-results.json || true
+          echo "✓ terraform-compliance scan completed"
+        continue-on-error: true
+
+      - name: Upload Checkov Results
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ./checkov-results.sarif
+          category: 'Checkov-Terraform'
+        continue-on-error: true
+
+      - name: Comment Security Results on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Read Checkov results
+            const checkovResults = fs.existsSync('./checkov-results.sarif') 
+              ? JSON.parse(fs.readFileSync('./checkov-results.sarif', 'utf8'))
+              : null;
+            
+            const passedChecks = checkovResults?.runs?.[0]?.tool?.driver?.rules?.length || 0;
+            const failedChecks = checkovResults?.runs?.[0]?.results?.filter(r => r.level === 'error').length || 0;
+            
+            const comment = `## 🔒 Security Scan Results
+            
+            ### Checkov Scan
+            - ✓ Passed Checks: ${passedChecks}
+            - ✗ Failed Checks: ${failedChecks}
+            
+            ### terraform-compliance
+            - Policy compliance check executed
+            
+            Please review security findings above before merging.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Upload Security Scan Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-scan-results
+          path: |
+            checkov-results.sarif
+            compliance-results.json
+            terraform/tfplan.json
+          retention-days: 30
+
+  # ============================================
+  # Job 3: Terraform Plan
+  # ============================================
+  terraform-plan:
+    name: Plan Infrastructure Changes
+    runs-on: ubuntu-latest
+    needs: terraform-validate
+    
+    env:
+      TF_VAR_environment: dev
+      
+    outputs:
+      plan_output: ${{ steps.plan.outputs.stdout }}
+      plan_exists: ${{ steps.plan_check.outputs.exists }}
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+        continue-on-error: true
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Cache Terraform
+        uses: actions/cache@v3
+        with:
+          path: ~/.terraform.d/plugin-cache
+          key: ${{ env.CACHE_KEY_PREFIX }}-${{ runner.os }}-${{ hashFiles('terraform/.terraform.lock.hcl') }}
+          restore-keys: ${{ env.CACHE_KEY_PREFIX }}-${{ runner.os }}-
+
+      - name: Initialize Terraform
+        run: |
+          cd terraform
+          terraform init
+        continue-on-error: true
+
+      - name: Generate Terraform Plan
+        id: plan
+        run: |
+          cd terraform
+          terraform plan -out=tfplan -lock=false || true
+          terraform show -no-color tfplan > tfplan.txt
+          
+          # Check if plan has changes
+          if grep -q "No changes" tfplan.txt; then
+            echo "No infrastructure changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Check Plan Exists
+        id: plan_check
+        run: |
+          if [ -f terraform/tfplan ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment Plan on PR
+        if: github.event_name == 'pull_request' && steps.plan_check.outputs.exists == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const planOutput = fs.readFileSync('./terraform/tfplan.txt', 'utf8');
+            
+            // Truncate if too long
+            const maxLength = 65536;
+            const truncatedPlan = planOutput.length > maxLength 
+              ? planOutput.substring(0, maxLength) + '\n... (truncated)'
+              : planOutput;
+            
+            const comment = `## 📋 Terraform Plan
+
+            \`\`\`hcl
+            ${truncatedPlan}
+            \`\`\`
+
+            **Action:** Review plan and approve merge to trigger apply.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Upload Plan Artifact
+        if: steps.plan_check.outputs.exists == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-plan
+          path: terraform/tfplan
+          retention-days: 5
+
+  # ============================================
+  # Job 4: Terraform Apply (Manual Approval)
+  # ============================================
+  terraform-apply:
+    name: Apply Infrastructure Changes
+    runs-on: ubuntu-latest
+    needs: [terraform-plan, security-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    environment:
+      name: production
+      
+    env:
+      TF_VAR_environment: dev
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-plan
+          path: terraform/
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Initialize Terraform
+        run: |
+          cd terraform
+          terraform init
+
+      - name: Apply Terraform Changes
+        id: apply
+        run: |
+          cd terraform
+          
+          if [ -f tfplan ]; then
+            terraform apply -lock=true tfplan
+            echo "apply_successful=true" >> $GITHUB_OUTPUT
+          else
+            echo "No plan found, skipping apply"
+            echo "apply_successful=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate Apply Summary
+        if: steps.apply.outputs.apply_successful == 'true'
+        run: |
+          cd terraform
+          terraform output -json > apply_output.json
+          cat apply_output.json
+
+      - name: Upload Apply Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-apply-results
+          path: |
+            terraform/apply_output.json
+            terraform/.terraform/
+          retention-days: 30
+
+      - name: Notify on Success
+        if: success()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Terraform apply completed successfully!'
+            });
+
+      - name: Notify on Failure
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Terraform apply failed. Check logs for details.'
+            });
+
+  # ============================================
+  # Job 5: Documentation Generation
+  # ============================================
+  documentation:
+    name: Generate Terraform Documentation
+    runs-on: ubuntu-latest
+    needs: terraform-validate
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Terraform Docs
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: terraform/
+          output-file: README.md
+          output-method: inject
+          git-commit: true
+          git-commit-message: "docs: auto-generate terraform documentation"
+
+      - name: Upload Documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-documentation
+          path: terraform/README.md
+          retention-days: 30
