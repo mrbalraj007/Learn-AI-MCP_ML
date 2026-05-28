@@ -1,5 +1,37 @@
 # 🚀 GitHub Codespaces DevContainer — Terraform & AWS CLI (No Docker)
 
+*Codespaces is a fully working computer that lives in the cloud, tied to your GitHub repo, and opens instantly in your browser.
+Think of it like this — instead of setting up your workbench at home every time, GitHub hands you a fully-equipped workshop the moment you walk in the door.*
+
+### The Old Way vs Codespaces
+
+| Old way (your laptop) | Codespaces |
+|------------------------|-------------|
+| Install Git, Python, Terraform, AWS CLI... | Nothing to install |
+| Fix version conflicts | Versions are pre-defined |
+| "It works on my machine" | Same environment for everyone |
+| Breaks if you get a new laptop | Just open a browser |
+| Hours of setup | Ready in 2 minutes |
+
+### **What's Actually Running Inside a Codespace?**
+When you open a Codespace, GitHub spins up four things for you automatically:
+1. **A Linux server** — a real Ubuntu machine running on GitHub's cloud infrastructure. Not your laptop. GitHub's servers.
+2. **VS Code in your browser** — the exact same VS Code editor you may already use, but running in a browser tab. No install needed.
+3. **Your tools** — whatever you put in devcontainer.json gets auto-installed. In our case: Terraform and AWS CLI.
+4. **Your code** — your GitHub repo is automatically cloned inside, ready to work on.
+
+### **Why Do Engineers Use It?**
+
+- **No setup headaches** — a new team member can be productive in 2 minutes instead of half a day fighting installs.
+- **Consistent environments** — every developer gets the exact same versions of every tool. No more "it works on my machine."
+- **Works on any device** — even a cheap laptop, a tablet, or a Chromebook. The heavy lifting runs on GitHub's servers.
+- **Disposable environments** — made a mess? Delete the Codespace and spin up a fresh one in 2 minutes. Your code is safe in GitHub.
+
+> [!CAUTION]
+**Free tier** — GitHub gives you 60 hours/month free, 2 hours/day, which is plenty for personal projects and learning.
+
+---
+
 > A simple step-by-step guide to set up a **Dev Container** in GitHub Codespaces with **Terraform** and **AWS CLI** using only `devcontainer.json` — no Dockerfile required.
 
 ---
@@ -7,14 +39,18 @@
 ## 📋 Table of Contents
 
 - [🚀 GitHub Codespaces DevContainer — Terraform \& AWS CLI (No Docker)](#-github-codespaces-devcontainer--terraform--aws-cli-no-docker)
+    - [The Old Way vs Codespaces](#the-old-way-vs-codespaces)
+    - [**What's Actually Running Inside a Codespace?**](#whats-actually-running-inside-a-codespace)
+    - [**Why Do Engineers Use It?**](#why-do-engineers-use-it)
   - [📋 Table of Contents](#-table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Step 1 — Create a GitHub Repository](#step-1--create-a-github-repository)
   - [Step 2 — Launch GitHub Codespaces](#step-2--launch-github-codespaces)
+  - [Step 3 — Configure Codespaces](#step-3--configure-codespaces)
+  - [Step 4 — Rebuild the Container](#step-4--rebuild-the-container)
     - [What each section does](#what-each-section-does)
-  - [Step 5 — Rebuild the Container](#step-5--rebuild-the-container)
-  - [Step 6 — Verify Terraform](#step-6--verify-terraform)
-  - [Step 7 — Verify AWS CLI](#step-7--verify-aws-cli)
+  - [Step 5 — Verify Terraform](#step-5--verify-terraform)
+  - [Step 6 — Verify AWS CLI](#step-6--verify-aws-cli)
   - [Step 8 — Configure AWS Credentials](#step-8--configure-aws-credentials)
     - [Recommended — GitHub Codespaces Secrets](#recommended--github-codespaces-secrets)
     - [Alternative — aws configure (quick test)](#alternative--aws-configure-quick-test)
@@ -58,22 +94,41 @@ Inside your new repository:
 3. Click **"Create codespace on main"**
 
 > 📸 **Screenshot — Codespaces tab inside the Code button:**
->
-> ![alt text](image.png)
+> 
+> <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/2e2e3164-2f63-4ded-9170-2316373c43c3" />
+> 
 
 > ⏳ Wait ~1 minute for the default Codespace to load (VS Code in browser).
 
 ---
 
-![alt text](image-1.png)
+## Step 3 — Configure Codespaces
 
-![alt text](image-2.png)
+1. Press **`Ctrl+Shift+P`** to open the Command Palette
+2. Type **`devcontainer`**
+3. Select **"Codespaces: Add Dev Containers Configuration Flies"**
+> <img width="1281" height="271" alt="Image" src="https://github.com/user-attachments/assets/4d3a0153-7330-45aa-8912-4cb8eff44e86" />
 
-![alt text](image-3.png)
+5. If you have existing container then select **"Modify your active configuration"** else select **"Create a new configuration"**
+> <img width="1204" height="252" alt="Image" src="https://github.com/user-attachments/assets/8b55fcdb-8286-4dee-932e-f881055867c1" />
 
-![alt text](image-4.png)
+6. Select the package which you required, in our case it would `terraform` and `AWS CLI`
+   
+   - Select the below packages:- 
+     - `"Terraform,tflint, and TFGrant devcontainer"`
+     - `AWS CLI devcontainer`
+    
+> <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/5382b41c-dfa7-4833-93b3-a91193b7d415" />
+> <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/5e229162-3ca9-4220-9594-1794d90832aa" />
 
-![alt text](image-5.png)
+7. Select `Configuration Options`
+> <img width="1182" height="192" alt="Image" src="https://github.com/user-attachments/assets/259cb875-67ac-491e-a917-c3ac9b1e9aee" />
+
+8. Click on `rebuild` 
+> <img width="1262" height="601" alt="Image" src="https://github.com/user-attachments/assets/393082e7-9b0d-45f9-8518-4567b8a3c4c5" />
+
+
+You will see below configuration in the `.devcontainer/devcontainer.json`
 
 ```sh
 {
@@ -92,30 +147,30 @@ Inside your new repository:
 }
 ```
 
-![alt text](image-6.png)
+## Step 4 — Rebuild the Container
 
-Rebuild
+> [!IMPORTANT]
+> If you want to change or modification into your container then you need to follow the same procedure and `Rebuild` it.
+> <img width="1160" height="371" alt="Image" src="https://github.com/user-attachments/assets/aa2893cc-e2f2-4aef-ad36-38ccff708a52" />
 
-![alt text](image-7.png)
-![alt text](image-8.png)
+1. Press **`Ctrl+Shift+P`** to open the Command Palette
+2. Type **`rebuild`**
+3. Select **"Dev Containers: Rebuild Container"**
+4. Wait for the rebuild to finish (~3–5 minutes)
 
-0 : <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/2e2e3164-2f63-4ded-9170-2316373c43c3" />
-1: <img width="1281" height="271" alt="Image" src="https://github.com/user-attachments/assets/4d3a0153-7330-45aa-8912-4cb8eff44e86" />
-2: <img width="1204" height="252" alt="Image" src="https://github.com/user-attachments/assets/8b55fcdb-8286-4dee-932e-f881055867c1" />
-3: <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/5382b41c-dfa7-4833-93b3-a91193b7d415" />
-4: <img width="945" height="526" alt="Image" src="https://github.com/user-attachments/assets/5e229162-3ca9-4220-9594-1794d90832aa" />
-5: <img width="1182" height="192" alt="Image" src="https://github.com/user-attachments/assets/259cb875-67ac-491e-a917-c3ac9b1e9aee" />
-6: <img width="1576" height="925" alt="Image" src="https://github.com/user-attachments/assets/c29ada15-4918-4ae6-ab09-bbabd1b30f85" />
-7: <img width="1160" height="371" alt="Image" src="https://github.com/user-attachments/assets/aa2893cc-e2f2-4aef-ad36-38ccff708a52" />
-8: <img width="1262" height="601" alt="Image" src="https://github.com/user-attachments/assets/393082e7-9b0d-45f9-8518-4567b8a3c4c5" />
 
-codespace 60 hours/month, 2 hours a day
+<!-- > ```
+> Ctrl+Shift+P opens the command palette at the top of the screen
+> Type "rebuild" → list filters to show:
+>   ▶ Dev Containers: Rebuild Container
+> Click it → confirmation prompt → container rebuilds
+> Build log appears in the terminal showing features being installed
+> ``` -->
 
->devcontainer configuration file | terraform [terraform, tflint, Tfgrunt,devcontainers] /aws cli
+> 💡 You may also see a notification banner:
+> **"Dev container configuration file has changed."** → Click **"Rebuild"**
 
-> codespace:Rebuild Container
-
-GitHub Codespaces is a sandbox environment as a container environment.
+---
 
 <!-- 
 ## Step 3 — Create the `.devcontainer` Folder
@@ -197,31 +252,9 @@ Open it in the editor and paste:
 
 ---
 
-## Step 5 — Rebuild the Container
 
-After saving `devcontainer.json`:
 
-1. Press **`Ctrl+Shift+P`** to open the Command Palette
-2. Type **`rebuild`**
-3. Select **"Dev Containers: Rebuild Container"**
-4. Wait for the rebuild to finish (~3–5 minutes)
-
-> 📸 **Screenshot — Command Palette with Rebuild option:**
->
-> ```
-> Ctrl+Shift+P opens the command palette at the top of the screen
-> Type "rebuild" → list filters to show:
->   ▶ Dev Containers: Rebuild Container
-> Click it → confirmation prompt → container rebuilds
-> Build log appears in the terminal showing features being installed
-> ```
-
-> 💡 You may also see a notification banner:
-> **"Dev container configuration file has changed."** → Click **"Rebuild"**
-
----
-
-## Step 6 — Verify Terraform
+## Step 5 — Verify Terraform
 
 Once the rebuild completes, open a terminal and run:
 
@@ -251,7 +284,7 @@ which terraform
 
 ---
 
-## Step 7 — Verify AWS CLI
+## Step 6 — Verify AWS CLI
 
 In the same terminal, run:
 
