@@ -1,0 +1,114 @@
+# Optional: Custom Dockerfile for more control over base image
+# Use this if you want more customization than the default ubuntu-22.04 image
+# To use this Dockerfile, replace "image" with "dockerFile": "Dockerfile" in devcontainer.json
+
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+
+LABEL maintainer="Your Name <your.email@example.com>"
+LABEL description="Terraform Drift Detection Lab - Development Container"
+
+# Avoid prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive \
+    TF_INPUT=false \
+    TF_IN_AUTOMATION=true
+
+# Update and install system dependencies
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y \
+    curl \
+    wget \
+    git \
+    git-lfs \
+    unzip \
+    jq \
+    ca-certificates \
+    gnupg \
+    lsb-release \
+    apt-transport-https \
+    software-properties-common \
+    build-essential \
+    nano \
+    vim \
+    htop \
+    net-tools \
+    dnsutils \
+    iputils-ping \
+    python3-pip \
+    python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install HashiCorp GPG key and Terraform
+RUN wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null && \
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list && \
+    apt-get update && \
+    apt-get install -y terraform && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install TFLint
+RUN curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+
+# Install Terragrunt
+RUN VERSION=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep -oP '"tag_name": "\K[v0-9.]+') && \
+    curl -L "https://github.com/gruntwork-io/terragrunt/releases/download/${VERSION}/terragrunt_linux_amd64" -o /usr/local/bin/terragrunt && \
+    chmod +x /usr/local/bin/terragrunt
+
+# Install Python security and compliance tools
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir \
+    checkov \
+    terraform-compliance \
+    pylint
+
+# Install Azure CLI
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+# Install AWS CLI v2
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" && \
+    unzip -q /tmp/awscliv2.zip -d /tmp/ && \
+    /tmp/aws/install && \
+    rm -rf /tmp/awscliv2.zip /tmp/aws/
+
+# Install Node.js (for MCP servers)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm@latest && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Trivy (vulnerability scanner)
+RUN apt-get update && \
+    apt-get install -y trivy && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Go
+RUN wget -q "https://go.dev/dl/go1.21.0.linux-amd64.tar.gz" -O /tmp/go.tar.gz && \
+    tar -C /usr/local -xzf /tmp/go.tar.gz && \
+    rm /tmp/go.tar.gz && \
+    echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
+
+# Install pre-commit framework
+RUN pip3 install --no-cache-dir pre-commit
+
+# Create cache directories
+RUN mkdir -p /workspace/.terraform/cache && \
+    mkdir -p /workspace/.terraform-logs && \
+    mkdir -p /workspace/terraform-plans && \
+    mkdir -p /workspace/.drift-detection
+
+# Set Terraform plugin cache directory
+ENV TF_PLUGIN_CACHE_DIR=/workspace/.terraform/cache
+
+# Set working directory
+WORKDIR /workspace
+
+# Health check command
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD terraform -version > /dev/null 2>&1 && \
+        az --version > /dev/null 2>&1 && \
+        aws --version > /dev/null 2>&1 || exit 1
+
+# Display version information when container starts
+CMD ["bash", "-c", "echo ''; echo '🚀 Terraform Drift Detection Lab DevContainer'; echo ''; echo 'Installed versions:'; echo \"  Terraform: $(terraform -version | head -1 | cut -d' ' -f2)\"; echo \"  TFLint: $(tflint --version 2>/dev/null | head -1)\"; echo \"  Checkov: $(checkov --version 2>/dev/null | head -1)\"; echo \"  Azure CLI: $(az --version 2>/dev/null | head -1)\"; echo \"  AWS CLI: $(aws --version | cut -d' ' -f1)\"; echo \"  Node.js: $(node --version)\"; echo ''; echo 'Ready to code! ✨'; echo ''; bash"]

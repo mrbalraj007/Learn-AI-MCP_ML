@@ -1,0 +1,116 @@
+{
+  "name": "Terraform Drift Detection Lab - Azure + MCP",
+  "description": "Complete dev environment for Terraform drift detection with Azure OIDC, Checkov, terraform-compliance, and MCP servers",
+  
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-azureterraform",
+        "ms-vscode.azure-account",
+        "ms-azuretools.azure-dev",
+        "github.copilot",
+        "ms-vsliveshare.vsliveshare",
+        "ms-vsliveshare.vsliveshare-audio",
+        "ms-vscode.remote-explorer",
+        "ms-vscode.makefile-tools",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "eamodio.gitlens",
+        "GitHub.vscode-pull-request-github",
+        "snyk-security.snyk-vulnerability-scanner",
+        "golang.go",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terraform.path": "/usr/bin/terraform",
+        "terraform.lintPath": "/usr/bin/tflint",
+        "[terraform]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "files.exclude": {
+          "**/.terraform": true,
+          "**/.terraform.lock.hcl": true,
+          "**/terraform.tfstate*": true
+        },
+        "search.exclude": {
+          "**/.terraform": true,
+          "**/.git": true
+        },
+        "[makefile]": {
+          "editor.insertSpaces": false
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [
+    8080,
+    8081,
+    8082,
+    9000
+  ],
+  
+  "portsAttributes": {
+    "8080": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "8081": {
+      "label": "Debug",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/usr/local/go/bin:/root/.local/bin",
+    "EDITOR": "nano",
+    "PAGER": "less",
+    "TF_PLUGIN_CACHE_DIR": "${containerWorkspaceFolder}/.terraform/cache",
+    "TF_INPUT": "false",
+    "TF_IN_AUTOMATION": "true"
+  },
+  
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}/.azure,target=/root/.azure,type=bind",
+    "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind"
+  ],
+  
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  
+  "postStartCommand": "bash .devcontainer/post-start.sh || true",
+  
+  "workspaceFolder": "/workspace",
+  
+  "remoteUser": "root"
+}

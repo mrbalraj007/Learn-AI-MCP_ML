@@ -1,0 +1,72 @@
+# .devcontainer/.gitignore
+# Prevent accidental commits of sensitive files
+
+# Environment files with credentials
+.env.local
+.env.*.local
+.env
+
+# Azure authentication cache
+azure-auth-cache
+*.azureauth
+
+# AWS credentials (shouldn't be here, but just in case)
+*.aws-credentials
+aws-credentials.txt
+
+# Terraform state and locks (should be in remote backend)
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+.terraform/
+
+# Logs
+*.log
+logs/
+.terraform-logs/
+
+# IDE cache and settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+.directory
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node modules (if needed)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+.next/
+
+# Terraform plans
+tfplan
+*.tfplan
+terraform-plans/
+
+# Testing files
+*.test.json
+test-results/
+
+# Keep these important files (override gitignore)
+!.env.example
+!.devcontainer.json
+!post-create.sh
+!post-start.sh
+!Dockerfile
