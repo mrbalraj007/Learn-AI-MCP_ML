@@ -492,7 +492,8 @@ Python 3.14.x
 
 Go to your project and create virtual environment
 ```sh
-cd:\projectname
+mkdir projectname
+cd projectname
 mkdir test_demo
 cd  test_demo
 ```
