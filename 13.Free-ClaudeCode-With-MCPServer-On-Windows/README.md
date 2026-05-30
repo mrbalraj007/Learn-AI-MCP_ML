@@ -17,7 +17,7 @@ This is the guide I wish I had when I started.
 
 ---
 
-## ⚡ What Is This?
+## About Setup
 
 Connect **Claude Code** to **NVIDIA's free API** using **LiteLLM** as a translation proxy. Run any of 150+ models — including DeepSeek V4 pro — without paying a cent.
 
@@ -459,25 +459,27 @@ Mode                 LastWriteTime         Length Name
 PS C:\Users\Administrator\Desktop>
 
 ```
-Step 3 — Verify Python executable location
+**Step 3 — Verify Python executable location**
 
 After install, run:
-
+```sh
 py -3.13 -c "import sys; print(sys.executable)"
-
+```
 You should get something like:
-
+```sh
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\python.exe
+```
+**Fix PATH manually (if still missing)**
 
-Fix PATH manually (if still missing)
-Open environment variables:
+**Open environment variables:**
+```sh
 rundll32 sysdm.cpl,EditEnvironmentVariables
-
+```
 Then add these entries under User PATH:
-
+```sh
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts\
-
+```
 
 **Step 3 — Add Python to User PATH (Recommended)**
 
@@ -576,12 +578,16 @@ pip install litellm python-dotenv
 # pip install "litellm[proxy]" python-dotenv
 
 # pip install requests boto3
-pip install --upgrade pip
+python.exe -m pip install --upgrade pip
 
-
+pip install "litellm[proxy]"
 
 # Test
 python -c "import litellm; print('OK')"
+
+
+# Verify Version
+litellm --version
 ```
 <!-- ```sh
 PS C:\> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
@@ -721,7 +727,7 @@ mkdir Terraform-MCP-demo && cd Terraform-MCP-demo
 ```
 ---
 
-### Step 6 — Create `config.yaml`
+### Step 6.1 — Create `config.yaml`
 
 > *we will direct open it vscode then type `code config.yaml`*
 >
@@ -763,27 +769,136 @@ Paste:
 
 ---
 
-### Step 8 — Run It
+### Step 8 — Verify the setup is working or not.
+
+- Run the python script [nvidia_api_test.py]
+- Here's what the script does, mirroring the screenshot exactly:
+  
+**Set your NVIDIA NIM API key**
+```sh
+export NVIDIA_API_KEY="nvapi-xxxxxxxxxxxxxxxxxxxx"
+```
+Get your API key from `build.nvidia.com → sign in → API Key`. Free tier gives you credits to run all 4 tests.
+
+**Run**
+```sh
+python nvidia_api_test.py
+```
+![alt text](image-1.png)
+
+<details><summary><b>**4-Tests covered:**</b></summary><br>
+
+**01. API Test Cases**
+
+---
+**Test 1 – List Models**
+
+**Purpose:**  
+Retrieve all available models from the API.
+
+**What it does:**
+- Sends a `GET /v1/models` request.
+- Handles paginated responses automatically.
+- Retrieves all available models.
+- Prints the total number of models returned.
+
+---
+
+**Test 2 – Search for DeepSeek Models**
+
+**Purpose:**  
+Identify all models related to DeepSeek.
+
+**What it does:**
+- Retrieves the model list from the API.
+- Filters models whose names contain `deepseek`.
+- Displays all matching DeepSeek models.
+
+---
+
+**Test 3 – Validate Specific Model**
+
+**Purpose:**  
+Verify that a specific DeepSeek model exists and inspect its metadata.
+
+**Target Model:**  
+`deepseek-ai/deepseek-v4-flash`
+
+**What it does:**
+- Searches for the specified model.
+- Retrieves the model details.
+- Prints the model owner information.
+
+---
+
+**Test 4 – Chat Completion Test**
+
+**Purpose:**  
+Verify that the model can successfully process chat completion requests.
+
+**Target Model:**  
+`deepseek-ai/deepseek-v4-flash`
+
+**What it does:**
+- Sends a live chat completion request.
+- Waits for the model response.
+- Prints the generated response.
+- Confirms end-to-end inference functionality.
+
+---
+
+**Summary**
+
+| Test | Description | Expected Outcome |
+|--------|-------------|------------------|
+| Test 1 | List all models | Total model count displayed |
+| Test 2 | Filter DeepSeek models | Matching models displayed |
+| Test 3 | Validate specific model | Owner information displayed |
+| Test 4 | Run chat completion | Model response returned successfully |
+
+</details>
+
+---
+### Step 8 — Run LiteLLM Proxy It
 
 **Terminal 1 — Start LiteLLM proxy:**
 ```bash
+cd Terraform-MCP-demo
 litellm --config config.yaml --port 4000
 ```
+![alt text](image-2.png)
+
+<details><summary><b>If you get error message mentioned here then we need to run command mention here</b></summary><br>
+
 ![alt text](image.png)
 
-**I was getting an error so we need to run below**
-
 Noticed that I was using python `3.14` and we need to use `python3.13`.
+and need to run the blow command
 ```sh
 pip install "litellm[proxy]"
 ```
+</details>
+
+---
 
 **Terminal 2 — Launch Claude Code:**
 ```bash
 cd Terraform-MCP-demo
 
-Type `claude`
+# Type `claude`
+claude
 ```
+Select the default setting and presh `enter` 
+
+![alt text](image-3.png)
+
+presh `enter 3 times` and you will see below
+
+![alt text](image-4.png)
+
+in Prompt type `/status` and it will show below model and LiteLLM model.
+
+![alt text](image-5.png)
 
 Test prompt:
 
@@ -793,9 +908,11 @@ Hey, which model you are using
 
 Watch Terminal 1 — you'll see requests flowing through to NVIDIA. ✅
 
+![alt text](image-6.png)
+
 ---
 
-## 🔧 How It Works
+## How It Works
 
 ```
 You type a prompt in Claude Code
@@ -882,62 +999,26 @@ claude mcp add terraform -s user -- "C:\tools\terraform-mcp-server\terraform-mcp
 **Verify MCP Server:**
 ```sh
 claude mcp list
-claude mcp get terraform # name of the MCP Server
+claude mcp get <terraform> # name of the MCP Server
 ```
-<!-- **Step 8.2 — Restart the MCP Client**
-- Claude Code CLI: No restart needed; config is read fresh each session. -->
-
----
-
-### Step 9:   — Launch Claude Code (Pointed at NVIDIA NIM)
-
-Navigate to your project folder, then run the startup command (it sets the `ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY` environment variables before invoking `claude`):
-
-> [!CAUTION] 
-> ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
-
-```bash
-cd ~/your-project-folder
-
-# The exact command sets env vars for the NIM endpoint — copy from compilefuture.com
-
-# ANTHROPIC_BASE_URL=http://localhost:<port> ANTHROPIC_API_KEY=dummy claude
-
-ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
-```
-
-Choose **Dark Mode** when prompted, then press Enter. Claude Code will start up and connect to the local NIM proxy.
-
-**Verify the connection:**
-
-```
-/status
-```
-
-You should see the localhost URL confirming the NIM endpoint is active.
-
-<img width="904" height="606" alt="Image" src="https://github.com/user-attachments/assets/0656bf34-5428-415c-9e9a-3ffd0271de8a" />
-
-
-
 ### Step 10: Verify the MCP Server is Loaded
 
-**Step 10.1 — Create Project Directory**
+**Step 10.1 — Go to Project actual Directory**
 
 ```bash
-# Create a new directory for the project
-mkdir Terraform_Demo
-cd Terraform_Demo
-
-# Initialize npm project
-# npm init -y
+# Create a new directory for the project or us existing one
+cd Terraform-MCP-demo
 ```
 
 **In Claude Code CLI**
 ```powershell
-claude mcp list
+# verify the MCP in claude
+/mcp
+# claude mcp list
 ```
 Should show terraform in the connected servers list.
+
+![alt text](image-7.png)
 
 **Step 10.2 — Test Against Your Terraform Code**
 
@@ -1034,7 +1115,6 @@ If this saved you time, share it. Someone else is probably closing that pricing 
 
 ## 🔗 Links
 
-[![YouTube](https://img.shields.io/badge/YouTube-KSK%20Royal-red?style=for-the-badge&logo=youtube)](https://youtube.com/@kskroyal)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/mrbalraj007)
 [![NVIDIA Build](https://img.shields.io/badge/NVIDIA-Free%20API-76b900?style=for-the-badge&logo=nvidia)](https://build.nvidia.com)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Docs-orange?style=for-the-badge)](https://docs.claude.com/en/docs/claude-code)
