@@ -1,6 +1,8 @@
 # Claude Code + NVIDIA NIM API + LiteLLM + Terraform MCP: A Full Stack AI Dev Setup
 <!-- # Free Claude Code Setup: Complete Technical Implementation Guide -->
 
+<img width="1494" height="928" alt="Image" src="https://github.com/user-attachments/assets/3c8512d5-4c3e-4711-8be6-7ab3ceea9cbe" />
+
 ### I've Been Using Claude Code for Free — Here's the Exact Setup Nobody Talks About
 
 > You can run Claude Code against NVIDIA's free NIM API (powered by DeepSeek V4 Pro) through a local proxy — with full MCP Terraform server support. This guide walks through every step, every error I hit, and exactly how I fixed them.
@@ -459,7 +461,7 @@ Mode                 LastWriteTime         Length Name
 PS C:\Users\Administrator\Desktop>
 
 ```
-**Step 3 — Verify Python executable location**
+**Step 2.3 — Verify Python executable location**
 
 After install, run:
 ```sh
@@ -469,7 +471,18 @@ You should get something like:
 ```sh
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\python.exe
 ```
-**Fix PATH manually (if still missing)**
+**Step 2.4 — Add Python to User PATH (Recommended)**
+
+- Copy and run this in PowerShell:
+```sh
+[Environment]::SetEnvironmentVariable(
+    "Path",
+    $env:Path + ";C:\Users\Administrator\AppData\Local\Programs\Python\Python313\;C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts\",
+    "User"
+)
+```
+---
+<details><summary><b>**Fix PATH manually (if still missing)**</b></summary><br>
 
 **Open environment variables:**
 ```sh
@@ -480,19 +493,11 @@ Then add these entries under User PATH:
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\
 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts\
 ```
+</details>
 
-**Step 3 — Add Python to User PATH (Recommended)**
+---
 
-- Copy and run this in PowerShell:
-```sh
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    $env:Path + ";C:\Users\Administrator\AppData\Local\Programs\Python\Python313\;C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts\",
-    "User"
-)
-```
-
-**Step 4 — Reload PowerShell**
+**Step 2.5 — Reload PowerShell**
 
 Close PowerShell and open a new one.
 
@@ -503,45 +508,6 @@ py -0
 pip --version
 where.exe python
 ```
----
-<!-- 
-<details><summary><b>**Alternative CMD Method**</b></summary><br>
-
-If using Command Prompt (CMD):
-```sh
-setx PATH "%PATH%;C:\Users\Administrator\AppData\Local\Programs\Python\Python312\;C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Scripts\"
-```
-
-Then reopen CMD.
-
-**Important Notes**
-Avoid Duplicate PATH Entries
-
-Before adding, you can check current PATH:
-
-```sh
-$env:Path -split ";"
-```
-
-**Add System-Wide PATH (All Users)**
-
-Run PowerShell as Administrator:
-```sh
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    [Environment]::GetEnvironmentVariable("Path","Machine") + ";C:\Python312\;C:\Python312\Scripts\",
-    "Machine"
-)
-```
-**Best Verification Commands**
-```sh
-python -V
-pip -V
-Get-Command python
-```
-
-</details> -->
-
 ---
 
 ### Step 3: install `LiteLLM` on Windows VM
@@ -589,47 +555,13 @@ python -c "import litellm; print('OK')"
 # Verify Version
 litellm --version
 ```
-<!-- ```sh
-PS C:\> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-downloading uv 0.11.16 (x86_64-pc-windows-msvc)
-installing to C:\Users\Administrator\.local\bin
-  uv.exe
-  uvx.exe
-  uvw.exe
-everything's installed!
-
-To add C:\Users\Administrator\.local\bin to your PATH, either restart your shell or run:
-
-    set Path=C:\Users\Administrator\.local\bin;%Path%   (cmd)
-    $env:Path = "C:\Users\Administrator\.local\bin;$env:Path"   (powershell)
-PS C:\>
-```
-
-**Step 2.4 — Set the path to environment**
-```sh
-$env:Path = "C:\Users\Administrator\.local\bin;$env:Path"
-```
-
-After installation, close PowerShell completely and reopen it.
-
-**Step 2.5 — Verify uv Installation**
-
-Run:
-```sh
-uv --version
-```
-You should see something like:
-```sh
-uv 0.x.x
-``` -->
-
 ---
 
-### Step 3: Install Claude Code CLI
+### Step 4: Install Claude Code CLI
 
-**Step 3.1 — Install [Claude Code](https://code.claude.com/docs/en/quickstart) using npm:**
+**Step 4.1 — Install [Claude Code](https://code.claude.com/docs/en/quickstart) using npm:**
 
-**Step 3.1.1 - Open `new Windows PowerShell` as a administrator:**
+**Step 4.1.1 - Open `new Windows PowerShell` as a administrator:**
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
@@ -665,18 +597,8 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 </details>
 
 ---
-<!-- 
-**Step 3.2 — Add to System PATH (all users)**
-```bash
-$path = [Environment]::GetEnvironmentVariable("Path", "Machine")
-$newPath = "$path;C:\Users\Administrator\.local\bin"
-[Environment]::SetEnvironmentVariable("Path", $newPath, "Machine")
-```
 
-> [!IMPORTANT] 
-> *Close and reopen your terminal to make it effective* -->
-
-**Step 3.3 — Verify Claude Code Installation**
+**Step 4.2 — Verify Claude Code Installation**
 
 ```bash
 claude --version
@@ -687,7 +609,7 @@ If installed correctly, the version number will be displayed.
 
 ---
 
-### Step 4: Install Claude Code VS Code Extension**
+### Step 5: Install Claude Code VS Code Extension**
 
 1. Open VS Code
 2. Go to **Extensions**
@@ -697,10 +619,9 @@ If installed correctly, the version number will be displayed.
 
 ---
 
-### Step 5 — Download the NVIDIA NIM Proxy Folder
+### Step 6 — Create NVIDIA API Key
 
-
-**Step 5.1 — To get your API key:**
+**Step 6.1 — To get your API key:**
 
 1. Go to [https://build.nvidia.com](https://build.nvidia.com)
 2. Sign up and verify your account with a phone number
@@ -708,7 +629,7 @@ If installed correctly, the version number will be displayed.
 4. Name it something like `claude-code`, set expiry to **Never Expire**
 5. Copy and paste the key into `.env`
 
-**Step 5.2 — To get the model name:**
+**Step 6.2 — To get the model name:**
 
 1. On the NVIDIA NIM site, click **Models**
 2. Pick a model (e.g. DeepSeek V4 Pro)
@@ -718,7 +639,7 @@ If installed correctly, the version number will be displayed.
 
 
 
-### Step 6 — Create Project Folder
+### Step 7 — Create Project Folder
 
 - **Windows (cmd)**
 
@@ -727,7 +648,7 @@ mkdir Terraform-MCP-demo && cd Terraform-MCP-demo
 ```
 ---
 
-### Step 6.1 — Create `config.yaml`
+### Step 7.1 — Create `config.yaml`
 
 > *we will direct open it vscode then type `code config.yaml`*
 >
@@ -747,7 +668,7 @@ litellm_settings:
 
 ---
 
-### Step 7 — Configure Claude Code
+### Step 8 — Configure Claude Code
 
 Windows (PowerShell)
 
@@ -769,7 +690,7 @@ Paste:
 
 ---
 
-### Step 8 — Verify the setup is working or not.
+### Step 9 — Verify the setup is working or not.
 
 - Run the python script [nvidia_api_test.py]
 - Here's what the script does, mirroring the screenshot exactly:
@@ -859,7 +780,7 @@ Verify that the model can successfully process chat completion requests.
 </details>
 
 ---
-### Step 8 — Run LiteLLM Proxy It
+### Step 10 — Run LiteLLM Proxy It
 
 **Terminal 1 — Start LiteLLM proxy:**
 ```bash
@@ -932,9 +853,9 @@ You see the result in your terminal
 
 ---
 
-### Step 7: Install `Go` packages
+### Step 11: Install `Go` packages
 
-**Step 7.1 — Verify and install `Go` packages**
+**Step 11.1 — Verify and install `Go` packages**
 
 Open a new PowerShell as Administrator and verify/install these:
 
@@ -944,7 +865,7 @@ go version
 ```
 If missing → download from https://go.dev/dl/ (Windows .msi installer). Install and reopen PowerShell.
 
-**Step 7.2 — Get the `terraform-mcp-server` Binary**
+**Step 11.2 — Get the `terraform-mcp-server` Binary**
 
 <!-- Option A: Download pre-built binary (fastest)
 Go to the GitHub releases page:
@@ -952,7 +873,7 @@ https://github.com/hashicorp/terraform-mcp-server/releases
 Look for a file like terraform-mcp-server_windows_amd64.zip or terraform-mcp-server_windows_amd64.exe. Download and extract it to a permanent location, for example:
 C:\tools\terraform-mcp-server\terraform-mcp-server.exe -->
 
-**Step 7.2.1 — Build from source (if no binary release exists for Windows)**
+**Step 11.2.1 — Build from source (if no binary release exists for Windows)**
 
 ```powershell
 # Clone the repo
@@ -967,7 +888,7 @@ mkdir C:\tools\terraform-mcp-server
 Move-Item terraform-mcp-server.exe C:\tools\terraform-mcp-server\
 ```
 
-**Step 7.3 — Verify the binary runs:**
+**Step 11.3 — Verify the binary runs:**
 ```powershell
 C:\tools\terraform-mcp-server\terraform-mcp-server.exe --version
 # or
@@ -976,9 +897,9 @@ C:\tools\terraform-mcp-server\terraform-mcp-server.exe --help
 
 ---
 
-### Step 8:  Configure the MCP Client**
+### Step 12:  Configure the MCP Client**
 
-**Step 8.1 —For Claude Code CLI**
+**Step 12.1 —For Claude Code CLI**
 
 Edit `~/.claude.json` (or run ``claude mcp add`):
 
@@ -1001,9 +922,9 @@ claude mcp add terraform -s user -- "C:\tools\terraform-mcp-server\terraform-mcp
 claude mcp list
 claude mcp get <terraform> # name of the MCP Server
 ```
-### Step 10: Verify the MCP Server is Loaded
+### Step 13: Verify the MCP Server is Loaded
 
-**Step 10.1 — Go to Project actual Directory**
+**Step 13.1 — Go to Project actual Directory**
 
 ```bash
 # Create a new directory for the project or us existing one
@@ -1020,7 +941,7 @@ Should show terraform in the connected servers list.
 
 <img width="1555" height="665" alt="Image" src="https://github.com/user-attachments/assets/0d7c848c-bcbc-437b-8975-f1140d9d41d7" />
 
-**Step 10.2 — Test Against Your Terraform Code**
+**Step 13.2 — Test Against Your Terraform Code**
 
 > [!NOTE]
 Navigate to a folder with your Terraform files, then in Claude (Desktop or Code), try prompts like:

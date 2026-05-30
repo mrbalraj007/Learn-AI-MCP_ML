@@ -1,0 +1,281 @@
+<mxfile host="Electron" agent="Claude">
+  <diagram id="arch-claude-litellm" name="Free Claude Code - LiteLLM Architecture">
+    <mxGraphModel dx="2355" dy="1134" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1870" pageHeight="1320" background="#F5F5F5" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#E94C89;shadow=1;" value="" vertex="1">
+          <mxGeometry height="70" width="1780" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#E94C89;" value="Free Claude Code via LiteLLM Proxy — Architecture Overview" vertex="1">
+          <mxGeometry height="70" width="1500" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#aaaaaa;" value="Claude Code CLI  →  LiteLLM Proxy (localhost:4000)  →  LLM Backend  →  DeepSeek / Any Model" vertex="1">
+          <mxGeometry height="50" width="960" x="840" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cont1" parent="1" style="swimlane;startSize=45;fillColor=#EBF5FB;strokeColor=#2E86AB;strokeWidth=2;fontColor=#1a5276;fontSize=14;fontStyle=1;rounded=1;arcSize=3;shadow=1;" value="👨‍💻  Developer Workstation" vertex="1">
+          <mxGeometry height="1040" width="360" x="40" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-person" parent="cont1" style="shape=mxgraph.cisco.users.user;sketch=0;html=1;fillColor=#2E86AB;strokeColor=#1a5c85;shadow=1;align=center;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="140" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-label" parent="cont1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#1a5276;" value="&lt;b&gt;DevOps / Cloud Engineer&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="220" x="70" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="laptop" parent="cont1" style="shape=mxgraph.network.laptop;sketch=0;html=1;fillColor=#5DADE2;strokeColor=#2E86AB;shadow=1;" value="" vertex="1">
+          <mxGeometry height="65" width="231" x="60" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="laptop-lbl" parent="cont1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555555;" value="Windows / Ubuntu / macOS" vertex="1">
+          <mxGeometry height="20" width="240" x="-14" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="vscode" parent="cont1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007ACC;strokeColor=#005999;fontColor=#ffffff;fontSize=12;arcSize=15;shadow=1;" value="&lt;b&gt;VS Code&lt;/b&gt;&lt;br/&gt;&lt;span style=&#39;font-size:10px;&#39;&gt;+ Claude Code Extension&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="240" x="60" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="claude-cli" parent="cont1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#E94C89;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=33;shadow=1;" value="&lt;font face=&quot;Courier New&quot;&gt;&lt;b style=&quot;color:#76ff03;&quot;&gt;$&lt;/b&gt; claude&lt;/font&gt;&lt;br&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;Claude Code CLI&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(118, 255, 3);&quot;&gt;ANTHROPIC_AUTH_TOKEN=&quot;litellm&quot;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(64, 196, 255);&quot;&gt;ANTHROPIC_BASE_URL=http://localhost:4000&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="308" x="16" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="npm-badge" parent="cont1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CB3837;strokeColor=#9a2a29;fontColor=#ffffff;fontSize=14;arcSize=11;shadow=1;" value="&lt;b&gt;npm&lt;/b&gt;  +  &lt;b&gt;Node.js&lt;/b&gt;&lt;br&gt;&lt;span&gt;Claude Code CLI Runtime&lt;br&gt;npm install -g @anthropic-ai/claude-code&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="312" x="22" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-files" parent="cont1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#6A1B9A;fontColor=#4a148c;fontSize=14;arcSize=10;shadow=1;" value="&lt;b&gt;📁 Terraform Files&lt;/b&gt;&lt;br&gt;&lt;span&gt;main.tf&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span&gt;&amp;nbsp;variables.tf&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;providers.tf&lt;br&gt;&lt;b&gt;Working Directory&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="303" x="29" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="claude-settings" parent="cont1" style="shape=mxgraph.flowchart.document;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontColor=#333333;fontSize=14;shadow=1;" value="&lt;b&gt;📄 ~/.claude.json&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;quot;Courier New&amp;quot;;&quot;&gt;{ &quot;mcpServers&quot;: { &quot;terraform&quot;: {...} } }&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="307" x="27" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-dev-cli" edge="1" parent="cont1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2196F3;strokeWidth=2.5;fillColor=#2196F3;fontColor=#0D47A1;fontSize=10;fontStyle=1;endArrow=block;endFill=1;entryX=0.5;entryY=0;flowAnimation=1;" target="claude-cli" value="runs claude">
+          <mxGeometry relative="1" x="0.1351" y="-3" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="171" y="245" />
+              <mxPoint x="171" y="338" />
+              <mxPoint x="170" y="338" />
+            </Array>
+            <mxPoint x="174" y="244" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-vscode-cli" edge="1" parent="cont1" source="vscode" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#78909C;strokeWidth=2;fontColor=#37474F;fontSize=12;endArrow=block;endFill=1;startArrow=block;startFill=1;flowAnimation=1;exitX=0.548;exitY=0.967;exitDx=0;exitDy=0;exitPerimeter=0;" value="extension bridge">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="360.0000000000001" as="sourcePoint" />
+            <mxPoint x="190" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-tf-cli" edge="1" parent="cont1" source="tf-files" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7E57C2;strokeWidth=1.5;fillColor=#7E57C2;fontColor=#4527A0;fontSize=12;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=0;flowAnimation=1;" value="scanned by MCP">
+          <mxGeometry relative="1" x="0.2857" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="180" y="554" />
+              <mxPoint x="179" y="554" />
+            </Array>
+            <mxPoint x="179" y="551" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-settings-cli" edge="1" parent="cont1" source="claude-settings" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#F9A825;strokeWidth=1.5;fillColor=#F9A825;fontColor=#F57F17;fontSize=12;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;flowAnimation=1;" target="tf-files" value="MCP config">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wrVv1ccg5gDESNn96JFY-1" parent="cont1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/user_accounts.svg;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="" vertex="1">
+          <mxGeometry height="48.5" width="50" x="155" y="75.75" as="geometry" />
+        </mxCell>
+        <mxCell id="cont2" parent="1" style="swimlane;startSize=45;fillColor=#FEF9F0;strokeColor=#E67E22;strokeWidth=2;fontColor=#a04000;fontSize=14;fontStyle=1;rounded=1;arcSize=3;shadow=1;" value="🖥️  Local Stack  (localhost)" vertex="1">
+          <mxGeometry height="1040" width="524" x="593" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="github" parent="cont2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#24292E;strokeColor=#30363d;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=10;shadow=1;" value="&lt;b style=&quot;color:#ffffff;&quot;&gt;GitHub Repo&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(139, 148, 158);&quot;&gt;LiteLLM source / config reference&lt;br&gt;pip install litellm[proxy]&lt;/span&gt;" vertex="1">
+          <mxGeometry height="116" width="398" x="46" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="litellm-proxy" parent="cont2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E94C89;strokeColor=#b03060;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=8;shadow=1;" value="&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;⚡ LiteLLM Proxy Server&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color:#FFD700;&quot;&gt;Port 4000&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(240, 240, 240);&quot;&gt;🔄 Translates Anthropic API format&lt;br&gt;       ↕ Any LLM Backend API format&lt;br&gt;100+ model providers supported&lt;/span&gt;" vertex="1">
+          <mxGeometry height="140" width="398" x="40" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="litellm-config" parent="cont2" style="shape=mxgraph.flowchart.document;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontColor=#333333;fontSize=14;shadow=1;" value="&lt;b&gt;📄 config.yaml&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;quot;Courier New&amp;quot;;&quot;&gt;model_list:&lt;br&gt;  - model_name: claude-sonnet&lt;br&gt;    litellm_params:&lt;br&gt;      model: deepseek/deepseek-chat&lt;/span&gt;" vertex="1">
+          <mxGeometry height="144" width="398" x="46" y="429" as="geometry" />
+        </mxCell>
+        <mxCell id="python313" parent="cont2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3776AB;strokeColor=#2c5e88;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=10;shadow=1;" value="&lt;b&gt;🐍 Python 3.13&lt;/b&gt;&lt;br&gt;&lt;span&gt;pip install litellm[proxy]&lt;br&gt;litellm --config config.yaml --port 4000&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="398" x="48" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-mcp" parent="cont2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#844FBA;strokeColor=#5c3484;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=8;shadow=1;" value="&lt;b&gt;Terraform MCP Server&lt;/b&gt;&lt;br&gt;&lt;span&gt;hashicorp/terraform-mcp-server&lt;br&gt;Protocol: &lt;b&gt;stdio&lt;/b&gt;&lt;br&gt;Executes: terraform plan · validate · show&lt;/span&gt;" vertex="1">
+          <mxGeometry height="115" width="398" x="40" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="go-runtime" parent="cont2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00ACD7;strokeColor=#007fa3;strokeWidth=2;fontColor=#ffffff;fontSize=14;arcSize=10;shadow=1;" value="&lt;b&gt;Go&lt;/b&gt; (go.dev)&lt;br&gt;&lt;span&gt;go build -o terraform-mcp-server.exe&lt;br&gt;Binary → C:\tools\terraform-mcp-server\&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="398" x="40" y="937" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-cfg-litellm" edge="1" parent="cont2" source="litellm-config" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#00BCD4;strokeWidth=2;fillColor=#00BCD4;fontColor=#006064;fontSize=12;fontStyle=1;endArrow=block;endFill=1;dashed=1;dashPattern=8 4;exitX=0.5;exitY=0;entryX=0.515;entryY=0.999;flowAnimation=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="litellm-proxy" value="model routing config">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-py-litellm" edge="1" parent="cont2" source="python313" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#8BC34A;strokeWidth=1.5;fillColor=#8BC34A;fontColor=#33691E;fontSize=12;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=0;flowAnimation=1;entryX=0.5;entryY=0.9;entryDx=0;entryDy=0;entryPerimeter=0;" target="litellm-config" value="runs proxy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-go-mcp" edge="1" parent="cont2" source="go-runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#00ACC1;strokeWidth=1.5;fillColor=#00ACC1;fontColor=#006064;fontSize=12;endArrow=block;endFill=1;dashed=1;flowAnimation=1;" target="tf-mcp" value="compiles binary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-gh-litellm" edge="1" parent="cont2" source="github" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#586069;strokeWidth=1.5;fillColor=#586069;fontColor=#24292E;fontSize=12;endArrow=block;endFill=1;dashed=1;flowAnimation=1;" value="pip install">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="244" y="227" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cont3" parent="1" style="swimlane;startSize=45;fillColor=#12121f;strokeColor=#E94C89;strokeWidth=2;fontColor=#E94C89;fontSize=14;fontStyle=1;rounded=1;arcSize=3;shadow=1;" value="☁️  LLM Backend  (Cloud)" vertex="1">
+          <mxGeometry height="680" width="460" x="1340" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="route-label" parent="cont3" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;fontColor=#888888;" value="LiteLLM routes requests to any of these providers:" vertex="1">
+          <mxGeometry height="25" width="420" x="20" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="deepseek-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#76B900;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(118, 185, 0);&quot;&gt;NVIDIA NIM&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;🤖 DeepSeek V4 Pro&lt;br&gt;deepseek-ai/deepseek-v4-0709-pro&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="30" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="openai-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#74AA9C;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(116, 170, 156);&quot;&gt;OpenAI&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;GPT-4o · o1 · o3&lt;br&gt;api.openai.com&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="anthropic-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#D4A843;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(212, 168, 67);&quot;&gt;Anthropic&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;Claude Sonnet / Opus&lt;br&gt;api.anthropic.com&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="30" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ollama-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#5C9EF0;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(92, 158, 240);&quot;&gt;Ollama  (Local)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;Llama · Mistral · Qwen&lt;br&gt;localhost:11434&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="240" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="azure-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#0078D4;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(0, 120, 212);&quot;&gt;Azure OpenAI&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;GPT-4o (Azure-hosted)&lt;br&gt;*.openai.azure.com&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="30" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="gemini-box" parent="cont3" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#4285F4;strokeWidth=2;fontColor=#ffffff;fontSize=14;shadow=1;" value="&lt;b style=&quot;color: rgb(66, 133, 244);&quot;&gt;Google Gemini&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;Gemini 2.0 Flash / Pro&lt;br&gt;generativelanguage.googleapis.com&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="240" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="models-badge" parent="cont3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e2a3a;strokeColor=#E94C89;strokeWidth=1.5;fontColor=#E94C89;fontSize=14;arcSize=20;shadow=1;" value="✅  LiteLLM supports 100+ model providers — swap any time via config.yaml" vertex="1">
+          <mxGeometry height="40" width="400" x="30" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="current-badge" parent="cont3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a3a1a;strokeColor=#76B900;strokeWidth=1.5;fontColor=#76B900;fontSize=14;arcSize=20;" value="⭐  Currently configured: NVIDIA NIM / DeepSeek V4 Pro" vertex="1">
+          <mxGeometry height="35" width="400" x="30" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-bg" parent="1" style="swimlane;startSize=35;fillColor=#FAFAFA;strokeColor=#BDBDBD;strokeWidth=1.5;fontColor=#212121;fontSize=13;fontStyle=1;rounded=1;arcSize=4;shadow=1;" value="Arrow Legend" vertex="1">
+          <mxGeometry height="320" width="370" x="1216" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#FF6B35;strokeWidth=3;endArrow=block;endFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="60" as="sourcePoint" />
+            <mxPoint x="90" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg1b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="CLI → LiteLLM  (API Request)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#E94C89;strokeWidth=3;endArrow=block;endFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="93" as="sourcePoint" />
+            <mxPoint x="90" y="93" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg2b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="LiteLLM → Backend  (Outbound)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="81" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#9C27B0;strokeWidth=3;endArrow=block;endFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="126" as="sourcePoint" />
+            <mxPoint x="90" y="126" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg3b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="Backend → LiteLLM  (Response)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#009688;strokeWidth=3;endArrow=block;endFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="159" as="sourcePoint" />
+            <mxPoint x="90" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg4b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="LiteLLM → CLI  (Formatted Response)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#C62828;strokeWidth=2.5;endArrow=block;endFill=1;startArrow=block;startFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="192" as="sourcePoint" />
+            <mxPoint x="90" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg5b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="MCP Protocol  (stdio, bidirectional)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#00BCD4;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=8 4;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="225" as="sourcePoint" />
+            <mxPoint x="90" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg6b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="Config  (config.yaml / env vars)" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="213" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#8BC34A;strokeWidth=1.5;endArrow=block;endFill=1;dashed=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="258" as="sourcePoint" />
+            <mxPoint x="90" y="258" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg7b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="Runtime / Build Dependency" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="246" as="geometry" />
+        </mxCell>
+        <mxCell id="leg8a" edge="1" parent="legend-bg" style="edgeStyle=none;strokeColor=#2196F3;strokeWidth=2;endArrow=block;endFill=1;flowAnimation=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="291" as="sourcePoint" />
+            <mxPoint x="90" y="291" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg8b" parent="legend-bg" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontColor=#333;align=left;" value="Developer Interaction" vertex="1">
+          <mxGeometry height="24" width="255" x="100" y="279" as="geometry" />
+        </mxCell>
+        <mxCell id="tech-stack" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=1.5;fontColor=#212121;fontSize=14;arcSize=5;shadow=1;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Tech Stack&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;table style=&quot;border-collapse: collapse;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;🐍&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Python 3.13&lt;/font&gt;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;📦&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;npm&lt;/b&gt; + Node.js&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;⚡&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;LiteLLM&lt;/b&gt; Proxy (pip install litellm[proxy])&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;🔵&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;Go&lt;/b&gt; — Terraform MCP server binary&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;🟣&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;Terraform MCP&lt;/b&gt; (hashicorp)&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;🤖&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;NVIDIA NIM&lt;/b&gt; / DeepSeek V4 Pro&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;📦&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;Git&lt;/b&gt; + &lt;b&gt;VS Code&lt;/b&gt; + Claude Code CLI&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="316" width="267" x="1591" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-cli-litellm" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#FF6B35;strokeWidth=4;fillColor=#FF6B35;fontColor=#BF360C;fontSize=12;fontStyle=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;flowAnimation=1;entryDx=0;entryDy=0;" target="litellm-proxy" value="① Anthropic API Request&#xa;(localhost:4000)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="547" y="600" />
+              <mxPoint x="547" y="410" />
+            </Array>
+            <mxPoint x="352" y="600" as="sourcePoint" />
+            <mxPoint x="621" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-litellm-cloud" edge="1" parent="1" source="litellm-proxy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#E94C89;strokeWidth=4;fillColor=#E94C89;fontColor=#880E4F;fontSize=10;fontStyle=1;endArrow=block;endFill=1;exitX=1;exitY=0.4;flowAnimation=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="cont3" value="② Backend API Request&#xa;(routed per config.yaml)">
+          <mxGeometry relative="1" x="-0.2069" y="4" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="980" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-cloud-litellm" edge="1" parent="1" source="cont3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7B1FA2;strokeWidth=4;fillColor=#7B1FA2;fontColor=#4A148C;fontSize=10;fontStyle=1;endArrow=block;endFill=1;exitX=0;exitY=0.65;flowAnimation=1;entryX=0.999;entryY=0.924;entryDx=0;entryDy=0;entryPerimeter=0;" target="litellm-proxy" value="③ Model Response">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="560" />
+              <mxPoint x="1180" y="557" />
+              <mxPoint x="1182" y="557" />
+              <mxPoint x="1182" y="468" />
+              <mxPoint x="1100" y="468" />
+              <mxPoint x="1100" y="471" />
+              <mxPoint x="1099" y="471" />
+              <mxPoint x="1099" y="469" />
+            </Array>
+            <mxPoint x="984" y="513" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-litellm-cli" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#00695C;strokeWidth=4;fillColor=#00695C;fontColor=#004D40;fontSize=12;fontStyle=1;endArrow=block;endFill=1;entryX=1;entryY=0.6;flowAnimation=1;" value="④ Anthropic-format Response">
+          <mxGeometry relative="1" x="-0.1522" y="3" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="510" y="366" />
+              <mxPoint x="510" y="369" />
+              <mxPoint x="462" y="369" />
+              <mxPoint x="462" y="567" />
+            </Array>
+            <mxPoint x="629" y="366" as="sourcePoint" />
+            <mxPoint x="364" y="567.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-mcp-cli" edge="1" parent="1" source="tf-mcp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C62828;strokeWidth=3;fillColor=#C62828;fontColor=#B71C1C;fontSize=10;fontStyle=1;endArrow=block;endFill=1;startArrow=block;startFill=1;entryX=1;entryY=0.85;flowAnimation=1;exitX=0.005;exitY=0.463;exitDx=0;exitDy=0;exitPerimeter=0;" target="claude-cli" value="MCP Protocol&#xa;(stdio)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="633" y="923" />
+              <mxPoint x="599" y="923" />
+              <mxPoint x="599" y="922" />
+              <mxPoint x="496" y="922" />
+              <mxPoint x="496" y="642" />
+            </Array>
+            <mxPoint x="608" y="923" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
