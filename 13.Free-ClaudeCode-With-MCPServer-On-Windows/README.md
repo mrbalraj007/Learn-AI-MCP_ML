@@ -784,7 +784,7 @@ Get your API key from `build.nvidia.com → sign in → API Key`. Free tier give
 ```sh
 python nvidia_api_test.py
 ```
-![alt text](image-1.png)
+<img width="627" height="641" alt="Image" src="https://github.com/user-attachments/assets/f0de9ce7-a7f8-45ff-8e9d-643ee9336fd3" />
 
 <details><summary><b>**4-Tests covered:**</b></summary><br>
 
@@ -866,11 +866,11 @@ Verify that the model can successfully process chat completion requests.
 cd Terraform-MCP-demo
 litellm --config config.yaml --port 4000
 ```
-![alt text](image-2.png)
+<img width="627" height="641" alt="Image" src="https://github.com/user-attachments/assets/150b7700-dde0-426e-a0ac-a1d466f83304" />
 
 <details><summary><b>If you get error message mentioned here then we need to run command mention here</b></summary><br>
 
-![alt text](image.png)
+<img width="1112" height="593" alt="Image" src="https://github.com/user-attachments/assets/4afac657-5c07-4718-81d6-4a6f1f8b449b" />
 
 Noticed that I was using python `3.14` and we need to use `python3.13`.
 and need to run the blow command
@@ -890,15 +890,15 @@ claude
 ```
 Select the default setting and presh `enter` 
 
-![alt text](image-3.png)
+<img width="934" height="708" alt="Image" src="https://github.com/user-attachments/assets/dbbf2b1c-de48-4c26-9cca-8cb28ff30a4b" />
 
 presh `enter 3 times` and you will see below
 
-![alt text](image-4.png)
+<img width="1248" height="390" alt="Image" src="https://github.com/user-attachments/assets/7a27f53e-1fa9-44dd-950d-47797b692878" />
 
 in Prompt type `/status` and it will show below model and LiteLLM model.
 
-![alt text](image-5.png)
+<img width="1248" height="602" alt="Image" src="https://github.com/user-attachments/assets/e0d642a8-ce2b-4e7a-abbb-cf4ce2993744" />
 
 Test prompt:
 
@@ -908,7 +908,7 @@ Hey, which model you are using
 
 Watch Terminal 1 — you'll see requests flowing through to NVIDIA. ✅
 
-![alt text](image-6.png)
+<img width="1555" height="665" alt="Image" src="https://github.com/user-attachments/assets/c917cf1d-b3a7-4fcb-8d9a-f74d6205b480" />
 
 ---
 
@@ -1018,7 +1018,7 @@ cd Terraform-MCP-demo
 ```
 Should show terraform in the connected servers list.
 
-![alt text](image-7.png)
+<img width="1555" height="665" alt="Image" src="https://github.com/user-attachments/assets/0d7c848c-bcbc-437b-8975-f1140d9d41d7" />
 
 **Step 10.2 — Test Against Your Terraform Code**
 
