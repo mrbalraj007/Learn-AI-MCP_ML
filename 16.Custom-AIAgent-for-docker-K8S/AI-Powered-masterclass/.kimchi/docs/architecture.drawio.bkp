@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="kimchi-enterprise-arch" version="24.7.5">
+  <diagram name="Enterprise AI DevOps Agent" id="enterprise-ai-devops-agent">
+    <mxGraphModel dx="2200" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1320" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ============================  TITLE BAR  ============================ -->
+        <mxCell id="titleBg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#0F172A;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1820" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="titleText" value="ENTERPRISE  AI-POWERED  DEVOPS  ASSISTANT  —  REFERENCE  ARCHITECTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontStyle=1;fontColor=#FFFFFF;letterSpacing=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="22" width="1820" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="subTitleText" value="LangChain 1.x  ·  Ollama (qwen3-coder:30b)  ·  Python subprocess  ·  Kubernetes API  ·  Docker daemon" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#94A3B8;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="58" width="1820" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  LEGEND (top-right)  ============================ -->
+        <mxCell id="legendBg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="110" width="450" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="legendTitle" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#0F172A;letterSpacing=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="118" width="430" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legendDivider" value="" style="line;html=1;strokeColor=#E2E8F0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="142" width="420" height="2" as="geometry" />
+        </mxCell>
+
+        <!-- Legend rows: arrow colors -->
+        <mxCell id="lg1" style="endArrow=classic;html=1;rounded=0;strokeColor=#2563EB;strokeWidth=3;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="160" as="sourcePoint" />
+            <mxPoint x="1485" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg1l" value="User prompt / response (synchronous CLI)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="150" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg2" style="endArrow=classic;html=1;rounded=0;strokeColor=#7C3AED;strokeWidth=3;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="185" as="sourcePoint" />
+            <mxPoint x="1485" y="185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg2l" value="LLM HTTP traffic  (POST /api/chat — JSON)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="175" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg3" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=3;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="210" as="sourcePoint" />
+            <mxPoint x="1485" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg3l" value="subprocess.exec  (argv → kubectl / docker)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="200" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg4" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=3;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="235" as="sourcePoint" />
+            <mxPoint x="1485" y="235" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg4l" value="External API call  (HTTPS to K8s / unix socket to Docker)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="225" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg5" style="endArrow=classic;html=1;rounded=0;strokeColor=#0EA5E9;strokeWidth=2;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="260" as="sourcePoint" />
+            <mxPoint x="1485" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg5l" value="Control / loop-back  (ReAct: tool_call → result)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="250" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg6" style="endArrow=classic;html=1;rounded=0;strokeColor=#D97706;strokeWidth=2;endFill=1;dashed=1;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="285" as="sourcePoint" />
+            <mxPoint x="1485" y="285" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg6l" value="Config / secrets  (kubeconfig, model weights pointer)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="275" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg7" style="endArrow=classic;html=1;rounded=0;strokeColor=#DC2626;strokeWidth=2;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="310" as="sourcePoint" />
+            <mxPoint x="1485" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg7l" value="Error / fallback path  (tool stderr returned to LLM)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="300" width="350" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  ZONE 1: CLIENT TIER  ============================ -->
+        <mxCell id="zone1Bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#1E40AF;strokeWidth=2;dashed=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="350" width="300" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="zone1Header" value="①  CLIENT  TIER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E40AF;strokeColor=#1E40AF;fontSize=14;fontStyle=1;fontColor=#FFFFFF;letterSpacing=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="350" width="300" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- Operator (person icon) -->
+        <mxCell id="user" value="DevOps Operator" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#1E3A8A;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.user;" vertex="1" parent="1">
+          <mxGeometry x="80" y="430" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="userSub" value="Authenticated operator ·&#10;Issues natural-language query" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="80" y="485" width="230" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Workstation / laptop -->
+        <mxCell id="workstation" value="Operator Workstation" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#1E3A8A;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.laptop;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wsSub" value="Shell host · venv · Python 3.10+&#10;kubectl + docker CLIs installed" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="80" y="615" width="230" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Terminal -->
+        <mxCell id="terminal" value="Interactive Terminal" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#1E3A8A;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.terminal;" vertex="1" parent="1">
+          <mxGeometry x="80" y="690" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="termSub" value="$ python3 agent.py&#10;&gt; Which pods are in CrashLoopBackOff?" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="745" width="230" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Client (response display) -->
+        <mxCell id="resp" value="Formatted Response" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#1E3A8A;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="80" y="820" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="respSub" value="LLM-synthesized answer&#10;printed to stdout" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="80" y="875" width="230" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Local-only badge -->
+        <mxCell id="localBadge" value="🔒  LOCAL-ONLY · NO DATA EGRESS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontStyle=1;fontColor=#92400E;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="65" y="970" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="badgeSub" value="All inference, prompts, and tool&#10;output stay on the host machine" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontColor=#92400E;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="65" y="1005" width="250" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  ZONE 2: APPLICATION TIER  ============================ -->
+        <mxCell id="zone2Bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="350" width="640" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="zone2Header" value="②  APPLICATION  TIER   ·   LangChain Agent Runtime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=#7C3AED;fontSize=14;fontStyle=1;fontColor=#FFFFFF;letterSpacing=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="350" width="640" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- EC2 / Python runtime -->
+        <mxCell id="pythonRuntime" value="Python Runtime&#10;agent.py" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#4C1D95;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="410" y="430" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pySub" value="Single-process Python agent&#10;langchain 1.3.13 · langchain-ollama 1.1.0" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="480" y="438" width="510" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- LangChain agent block -->
+        <mxCell id="lcAgentBg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=2;shadow=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="400" y="510" width="590" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="lcAgentTitle" value="LangChain  create_agent  —  ReAct loop  ·  state:  messages[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=#7C3AED;fontSize=11;fontStyle=1;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="510" width="590" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ChatOllama -->
+        <mxCell id="llmClient" value="ChatOllama&#10;(LLM client)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#EDE9FE;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#4C1D95;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker;" vertex="1" parent="1">
+          <mxGeometry x="420" y="565" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="llmClientSub" value="model = qwen3-coder&#10;temperature = 0&#10;num_ctx = 8192" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
+          <mxGeometry x="480" y="565" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- System prompt -->
+        <mxCell id="sysPrompt" value="System Prompt&#10;(role + tool routing rules)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontStyle=1;fontColor=#92400E;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="560" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sysPromptSub" value="&quot;Always call the relevant tool…&#10;never invent pod names…&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#92400E;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="625" width="160" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- Tool registry -->
+        <mxCell id="toolReg" value="Tool Registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontStyle=1;fontColor=#1E3A8A;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="560" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="tool1" value="@tool  get_pods" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;fontSize=9;fontColor=#1E3A8A;" vertex="1" parent="1">
+          <mxGeometry x="830" y="595" width="150" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="tool2" value="@tool  get_docker_containers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;fontSize=9;fontColor=#1E3A8A;" vertex="1" parent="1">
+          <mxGeometry x="830" y="620" width="150" height="22" as="geometry" />
+        </mxCell>
+
+        <!-- Messages state -->
+        <mxCell id="msgState" value="messages[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;fontSize=10;fontStyle=1;fontColor=#334155;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="645" width="390" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="msgStateSub" value="[ SystemMessage · HumanMessage(question) · AIMessage(tool_call) · ToolMessage(stdout) · AIMessage(final) ]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#475569;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="420" y="670" width="555" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- LangChain internal arrows -->
+        <mxCell id="eLlmSys" style="endArrow=classic;html=1;rounded=1;strokeColor=#D97706;strokeWidth=2;dashed=1;endFill=1;" edge="1" parent="1" source="sysPrompt" target="llmClient">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eLlmTools" style="endArrow=classic;html=1;rounded=1;strokeColor=#7C3AED;strokeWidth=2;dashed=1;endFill=1;" edge="1" parent="1" source="llmClient" target="toolReg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eToolRegState" style="endArrow=classic;html=1;rounded=1;strokeColor=#0EA5E9;strokeWidth=2;dashed=1;endFill=1;" edge="1" parent="1" source="toolReg" target="msgState">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="615" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Subprocess layer -->
+        <mxCell id="subprocess" value="subprocess.run()" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#9A3412;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda_function;" vertex="1" parent="1">
+          <mxGeometry x="410" y="815" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subprocessSub" value="capture_output = True · text = True&#10;returns stdout  ||  stderr  (string)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="480" y="822" width="510" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- CLI tools row -->
+        <mxCell id="kubectl" value="kubectl CLI" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#9A3412;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cli;" vertex="1" parent="1">
+          <mxGeometry x="410" y="910" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kubectlSub" value="$ kubectl get pods -A" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#9A3412;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="470" y="920" width="180" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerCli" value="docker CLI" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#9A3412;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cli;" vertex="1" parent="1">
+          <mxGeometry x="660" y="910" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerCliSub" value="$ docker ps" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#9A3412;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="720" y="920" width="180" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Config / secrets -->
+        <mxCell id="kubeconfig" value="Secrets &amp; Config" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#92400E;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="890" y="910" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kubeconfigSub" value="~/.kube/config · Docker socket&#10;OLLAMA_HOST env vars" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#92400E;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="950" y="920" width="50" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  ZONE 3: AI INFERENCE TIER  ============================ -->
+        <mxCell id="zone3Bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="350" width="360" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="zone3Header" value="③  AI  INFERENCE  TIER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EA580C;strokeColor=#EA580C;fontSize=14;fontStyle=1;fontColor=#FFFFFF;letterSpacing=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="350" width="360" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- Ollama daemon -->
+        <mxCell id="ollama" value="Ollama Server&#10;(local LLM runtime)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#9A3412;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="430" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ollamaSub" value="HTTP API · localhost:11434&#10;POST /api/chat  (OpenAI-compatible)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="438" width="240" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Model registry (S3 bucket) -->
+        <mxCell id="modelReg" value="Model Registry&#10;(Ollama blob store)" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#9A3412;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="540" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="modelRegSub" value="~/.ollama/models/blobs/&#10;SHA-256 content-addressed GGUF" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="548" width="240" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Model weights -->
+        <mxCell id="model" value="qwen3-coder:30b&#10;(~18 GB GGUF)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FED7AA;strokeColor=#EA580C;fontSize=11;fontStyle=1;fontColor=#9A3412;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="650" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- KV cache / inference engine -->
+        <mxCell id="infer" value="Inference Engine&#10;(token sampling)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=11;fontStyle=1;fontColor=#9A3412;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="770" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="inferSub" value="GPU preferred (NVIDIA / Metal)&#10;CPU fallback supported" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="778" width="240" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Context window badge -->
+        <mxCell id="ctx" value="Context window&#10;num_ctx = 8192 tokens" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#EA580C;dashed=1;fontSize=10;fontColor=#9A3412;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="870" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Inference tier footer -->
+        <mxCell id="tier3Footer" value="All inference is local — zero external LLM API calls" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontStyle=2;fontColor=#92400E;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="960" width="280" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Internal AI tier arrows -->
+        <mxCell id="eOllModelReg" value="loads weights" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=2;endFill=1;" edge="1" parent="1" source="ollama" target="modelReg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eModelRegModel" value="GGUF stream" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=2;endFill=1;" edge="1" parent="1" source="modelReg" target="model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eModelInfer" value="tokenize / generate" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=2;endFill=1;" edge="1" parent="1" source="model" target="infer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  ZONE 4: INFRASTRUCTURE TIER  ============================ -->
+        <mxCell id="zone4Bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="350" width="430" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="zone4Header" value="④  INFRASTRUCTURE  TIER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#059669;strokeColor=#059669;fontSize=14;fontStyle=1;fontColor=#FFFFFF;letterSpacing=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="350" width="430" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- K8s sub-panel -->
+        <mxCell id="k8sPanel" value="Kubernetes Cluster" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#059669;strokeWidth=1;dashed=0;fontSize=11;fontStyle=1;fontColor=#064E3B;shadow=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="415" width="395" height="335" as="geometry" />
+        </mxCell>
+
+        <mxCell id="k8sCp" value="Control Plane&#10;(API server · etcd · scheduler)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#064E3B;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eks;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="k8sCpSub" value="REST over HTTPS :6443&#10;Token auth via kubeconfig" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="452" width="305" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="k8sNode" value="Worker Node&#10;(kubelet)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#064E3B;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="520" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="k8sNodeSub" value="Linux host running container runtime&#10;(containerd / CRI-O)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="527" width="305" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="k8sPod1" value="pod:&#10;checkout-7f9d-xkj2p&#10;CrashLoopBackOff ×14" style="shape=mxgraph.kubernetes.icon;prIcon=mxgraph.kubernetes.pod;sketch=0;outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;fontSize=9;fontColor=#064E3B;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="600" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k8sPod1Sub" value="prod/checkout-7f9d-xkj2p — RESTARTS=14, READY=0/1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#DC2626;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="600" width="320" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="k8sPod2" value="pod:&#10;payment-5c44-mq7rt&#10;Running" style="shape=mxgraph.kubernetes.icon;prIcon=mxgraph.kubernetes.pod;sketch=0;outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;fontSize=9;fontColor=#064E3B;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="650" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k8sPod2Sub" value="prod/payment-5c44-mq7rt — READY=1/1, healthy" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#059669;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="650" width="320" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Docker sub-panel -->
+        <mxCell id="dockerPanel" value="Docker Host" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#059669;strokeWidth=1;dashed=0;fontSize=11;fontStyle=1;fontColor=#064E3B;shadow=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="775" width="395" height="280" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dockerD" value="Docker Daemon&#10;(dockerd)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#064E3B;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="805" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerDSub" value="Unix socket: /var/run/docker.sock&#10;Engine API v1.43+" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="813" width="305" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="container1" value="nginx:1.27&#10;my-container-1" style="shape=mxgraph.docker.container;sketch=0;outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;fontSize=9;fontColor=#064E3B;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="885" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="container1Sub" value="my-container-1   STATUS=Up  ·  port 80→80" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#059669;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="885" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="container2" value="nginx:1.27&#10;my-container-2" style="shape=mxgraph.docker.container;sketch=0;outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;fontSize=9;fontColor=#064E3B;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="935" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="container2Sub" value="my-container-2 … my-container-10   STATUS=Up" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#059669;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="935" width="320" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="img" value="Image Registry&#10;(local)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#064E3B;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecr;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="995" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="imgSub" value="nginx:1.27 (pulled once, cached)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="998" width="305" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Internal K8s arrows -->
+        <mxCell id="eK8sCpNode" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=2;endFill=1;" edge="1" parent="1" source="k8sCp" target="k8sNode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eK8sNodePod1" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=1;endFill=1;" edge="1" parent="1" source="k8sNode" target="k8sPod1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eK8sNodePod2" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=1;endFill=1;" edge="1" parent="1" source="k8sNode" target="k8sPod2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1455" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eDockerImg" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=1;endFill=1;" edge="1" parent="1" source="dockerD" target="img">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eDockerC1" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=1;endFill=1;" edge="1" parent="1" source="dockerD" target="container1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eDockerC2" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=1;endFill=1;" edge="1" parent="1" source="dockerD" target="container2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1455" y="955" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ============================  CROSS-CUTTING CONCERNS  ============================ -->
+        <mxCell id="crossBg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#0F172A;shadow=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1160" width="1820" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="crossTitle" value="CROSS-CUTTING  CONCERNS  ·  Observability  ·  Security  ·  Network" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#FFFFFF;letterSpacing=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1165" width="1820" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Observability -->
+        <mxCell id="obsTitle" value="OBSERVABILITY" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#94A3B8;letterSpacing=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1198" width="160" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cw" value="Logs &amp; Metrics&#10;(CloudWatch)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="cwSub" value="stdout / stderr&#10;from agent.py + tools" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="1222" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="xray" value="Distributed Tracing&#10;(X-Ray)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.x_ray;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="xraySub" value="trace ReAct loop·&#10;tool spans" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="395" y="1222" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Security -->
+        <mxCell id="secTitle" value="SECURITY" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#94A3B8;letterSpacing=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1198" width="160" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" value="Identity &amp; Access&#10;(IAM / RBAC)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.iam;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="iamSub" value="Read-only K8s&#10;ServiceAccount,&#10;Docker group membership" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="695" y="1218" width="200" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="kms" value="Encryption&#10;(KMS / TLS)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.kms;" vertex="1" parent="1">
+          <mxGeometry x="920" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="kmsSub" value="TLS in-transit for&#10;K8s API + Docker socket" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="975" y="1222" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Network -->
+        <mxCell id="netTitle" value="NETWORK" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#94A3B8;letterSpacing=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="1198" width="160" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc" value="Local Network&#10;Boundary" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.vpc;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vpcSub" value="All traffic stays&#10;on the host&#10;(loopback / unix)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="1285" y="1218" width="200" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="igw" value="Optional:&#10;Remote MCP/API&#10;(future)" style="outlineConnect=0;dashed=0;labelPosition=right;align=left;verticalAlign=middle;strokeColor=#5A6C86;fillColor=#D5DBDB;html=1;sketch=0;fontSize=10;fontStyle=1;fontColor=#94A3B8;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="1220" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="igwSub" value="Web UI / MCP server&#10;upgrade path" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="1565" y="1222" width="280" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ============================  PRIMARY FLOW ARROWS  ============================ -->
+
+        <!-- 1) User -> Terminal (blue, thick) -->
+        <mxCell id="flow1" value="① question" style="endArrow=classic;html=1;rounded=0;strokeColor=#2563EB;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#1E3A8A;" edge="1" parent="1" source="user" target="terminal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="715" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 2) Terminal -> Python runtime (blue, thick) -->
+        <mxCell id="flow2" value="② invoke(state)" style="endArrow=classic;html=1;rounded=0;strokeColor=#2563EB;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#1E3A8A;" edge="1" parent="1" source="terminal" target="pythonRuntime">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="460" />
+              <mxPoint x="410" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3) Python runtime -> LangChain agent (purple, control) -->
+        <mxCell id="flow3" style="endArrow=classic;html=1;rounded=1;strokeColor=#7C3AED;strokeWidth=2;endFill=1;" edge="1" parent="1" source="pythonRuntime" target="lcAgentBg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4) LangChain <-> Ollama (purple, primary LLM traffic) -->
+        <mxCell id="flow4a" value="④a HTTP POST /api/chat  (prompt + tools)" style="endArrow=classic;html=1;rounded=0;strokeColor=#7C3AED;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#4C1D95;" edge="1" parent="1" source="llmClient" target="ollama">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="590" />
+              <mxPoint x="1110" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow4b" value="④b AIMessage(tool_call)" style="endArrow=classic;html=1;rounded=0;strokeColor=#7C3AED;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#4C1D95;" edge="1" parent="1" source="ollama" target="llmClient">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1005" y="500" />
+              <mxPoint x="1110" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5) LangChain -> subprocess (orange) -->
+        <mxCell id="flow5" value="⑤ tool_call → exec" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#9A3412;" edge="1" parent="1" source="toolReg" target="subprocess">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="795" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 6) subprocess -> kubectl / docker (orange) -->
+        <mxCell id="flow6a" value="argv: [kubectl, get, pods, -A]" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=2;endFill=1;fontSize=9;fontStyle=2;fontColor=#9A3412;" edge="1" parent="1" source="subprocess" target="kubectl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow6b" value="argv: [docker, ps]" style="endArrow=classic;html=1;rounded=0;strokeColor=#EA580C;strokeWidth=2;endFill=1;fontSize=9;fontStyle=2;fontColor=#9A3412;" edge="1" parent="1" source="subprocess" target="dockerCli">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="685" y="845" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 7) CLI -> Secrets & Config (gold, dashed) -->
+        <mxCell id="flow7" value="reads kubeconfig / socket path" style="endArrow=classic;html=1;rounded=0;strokeColor=#D97706;strokeWidth=2;dashed=1;endFill=1;fontSize=9;fontStyle=2;fontColor=#92400E;" edge="1" parent="1" source="kubectl" target="kubeconfig">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 8) kubectl -> K8s control plane (green, primary infra) -->
+        <mxCell id="flow8a" value="HTTPS 6443&#10;(kubectl → kube-apiserver)" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#064E3B;" edge="1" parent="1" source="kubectl" target="k8sCp">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1430" y="935" />
+              <mxPoint x="1430" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 9) docker CLI -> Docker daemon (green) -->
+        <mxCell id="flow8b" value="unix socket&#10;/var/run/docker.sock" style="endArrow=classic;html=1;rounded=0;strokeColor=#059669;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#064E3B;" edge="1" parent="1" source="dockerCli" target="dockerD">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1430" y="935" />
+              <mxPoint x="1430" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 10) K8s CP -> etcd/workers (already inside) -->
+
+        <!-- 11) stdout back to subprocess (green return) -->
+        <mxCell id="flow11a" value="stdout&#10;(pod table)" style="endArrow=classic;html=1;rounded=1;strokeColor=#059669;strokeWidth=2;endFill=1;fontSize=9;fontStyle=2;fontColor=#064E3B;" edge="1" parent="1" source="k8sCp" target="kubectl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1410" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow11b" value="stdout&#10;(container table)" style="endArrow=classic;html=1;rounded=1;strokeColor=#059669;strokeWidth=2;endFill=1;fontSize=9;fontStyle=2;fontColor=#064E3B;" edge="1" parent="1" source="dockerD" target="dockerCli">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1410" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 12) subprocess -> LangChain (orange return: ToolMessage) -->
+        <mxCell id="flow12" value="ToolMessage(stdout)" style="endArrow=classic;html=1;rounded=1;strokeColor=#EA580C;strokeWidth=2;endFill=1;fontSize=9;fontStyle=2;fontColor=#9A3412;" edge="1" parent="1" source="subprocess" target="msgState">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 13) final AIMessage -> terminal (blue return) -->
+        <mxCell id="flow13" value="⑥ final answer&#10;response[&quot;messages&quot;][-1].content" style="endArrow=classic;html=1;rounded=1;strokeColor=#2563EB;strokeWidth=3;endFill=1;fontSize=10;fontStyle=1;fontColor=#1E3A8A;" edge="1" parent="1" source="msgState" target="resp">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="105" y="845" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 14) Loop-back: Ollama -> LLM Client (control, dashed teal) -->
+        <mxCell id="flow14" value="loop until no tool_call" style="endArrow=classic;html=1;rounded=1;strokeColor=#0EA5E9;strokeWidth=2;dashed=1;endFill=1;fontSize=9;fontStyle=2;fontColor=#0369A1;" edge="1" parent="1" source="infer" target="llmClient">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="800" />
+              <mxPoint x="460" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 15) Error path (red dashed) -->
+        <mxCell id="flow15" value="on error: stderr → ToolMessage" style="endArrow=classic;html=1;rounded=1;strokeColor=#DC2626;strokeWidth=2;dashed=1;endFill=1;fontSize=9;fontStyle=2;fontColor=#991B1B;" edge="1" parent="1" source="kubeconfig" target="subprocess">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="890" />
+              <mxPoint x="480" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ============================  STEP NUMBERS / WATERMARK  ============================ -->
+        <mxCell id="wm" value="Reference architecture  ·  v1.0  ·  generated by Kimchi" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#94A3B8;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1305" width="1820" height="14" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
