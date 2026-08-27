@@ -5,7 +5,7 @@
 This guide explains how to use different Git commit email addresses on the same laptop:
 
 - Personal repositories → `mrbalraj@gmail.com`
-- Company repositories → `balraj.singh@jetstar.com`
+- Company repositories → `balraj.singh@xxxx.com`
 
 Git automatically switches the email address based on the repository location.
 
@@ -18,13 +18,13 @@ Git automatically switches the email address based on the repository location.
 Stored under:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\Balraj_D_Laptop_Drive\DevOps_Master
+C:\Users\bsingh\OneDrive - xxxx xxxx\Balraj_D_Laptop_Drive\DevOps_Master
 ```
 
 Example:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\Balraj_D_Laptop_Drive\DevOps_Master\Azure_Image-Builder
+C:\Users\bsingh\OneDrive - xxxx xxxx\Balraj_D_Laptop_Drive\DevOps_Master\Azure_Image-Builder
 ```
 
 These repositories use:
@@ -38,19 +38,19 @@ mrbalraj@gmail.com
 Stored under:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\JQ_GitHub_Repo_Project
+C:\Users\bsingh\OneDrive - xxxx xxxx\JQ_GitHub_Repo_Project
 ```
 
 Example:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\JQ_GitHub_Repo_Project\a1908-jetstar-azure-snap-on-level-5
+C:\Users\bsingh\OneDrive - xxxx xxxx\JQ_GitHub_Repo_Project\xxxx-xxxx-azure-snap-on-level-5
 ```
 
 These repositories use:
 
 ```text
-balraj.singh@jetstar.com
+balraj.singh@xxxx.com
 ```
 
 ---
@@ -90,7 +90,7 @@ Contents:
 
 ```ini
 [user]
-    email = balraj.singh@jetstar.com
+    email = balraj.singh@xxxx.com
     name = Balraj Singh
 ```
 
@@ -111,7 +111,7 @@ Contents:
     name = Balraj Singh
     email = mrbalraj@gmail.com
 
-[includeIf "gitdir:C:/Users/bsingh/OneDrive - Jetstar Airways Pty Ltd/JQ_GitHub_Repo_Project/**"]
+[includeIf "gitdir:C:/Users/bsingh/OneDrive - xxxx xxxx/JQ_GitHub_Repo_Project/**"]
     path = C:/Users/bsingh/.gitconfig-company
 ```
 
@@ -124,7 +124,7 @@ The include rule only becomes active when Git is running inside an actual Git re
 For example, this folder is NOT a Git repository:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\JQ_GitHub_Repo_Project
+C:\Users\bsingh\OneDrive - xxxx xxxx\JQ_GitHub_Repo_Project
 ```
 
 It is only a parent directory that contains repositories.
@@ -132,7 +132,7 @@ It is only a parent directory that contains repositories.
 Example repository:
 
 ```text
-C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\JQ_GitHub_Repo_Project\a1908-jetstar-azure-snap-on-level-5
+C:\Users\bsingh\OneDrive - xxxx xxxx\JQ_GitHub_Repo_Project\xxxx-xxxx-azure-snap-on-level-5
 ```
 
 You must run Git commands from inside the repository folder.
@@ -144,7 +144,7 @@ You must run Git commands from inside the repository folder.
 Navigate to any personal repository:
 
 ```bash
-cd "C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\Balraj_D_Laptop_Drive\DevOps_Master\Azure_Image-Builder"
+cd "C:\Users\bsingh\OneDrive - xxxx xxxx\Balraj_D_Laptop_Drive\DevOps_Master\Azure_Image-Builder"
 ```
 
 Check email:
@@ -166,7 +166,7 @@ file:C:/Users/bsingh/.gitconfig mrbalraj@gmail.com
 Navigate to an actual company repository:
 
 ```bash
-cd "C:\Users\bsingh\OneDrive - Jetstar Airways Pty Ltd\JQ_GitHub_Repo_Project\a1908-jetstar-azure-snap-on-level-5"
+cd "C:\Users\bsingh\OneDrive - xxxx xxxx\JQ_GitHub_Repo_Project\xxxx-xxxx-azure-snap-on-level-5"
 ```
 
 Check email:
@@ -178,7 +178,7 @@ git config --show-origin --get user.email
 Expected result:
 
 ```text
-file:C:/Users/bsingh/.gitconfig-company balraj.singh@jetstar.com
+file:C:/Users/bsingh/.gitconfig-company balraj.singh@xxxx.com
 ```
 
 ---
@@ -222,6 +222,6 @@ git rev-parse --git-dir
 | Repository Type | Email Used |
 |----------------|------------|
 | Personal Repositories | mrbalraj@gmail.com |
-| Jetstar Company Repositories | balraj.singh@jetstar.com |
+| xxxx Company Repositories | balraj.singh@xxxx.com |
 
 Git now automatically switches identities based on repository location, preventing accidental commits with the wrong email address.
