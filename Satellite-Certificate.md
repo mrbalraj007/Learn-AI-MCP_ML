@@ -69,7 +69,7 @@ A sample OpenSSL configuration file can be created as follows:
 ### For Satellite Server
 ```ini
 # /root/satellite_cert
-# [root@meldc2sat02 satellite_cert]# cat openssl.cnf
+# [root@xxxxdc2sat02 satellite_cert]# cat openssl.cnf
 [ req ]
 req_extensions = v3_req
 distinguished_name = req_distinguished_name
@@ -79,10 +79,10 @@ prompt = no
 [ req_distinguished_name ]
 C  = AU
 ST = VIC
-L  = MEL
+L  = xxxx
 O  = Jetstar Airways Pty Ltd
 OU = IT
-CN = meldc2sat02.corp.jetstar.com
+CN = xxxxdc2sat02singhworld.org
 
 [ v3_req ]
 basicConstraints = CA:FALSE
@@ -100,8 +100,8 @@ subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer
 
 [ alt_names ]
-DNS.1 = meldc2sat02.corp.jetstar.com
-DNS.2 = meldc2sat02
+DNS.1 = xxxxdc2sat02.singhworld.org
+DNS.2 = xxxxdc2sat02
 IP.1  = 172.23.6.105
 ```
 Save this as a file such as **/root/satellite_cert/openssl.cnf**.
@@ -109,8 +109,8 @@ Save this as a file such as **/root/satellite_cert/openssl.cnf**.
 ### For Capsule Server
 ```ini
 # cd /root/capsule_cert
-# [root@meldc2sat02 capsule_cert]# pwd
-#[root@meldc2sat02 capsule_cert]# cat openssl.cnf
+# [root@xxxxdc2sat02 capsule_cert]# pwd
+#[root@xxxxdc2sat02 capsule_cert]# cat openssl.cnf
 [ req ]
 req_extensions = v3_req
 distinguished_name = req_distinguished_name
@@ -120,10 +120,10 @@ prompt = no
 [ req_distinguished_name ]
 C  = AU
 ST = VIC
-L  = MEL
+L  = xxxx
 O  = Jetstar Airways Pty Ltd
 OU = IT
-CN = syddc2cap02.corp.jetstar.com
+CN = xxxxdc2cap02.singhworld.org
 
 [ v3_req ]
 basicConstraints = CA:FALSE
@@ -141,8 +141,8 @@ subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer
 
 [ alt_names ]
-DNS.1 = syddc2cap02.corp.jetstar.com
-DNS.2 = syddc2cap02
+DNS.1 = xxxxdc2cap02.singhworld.org
+DNS.2 = xxxxdc2cap02
 IP.1  = 172.23.36.212
 ```
 
@@ -205,14 +205,14 @@ These checks confirm that the live certificate files reflect the new values.
 To confirm the environment is working end to end, register a client host against the Satellite server.
 
 ```bash
-openssl s_client -connect meldc2sat02.corp.jetstar.com:443 -showcerts
-openssl s_client -connect meldc2sat02.corp.jetstar.com:443 -CApath /etc/rhsm/ca
+openssl s_client -connect xxxxdc2sat02.singhworld.org:443 -showcerts
+openssl s_client -connect xxxxdc2sat02.singhworld.org:443 -CApath /etc/rhsm/ca
 ```
 
 Then install the CA package and register the host.
 
 ```bash
-curl -k -O https://meldc2sat02.corp.jetstar.com/pub/katello-ca-consumer-latest.noarch.rpm
+curl -k -O https://xxxxdc2sat02.singhworld.org/pub/katello-ca-consumer-latest.noarch.rpm
 rpm -Uvh katello-ca-consumer-latest.noarch.rpm
 ls -l /etc/rhsm/ca/
 rpm -ql $(rpm -qa | grep katello-ca)
@@ -251,7 +251,7 @@ Run the certificate generation process from the **Satellite server**.
 
 Will create a alise for capsule as below
 ```bash
-CAPSULE=syddc2cap02.corp.jetstar.com
+CAPSULE=xxxxdc2cap02.singhworld.org
 ```
 Run the below command
 ```bash
@@ -266,18 +266,18 @@ capsule-certs-generate --foreman-proxy-fqdn "$CAPSULE" \
 Copy the generated archive to the Capsule host.
 
 ```bash
- #Copy the following file /root/syddc2cap02.corp.jetstar.com-certs.tar to the system syddc2cap02.corp.jetstar.com at the following location /root/syddc2cap02.corp.jetstar.com-certs.tar
-scp /root/syddc2cap02.corp.jetstar.com-certs.tar root@syddc2cap02.corp.jetstar.com:/root/syddc2cap02.corp.jetstar.com-certs.tar
+ #Copy the following file /root/xxxxdc2cap02.singhworld.org-certs.tar to the system xxxxdc2cap02.singhworld.org at the following location /root/xxxxdc2cap02.singhworld.org-certs.tar
+scp /root/xxxxdc2cap02.singhworld.org-certs.tar root@xxxxdc2cap02.singhworld.org:/root/xxxxdc2cap02.singhworld.org-certs.tar
 ```
 **Note:** # it will generate the following command, which needs to be run on capsule server.
 
 ```ini
 satellite-installer\
                     --scenario capsule\
-                    --certs-tar-file                              "/root/syddc2cap02.corp.jetstar.com-certs.tar"\
-                    --foreman-proxy-foreman-base-url              "https://meldc2sat02.corp.jetstar.com"\
-                    --foreman-proxy-trusted-hosts                 "meldc2sat02.corp.jetstar.com"\
-                    --foreman-proxy-trusted-hosts                 "syddc2cap02.corp.jetstar.com"\
+                    --certs-tar-file                              "/root/xxxxdc2cap02.singhworld.org-certs.tar"\
+                    --foreman-proxy-foreman-base-url              "https://xxxxdc2sat02.singhworld.org"\
+                    --foreman-proxy-trusted-hosts                 "xxxxdc2sat02.singhworld.org"\
+                    --foreman-proxy-trusted-hosts                 "xxxxdc2cap02.singhworld.org"\
                     --foreman-proxy-oauth-consumer-key            "36H9piVNFGKK82XzsPKbNK3iNNKSiX8o"\
                     --foreman-proxy-oauth-consumer-secret         "LTrfi3hRVWof8uWQHe3DrnQ8CNst7xVF"
 ```
@@ -289,10 +289,10 @@ On the **Capsule server**, run the installer using the archive that was copied o
 ```bash
 satellite-installer\
                     --scenario capsule\
-                    --certs-tar-file                              "/root/syddc2cap02.corp.jetstar.com-certs.tar"\
-                    --foreman-proxy-foreman-base-url              "https://meldc2sat02.corp.jetstar.com"\
-                    --foreman-proxy-trusted-hosts                 "meldc2sat02.corp.jetstar.com"\
-                    --foreman-proxy-trusted-hosts                 "syddc2cap02.corp.jetstar.com"\
+                    --certs-tar-file                              "/root/xxxxdc2cap02.singhworld.org-certs.tar"\
+                    --foreman-proxy-foreman-base-url              "https://xxxxdc2sat02.singhworld.org"\
+                    --foreman-proxy-trusted-hosts                 "xxxxdc2sat02.singhworld.org"\
+                    --foreman-proxy-trusted-hosts                 "xxxxdc2cap02.singhworld.org"\
                     --foreman-proxy-oauth-consumer-key            "36H9piVNFGKK82XzsPKbNK3iNNKSiX8o"\
                     --foreman-proxy-oauth-consumer-secret         "LTrfi3hRVWof8uWQHe3DrnQ8CNst7xVF"
 
@@ -304,8 +304,8 @@ If your environment uses explicit OAuth consumer values, replace the placeholder
 satellite-installer \
   --scenario capsule \
   --certs-tar-file "/root/$CAPSULE-certs.tar" \
-  --foreman-proxy-foreman-base-url "https://meldc2sat02.corp.jetstar.com" \
-  --foreman-proxy-trusted-hosts "meldc2sat02.corp.jetstar.com" \
+  --foreman-proxy-foreman-base-url "https://xxxxdc2sat02.singhworld.org" \
+  --foreman-proxy-trusted-hosts "xxxxdc2sat02.singhworld.org" \
   --foreman-proxy-trusted-hosts "$CAPSULE" \
   --foreman-proxy-oauth-consumer-key "<consumer-key>" \
   --foreman-proxy-oauth-consumer-secret "<consumer-secret>"
@@ -316,15 +316,15 @@ satellite-installer \
 Check that the Capsule server is presenting the new certificate.
 
 ```bash
-openssl s_client -connect syddc2cap02.corp.jetstar.com:443 -showcerts
-openssl s_client -connect syddc2cap02.corp.jetstar.com:443 -CApath /etc/rhsm/ca
+openssl s_client -connect xxxxdc2cap02.singhworld.org:443 -showcerts
+openssl s_client -connect xxxxdc2cap02.singhworld.org:443 -CApath /etc/rhsm/ca
 ```
 
 For client hosts, the same CA package process can be used against the Capsule server.
 
 ```bash
 rpm -qa | grep katello-ca
-curl -k -O https://syddc2cap02.corp.jetstar.com/pub/katello-ca-consumer-latest.noarch.rpm
+curl -k -O https://xxxxdc2cap02.singhworld.org/pub/katello-ca-consumer-latest.noarch.rpm
 rpm -Uvh katello-ca-consumer-latest.noarch.rpm
 ls -l /etc/rhsm/ca/
 rpm -ql $(rpm -qa | grep katello-ca)
